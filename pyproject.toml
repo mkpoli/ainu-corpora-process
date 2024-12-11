@@ -12,5 +12,6 @@ dependencies = [
     "matplotlib>=3.9.2",
     "nltk>=3.9.1",
     "pdf2image>=1.17.0",
+    "python-dotenv>=1.0.1",
     "wordcloud>=1.9.4",
 ]
