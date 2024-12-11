@@ -1,0 +1,16 @@
+[project]
+name = "process"
+version = "0.1.0"
+description = "Ainu corpora processing tools"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ainconv>=0.6.0",
+    "datasets>=2.16.1",
+    "ipykernel>=6.29.5",
+    "ipywidgets>=8.1.5",
+    "matplotlib>=3.9.2",
+    "nltk>=3.9.1",
+    "pdf2image>=1.17.0",
+    "wordcloud>=1.9.4",
+]
