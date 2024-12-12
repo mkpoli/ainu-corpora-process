@@ -1114,9 +1114,6 @@ requires-dist = [
     { name = "wordcloud", specifier = ">=1.9.4" },
 ]
 
-[package.metadata.requires-dev]
-dev = []
-
 [[package]]
 name = "prompt-toolkit"
 version = "3.0.48"
@@ -1594,6 +1591,9 @@ wheels = [
 name = "utils"
 version = "0.1.0"
 source = { editable = "utils" }
+dependencies = [
+    { name = "nltk" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -1601,6 +1601,7 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [{ name = "nltk", specifier = ">=3.9.1" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8.3.4" }]
