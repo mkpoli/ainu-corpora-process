@@ -3,7 +3,9 @@ name = "utils"
 version = "0.1.0"
 description = "Utility functions for Ainu corpora processing"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "nltk>=3.9.1",
+]
 
 [build-system]
 requires = ["hatchling"]
