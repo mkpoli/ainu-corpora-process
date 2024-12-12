@@ -1,0 +1,15 @@
+[project]
+name = "utils"
+version = "0.1.0"
+description = "Utility functions for Ainu corpora processing"
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+]
