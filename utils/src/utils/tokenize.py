@@ -13,7 +13,7 @@ def tokenize(sentence: str) -> list[str]:
     sentence = re.sub(r"[‘'](.*?)", r"\1", sentence)
     sentence = re.sub(r"\[\d+\]", "", sentence)
 
-    tokenizer = RegexpTokenizer(r"[a-zA-Z0-9=-_'’]+")
+    tokenizer = RegexpTokenizer(r"[a-zA-Zâîûêôáíúéó0-9=-_'’]+")
     words = tokenizer.tokenize(sentence)
 
     def split_affixes(word: str) -> list[str]:
