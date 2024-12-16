@@ -1,0 +1,207 @@
+{
+  "hah": {
+    "ja": ["クロユリ"],
+    "en": ["black lily"],
+    "ru": ["черная лилия"]
+  },
+  "hahka": {
+    "ja": ["帽子"],
+    "en": ["hat"],
+    "ru": ["шляпа"]
+  },
+  "haaciri": {
+    "ja": ["転ぶ"],
+    "en": ["to fall"],
+    "ru": ["упасть"]
+  },
+  "haarehci": {
+    "ja": ["～を落とす"],
+    "en": ["to drop ~"],
+    "ru": ["уронить ~"]
+  },
+  "hayta": {
+    "ja": ["足りない"],
+    "en": ["insufficient"],
+    "ru": ["недостаточно"]
+  },
+  "haw": {
+    "ja": ["声"],
+    "en": ["voice"],
+    "ru": ["голос"]
+  },
+  "haworo": {
+    "ja": ["声"],
+    "en": ["voice"],
+    "ru": ["голос"]
+  },
+  "hawki": {
+    "ja": ["叙事詩"],
+    "en": ["epic poem"],
+    "ru": ["эпическая поэма"]
+  },
+  "hawhe": {
+    "ja": ["声"],
+    "en": ["voice"],
+    "ru": ["голос"]
+  },
+  "haku": {
+    "ja": ["箱"],
+    "en": ["box"],
+    "ru": ["коробка"]
+  },
+  "haciko": {
+    "ja": ["小さい"],
+    "en": ["small"],
+    "ru": ["маленький"]
+  },
+  "hacuhceh": {
+    "ja": ["シシャモ"],
+    "en": ["shishamo (smelt fish)"],
+    "ru": ["шишамо (рыба)"]
+  },
+  "hamata": {
+    "ja": ["何"],
+    "en": ["what"],
+    "ru": ["что"]
+  },
+  "hariki": {
+    "ja": ["反対の", "左の"],
+    "en": ["opposite", "left"],
+    "ru": ["противоположный", "левый"]
+  },
+  "han": {
+    "ja": ["しない（否定）"],
+    "en": ["not (negative)"],
+    "ru": ["не (отрицание)"]
+  },
+  "hanka": {
+    "ja": ["するな（禁止）"],
+    "en": ["don't (prohibition)"],
+    "ru": ["не (запрет)"]
+  },
+  "hankata": {
+    "ja": ["曲げ物の箱"],
+    "en": ["bentwood box"],
+    "ru": ["коробка из гнутого дерева"]
+  },
+  "hankapuye": {
+    "ja": ["へそ"],
+    "en": ["navel"],
+    "ru": ["пупок"]
+  },
+  "hankuhu": {
+    "ja": ["へそ"],
+    "en": ["navel"],
+    "ru": ["пупок"]
+  },
+  "hannehka": {
+    "ja": ["しない（否定）"],
+    "en": ["not (negative)"],
+    "ru": ["не (отрицание)"]
+  },
+  "paskuncikah": {
+    "ja": ["カラス"],
+    "en": ["crow"],
+    "ru": ["ворона"]
+  },
+  "puu": {
+    "ja": ["倉庫"],
+    "en": ["warehouse"],
+    "ru": ["склад"]
+  },
+  "puuhe": {
+    "ja": ["倉庫"],
+    "en": ["warehouse"],
+    "ru": ["склад"]
+  },
+  "puynu": {
+    "ja": ["～を通す"],
+    "en": ["to pass through ~"],
+    "ru": ["проходить через ~"]
+  },
+  "pukusakina": {
+    "ja": ["ニリンソウ"],
+    "en": ["anemone (woodland flower)"],
+    "ru": ["анемон (лесной цветок)"]
+  },
+  "putuputuh": {
+    "ja": ["ぶっぶっと音を立てる"],
+    "en": ["to make a bubbling sound"],
+    "ru": ["издавать пузырящийся звук"]
+  },
+  "puni": {
+    "ja": ["～を持ち上げる"],
+    "en": ["to lift ~"],
+    "ru": ["поднимать ~"]
+  },
+  "puyara": {
+    "ja": ["窓"],
+    "en": ["window"],
+    "ru": ["окно"]
+  },
+  "hempah": {
+    "ja": ["いくら"],
+    "en": ["how much"],
+    "ru": ["сколько"]
+  },
+  "hempahno": {
+    "ja": ["いくら"],
+    "en": ["how much"],
+    "ru": ["сколько"]
+  },
+  "hempara": {
+    "ja": ["いる"],
+    "en": ["to exist"],
+    "ru": ["существовать"]
+  },
+  "hee": {
+    "ja": ["か（疑問）"],
+    "en": ["? (question)"],
+    "ru": ["? (вопрос)"]
+  },
+  "heekopohcin": {
+    "ja": ["妹たち"],
+    "en": ["younger sisters"],
+    "ru": ["младшие сестры"]
+  },
+  "heekopoho": {
+    "ja": ["妹"],
+    "en": ["younger sister"],
+    "ru": ["младшая сестра"]
+  },
+  "hekaci": {
+    "ja": ["子供"],
+    "en": ["child"],
+    "ru": ["ребёнок"]
+  },
+  "hekimoh": {
+    "ja": ["山へ"],
+    "en": ["to the mountain"],
+    "ru": ["в гору"]
+  },
+  "hekem": {
+    "ja": ["引っ張る"],
+    "en": ["to pull"],
+    "ru": ["тянуть"]
+  },
+  "hekempa": {
+    "ja": ["引っ張る"],
+    "en": ["to pull"],
+    "ru": ["тянуть"]
+  },
+  "hetah": {
+    "ja": ["さあ"],
+    "en": ["come on"],
+    "ru": ["давай"]
+  },
+  "hecire": {
+    "ja": ["遊ぶ", "遊び", "歌", "踊り"],
+    "en": ["to play", "play", "song", "dance"],
+    "ru": ["играть", "игра", "песня", "танец"]
+  },
+  "hecinte": {
+    "ja": ["～を遊ばせる"],
+    "en": ["to let ~ play"],
+    "ru": ["позволить ~ играть"]
+  }
+}

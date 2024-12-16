@@ -1,0 +1,262 @@
+{
+  "sankehci": {
+    "ja": ["～を下ろす"],
+    "en": ["to lower ~"],
+    "ru": ["опустить ~"]
+  },
+  "sihseeseh": {
+    "ja": ["暑い"],
+    "en": ["hot"],
+    "ru": ["жаркий"]
+  },
+  "sihte": {
+    "ja": ["一杯にする"],
+    "en": ["to fill up"],
+    "ru": ["наполнить"]
+  },
+  "sihtoono": {
+    "ja": ["夜が明ける"],
+    "en": ["dawn breaks"],
+    "ru": ["рассвет наступает"]
+  },
+  "sihtokihi": {
+    "ja": ["ひじ"],
+    "en": ["elbow"],
+    "ru": ["локоть"]
+  },
+  "sihnu": {
+    "ja": ["生きる"],
+    "en": ["to live"],
+    "ru": ["жить"]
+  },
+  "sihritennoo": {
+    "ja": ["暖かい"],
+    "en": ["warm"],
+    "ru": ["тёплый"]
+  },
+  "simma": {
+    "ja": ["明日"],
+    "en": ["tomorrow"],
+    "ru": ["завтра"]
+  },
+  "siisam": {
+    "ja": ["日本", "日本人"],
+    "en": ["Japan", "Japanese person"],
+    "ru": ["Япония", "японец"]
+  },
+  "siisan": {
+    "ja": ["日本", "日本人"],
+    "en": ["Japan", "Japanese person"],
+    "ru": ["Япония", "японец"]
+  },
+  "siinaan": {
+    "ja": ["はい", "もちろん", "当然"],
+    "en": ["yes", "of course", "naturally"],
+    "ru": ["да", "конечно", "естественно"]
+  },
+  "siine": {
+    "ja": ["休む"],
+    "en": ["to rest"],
+    "ru": ["отдыхать"]
+  },
+  "siimon": {
+    "ja": ["右手"],
+    "en": ["right hand"],
+    "ru": ["правая рука"]
+  },
+  "sianno": {
+    "ja": ["本当に", "実に", "はなはだ"],
+    "en": ["really", "truly", "very"],
+    "ru": ["действительно", "очень", "очень сильно"]
+  },
+  "siwnin": {
+    "ja": ["青", "緑", "黄色"],
+    "en": ["blue", "green", "yellow"],
+    "ru": ["синий", "зелёный", "жёлтый"]
+  },
+  "siwpu": {
+    "ja": ["一生懸命やる"],
+    "en": ["to do one's best"],
+    "ru": ["стараться"]
+  },
+  "sikah": {
+    "ja": ["生まれる"],
+    "en": ["to be born"],
+    "ru": ["родиться"]
+  },
+  "sikahte": {
+    "ja": ["～を生み出す"],
+    "en": ["to create ~"],
+    "ru": ["создавать ~"]
+  },
+  "sikaari": {
+    "ja": ["丸い"],
+    "en": ["round"],
+    "ru": ["круглый"]
+  },
+  "siki": {
+    "ja": ["目"],
+    "en": ["eye"],
+    "ru": ["глаз"]
+  },
+  "sikihi": {
+    "ja": ["目"],
+    "en": ["eye"],
+    "ru": ["глаз"]
+  },
+  "sike": {
+    "ja": ["荷物"],
+    "en": ["luggage"],
+    "ru": ["багаж"]
+  },
+  "sikerepe": {
+    "ja": ["キハダの実"],
+    "en": ["fruit of the Japanese cork tree"],
+    "ru": ["плод японского пробкового дерева"]
+  },
+  "sikonoye": {
+    "ja": ["～を巻き起こす"],
+    "en": ["to stir up ~"],
+    "ru": ["возбудить ~"]
+  },
+  "sisahke": {
+    "ja": ["支度する"],
+    "en": ["to prepare"],
+    "ru": ["готовить"]
+  },
+  "sisan": {
+    "ja": ["自分のそば"],
+    "en": ["beside oneself"],
+    "ru": ["рядом с собой"]
+  },
+  "sitakante": {
+    "ja": ["～の夢に現れる"],
+    "en": ["to appear in someone's dream"],
+    "ru": ["являться в чьём-то сне"]
+  },
+  "sito": {
+    "ja": ["団子"],
+    "en": ["dumpling"],
+    "ru": ["клёцка"]
+  },
+  "sine": {
+    "ja": ["１つの"],
+    "en": ["one"],
+    "ru": ["один"]
+  },
+  "sineh": {
+    "ja": ["１つ"],
+    "en": ["one"],
+    "ru": ["один"]
+  },
+  "sinepisan": {
+    "ja": ["９つの"],
+    "en": ["nine"],
+    "ru": ["девять"]
+  },
+  "sinepisanpe": {
+    "ja": ["９つ"],
+    "en": ["nine"],
+    "ru": ["девять"]
+  },
+  "sinoh": {
+    "ja": ["遊ぶ"],
+    "en": ["to play"],
+    "ru": ["играть"]
+  },
+  "sinohsa": {
+    "ja": ["歌"],
+    "en": ["song"],
+    "ru": ["песня"]
+  },
+  "sinohca": {
+    "ja": ["歌"],
+    "en": ["song"],
+    "ru": ["песня"]
+  },
+  "sipini": {
+    "ja": ["支度する"],
+    "en": ["to prepare"],
+    "ru": ["готовить"]
+  },
+  "simakorayerusuy": {
+    "ja": ["世を去りたい"],
+    "en": ["to want to leave the world"],
+    "ru": ["хотеть покинуть мир"]
+  },
+  "siraykihci": {
+    "ja": ["～を叩く"],
+    "en": ["to hit ~"],
+    "ru": ["ударить ~"]
+  },
+  "sirara": {
+    "ja": ["岩磯"],
+    "en": ["rocky shore"],
+    "ru": ["скалистый берег"]
+  },
+  "siri": {
+    "ja": ["様子"],
+    "en": ["appearance"],
+    "ru": ["внешний вид"]
+  },
+  "sirihi": {
+    "ja": ["様子"],
+    "en": ["appearance"],
+    "ru": ["внешний вид"]
+  },
+  "siripirika": {
+    "ja": ["天気が良い"],
+    "en": ["good weather"],
+    "ru": ["хорошая погода"]
+  },
+  "sirimemamnoo": {
+    "ja": ["すずしい"],
+    "en": ["cool"],
+    "ru": ["прохладный"]
+  },
+  "sirepahci": {
+    "ja": ["～に到着する"],
+    "en": ["to arrive at ~"],
+    "ru": ["прибыть в ~"]
+  },
+  "sirokaani": {
+    "ja": ["銀"],
+    "en": ["silver"],
+    "ru": ["серебро"]
+  },
+  "sinka": {
+    "ja": ["疲れる"],
+    "en": ["to get tired"],
+    "ru": ["устать"]
+  },
+  "sinkehe": {
+    "ja": ["翌日"],
+    "en": ["next day"],
+    "ru": ["следующий день"]
+  },
+  "sinnay": {
+    "ja": ["別に"],
+    "en": ["separately"],
+    "ru": ["отдельно"]
+  },
+  "sinnaman": {
+    "ja": ["寒く感じる"],
+    "en": ["to feel cold"],
+    "ru": ["чувствовать холод"]
+  },
+  "sinnurahpa": {
+    "ja": ["お供えをする"],
+    "en": ["to offer (as a ritual)"],
+    "ru": ["приносить в жертву"]
+  },
+  "sinrih": {
+    "ja": ["先祖"],
+    "en": ["ancestor"],
+    "ru": ["предок"]
+  },
+  "sinritutah": {
+    "ja": ["先祖達"],
+    "en": ["ancestors"],
+    "ru": ["предки"]
+  }
+}

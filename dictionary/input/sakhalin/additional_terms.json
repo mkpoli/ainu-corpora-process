@@ -1,0 +1,34 @@
+[
+  {
+    "lemma": "-ahci",
+    "ja": ["（複数）"],
+    "en": ["(plural)"],
+    "ru": ["(множественное число)"],
+    "poses": ["suffix"],
+    "frequency": 1000000
+  },
+  {
+    "lemma": "arahke",
+    "ja": ["酒", "強いワイン"],
+    "en": ["alcohol", "strong wine"],
+    "ru": ["алкоголь", "сильное вино"],
+    "poses": ["noun"],
+    "frequency": 1
+  },
+  {
+    "lemma": "hapah",
+    "ja": ["肺"],
+    "en": ["lungs"],
+    "ru": ["легкие"],
+    "poses": ["noun"],
+    "frequency": 1
+  },
+  {
+    "lemma": "neampe",
+    "ja": ["それ"],
+    "en": ["that"],
+    "ru": ["это"],
+    "poses": ["noun"],
+    "frequency": 1
+  }
+]

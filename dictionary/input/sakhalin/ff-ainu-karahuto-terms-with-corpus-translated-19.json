@@ -1,0 +1,362 @@
+{
+  "pohkeno": {
+    "ja": ["暖かく"],
+    "en": ["warmly"],
+    "ru": ["тепло"]
+  },
+  "poroo": {
+    "ja": ["大きい"],
+    "en": ["big"],
+    "ru": ["большой"]
+  },
+  "poronay": {
+    "ja": ["大きい川"],
+    "en": ["big river"],
+    "ru": ["большая река"]
+  },
+  "poronno": {
+    "ja": ["たくさん"],
+    "en": ["a lot"],
+    "ru": ["много"]
+  },
+  "pontennehpo": {
+    "ja": ["赤ん坊"],
+    "en": ["baby"],
+    "ru": ["младенец"]
+  },
+  "pontooto": {
+    "ja": ["幼児", "ちび"],
+    "en": ["young child", "little one"],
+    "ru": ["маленький ребенок", "малыш"]
+  },
+  "pontootoutarike": {
+    "ja": ["幼児たち"],
+    "en": ["young children"],
+    "ru": ["маленькие дети"]
+  },
+  "ponno": {
+    "ja": ["少し"],
+    "en": ["a little"],
+    "ru": ["немного"]
+  },
+  "ponhekaci": {
+    "ja": ["小さい子供"],
+    "en": ["small child"],
+    "ru": ["маленький ребенок"]
+  },
+  "mah": {
+    "ja": ["妻"],
+    "en": ["wife"],
+    "ru": ["жена"]
+  },
+  "mahtekuh": {
+    "ja": ["女性"],
+    "en": ["woman"],
+    "ru": ["женщина"]
+  },
+  "mahpoo": {
+    "ja": ["娘"],
+    "en": ["daughter"],
+    "ru": ["дочь"]
+  },
+  "maareh": {
+    "ja": ["鉤銛"],
+    "en": ["hooked harpoon"],
+    "ru": ["гарпун с крюком"]
+  },
+  "mawhe": {
+    "ja": ["風", "息"],
+    "en": ["wind", "breath"],
+    "ru": ["ветер", "дыхание"]
+  },
+  "makah": {
+    "ja": ["登る"],
+    "en": ["to climb"],
+    "ru": ["подниматься"]
+  },
+  "makan": {
+    "ja": ["登る"],
+    "en": ["to climb"],
+    "ru": ["подниматься"]
+  },
+  "makiri": {
+    "ja": ["ナイフ"],
+    "en": ["knife"],
+    "ru": ["нож"]
+  },
+  "makirihi": {
+    "ja": ["ナイフ"],
+    "en": ["knife"],
+    "ru": ["нож"]
+  },
+  "masa": {
+    "ja": ["～を開く"],
+    "en": ["to open ~"],
+    "ru": ["открывать ~"]
+  },
+  "matayta": {
+    "ja": ["冬"],
+    "en": ["winter"],
+    "ru": ["зима"]
+  },
+  "maci": {
+    "ja": ["妻"],
+    "en": ["wife"],
+    "ru": ["жена"]
+  },
+  "maciri": {
+    "ja": ["傷"],
+    "en": ["wound"],
+    "ru": ["рана"]
+  },
+  "macirihi": {
+    "ja": ["傷"],
+    "en": ["wound"],
+    "ru": ["рана"]
+  },
+  "manu": {
+    "ja": ["という", "そうだ"],
+    "en": ["to say", "it seems"],
+    "ru": ["говорить", "кажется"]
+  },
+  "manuyke": {
+    "ja": ["といって", "そうで"],
+    "en": ["saying", "it seems"],
+    "ru": ["говоря", "кажется"]
+  },
+  "mii": {
+    "ja": ["～を着る"],
+    "en": ["to wear ~"],
+    "ru": ["носить ~"]
+  },
+  "miina": {
+    "ja": ["笑う"],
+    "en": ["to laugh"],
+    "ru": ["смеяться"]
+  },
+  "mici": {
+    "ja": ["孫"],
+    "en": ["grandchild"],
+    "ru": ["внук"]
+  },
+  "micihi": {
+    "ja": ["孫"],
+    "en": ["grandchild"],
+    "ru": ["внук"]
+  },
+  "micihihcin": {
+    "ja": ["孫"],
+    "en": ["grandchild"],
+    "ru": ["внук"]
+  },
+  "mitutarike": {
+    "ja": ["孫達"],
+    "en": ["grandchildren"],
+    "ru": ["внуки"]
+  },
+  "mitutarikehe": {
+    "ja": ["孫達"],
+    "en": ["grandchildren"],
+    "ru": ["внуки"]
+  },
+  "muye": {
+    "ja": ["～を束ねる"],
+    "en": ["to bundle ~"],
+    "ru": ["связывать ~"]
+  },
+  "mukara": {
+    "ja": ["斧"],
+    "en": ["axe"],
+    "ru": ["топор"]
+  },
+  "munkii": {
+    "ja": ["山菜を取る"],
+    "en": ["to collect mountain vegetables"],
+    "ru": ["собирать горные овощи"]
+  },
+  "mespa": {
+    "ja": ["～をはがす"],
+    "en": ["to peel ~"],
+    "ru": ["снимать ~"]
+  },
+  "meh": {
+    "ja": ["吠える"],
+    "en": ["to bark"],
+    "ru": ["лаять"]
+  },
+  "meerayki": {
+    "ja": ["寒く感じる"],
+    "en": ["to feel cold"],
+    "ru": ["чувствовать холод"]
+  },
+  "mesu": {
+    "ja": ["～をはがず"],
+    "en": ["to peel ~"],
+    "ru": ["снимать ~"]
+  },
+  "metohmicihi": {
+    "ja": ["クマの子"],
+    "en": ["bear cub"],
+    "ru": ["медвежонок"]
+  },
+  "menoko": {
+    "ja": ["女性"],
+    "en": ["woman"],
+    "ru": ["женщина"]
+  },
+  "merekopo": {
+    "ja": ["若い女性"],
+    "en": ["young woman"],
+    "ru": ["молодая женщина"]
+  },
+  "mos": {
+    "ja": ["目を覚ます"],
+    "en": ["to wake up"],
+    "ru": ["проснуться"]
+  },
+  "mokonrayki": {
+    "ja": ["ひどく眠い"],
+    "en": ["extremely sleepy"],
+    "ru": ["очень сонный"]
+  },
+  "mosihi": {
+    "ja": ["目を覚ますこと"],
+    "en": ["the act of waking up"],
+    "ru": ["действие пробуждения"]
+  },
+  "mosiri": {
+    "ja": ["土地", "国", "世界"],
+    "en": ["land", "country", "world"],
+    "ru": ["земля", "страна", "мир"]
+  },
+  "moso": {
+    "ja": ["早く"],
+    "en": ["quickly"],
+    "ru": ["быстро"]
+  },
+  "monimahpo": {
+    "ja": ["女性"],
+    "en": ["woman"],
+    "ru": ["женщина"]
+  },
+  "monpeci": {
+    "ja": ["指"],
+    "en": ["finger"],
+    "ru": ["палец"]
+  },
+  "monpecihi": {
+    "ja": ["指"],
+    "en": ["finger"],
+    "ru": ["палец"]
+  },
+  "monrayki": {
+    "ja": ["働く", "仕事"],
+    "en": ["to work", "job"],
+    "ru": ["работать", "работа"]
+  },
+  "monraykihi": {
+    "ja": ["働くこと"],
+    "en": ["the act of working"],
+    "ru": ["действие работы"]
+  },
+  "ya": {
+    "ja": ["か（疑問）"],
+    "en": ["question particle"],
+    "ru": ["вопросительная частица"]
+  },
+  "yah": {
+    "ja": ["上陸する"],
+    "en": ["to land"],
+    "ru": ["высаживаться"]
+  },
+  "yahka": {
+    "ja": ["しても"],
+    "en": ["even if"],
+    "ru": ["даже если"]
+  },
+  "yahkayki": {
+    "ja": ["しても"],
+    "en": ["even if"],
+    "ru": ["даже если"]
+  },
+  "yaa": {
+    "ja": ["網"],
+    "en": ["net"],
+    "ru": ["сеть"]
+  },
+  "yayekota": {
+    "ja": ["自分で"],
+    "en": ["by oneself"],
+    "ru": ["самостоятельно"]
+  },
+  "yaykatekara": {
+    "ja": ["恋歌を歌う", "恋歌"],
+    "en": ["to sing a love song", "love song"],
+    "ru": ["петь любовную песню", "любовная песня"]
+  },
+  "yaykatekaraha": {
+    "ja": ["恋歌を歌うこと"],
+    "en": ["the act of singing a love song"],
+    "ru": ["действие петь любовную песню"]
+  },
+  "yaykiste": {
+    "ja": ["危ない"],
+    "en": ["dangerous"],
+    "ru": ["опасный"]
+  },
+  "yaysopikante": {
+    "ja": ["警戒する"],
+    "en": ["to be cautious"],
+    "ru": ["быть осторожным"]
+  },
+  "yaycisekoro": {
+    "ja": ["居をかまえる"],
+    "en": ["to settle"],
+    "ru": ["поселиться"]
+  },
+  "yayturaheciri": {
+    "ja": ["一人で遊ぶ"],
+    "en": ["to play alone"],
+    "ru": ["играть одному"]
+  },
+  "yaytonpa": {
+    "ja": ["閉まる"],
+    "en": ["to close"],
+    "ru": ["закрыться"]
+  },
+  "yayne": {
+    "ja": ["するうちに"],
+    "en": ["while doing"],
+    "ru": ["пока делаете"]
+  },
+  "yayramani": {
+    "ja": ["勝手に"],
+    "en": ["selfishly"],
+    "ru": ["самовольно"]
+  },
+  "yuhpoho": {
+    "ja": ["兄"],
+    "en": ["older brother"],
+    "ru": ["старший брат"]
+  },
+  "yupi": {
+    "ja": ["兄"],
+    "en": ["older brother"],
+    "ru": ["старший брат"]
+  },
+  "yupihi": {
+    "ja": ["兄"],
+    "en": ["older brother"],
+    "ru": ["старший брат"]
+  },
+  "yupihihcin": {
+    "ja": ["兄"],
+    "en": ["older brother"],
+    "ru": ["старший брат"]
+  },
+  "yuputarikehe": {
+    "ja": ["兄"],
+    "en": ["older brother"],
+    "ru": ["старший брат"]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "teh": {
+    "ja": ["して"],
+    "en": ["doing"],
+    "ru": ["делая"]
+  },
+  "tehkotoroho": {
+    "ja": ["てのひら"],
+    "en": ["palm of the hand"],
+    "ru": ["ладонь"]
+  },
+  "tehsikahkah": {
+    "ja": ["手の日除け"],
+    "en": ["hand sunshade"],
+    "ru": ["рукозащит от солнца"]
+  },
+  "temkoro": {
+    "ja": ["腕の中"],
+    "en": ["in the arms"],
+    "ru": ["в объятиях"]
+  },
+  "tee": {
+    "ja": ["ここ"],
+    "en": ["here"],
+    "ru": ["здесь"]
+  },
+  "teere": {
+    "ja": ["～を待つ"],
+    "en": ["to wait for ~"],
+    "ru": ["ждать ~"]
+  },
+  "teerehci": {
+    "ja": ["～を待つ"],
+    "en": ["to wait for ~"],
+    "ru": ["ждать ~"]
+  },
+  "na": {
+    "ja": ["ぞ"],
+    "en": ["(assertive particle)"],
+    "ru": ["(утвердительная частица)"]
+  },
+  "naspa": {
+    "ja": ["～をさく", "破る", "割る"],
+    "en": ["to tear", "to break"],
+    "ru": ["рвать", "ломать"]
+  },
+  "nah": {
+    "ja": ["どこ"],
+    "en": ["where"],
+    "ru": ["где"]
+  },
+  "nahtaan": {
+    "ja": ["どちら"],
+    "en": ["which"],
+    "ru": ["какой"]
+  },
+  "nahwaan": {
+    "ja": ["どちら"],
+    "en": ["which"],
+    "ru": ["какой"]
+  },
+  "naa": {
+    "ja": ["もう", "まだ"],
+    "en": ["already", "yet"],
+    "ru": ["уже", "ещё"]
+  },
+  "naah": {
+    "ja": ["あのように"],
+    "en": ["like that"],
+    "ru": ["так"]
+  },
+  "naata": {
+    "ja": ["誰"],
+    "en": ["who"],
+    "ru": ["кто"]
+  },
+  "naaruy": {
+    "ja": ["いっそう"],
+    "en": ["even more"],
+    "ru": ["ещё больше"]
+  },
+  "nay": {
+    "ja": ["川", "沢"],
+    "en": ["river", "stream"],
+    "ru": ["река", "ручей"]
+  },
+  "naykorokamuy": {
+    "ja": ["川の神"],
+    "en": ["river god"],
+    "ru": ["бог реки"]
+  },
+  "nakene": {
+    "ja": ["どこへ"],
+    "en": ["to where"],
+    "ru": ["куда"]
+  },
+  "nakoroun": {
+    "ja": ["どこの"],
+    "en": ["of where"],
+    "ru": ["откуда"]
+  },
+  "nakorokehe": {
+    "ja": ["どこ"],
+    "en": ["where"],
+    "ru": ["где"]
+  },
+  "nasa": {
+    "ja": ["～をさく", "破る", "割る"],
+    "en": ["to tear", "to break"],
+    "ru": ["рвать", "ломать"]
+  },
+  "nanu": {
+    "ja": ["顔"],
+    "en": ["face"],
+    "ru": ["лицо"]
+  },
+  "nanuhu": {
+    "ja": ["顔"],
+    "en": ["face"],
+    "ru": ["лицо"]
+  },
+  "nankoh": {
+    "ja": ["…だろう"],
+    "en": ["probably"],
+    "ru": ["вероятно"]
+  },
+  "nankotampa": {
+    "ja": ["～に頬ずりする"],
+    "en": ["to rub cheeks against ~"],
+    "ru": ["тереть щёки о ~"]
+  },
+  "nankoro": {
+    "ja": ["…だろう"],
+    "en": ["probably"],
+    "ru": ["вероятно"]
+  },
+  "nankorope": {
+    "ja": ["顔を持つ者"],
+    "en": ["one who has a face"],
+    "ru": ["тот, у кого есть лицо"]
+  },
+  "nanna": {
+    "ja": ["姉"],
+    "en": ["older sister"],
+    "ru": ["старшая сестра"]
+  },
+  "nannaha": {
+    "ja": ["姉"],
+    "en": ["older sister"],
+    "ru": ["старшая сестра"]
+  },
+  "nannikeh": {
+    "ja": ["顔の輝き"],
+    "en": ["brightness of the face"],
+    "ru": ["яркость лица"]
+  },
+  "nis": {
+    "ja": ["空"],
+    "en": ["sky"],
+    "ru": ["небо"]
+  },
+  "niskuru": {
+    "ja": ["雲"],
+    "en": ["cloud"],
+    "ru": ["облако"]
+  },
+  "nistenii": {
+    "ja": ["かたい木"],
+    "en": ["hardwood"],
+    "ru": ["твёрдая древесина"]
+  },
+  "nispa": {
+    "ja": ["紳士", "長者"],
+    "en": ["gentleman", "wealthy person"],
+    "ru": ["джентльмен", "богач"]
+  },
+  "nihci": {
+    "ja": ["～をすする"],
+    "en": ["to slurp ~"],
+    "ru": ["сёрбать ~"]
+  },
+  "nii": {
+    "ja": ["木"],
+    "en": ["tree"],
+    "ru": ["дерево"]
+  },
+  "niisahno": {
+    "ja": ["突然に"],
+    "en": ["suddenly"],
+    "ru": ["внезапно"]
+  },
+  "niitohtoki": {
+    "ja": ["クマゲラ"],
+    "en": ["black woodpecker"],
+    "ru": ["чёрный дятел"]
+  },
+  "niina": {
+    "ja": ["薪をとる"],
+    "en": ["to gather firewood"],
+    "ru": ["собирать дрова"]
+  }
+}

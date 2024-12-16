@@ -1,0 +1,287 @@
+{
+  "osmake": {
+    "ja": ["（静止するものの）後"],
+    "en": ["after (a stationary object)"],
+    "ru": ["после (неподвижного объекта)"]
+  },
+  "osmakehe": {
+    "ja": ["（静止するものの）後"],
+    "en": ["after (a stationary object)"],
+    "ru": ["после (неподвижного объекта)"]
+  },
+  "oh": {
+    "ja": ["所", "中"],
+    "en": ["place", "inside"],
+    "ru": ["место", "внутри"]
+  },
+  "ohkayo": {
+    "ja": ["男性"],
+    "en": ["man"],
+    "ru": ["мужчина"]
+  },
+  "ohke": {
+    "ja": ["屁"],
+    "en": ["fart"],
+    "ru": ["пук"]
+  },
+  "ohci": {
+    "ja": ["～を～に入れる"],
+    "en": ["to put ~ into ~"],
+    "ru": ["положить ~ в ~"]
+  },
+  "ohcikeh": {
+    "ja": ["膳"],
+    "en": ["tray", "meal table"],
+    "ru": ["поднос", "обеденный столик"]
+  },
+  "ohcara": {
+    "ja": ["尾"],
+    "en": ["tail"],
+    "ru": ["хвост"]
+  },
+  "ohcaraha": {
+    "ja": ["尾"],
+    "en": ["tail"],
+    "ru": ["хвост"]
+  },
+  "ohcarihi": {
+    "ja": ["尾"],
+    "en": ["tail"],
+    "ru": ["хвост"]
+  },
+  "ommo": {
+    "ja": ["お母さん", "母"],
+    "en": ["mother"],
+    "ru": ["мать"]
+  },
+  "ommohcin": {
+    "ja": ["お母さん", "母"],
+    "en": ["mother"],
+    "ru": ["мать"]
+  },
+  "ommoho": {
+    "ja": ["お母さん", "母"],
+    "en": ["mother"],
+    "ru": ["мать"]
+  },
+  "oo": {
+    "ja": ["～に乗る"],
+    "en": ["to ride ~"],
+    "ru": ["ехать на ~"]
+  },
+  "oykaarimpa": {
+    "ja": ["～を廻って"],
+    "en": ["around ~"],
+    "ru": ["вокруг ~"]
+  },
+  "oysuh": {
+    "ja": ["部屋の隅"],
+    "en": ["corner of a room"],
+    "ru": ["угол комнаты"]
+  },
+  "oisuu": {
+    "ja": ["硬い"],
+    "en": ["hard"],
+    "ru": ["твердый"]
+  },
+  "oyna": {
+    "ja": ["神謡（文学の１形式）"],
+    "en": ["sacred song (a literary form)"],
+    "ru": ["священная песня (литературная форма)"]
+  },
+  "oyra": {
+    "ja": ["～を忘れる"],
+    "en": ["to forget ~"],
+    "ru": ["забывать ~"]
+  },
+  "oka": {
+    "ja": ["したい"],
+    "en": ["want to do"],
+    "ru": ["хочу сделать"]
+  },
+  "okaakara": {
+    "ja": ["～を通って"],
+    "en": ["through ~"],
+    "ru": ["через ~"]
+  },
+  "okaakari": {
+    "ja": ["～を通って"],
+    "en": ["through ~"],
+    "ru": ["через ~"]
+  },
+  "okay": {
+    "ja": ["いる"],
+    "en": ["to exist"],
+    "ru": ["существовать"]
+  },
+  "okake": {
+    "ja": ["（移動するものの）後"],
+    "en": ["after (a moving object)"],
+    "ru": ["после (движущегося объекта)"]
+  },
+  "okakehe": {
+    "ja": ["（移動するものの）後"],
+    "en": ["after (a moving object)"],
+    "ru": ["после (движущегося объекта)"]
+  },
+  "okasi": {
+    "ja": ["菓子"],
+    "en": ["sweets", "confectionery"],
+    "ru": ["сладости", "конфеты"]
+  },
+  "okayahci": {
+    "ja": ["いる"],
+    "en": ["to exist"],
+    "ru": ["существовать"]
+  },
+  "oken": {
+    "ja": ["魔除けの像（＝nankorope", "senisteh）"],
+    "en": ["protective talisman (nankorope, senisteh)"],
+    "ru": ["оберег (нанкоропэ, сенистэх)"]
+  },
+  "okoyse": {
+    "ja": ["小便する", "小便"],
+    "en": ["to urinate", "urine"],
+    "ru": ["мочиться", "моча"]
+  },
+  "okoyserayki": {
+    "ja": ["強い尿意を感じる"],
+    "en": ["to feel a strong urge to urinate"],
+    "ru": ["чувствовать сильное желание помочиться"]
+  },
+  "okore": {
+    "ja": ["すべて"],
+    "en": ["everything", "all"],
+    "ru": ["всё"]
+  },
+  "osukeh": {
+    "ja": ["ウサギ"],
+    "en": ["rabbit"],
+    "ru": ["кролик"]
+  },
+  "osookote": {
+    "ja": ["～を引きずる"],
+    "en": ["to drag ~"],
+    "ru": ["тащить ~"]
+  },
+  "osoma": {
+    "ja": ["大便する", "大便"],
+    "en": ["to defecate", "feces"],
+    "ru": ["испражняться", "фекалии"]
+  },
+  "osomacise": {
+    "ja": ["大用便所"],
+    "en": ["toilet for defecation"],
+    "ru": ["туалет для дефекации"]
+  },
+  "osomaha": {
+    "ja": ["大便すること"],
+    "en": ["the act of defecating"],
+    "ru": ["акт дефекации"]
+  },
+  "osomarayki": {
+    "ja": ["強い便意に襲われる"],
+    "en": ["to feel a strong urge to defecate"],
+    "ru": ["чувствовать сильное желание испражниться"]
+  },
+  "otahkon": {
+    "ja": ["短い"],
+    "en": ["short"],
+    "ru": ["короткий"]
+  },
+  "otakaa": {
+    "ja": ["浜"],
+    "en": ["beach"],
+    "ru": ["пляж"]
+  },
+  "otari": {
+    "ja": ["～を食べつくす"],
+    "en": ["to eat up ~"],
+    "ru": ["съесть ~"]
+  },
+  "otaroh": {
+    "ja": ["ハマナス"],
+    "en": ["Rosa rugosa (Japanese rose)"],
+    "ru": ["Роза ругоза (японская роза)"]
+  },
+  "otanne": {
+    "ja": ["長い"],
+    "en": ["long"],
+    "ru": ["длинный"]
+  },
+  "ociwe": {
+    "ja": ["～を捨てる"],
+    "en": ["to throw away ~"],
+    "ru": ["выбросить ~"]
+  },
+  "otoopenpe": {
+    "ja": ["菓子"],
+    "en": ["sweets"],
+    "ru": ["сладости"]
+  },
+  "otu": {
+    "ja": ["２つの"],
+    "en": ["two"],
+    "ru": ["два"]
+  },
+  "otoka": {
+    "ja": ["こね鉢", "長盆"],
+    "en": ["kneading bowl", "long tray"],
+    "ru": ["миска для замеса", "длинный поднос"]
+  },
+  "onaha": {
+    "ja": ["父"],
+    "en": ["father"],
+    "ru": ["отец"]
+  },
+  "onuuman": {
+    "ja": ["晩", "夜", "夕方"],
+    "en": ["evening", "night"],
+    "ru": ["вечер", "ночь"]
+  },
+  "oha": {
+    "ja": ["ただ", "ただの", "空である"],
+    "en": ["only", "just", "empty"],
+    "ru": ["только", "просто", "пустой"]
+  },
+  "ohah": {
+    "ja": ["浅い"],
+    "en": ["shallow"],
+    "ru": ["мелкий"]
+  },
+  "ohaw": {
+    "ja": ["スープ"],
+    "en": ["soup"],
+    "ru": ["суп"]
+  },
+  "ohawhe": {
+    "ja": ["スープ"],
+    "en": ["soup"],
+    "ru": ["суп"]
+  },
+  "opas": {
+    "ja": ["雪"],
+    "en": ["snow"],
+    "ru": ["снег"]
+  },
+  "opahtara": {
+    "ja": ["ウド"],
+    "en": ["Aralia cordata (Udo plant)"],
+    "ru": ["Аралия кордата (удо)"]
+  },
+  "opehteh": {
+    "ja": ["尽きる"],
+    "en": ["to run out"],
+    "ru": ["закончиться"]
+  },
+  "ohoro": {
+    "ja": ["遅れる", "遅い"],
+    "en": ["to be late", "slow"],
+    "ru": ["опоздать", "медленный"]
+  },
+  "oponi": {
+    "ja": ["後から"],
+    "en": ["from behind"],
+    "ru": ["сзади"]
+  }
+}

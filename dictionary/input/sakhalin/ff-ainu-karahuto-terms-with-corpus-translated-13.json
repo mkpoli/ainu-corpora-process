@@ -1,0 +1,252 @@
+{
+  "kohsaa": {
+    "ja": ["（止まっている物）の前"],
+    "en": ["in front of (stationary object)"],
+    "ru": ["перед (неподвижным объектом)"]
+  },
+  "kohsaake": {
+    "ja": ["（止まっている物）の前"],
+    "en": ["in front of (stationary object)"],
+    "ru": ["перед (неподвижным объектом)"]
+  },
+  "kohsaakehe": {
+    "ja": ["（止まっている物）の前"],
+    "en": ["in front of (stationary object)"],
+    "ru": ["перед (неподвижным объектом)"]
+  },
+  "koyki": {
+    "ja": ["～をせめる"],
+    "en": ["to attack ~"],
+    "ru": ["атаковать ~"]
+  },
+  "koytah": {
+    "ja": ["～に話す"],
+    "en": ["to speak to ~"],
+    "ru": ["говорить с ~"]
+  },
+  "kousaraye": {
+    "ja": ["～に分け与える"],
+    "en": ["to distribute to ~"],
+    "ru": ["распределять между ~"]
+  },
+  "koutasa": {
+    "ja": ["と交流する", "遊ぶ"],
+    "en": ["to interact with", "to play"],
+    "ru": ["взаимодействовать с", "играть"]
+  },
+  "kosiwpu": {
+    "ja": ["～を一生懸命やる4"],
+    "en": ["to do ~ with all one's effort"],
+    "ru": ["делать ~ изо всех сил"]
+  },
+  "kosiyuhpa": {
+    "ja": ["～を一生懸命やる"],
+    "en": ["to do ~ with all one's effort"],
+    "ru": ["делать ~ изо всех сил"]
+  },
+  "kotahma": {
+    "ja": ["～に着く"],
+    "en": ["to arrive at ~"],
+    "ru": ["прибывать в ~"]
+  },
+  "kotanu": {
+    "ja": ["村"],
+    "en": ["village"],
+    "ru": ["деревня"]
+  },
+  "kotanuhu": {
+    "ja": ["村"],
+    "en": ["village"],
+    "ru": ["деревня"]
+  },
+  "kotanuhuhcin": {
+    "ja": ["村"],
+    "en": ["village"],
+    "ru": ["деревня"]
+  },
+  "kotan": {
+    "ja": ["村"],
+    "en": ["village"],
+    "ru": ["деревня"]
+  },
+  "kotankoronispa": {
+    "ja": ["村長"],
+    "en": ["village chief"],
+    "ru": ["староста деревни"]
+  },
+  "kocahseka": {
+    "ja": ["～に向かって押しずらす"],
+    "en": ["to push and slide towards ~"],
+    "ru": ["толкать и скользить к ~"]
+  },
+  "kocaaranke": {
+    "ja": ["～に口論をしかける"],
+    "en": ["to start an argument with ~"],
+    "ru": ["начать спор с ~"]
+  },
+  "kotuye": {
+    "ja": ["～に通す"],
+    "en": ["to pass through ~"],
+    "ru": ["проходить через ~"]
+  },
+  "kotoro": {
+    "ja": ["胸板"],
+    "en": ["chest"],
+    "ru": ["грудь"]
+  },
+  "kotoroho": {
+    "ja": ["胸板"],
+    "en": ["chest"],
+    "ru": ["грудь"]
+  },
+  "konupuru": {
+    "ja": ["～を好む"],
+    "en": ["to like ~"],
+    "ru": ["нравиться ~"]
+  },
+  "komuse": {
+    "ja": ["クモ"],
+    "en": ["spider"],
+    "ru": ["паук"]
+  },
+  "koyaykus": {
+    "ja": ["ができない"],
+    "en": ["cannot do"],
+    "ru": ["не могу сделать"]
+  },
+  "koyayrayke": {
+    "ja": ["～に感謝する"],
+    "en": ["to thank ~"],
+    "ru": ["благодарить ~"]
+  },
+  "koro": {
+    "ja": ["～を持つ"],
+    "en": ["to have ~"],
+    "ru": ["иметь ~"]
+  },
+  "korohci": {
+    "ja": ["～を持つ"],
+    "en": ["to have ~"],
+    "ru": ["иметь ~"]
+  },
+  "koroka": {
+    "ja": ["けれど"],
+    "en": ["but", "however"],
+    "ru": ["но", "однако"]
+  },
+  "konkaani": {
+    "ja": ["金"],
+    "en": ["gold"],
+    "ru": ["золото"]
+  },
+  "konci": {
+    "ja": ["帽子", "頭巾"],
+    "en": ["hat", "hood"],
+    "ru": ["шляпа", "капюшон"]
+  },
+  "konte": {
+    "ja": ["～を～に与える"],
+    "en": ["to give ~ to ~"],
+    "ru": ["давать ~ ~"]
+  },
+  "konrusuy": {
+    "ja": ["が欲しい"],
+    "en": ["want"],
+    "ru": ["хотеть"]
+  },
+  "sas": {
+    "ja": ["昆布"],
+    "en": ["kelp"],
+    "ru": ["ламинария"]
+  },
+  "sah": {
+    "ja": ["乾く"],
+    "en": ["to dry"],
+    "ru": ["сохнуть"]
+  },
+  "sahka": {
+    "ja": ["箸"],
+    "en": ["chopsticks"],
+    "ru": ["палочки для еды"]
+  },
+  "sahke": {
+    "ja": ["～を干す"],
+    "en": ["to air-dry ~"],
+    "ru": ["сушить ~"]
+  },
+  "sahteh": {
+    "ja": ["乾く"],
+    "en": ["to dry"],
+    "ru": ["сохнуть"]
+  },
+  "sahpe": {
+    "ja": ["皮に身を残して干した魚"],
+    "en": ["fish dried with skin"],
+    "ru": ["рыба, высушенная с кожей"]
+  },
+  "sam": {
+    "ja": ["そば"],
+    "en": ["nearby", "next to"],
+    "ru": ["рядом", "близко"]
+  },
+  "saakehe": {
+    "ja": ["折節"],
+    "en": ["occasionally"],
+    "ru": ["время от времени"]
+  },
+  "saaha": {
+    "ja": ["姉"],
+    "en": ["older sister"],
+    "ru": ["старшая сестра"]
+  },
+  "saahahcin": {
+    "ja": ["姉"],
+    "en": ["older sister"],
+    "ru": ["старшая сестра"]
+  },
+  "sakiita": {
+    "ja": ["夏"],
+    "en": ["summer"],
+    "ru": ["лето"]
+  },
+  "sake": {
+    "ja": ["酒"],
+    "en": ["sake", "alcohol"],
+    "ru": ["саке", "алкоголь"]
+  },
+  "sanihi": {
+    "ja": ["下りること"],
+    "en": ["the act of descending"],
+    "ru": ["действие спуска"]
+  },
+  "sapa": {
+    "ja": ["頭"],
+    "en": ["head"],
+    "ru": ["голова"]
+  },
+  "sapahka": {
+    "ja": ["頭"],
+    "en": ["head"],
+    "ru": ["голова"]
+  },
+  "sapahkahcin": {
+    "ja": ["頭"],
+    "en": ["head"],
+    "ru": ["голова"]
+  },
+  "sapahci": {
+    "ja": ["下りる"],
+    "en": ["to descend"],
+    "ru": ["спускаться"]
+  },
+  "sapaha": {
+    "ja": ["頭"],
+    "en": ["head"],
+    "ru": ["голова"]
+  },
+  "sapahahcin": {
+    "ja": ["頭"],
+    "en": ["head"],
+    "ru": ["голова"]
+  }
+}

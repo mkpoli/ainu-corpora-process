@@ -1,0 +1,317 @@
+{
+  "yoykirihi": {
+    "ja": ["宝壇"],
+    "en": ["treasure altar"],
+    "ru": ["алтарь сокровищ"]
+  },
+  "ramkoro": {
+    "ja": ["利口である"],
+    "en": ["to be smart"],
+    "ru": ["быть умным"]
+  },
+  "rampo": {
+    "ja": ["心"],
+    "en": ["heart", "mind"],
+    "ru": ["сердце", "разум"]
+  },
+  "raye": {
+    "ja": ["～を押しずらす"],
+    "en": ["to push and slide ~"],
+    "ru": ["толкать и скользить ~"]
+  },
+  "rayki": {
+    "ja": ["～を殺す"],
+    "en": ["to kill ~"],
+    "ru": ["убивать ~"]
+  },
+  "ranihi": {
+    "ja": ["下りること"],
+    "en": ["the act of descending"],
+    "ru": ["действие спуска"]
+  },
+  "rapahci": {
+    "ja": ["下りる"],
+    "en": ["to descend"],
+    "ru": ["спускаться"]
+  },
+  "ramupirika": {
+    "ja": ["心が穏やかである"],
+    "en": ["to be calm"],
+    "ru": ["быть спокойным"]
+  },
+  "rayohtepono": {
+    "ja": ["どうにか"],
+    "en": ["somehow"],
+    "ru": ["как-нибудь"]
+  },
+  "raru": {
+    "ja": ["眉"],
+    "en": ["eyebrow"],
+    "ru": ["бровь"]
+  },
+  "raruhu": {
+    "ja": ["眉"],
+    "en": ["eyebrow"],
+    "ru": ["бровь"]
+  },
+  "ranke": {
+    "ja": ["～を下す"],
+    "en": ["to lower ~"],
+    "ru": ["опускать ~"]
+  },
+  "ranneno": {
+    "ja": ["ゆっくりと", "静かに"],
+    "en": ["slowly", "quietly"],
+    "ru": ["медленно", "тихо"]
+  },
+  "rispa": {
+    "ja": ["～をむしる", "ちぎる"],
+    "en": ["to pluck ~", "to tear ~"],
+    "ru": ["щипать ~", "рвать ~"]
+  },
+  "riwka": {
+    "ja": ["橋"],
+    "en": ["bridge"],
+    "ru": ["мост"]
+  },
+  "rika": {
+    "ja": ["脂身"],
+    "en": ["fatty part (of meat)"],
+    "ru": ["жирная часть (мяса)"]
+  },
+  "rikih": {
+    "ja": ["上る"],
+    "en": ["to ascend"],
+    "ru": ["подниматься"]
+  },
+  "rikipahci": {
+    "ja": ["上る"],
+    "en": ["to ascend"],
+    "ru": ["подниматься"]
+  },
+  "rikin": {
+    "ja": ["上る"],
+    "en": ["to ascend"],
+    "ru": ["подниматься"]
+  },
+  "rise": {
+    "ja": ["～をむしる", "ちぎる"],
+    "en": ["to pluck ~", "to tear ~"],
+    "ru": ["щипать ~", "рвать ~"]
+  },
+  "ritenceh": {
+    "ja": ["ギンポ魚"],
+    "en": ["ginpo fish (a type of blenny)"],
+    "ru": ["рыба гинпо (тип бычков)"]
+  },
+  "ruhpa": {
+    "ja": ["～を飲み込む"],
+    "en": ["to swallow ~"],
+    "ru": ["глотать ~"]
+  },
+  "ruusicihi": {
+    "ja": ["髪の毛"],
+    "en": ["hair"],
+    "ru": ["волосы"]
+  },
+  "ruuhe": {
+    "ja": ["ようす"],
+    "en": ["appearance", "state"],
+    "ru": ["внешний вид", "состояние"]
+  },
+  "ruuhehcin": {
+    "ja": ["ようす"],
+    "en": ["appearance", "state"],
+    "ru": ["внешний вид", "состояние"]
+  },
+  "ruura": {
+    "ja": ["～を運ぶ"],
+    "en": ["to carry ~"],
+    "ru": ["нести ~"]
+  },
+  "ruy": {
+    "ja": ["砥石"],
+    "en": ["whetstone"],
+    "ru": ["точильный камень"]
+  },
+  "ruwekina": {
+    "ja": ["フキ"],
+    "en": ["butterbur (plant)"],
+    "ru": ["буттербур (растение)"]
+  },
+  "ruwekinayam": {
+    "ja": ["フキの葉"],
+    "en": ["butterbur leaf"],
+    "ru": ["лист буттербура"]
+  },
+  "ruwesan": {
+    "ja": ["坂"],
+    "en": ["slope"],
+    "ru": ["склон"]
+  },
+  "ruki": {
+    "ja": ["～を飲み込む"],
+    "en": ["to swallow ~"],
+    "ru": ["глотать ~"]
+  },
+  "rukum": {
+    "ja": ["小片"],
+    "en": ["small piece"],
+    "ru": ["маленький кусочек"]
+  },
+  "rusa": {
+    "ja": ["ゴザ"],
+    "en": ["mat"],
+    "ru": ["циновка"]
+  },
+  "rusuy": {
+    "ja": ["したい"],
+    "en": ["to want to do"],
+    "ru": ["хотеть сделать"]
+  },
+  "rusuyhi": {
+    "ja": ["したいこと"],
+    "en": ["thing one wants to do"],
+    "ru": ["то, что хочется сделать"]
+  },
+  "rusuyahci": {
+    "ja": ["したい"],
+    "en": ["to want to do"],
+    "ru": ["хотеть сделать"]
+  },
+  "rupus": {
+    "ja": ["凍る"],
+    "en": ["to freeze"],
+    "ru": ["замерзать"]
+  },
+  "reske": {
+    "ja": ["～を育てる"],
+    "en": ["to raise ~"],
+    "ru": ["воспитывать ~"]
+  },
+  "reh": {
+    "ja": ["３つ"],
+    "en": ["three"],
+    "ru": ["три"]
+  },
+  "rehni": {
+    "ja": ["撥"],
+    "en": ["plectrum (used for instruments)"],
+    "ru": ["плектр (для инструментов)"]
+  },
+  "reekoh": {
+    "ja": ["たいへん", "とても"],
+    "en": ["very", "extremely"],
+    "ru": ["очень", "крайне"]
+  },
+  "reera": {
+    "ja": ["風"],
+    "en": ["wind"],
+    "ru": ["ветер"]
+  },
+  "rewe": {
+    "ja": ["～を曲げる"],
+    "en": ["to bend ~"],
+    "ru": ["сгибать ~"]
+  },
+  "rewpa": {
+    "ja": ["～を曲げる"],
+    "en": ["to bend ~"],
+    "ru": ["сгибать ~"]
+  },
+  "rekucihi": {
+    "ja": ["首", "のど"],
+    "en": ["neck", "throat"],
+    "ru": ["шея", "горло"]
+  },
+  "rekutunpe": {
+    "ja": ["首飾り", "チョーカー"],
+    "en": ["necklace", "choker"],
+    "ru": ["ожерелье", "чокер"]
+  },
+  "repahci": {
+    "ja": ["沖へでる"],
+    "en": ["to head offshore"],
+    "ru": ["выйти в открытое море"]
+  },
+  "reraru": {
+    "ja": ["胸"],
+    "en": ["chest"],
+    "ru": ["грудь"]
+  },
+  "renka": {
+    "ja": ["承知する"],
+    "en": ["to agree"],
+    "ru": ["соглашаться"]
+  },
+  "renkayne": {
+    "ja": ["たくさん"],
+    "en": ["a lot"],
+    "ru": ["много"]
+  },
+  "renneno": {
+    "ja": ["静かに", "ゆっくりと"],
+    "en": ["quietly", "slowly"],
+    "ru": ["тихо", "медленно"]
+  },
+  "roski": {
+    "ja": ["～を立てる"],
+    "en": ["to stand ~ up"],
+    "ru": ["ставить ~"]
+  },
+  "roskihci": {
+    "ja": ["～を立てる"],
+    "en": ["to stand ~ up"],
+    "ru": ["ставить ~"]
+  },
+  "rokahci": {
+    "ja": ["座る"],
+    "en": ["to sit"],
+    "ru": ["сидеть"]
+  },
+  "rorunsoo": {
+    "ja": ["上座", "横座"],
+    "en": ["upper seat", "side seat"],
+    "ru": ["верхнее место", "боковое место"]
+  },
+  "rorunpuyara": {
+    "ja": ["神窓"],
+    "en": ["god window"],
+    "ru": ["окно бога"]
+  },
+  "wahkarayki": {
+    "ja": ["とても水がのみたい"],
+    "en": ["very thirsty"],
+    "ru": ["очень хочется пить"]
+  },
+  "wampakka": {
+    "ja": ["手袋"],
+    "en": ["gloves"],
+    "ru": ["перчатки"]
+  },
+  "wante": {
+    "ja": ["がわかる"],
+    "en": ["to understand"],
+    "ru": ["понимать"]
+  },
+  "wantehci": {
+    "ja": ["がわかる"],
+    "en": ["to understand"],
+    "ru": ["понимать"]
+  },
+  "wantehe": {
+    "ja": ["がわかること"],
+    "en": ["the act of understanding"],
+    "ru": ["действие понимания"]
+  },
+  "wantere": {
+    "ja": ["～に～をわからせる"],
+    "en": ["to make someone understand ~"],
+    "ru": ["заставить кого-то понять ~"]
+  },
+  "wanpe": {
+    "ja": ["10個"],
+    "en": ["ten (pieces)"],
+    "ru": ["десять (штук)"]
+  }
+}

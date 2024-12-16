@@ -1,0 +1,167 @@
+{
+  "hepuhsuu": {
+    "ja": ["樹皮鍋"],
+    "en": ["bark pot"],
+    "ru": ["коричневый горшок"]
+  },
+  "hepuhpuhu": {
+    "ja": ["樹皮加工品"],
+    "en": ["bark products"],
+    "ru": ["изделия из коры"]
+  },
+  "hemaka": {
+    "ja": ["終える"],
+    "en": ["to finish"],
+    "ru": ["заканчивать"]
+  },
+  "hemata": {
+    "ja": ["何"],
+    "en": ["what"],
+    "ru": ["что"]
+  },
+  "hemoy": {
+    "ja": ["マス"],
+    "en": ["trout"],
+    "ru": ["форель"]
+  },
+  "herari": {
+    "ja": ["腰をかがめる"],
+    "en": ["to bend the waist"],
+    "ru": ["согнуть поясницу"]
+  },
+  "heriko": {
+    "ja": ["上に向かって"],
+    "en": ["upwards"],
+    "ru": ["вверх"]
+  },
+  "herohki": {
+    "ja": ["ニシン"],
+    "en": ["herring"],
+    "ru": ["сельдь"]
+  },
+  "henke": {
+    "ja": ["お爺さん"],
+    "en": ["grandfather"],
+    "ru": ["дедушка"]
+  },
+  "henkehe": {
+    "ja": ["お爺さん"],
+    "en": ["grandfather"],
+    "ru": ["дедушка"]
+  },
+  "henneh": {
+    "ja": ["～でも"],
+    "en": ["even if ~"],
+    "ru": ["даже если ~"]
+  },
+  "pe": {
+    "ja": ["もの"],
+    "en": ["thing"],
+    "ru": ["вещь"]
+  },
+  "peka": {
+    "ja": ["～の辺りに"],
+    "en": ["around ~"],
+    "ru": ["вокруг ~"]
+  },
+  "hos": {
+    "ja": ["きゃはん"],
+    "en": ["gaiters"],
+    "ru": ["гамаши"]
+  },
+  "hoski": {
+    "ja": ["先の"],
+    "en": ["ahead", "tip"],
+    "ru": ["вперед", "кончик"]
+  },
+  "hoskiramuhu": {
+    "ja": ["上の弟"],
+    "en": ["older younger brother"],
+    "ru": ["старший младший брат"]
+  },
+  "hoh": {
+    "ja": ["～を買う"],
+    "en": ["to buy ~"],
+    "ru": ["купить ~"]
+  },
+  "hohto": {
+    "ja": ["衣服"],
+    "en": ["clothing"],
+    "ru": ["одежда"]
+  },
+  "hoynu": {
+    "ja": ["テン"],
+    "en": ["marten"],
+    "ru": ["куница"]
+  },
+  "hoynukaa": {
+    "ja": ["テンわな"],
+    "en": ["marten trap"],
+    "ru": ["ловушка для куницы"]
+  },
+  "hokuhu": {
+    "ja": ["夫"],
+    "en": ["husband"],
+    "ru": ["муж"]
+  },
+  "hokure": {
+    "ja": ["さあ"],
+    "en": ["come on"],
+    "ru": ["давай"]
+  },
+  "hosipi": {
+    "ja": ["帰る", "戻る"],
+    "en": ["to return"],
+    "ru": ["возвращаться"]
+  },
+  "hosipihci": {
+    "ja": ["帰る", "戻る"],
+    "en": ["to return"],
+    "ru": ["возвращаться"]
+  },
+  "hotari": {
+    "ja": ["立つ"],
+    "en": ["to stand"],
+    "ru": ["стоять"]
+  },
+  "hotarika": {
+    "ja": ["立てる"],
+    "en": ["to stand up"],
+    "ru": ["встать"]
+  },
+  "honi": {
+    "ja": ["腹"],
+    "en": ["belly"],
+    "ru": ["живот"]
+  },
+  "honihi": {
+    "ja": ["腹"],
+    "en": ["belly"],
+    "ru": ["живот"]
+  },
+  "honohononke": {
+    "ja": ["やわらかい"],
+    "en": ["soft"],
+    "ru": ["мягкий"]
+  },
+  "homa": {
+    "ja": ["魚卵"],
+    "en": ["fish roe"],
+    "ru": ["икра рыбы"]
+  },
+  "horahte": {
+    "ja": ["～を倒す", "崩す"],
+    "en": ["to knock down", "to collapse"],
+    "ru": ["сбить", "обрушить"]
+  },
+  "horokewpo": {
+    "ja": ["（物語中で）男性"],
+    "en": ["male (in stories)"],
+    "ru": ["мужчина (в рассказах)"]
+  },
+  "hontom": {
+    "ja": ["途中", "中ほど"],
+    "en": ["middle", "in between"],
+    "ru": ["середина", "между"]
+  }
+}
