@@ -12,14 +12,12 @@ def extrapolate_sakhalin_from_hokkaido(word: str) -> str:
             return syllable
         if len(syllable) <= 1:
             return syllable
-        if syllable[-1] in ["p", "k", "t", "s", "h", "m", "n"]:
-            return (
-                syllable[:-1] + "h"
-                if len(syllable) > 3 and syllable[-2] != "i"
-                else syllable[:-1] + "s"
-            )
+        if syllable[-1] in ["p", "t", "k"]:
+            return syllable[:-1] + "h" if syllable[-2] != "i" else syllable[:-1] + "s"
         elif syllable[-1] == "r":
             return syllable + syllable[-2]
+        elif syllable[-1] == "m":
+            return syllable[:-1] + "n"
         return syllable
 
     return "".join(process_syllable(syllable) for syllable in syllables)
