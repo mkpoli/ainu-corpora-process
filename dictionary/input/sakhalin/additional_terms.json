@@ -350,5 +350,13 @@
     "ru": ["один"],
     "poses": ["adv"],
     "frequency": 0
+  },
+  {
+    "lemma": "turaeh",
+    "ja": ["～を持って来る"],
+    "en": ["to bring ~ "],
+    "ru": ["принести ~ "],
+    "poses": ["vt"],
+    "frequency": 0
   }
 ]
