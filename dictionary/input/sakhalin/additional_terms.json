@@ -358,5 +358,14 @@
     "ru": ["принести ~ "],
     "poses": ["vt"],
     "frequency": 0
+  },
+  {
+    "lemma": "masara",
+    "ja": ["浜辺"],
+    "en": ["beach"],
+    "ru": ["берег"],
+    "poses": ["n"],
+    "frequency": 0,
+    "hokkaido": ["masar"]
   }
 ]
