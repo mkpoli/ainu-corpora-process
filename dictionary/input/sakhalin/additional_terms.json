@@ -13,7 +13,8 @@
     "en": ["alcohol", "strong wine"],
     "ru": ["алкоголь", "сильное вино"],
     "poses": ["n"],
-    "frequency": 1
+    "frequency": 1,
+    "cognates": ["arakke"]
   },
   {
     "lemma": "hapah",
@@ -21,7 +22,8 @@
     "en": ["lungs"],
     "ru": ["легкие"],
     "poses": ["n"],
-    "frequency": 1
+    "frequency": 1,
+    "cognates": ["hapap"]
   },
   {
     "lemma": "neanpe",
@@ -29,7 +31,8 @@
     "en": ["that"],
     "ru": ["это"],
     "poses": ["n"],
-    "frequency": 1
+    "frequency": 1,
+    "cognates": ["neanpe"]
   },
   {
     "lemma": "neya",
@@ -37,7 +40,8 @@
     "en": ["that"],
     "ru": ["это"],
     "poses": ["adn"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["nea"]
   },
   {
     "lemma": "ohta",
@@ -45,7 +49,8 @@
     "en": ["in the place of ~"],
     "ru": ["в месте ~"],
     "poses": ["colloc"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["or ta"]
   },
   {
     "lemma": "neeteh",
@@ -53,7 +58,8 @@
     "en": ["and then"],
     "ru": ["и тогда"],
     "poses": ["adv"],
-    "frequency": 0
+    "frequency": 0,
+    "noncognates": ["ne wa"]
   },
   {
     "lemma": "acahcipo",
@@ -77,7 +83,8 @@
     "en": ["eh"],
     "ru": ["эй"],
     "poses": ["interj"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["íne assuy"]
   },
   {
     "lemma": "anayne",
@@ -85,7 +92,8 @@
     "en": ["so then"],
     "ru": ["так что"],
     "poses": ["adv"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["an ayne"]
   },
   {
     "lemma": "okaaketa",
@@ -93,7 +101,8 @@
     "en": ["after that", "then"],
     "ru": ["после этого", "тогда"],
     "poses": ["adv"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["okaketa"]
   },
   {
     "lemma": "waa",
@@ -101,7 +110,8 @@
     "en": ["do ~ for me", "do ~ for yourself"],
     "ru": ["сделай ~ для меня", "сделай ~ для себя"],
     "poses": ["sfp"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["wa"]
   },
   {
     "lemma": "hawehe",
@@ -109,7 +119,8 @@
     "en": ["the voice of ~"],
     "ru": ["голос ~"],
     "poses": ["n"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["hawehe"]
   },
   {
     "lemma": "otakaata",
@@ -125,7 +136,8 @@
     "en": ["to go down"],
     "ru": ["спускаться"],
     "poses": ["vi"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["san"]
   },
   {
     "lemma": "hii",
@@ -133,7 +145,8 @@
     "en": ["lah"],
     "ru": ["же"],
     "poses": ["sfp"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["hí"]
   },
   {
     "lemma": "uta",
@@ -141,7 +154,8 @@
     "en": ["(plural)"],
     "ru": ["(множественное число)"],
     "poses": ["sfx"],
-    "frequency": 1000000
+    "frequency": 1000000,
+    "cognates": ["utar"]
   },
   {
     "lemma": "taata",
@@ -149,7 +163,8 @@
     "en": ["there"],
     "ru": ["там"],
     "poses": ["colloc"],
-    "frequency": 0
+    "frequency": 0,
+    "noncognates": ["te ta"]
   },
   {
     "lemma": "kayki",
@@ -157,7 +172,8 @@
     "en": ["also"],
     "ru": ["также"],
     "poses": ["advp"],
-    "frequency": 0
+    "frequency": 0,
+    "noncognates": ["ka"]
   },
   {
     "lemma": "kimma",
@@ -165,7 +181,8 @@
     "en": ["from the mountain"],
     "ru": ["с горы"],
     "poses": ["colloc"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["kim wa"]
   },
   {
     "lemma": "makanihi",
@@ -261,7 +278,8 @@
     "en": ["on the mountain"],
     "ru": ["на горе"],
     "poses": ["colloc"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["kim ta"]
   },
   {
     "lemma": "sinkeikehe",
@@ -285,7 +303,8 @@
     "en": ["woman"],
     "ru": ["женщина"],
     "poses": ["n"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["símat"]
   },
   {
     "lemma": "cehkoyki",
@@ -293,7 +312,8 @@
     "en": ["to catch fish"],
     "ru": ["ловить рыбу"],
     "poses": ["vi"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["cepkoyki"]
   },
   {
     "lemma": "roo",
@@ -301,7 +321,8 @@
     "en": ["(sentence-final particle)"],
     "ru": ["(частица в конце предложения)"],
     "poses": ["sfp"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["ro"]
   },
   {
     "lemma": "yoy",
@@ -309,7 +330,8 @@
     "en": ["good"],
     "ru": ["хорошо"],
     "poses": ["adj"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["yey"]
   },
   {
     "lemma": "nukaraha",
@@ -357,7 +379,8 @@
     "en": ["to bring ~ "],
     "ru": ["принести ~ "],
     "poses": ["vt"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["turaek"]
   },
   {
     "lemma": "masara",
@@ -366,7 +389,7 @@
     "ru": ["берег"],
     "poses": ["n"],
     "frequency": 0,
-    "cognates": ["masara"]
+    "cognates": ["masar"]
   },
   {
     "lemma": "keta",
@@ -375,8 +398,8 @@
     "ru": ["звезда"],
     "poses": ["n"],
     "frequency": 0,
-    "cognates": [],
-    "noncognates": ["keta"]
+    "cognates": ["keta"],
+    "noncognates": ["nociw"]
   },
   {
     "lemma": "saranpa",
@@ -384,7 +407,8 @@
     "en": ["goodbye"],
     "ru": ["прощай"],
     "poses": ["interj"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["sarampa"]
   },
   {
     "lemma": "ikara",
@@ -392,7 +416,8 @@
     "en": ["to sew"],
     "ru": ["шить"],
     "poses": ["vi"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["ikar"]
   },
   {
     "lemma": "orunpe",
@@ -400,6 +425,25 @@
     "en": ["food", "equipment", "kitchenware"],
     "ru": ["продукты", "снаряжение", "кухонные принадлежности"],
     "poses": ["n"],
-    "frequency": 0
+    "frequency": 0,
+    "cognates": ["orunpe"]
+  },
+  {
+    "lemma": "niikah",
+    "ja": ["樹皮"],
+    "en": ["tree bark"],
+    "ru": ["кора дерева"],
+    "poses": ["n"],
+    "frequency": 0,
+    "cognates": ["níkap"]
+  },
+  {
+    "lemma": "kohnekuh",
+    "ja": ["婿"],
+    "en": ["son-in-law"],
+    "ru": ["сын-в-зале"],
+    "poses": ["n"],
+    "frequency": 0,
+    "cognates": ["koknekur"]
   }
 ]
