@@ -366,6 +366,40 @@
     "ru": ["берег"],
     "poses": ["n"],
     "frequency": 0,
-    "hokkaido": ["masar"]
+    "cognates": ["masara"]
+  },
+  {
+    "lemma": "keta",
+    "ja": ["星"],
+    "en": ["star"],
+    "ru": ["звезда"],
+    "poses": ["n"],
+    "frequency": 0,
+    "cognates": [],
+    "noncognates": ["keta"]
+  },
+  {
+    "lemma": "saranpa",
+    "ja": ["さようなら"],
+    "en": ["goodbye"],
+    "ru": ["прощай"],
+    "poses": ["interj"],
+    "frequency": 0
+  },
+  {
+    "lemma": "ikara",
+    "ja": ["裁縫する"],
+    "en": ["to sew"],
+    "ru": ["шить"],
+    "poses": ["vi"],
+    "frequency": 0
+  },
+  {
+    "lemma": "orunpe",
+    "ja": ["糧食", "装備", "食器"],
+    "en": ["food", "equipment", "kitchenware"],
+    "ru": ["продукты", "снаряжение", "кухонные принадлежности"],
+    "poses": ["n"],
+    "frequency": 0
   }
 ]
