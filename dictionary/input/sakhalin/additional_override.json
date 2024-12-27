@@ -1,0 +1,16 @@
+[
+  {
+    "lemma": "siwpu",
+    "ja": ["一生懸命やる"],
+    "overwrite": {
+      "poses": ["vi"]
+    }
+  },
+  {
+    "lemma": "kosiwpu",
+    "ja": ["～を一生懸命やる"],
+    "overwrite": {
+      "poses": ["vt"]
+    }
+  }
+]

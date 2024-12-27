@@ -445,5 +445,59 @@
     "poses": ["n"],
     "frequency": 0,
     "cognates": ["koknekur"]
+  },
+  {
+    "lemma": "henpara",
+    "ja": ["いつ"],
+    "en": ["when"],
+    "ru": ["когда"],
+    "poses": ["adv"],
+    "frequency": 0,
+    "cognates": ["hempara"]
+  },
+  {
+    "lemma": "henpah",
+    "ja": ["いくつ"],
+    "en": ["how many"],
+    "ru": ["сколько"],
+    "poses": ["adv"],
+    "frequency": 0,
+    "cognates": ["hempak"]
+  },
+  {
+    "lemma": "kanne",
+    "ja": ["～しつつ"],
+    "en": ["while doing ~"],
+    "ru": ["пока делаешь ~"],
+    "poses": ["sconj"],
+    "frequency": 0,
+    "cognates": ["kane"]
+  },
+  {
+    "lemma": "nospa",
+    "ja": ["～を追う"],
+    "en": ["to chase ~"],
+    "ru": ["догонять ~"],
+    "poses": ["vt"],
+    "frequency": 0,
+    "cognates": ["nospa"]
+  },
+  {
+    "lemma": "teekoro",
+    "ja": ["とても"],
+    "en": ["very"],
+    "ru": ["очень"],
+    "poses": ["adv"],
+    "frequency": 0,
+    "noncognates": ["earkinne"]
+  },
+  {
+    "lemma": "tekoro",
+    "ja": ["とても"],
+    "en": ["very"],
+    "ru": ["очень"],
+    "poses": ["adv"],
+    "frequency": 0,
+    "noncognates": ["earkinne"]
   }
 ]
