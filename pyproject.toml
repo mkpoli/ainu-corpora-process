@@ -20,6 +20,7 @@ dependencies = [
     "seaborn>=0.13.2",
     "starcc>=0.0.5",
     "utils",
+    "wiktionary",
     "wordcloud>=1.9.4",
 ]
 
@@ -28,3 +29,4 @@ members = ["utils"]
 
 [tool.uv.sources]
 utils = { workspace = true }
+wiktionary = { path = "wiktionary" }
