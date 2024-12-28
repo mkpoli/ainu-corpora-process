@@ -116,7 +116,7 @@ fn extract_ainu_entries(input_path: &str, output_path: &str) -> PyResult<()> {
 }
 
 #[pymodule]
-fn wiktionary(m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn wiktionary_dump_extractor(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(extract_ainu_entries, m)?)?;
     Ok(())
 }
