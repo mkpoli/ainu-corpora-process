@@ -1,0 +1,217 @@
+{
+  "kitayke": {
+    "ja": ["kitayの所属形"],
+    "en": ["belonging to kitay"],
+    "ru": ["принадлежащий китай"]
+  },
+  "kemihi": {
+    "ja": ["kemの所属形"],
+    "en": ["belonging to kem"],
+    "ru": ["принадлежащий кем"]
+  },
+  "ekarakarahci": {
+    "ja": ["～に～をする"],
+    "en": ["to do something to ~"],
+    "ru": ["сделать что-то для ~"]
+  },
+  "hunarahci": {
+    "ja": ["～を探す"],
+    "en": ["to search for ~"],
+    "ru": ["искать ~"]
+  },
+  "turare": {
+    "ja": ["同伴させる", "一緒に行かせる"],
+    "en": ["to accompany", "to go together"],
+    "ru": ["сопровождать", "идти вместе"]
+  },
+  "mame": {
+    "ja": ["豆小豆はantuki"],
+    "en": ["bean (adzuki)"],
+    "ru": ["фасоль (адзуки)"]
+  },
+  "katuhu": {
+    "ja": ["katの所属形"],
+    "en": ["belonging to kat"],
+    "ru": ["принадлежащий кат"]
+  },
+  "erameskari": {
+    "ja": ["～したことがない"],
+    "en": ["to have never done ~"],
+    "ru": ["никогда не делал ~"]
+  },
+  "say": {
+    "ja": ["ひと巻き", "糸かせ"],
+    "en": ["one loop", "hank of thread"],
+    "ru": ["один моток", "прядь ниток"]
+  },
+  "kusan": {
+    "ja": ["弓棚"],
+    "en": ["bow rack"],
+    "ru": ["стойка для луков"]
+  },
+  "usi": {
+    "ja": ["～する時", "所"],
+    "en": ["when ~", "place"],
+    "ru": ["когда ~", "место"]
+  },
+  "eosoma": {
+    "ja": ["うんちに出す"],
+    "en": ["to defecate"],
+    "ru": ["испражняться"]
+  },
+  "sumihi": {
+    "ja": ["sumの所属形"],
+    "en": ["belonging to sum"],
+    "ru": ["принадлежащий сум"]
+  },
+  "heru": {
+    "ja": ["ただ単に～だけだった", "たったただのごく"],
+    "en": ["just only ~", "merely"],
+    "ru": ["просто ~", "только лишь"]
+  },
+  "tuytuye": {
+    "ja": ["振るってゴミなどを払う"],
+    "en": ["to shake off dust or debris"],
+    "ru": ["стряхнуть пыль или мусор"]
+  },
+  "tun": {
+    "ja": ["中"],
+    "en": ["inside", "middle"],
+    "ru": ["внутри", "середина"]
+  },
+  "inonno": {
+    "ja": ["祈りの"],
+    "en": ["of prayer"],
+    "ru": ["молитвенный"]
+  },
+  "kimun": {
+    "ja": ["山へ入る山行き"],
+    "en": ["to go into the mountains"],
+    "ru": ["идти в горы"]
+  },
+  "hawan": {
+    "ja": ["言うの別形"],
+    "en": ["another form of 'say'"],
+    "ru": ["другая форма 'сказать'"]
+  },
+  "renne": {
+    "ja": ["３人で"],
+    "en": ["with three people"],
+    "ru": ["втроем"]
+  },
+  "cisihi": {
+    "ja": ["泣きごと"],
+    "en": ["crying", "complaint"],
+    "ru": ["плач", "жалоба"]
+  },
+  "inkarahci": {
+    "ja": ["目を向ける", "見る"],
+    "en": ["to look at ~"],
+    "ru": ["смотреть на ~"]
+  },
+  "kokera": {
+    "ja": ["死人を埋める大きな穴"],
+    "en": ["large grave for the dead"],
+    "ru": ["большая могила для мертвых"]
+  },
+  "n": {
+    "ja": ["魚など", "～人"],
+    "en": ["fish, person"],
+    "ru": ["рыба, человек"]
+  },
+  "poso": {
+    "ja": ["くぐる", "通り抜ける"],
+    "en": ["to pass through"],
+    "ru": ["проходить через"]
+  },
+  "yam": {
+    "ja": ["冷たい=nam"],
+    "en": ["cold (same as 'nam')"],
+    "ru": ["холодный (то же, что 'nam')"]
+  },
+  "huraye": {
+    "ja": ["洗う"],
+    "en": ["to wash"],
+    "ru": ["мыть"]
+  },
+  "kucihi": {
+    "ja": ["kutの所属形"],
+    "en": ["belonging to kut"],
+    "ru": ["принадлежащий кут"]
+  },
+  "uweomante": {
+    "ja": ["回想する"],
+    "en": ["to reflect", "to recall"],
+    "ru": ["размышлять", "вспоминать"]
+  },
+  "ehosipi": {
+    "ja": ["～に戻る"],
+    "en": ["to return to ~"],
+    "ru": ["вернуться к ~"]
+  },
+  "keray": {
+    "ja": ["さすが"],
+    "en": ["as expected"],
+    "ru": ["как и ожидалось"]
+  },
+  "sinuye": {
+    "ja": ["刺青をする"],
+    "en": ["to tattoo"],
+    "ru": ["делать татуировку"]
+  },
+  "sanpe": {
+    "ja": ["心臓", "心"],
+    "en": ["heart"],
+    "ru": ["сердце"]
+  },
+  "apaca": {
+    "ja": ["戸口"],
+    "en": ["doorway"],
+    "ru": ["дверной проем"]
+  },
+  "ekah": {
+    "ja": ["挨拶する"],
+    "en": ["to greet"],
+    "ru": ["приветствовать"]
+  },
+  "kotanpa": {
+    "ja": ["村の上端", "村の入り口"],
+    "en": ["village entrance", "upper end of the village"],
+    "ru": ["вход в деревню", "верхний конец деревни"]
+  },
+  "kismahci": {
+    "ja": ["～を握る", "つかむ", "抱く"],
+    "en": ["to hold", "to grasp"],
+    "ru": ["держать", "схватить"]
+  },
+  "woonekahci": {
+    "ja": ["～の様子を見る"],
+    "en": ["to check the condition of ~"],
+    "ru": ["проверить состояние ~"]
+  },
+  "uunahci": {
+    "ja": ["灰"],
+    "en": ["ash"],
+    "ru": ["пепел"]
+  },
+  "sirarahci": {
+    "ja": ["岩磯"],
+    "en": ["rocky shore"],
+    "ru": ["скалистый берег"]
+  },
+  "pirikahci": {
+    "ja": ["良い", "美しい", "健康である"],
+    "en": ["good", "beautiful", "healthy"],
+    "ru": ["хороший", "красивый", "здоровый"]
+  },
+  "inoka": {
+    "ja": ["イノカ"],
+    "en": ["Inoka (proper name)"],
+    "ru": ["Иноха (имя)"]
+  },
+  "nam": {
+    "ja": ["冷たい", "ぬるい"],
+    "en": ["cold", "lukewarm"],
+    "ru": ["холодный", "тепловатый"]
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "soyke": {
+    "ja": ["soyの所属形"],
+    "en": ["belonging to soy"],
+    "ru": ["принадлежащий soy"]
+  },
+  "ekira": {
+    "ja": ["連れて逃げる持ち逃げる"],
+    "en": ["to elope", "to run away with"],
+    "ru": ["убежать с кем-то", "скрыться"]
+  },
+  "ponpo": {
+    "ja": ["年下の息子"],
+    "en": ["younger son"],
+    "ru": ["младший сын"]
+  },
+  "iruskare": {
+    "ja": ["怒らせる"],
+    "en": ["to anger"],
+    "ru": ["разозлить"]
+  },
+  "ricihi": {
+    "ja": ["ritの所属形"],
+    "en": ["belonging to rit"],
+    "ru": ["принадлежащий rit"]
+  },
+  "uskahci": {
+    "ja": ["～を消す"],
+    "en": ["to erase", "to extinguish"],
+    "ru": ["стереть", "потушить"]
+  },
+  "turi": {
+    "ja": ["turの所属形"],
+    "en": ["belonging to tur"],
+    "ru": ["принадлежащий tur"]
+  },
+  "rupuska": {
+    "ja": ["凍らせる"],
+    "en": ["to freeze"],
+    "ru": ["заморозить"]
+  },
+  "kaykuma": {
+    "ja": ["柴薪", "ウサギ"],
+    "en": ["firewood", "rabbit"],
+    "ru": ["дрова", "кролик"]
+  },
+  "osomahci": {
+    "ja": ["大便する", "大便"],
+    "en": ["to defecate", "feces"],
+    "ru": ["испражняться", "кал"]
+  },
+  "meske": {
+    "ja": ["もげる欠ける剥がれる"],
+    "en": ["to break off", "to peel"],
+    "ru": ["отломиться", "отслоиться"]
+  },
+  "wenpe": {
+    "ja": ["悪人", "貧乏人", "不幸"],
+    "en": ["villain", "poor person", "misfortune"],
+    "ru": ["злодей", "бедняк", "несчастье"]
+  },
+  "tom": {
+    "ja": ["中程"],
+    "en": ["middle"],
+    "ru": ["середина"]
+  },
+  "iworo": {
+    "ja": ["猟場"],
+    "en": ["hunting ground"],
+    "ru": ["охотничьи угодья"]
+  },
+  "emus": {
+    "ja": ["儀礼の刀"],
+    "en": ["ceremonial sword"],
+    "ru": ["церемониальный меч"]
+  },
+  "ciray": {
+    "ja": ["伊富魚"],
+    "en": ["Iwo fish (species)"],
+    "ru": ["рыба Иво (вид)"]
+  },
+  "cihci": {
+    "ja": ["船"],
+    "en": ["boat"],
+    "ru": ["лодка"]
+  },
+  "maw": {
+    "ja": ["風", "呼気", "息吹"],
+    "en": ["wind", "breath"],
+    "ru": ["ветер", "дыхание"]
+  },
+  "opokay": {
+    "ja": ["麝香鹿"],
+    "en": ["musk deer"],
+    "ru": ["кабарга"]
+  },
+  "ninpa": {
+    "ja": ["～を引き摺る"],
+    "en": ["to drag"],
+    "ru": ["тащить"]
+  },
+  "sitaku": {
+    "ja": ["準備をする"],
+    "en": ["to prepare"],
+    "ru": ["готовиться"]
+  },
+  "poni": {
+    "ja": ["小さい時"],
+    "en": ["when small"],
+    "ru": ["в детстве"]
+  },
+  "otuy": {
+    "ja": ["埃が溜まる"],
+    "en": ["to accumulate dust"],
+    "ru": ["скапливается пыль"]
+  },
+  "niske": {
+    "ja": ["薪を集めて家に運ぶ"],
+    "en": ["to collect and carry firewood home"],
+    "ru": ["собирать и носить дрова домой"]
+  },
+  "yuukarahci": {
+    "ja": ["即興歌"],
+    "en": ["improvised song"],
+    "ru": ["импровизированная песня"]
+  },
+  "okasura": {
+    "ja": ["引き留めずに行かせる"],
+    "en": ["to let go without stopping"],
+    "ru": ["отпустить без задержки"]
+  },
+  "kah": {
+    "ja": ["様子"],
+    "en": ["appearance", "condition"],
+    "ru": ["внешний вид", "состояние"]
+  },
+  "raw": {
+    "ja": ["底", "水底", "深み"],
+    "en": ["bottom", "depth"],
+    "ru": ["дно", "глубина"]
+  },
+  "rusihi": {
+    "ja": ["rusの所属形"],
+    "en": ["belonging to rus"],
+    "ru": ["принадлежность рус"]
+  },
+  "ruwe": {
+    "ja": ["太い"],
+    "en": ["thick"],
+    "ru": ["толстый"]
+  },
+  "tarah": {
+    "ja": ["夢見る"],
+    "en": ["to dream"],
+    "ru": ["мечтать"]
+  },
+  "pisi": {
+    "ja": ["尋ねる問う"],
+    "en": ["to ask", "to inquire"],
+    "ru": ["спрашивать"]
+  },
+  "wente": {
+    "ja": ["荒廃させる", "悪くする", "荒らす"],
+    "en": ["to devastate", "to ruin"],
+    "ru": ["разрушать", "портить"]
+  },
+  "putaha": {
+    "ja": ["putaの所属形"],
+    "en": ["belonging to puta"],
+    "ru": ["принадлежность пута"]
+  }
+}
