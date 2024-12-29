@@ -1,0 +1,18 @@
+{
+  "crops": [
+    {
+      "page_from": 0,
+      "x": 0,
+      "y": 0,
+      "width": 0.5,
+      "height": 1
+    },
+    {
+      "page_from": 0,
+      "x": 0.5,
+      "y": 0,
+      "width": 0.5,
+      "height": 1
+    }
+  ]
+}
