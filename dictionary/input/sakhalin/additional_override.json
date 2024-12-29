@@ -12,5 +12,12 @@
     "overwrite": {
       "poses": ["vt"]
     }
+  },
+  {
+    "lemma": "nanko",
+    "ja": ["こんな", "そんな", "あんな"],
+    "overwrite": {
+      "poses": ["adn"]
+    }
   }
 ]
