@@ -71,6 +71,10 @@ def split_affixing_apostrophes(word: str) -> list[str]:
     return [word]
 
 
+def is_word(word: str) -> bool:
+    return bool(re.match(r"^[a-zA-Zâîûêôáíúéó=\-_'’]+$", word))
+
+
 def tokenize(sentence: str) -> list[str]:
     # 小文字化
     # sentence = sentence.lower()
