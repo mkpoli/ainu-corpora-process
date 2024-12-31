@@ -208,6 +208,10 @@ def test_tokenize():
             "a=sirkocotca p ne kusu an hine <ne>",
             ["a=", "sirkocotca", "p", "ne", "kusu", "an", "hine", "<", "ne", ">"],
         ],
+        [
+            "u ne[y] rok awa[n]",
+            ["u", "ne[y]", "rok", "awa[n]"],
+        ],
     ]
     for text, expected in TEST_CASES:
         tokens = tokenize(text)
