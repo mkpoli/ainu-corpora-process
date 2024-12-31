@@ -7,6 +7,8 @@
 | VERB                | vd     | 複他動詞 |
 | VERB                | vc     | 完全動詞 |
 | VERB                | v      | 動詞     |
+| AUX                 | auxv   | 助動詞   |
+| AUX                 | cop    | 繋辞     |
 | NOUN                | n      | 名詞     |
 | NOUN                | nl     | 位置名詞 |
 | NOUN                | nmlz   | 形式名詞 |
@@ -16,8 +18,6 @@
 | ADV                 | adv    | 副詞     |
 | CCONJ / SCONJ / ADV | cconj  | 接続詞   |
 | POST                | post   | 助詞     |
-| AUX                 | auxv   | 助動詞   |
-| AUX                 | cop    | 繋辞     |
 | PART                | sfp    | 終助詞   |
 | PART                | pers   | 人称接辞 |
 | INTJ                | intj   | 間投詞   |
