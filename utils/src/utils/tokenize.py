@@ -89,7 +89,7 @@ def tokenize(sentence: str) -> list[str]:
     # sentence = re.sub(r"\[\d+\]", "", sentence)
     # sentence = re.sub(r"\*\d+", "", sentence)
 
-    print("sentence: ", sentence)
+    # print("sentence: ", sentence)
     # tokenizer = RegexpTokenizer(
     #     r"(?:\.\.\.(\.\.\.)?)|[a-zA-Zâîûêôáíúéó=\-_'’]+|\d+|[<>\.,‘\"“”]"
     # )
@@ -103,16 +103,16 @@ def tokenize(sentence: str) -> list[str]:
 
     words = [w for w in words if w]
 
-    print("words (1): ", words)
+    # print("words (1): ", words)
 
     words = [w for word in words for w in split_affixing_apostrophes(word)]
-    print("words (2): ", words)
+    # print("words (2): ", words)
 
     words = [w for word in words for w in split_affixes(word)]
-    print("words (3): ", words)
+    # print("words (3): ", words)
 
     words = [w for w in words if w]
-    print("words (4): ", words)
+    # print("words (4): ", words)
 
-    print("-" * 50)
+    # print("-" * 50)
     return words
