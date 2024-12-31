@@ -8,8 +8,6 @@ np_nm_patterns = {
     "ampe": "anpe",
 }
 
-plural_patterns = {"oka": "an", "okay": "an", "rok": "a"}
-
 # class MorphoLogicalFeatures:
 #     def __init__(self, name: str, value: str):
 #         self.name = name
@@ -27,7 +25,7 @@ words_to_merge = {
 }
 
 
-def lemmatize(word: str) -> tuple[str, dict[str, str]]:
+def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
     word = remove_accent(word)  # TODO: keep accent distinctions
     # Apostrophes
     word = re.sub("’", "'", word)  # ’ -> '
@@ -39,44 +37,102 @@ def lemmatize(word: str) -> tuple[str, dict[str, str]]:
 
     for pattern, replacement in np_nm_patterns.items():
         word = re.sub(pattern, replacement, word)
-    for pattern, replacement in sorted(
-        plural_patterns.items(), key=lambda x: len(x[0]), reverse=True
-    ):
-        word = re.sub(pattern, replacement, word)
 
     if not word:
         return word, {}
 
-    for lemma, short, long in possessives:
-        if word == short or word == long:
-            return lemma, {
-                "Possessed": "Yes",
-            }
+    # | UPOS                | XPOS   | JAPANESE |
+    # | ------------------- | ------ | -------- |
+    # | VERB                | vi     | 自動詞   |
+    # | VERB                | vt     | 他動詞   |
+    # | VERB                | vd     | 複他動詞 |
+    # | VERB                | vc     | 完全動詞 |
+    # | VERB                | v      | 動詞     |
+    # | AUX                 | auxv   | 助動詞   |
+    # | AUX                 | cop    | 繋辞     |
+    # | NOUN                | n      | 名詞     |
+    # | NOUN                | nl     | 位置名詞 |
+    # | NOUN                | nmlz   | 形式名詞 |
+    # | PRON                | pron   | 代名詞   |
+    # | PROPN               | propn  | 固有名詞 |
+    # | DET                 | adn    | 連体詞   |
+    # | ADV                 | adv    | 副詞     |
+    # | CCONJ / SCONJ / ADV | cconj  | 接続詞   |
+    # | POST                | post   | 助詞     |
+    # | PART                | sfp    | 終助詞   |
+    # | PART                | pers   | 人称接辞 |
+    # | INTJ                | intj   | 間投詞   |
+    # | SCONJ               | sconj  | 接続助詞 |
+    # | SCONJ               | padv   | 後置副詞 |
+    # | -                   | sfx    | 接尾辞   |
+    # | -                   | pfx    | 接頭辞   |
+    # | -                   | root   | 語根     |
+    # | ADP                 | advp   | 副助詞   |
+    # | ADP                 | postp  | 格助詞   |
+    # | ADP                 | parti  | 助詞     |
+    # | PRON / DET / NOUN   | int    | 疑問詞   |
+    # | NUM                 | num    | 数詞     |
+    # | PUNCT               | punct  | 記号     |
+    # | -                   | colloc | 連語     |
+    # | -                   | idiom  | 慣用句   |
 
-    for lemma, plural, valency in plurals:
-        if word == lemma:
-            return lemma, {
-                "Number": "Sing",
-                "Valency": str(valency),
-            }
-        if word == plural:
-            return lemma, {
-                "Number": "Plur",
-                "Valency": str(valency),
-            }
+    features = {}
 
-    # ku= 1.sg.Nom
-    # en= 1.sg.Acc
-    # ci= 1.pl.excl.Erg
-    # =as 1.pl.excl.Intr
-    # un= 1.pl.excl.Acc
-    # e= 1.pl.Dir
-    # eci= 1.pl.Dir
-    # ∅ 3.sg/pl.Dir
-    # a= 4.pl.Erg
-    # an= 4.pl.Erg
-    # =an 4.pl.Inr
-    # i= 4.pl.Acc
+    pos_2_valency = {
+        "vi": "+1",
+        "vt": "+2",
+        "vd": "+3",
+        "vc": "0",
+        "v": None,
+        "auxv": "0",
+        "cop": f"+2",  # or 1?
+        "n": "-1",
+        "nl": "-1",
+        "nmlz": "-1",
+        "pron": "-1",
+        "propn": "-1",
+        "adn": "+1",  # or 0?
+        "adv": "0",
+        "cconj": "0",
+        "post": "+1",
+        "sfp": "0",
+        "pers": None,
+        "intj": "0",
+        "sconj": "0",
+        "padv": "+1",
+        "sfx": None,
+        "pfx": None,
+        "root": "-1",
+        "advp": "0",
+        "parti": "0",
+        "int": None,
+        "num": None,
+        "punct": None,
+    }
+
+    if pos and pos in pos_2_valency and pos_2_valency[pos] is not None:
+        features["Valency"] = pos_2_valency[pos]
+
+    print(f"after valency {word=}, {features=}")
+
+    if pos == "n":
+        for lemma, short, long in possessives:
+            if word == short or word == long:
+                word = lemma
+                features["Possessed"] = "Yes"
+
+    if pos in ["v", "vi", "vt", "vd", "vc"]:
+        for lemma, plural, valency in plurals:
+            if word == lemma:
+                features["Number"] = "Sing"
+                features["Valency"] = str(valency)
+                return lemma, features
+            if word == plural:
+                features["Number"] = "Plur"
+                features["Valency"] = str(valency)
+                return lemma, features
+
+    print(f"after plurals {word=}, {features=}")
 
     PERS_SYSTEM = {
         # 4th person plural / 1st person plural inclusive / logographical transtive nominative
@@ -155,8 +211,8 @@ def lemmatize(word: str) -> tuple[str, dict[str, str]]:
         },
     }
 
-    for pattern, features in PERS_SYSTEM.items():
-        if word == pattern:
-            return word, features
+    if word in PERS_SYSTEM:
+        features = PERS_SYSTEM[word]
 
-    return word, {}
+    print(f"after pers system {word=}, {features=}")
+    return word, features
