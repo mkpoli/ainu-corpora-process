@@ -3,7 +3,7 @@
 | UPOS                | XPOS   | JAPANESE |
 | ------------------- | ------ | -------- |
 | VERB                | vi     | 自動詞   |
-| VERB                | vd     | 他動詞   |
+| VERB                | vt     | 他動詞   |
 | VERB                | vd     | 複他動詞 |
 | VERB                | vc     | 完全動詞 |
 | VERB                | v      | 動詞     |
