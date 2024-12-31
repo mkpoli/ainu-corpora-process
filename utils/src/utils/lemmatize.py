@@ -32,7 +32,7 @@ def lemmatize(word: str) -> tuple[str, dict[str, str]]:
     # Apostrophes
     word = re.sub("’", "'", word)  # ’ -> '
     word = re.sub(r"(?<=[aiueo])'(?=[aiueo])", "", word)  # remove ' between vowels
-    word = re.sub(r"^'", "", word)  # remove ' at the beginning
+    word = re.sub(r"^'|'$", "", word)  # remove ' at the beginning and end
     word = re.sub(r"_", "", word)  # remove underscores
     word = re.sub(r"^\[(.*?)\]$", r"\1", word)  # remove square brackets
     word = re.sub(r"\[.*?\]", "", word)  # remove square brackets

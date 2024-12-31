@@ -13,8 +13,13 @@ def test_lemmatize():
 
     # Apostrophes
     assert lemmatize("ne'ampe") == ("neanpe", {})
+    assert lemmatize("inkar'") == ("inkar", {})
+
+    # Plurals
     assert lemmatize("oka") == ("an", {})
     assert lemmatize("okay") == ("an", {})
+
+    # Possessives
     assert lemmatize("mat") == ("mat", {})
     assert lemmatize("maci") == ("mat", {"Possessed": "Yes"})
     assert lemmatize("macihi") == ("mat", {"Possessed": "Yes"})
