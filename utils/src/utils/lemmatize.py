@@ -2,6 +2,7 @@ import regex as re
 from utils.text import remove_accent
 from .data.possessives import possessives
 
+
 np_nm_patterns = {
     "neampe": "neanpe",
     "ampe": "anpe",
@@ -17,15 +18,24 @@ plural_patterns = {"oka": "an", "okay": "an", "rok": "a"}
 #     def __str__(self):
 #         return f"{self.name}: {self.value}"
 
+words_to_merge = {
+    "haw'as": "hawas",  # TODO: háwas
+    "haw'an": "hawan",  # TODO: háwan
+    "sir'an": "siran",  # TODO: síran
+    "sik'o": "siko",  # TODO: síko
+    "cip'o": "cipo",  # TODO: cípo
+}
+
 
 def lemmatize(word: str) -> tuple[str, dict[str, str]]:
-    # word = remove_accent(word)
-    pattern_of_apostrophe_between_vowel_use_lookaahead_and_lookbehind = (
-        r"(?<=[aiueo])'(?=[aiueo])"
-    )
-    word = re.sub(
-        pattern_of_apostrophe_between_vowel_use_lookaahead_and_lookbehind, "", word
-    )
+    word = remove_accent(word)  # TODO: keep accent distinctions
+
+    # Apostrophes
+    word = re.sub("’", "'", word)  # ’ -> '
+    word = re.sub(r"(?<=[aiueo])'(?=[aiueo])", "", word)  # remove ' between vowels
+    word = re.sub(r"^'", "", word)  # remove ' at the beginning
+    word = re.sub(r"_", "", word)  # remove underscores
+
     for pattern, replacement in np_nm_patterns.items():
         word = re.sub(pattern, replacement, word)
     for pattern, replacement in sorted(
