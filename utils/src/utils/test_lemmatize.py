@@ -1,7 +1,5 @@
 from .lemmatize import lemmatize
 
-from .data.possessives import possessives
-
 
 def test_lemmatize():
     # Underscores
