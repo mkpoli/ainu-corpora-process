@@ -29,12 +29,13 @@ words_to_merge = {
 
 def lemmatize(word: str) -> tuple[str, dict[str, str]]:
     word = remove_accent(word)  # TODO: keep accent distinctions
-
     # Apostrophes
     word = re.sub("’", "'", word)  # ’ -> '
     word = re.sub(r"(?<=[aiueo])'(?=[aiueo])", "", word)  # remove ' between vowels
     word = re.sub(r"^'", "", word)  # remove ' at the beginning
     word = re.sub(r"_", "", word)  # remove underscores
+    word = re.sub(r"^\[(.*?)\]$", r"\1", word)  # remove square brackets
+    word = re.sub(r"\[.*?\]", "", word)  # remove square brackets
 
     for pattern, replacement in np_nm_patterns.items():
         word = re.sub(pattern, replacement, word)
@@ -44,8 +45,9 @@ def lemmatize(word: str) -> tuple[str, dict[str, str]]:
         word = re.sub(pattern, replacement, word)
 
     for lemma, short, long in possessives:
-        if word == short or word == long:
+        if word and word == short or word == long:
             return lemma, {
                 "Possessed": "Yes",
             }
+
     return word, {}

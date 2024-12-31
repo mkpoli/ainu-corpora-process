@@ -8,6 +8,11 @@ def test_lemmatize():
     assert lemmatize("w_a") == ("wa", {})
     assert lemmatize("h_ine") == ("hine", {})
 
+    # Square brackets
+    assert lemmatize("ne[y]") == ("ne", {})
+    assert lemmatize("awa[n]") == ("awa", {})
+    assert lemmatize("[u]") == ("u", {})
+
     # Apostrophes
     assert lemmatize("ne'ampe") == ("neanpe", {})
     assert lemmatize("oka") == ("an", {})
