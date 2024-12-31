@@ -113,7 +113,7 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
     if pos and pos in pos_2_valency and pos_2_valency[pos] is not None:
         features["Valency"] = pos_2_valency[pos]
 
-    print(f"after valency {word=}, {features=}")
+    # print(f"after valency {word=}, {features=}")
 
     if pos == "n":
         for lemma, short, long in possessives:
@@ -132,7 +132,7 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
                 features["Valency"] = str(valency)
                 return lemma, features
 
-    print(f"after plurals {word=}, {features=}")
+    # print(f"after plurals {word=}, {features=}")
 
     PERS_SYSTEM = {
         # 4th person plural / 1st person plural inclusive / logographical transtive nominative
@@ -214,5 +214,5 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
     if word in PERS_SYSTEM:
         features = PERS_SYSTEM[word]
 
-    print(f"after pers system {word=}, {features=}")
+    # print(f"after pers system {word=}, {features=}")
     return word, features
