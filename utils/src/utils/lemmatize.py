@@ -25,7 +25,7 @@ words_to_merge = {
 }
 
 
-def clean_lemma(word: str) -> str:
+def normalize(word: str) -> str:
     word = remove_accent(word)  # TODO: keep accent distinctions
     # Apostrophes
     word = re.sub("’", "'", word)  # ’ -> '
@@ -50,7 +50,7 @@ def lemmatize(word: str, pos: str) -> tuple[str, frozenset[tuple[str, str]]]:
     if not word:
         return word, frozenset()
 
-    word = clean_lemma(word)
+    word = normalize(word)
 
     # | UPOS                | XPOS   | JAPANESE |
     # | ------------------- | ------ | -------- |
