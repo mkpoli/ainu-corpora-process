@@ -5,7 +5,9 @@ from io import StringIO
 _DATA = """a	rok	座る	自動詞
 a	rok	～した	助動詞
 an	oka	居る	自動詞
+an	okay	居る	自動詞
 aan	rokoka	～したのだった	助動詞
+aan	rokokay	～したのだった	助動詞
 ahun	ahup	入る	自動詞
 ahunke	ahupte	～を入れる	他動詞
 ani	anpa	～を手に持つ	他動詞
