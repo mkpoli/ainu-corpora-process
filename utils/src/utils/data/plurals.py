@@ -157,17 +157,20 @@ yayosirkonoye	yayosirkonoypa	引き籠もる	自動詞
 yupu	yuppa	～を締める	他動詞"""
 
 
-def get_valency(verb_type: str) -> int:
+def get_valency(verb_type: str) -> str:
     return {
-        "完全動詞": 0,
-        "連他動詞": 2,
-        "複他動詞": 3,
-        "他動詞": 2,
-        "自動詞": 1,
+        "完全動詞": "0",
+        "連他動詞": "+2",
+        "複他動詞": "+3",
+        "他動詞": "+2",
+        "自動詞": "+1",
+        "助動詞": "0",
+        "感動詞": "0",
+        "連体詞": "+1",  # 0?
     }[verb_type]
 
 
 with StringIO(_DATA) as f:
-    plurals: list[tuple[str, str, int]] = [
+    plurals: list[tuple[str, str, str]] = [
         (row[0], row[1], get_valency(row[3])) for row in csv.reader(f, delimiter="\t")
     ]
