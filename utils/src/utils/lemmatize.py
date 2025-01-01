@@ -25,7 +25,7 @@ words_to_merge = {
 }
 
 
-def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
+def clean_lemma(word: str) -> str:
     word = remove_accent(word)  # TODO: keep accent distinctions
     # Apostrophes
     word = re.sub("’", "'", word)  # ’ -> '
@@ -37,9 +37,20 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
 
     for pattern, replacement in np_nm_patterns.items():
         word = re.sub(pattern, replacement, word)
+    return word
 
+
+def morphologize(word: str, lemma: str, pos: str) -> dict[str, str]:
+    features = {}
+
+    return features
+
+
+def lemmatize(word: str, pos: str) -> tuple[str, frozenset[tuple[str, str]]]:
     if not word:
-        return word, {}
+        return word, frozenset()
+
+    word = clean_lemma(word)
 
     # | UPOS                | XPOS   | JAPANESE |
     # | ------------------- | ------ | -------- |
@@ -76,7 +87,7 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
     # | -                   | colloc | 連語     |
     # | -                   | idiom  | 慣用句   |
 
-    features = {}
+    features: dict[str, str] = {}
 
     pos_2_valency = {
         "vi": "+1",
@@ -126,11 +137,11 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
             if word == lemma:
                 features["Number"] = "Sing"
                 features["Valency"] = str(valency)
-                return lemma, features
+                return lemma, frozenset(features.items())
             if word == plural:
                 features["Number"] = "Plur"
                 features["Valency"] = str(valency)
-                return lemma, features
+                return lemma, frozenset(features.items())
 
     # print(f"after plurals {word=}, {features=}")
 
@@ -215,4 +226,4 @@ def lemmatize(word: str, pos: str) -> tuple[str, dict[str, str]]:
         features = PERS_SYSTEM[word]
 
     # print(f"after pers system {word=}, {features=}")
-    return word, features
+    return word, frozenset(features.items())
