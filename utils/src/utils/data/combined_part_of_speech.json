@@ -1,0 +1,9668 @@
+{
+  "wan": [
+    "num"
+  ],
+  "tu": [
+    "num"
+  ],
+  "rak": [
+    "v"
+  ],
+  "ci": [
+    "v"
+  ],
+  "mi": [
+    "v"
+  ],
+  "on": [
+    "v"
+  ],
+  "ona": [
+    "n"
+  ],
+  "o": [
+    "v"
+  ],
+  "ay": [
+    "n"
+  ],
+  "oro": [
+    "n"
+  ],
+  "he": [
+    "parti"
+  ],
+  "i": [
+    "pfx"
+  ],
+  "ne": [
+    "adn",
+    "pron",
+    "v",
+    "parti",
+    "pronoun"
+  ],
+  "si": [
+    "n",
+    "root"
+  ],
+  "ni": [
+    "n"
+  ],
+  "re": [
+    "n",
+    "num"
+  ],
+  "as": [
+    "v",
+    "sfx"
+  ],
+  "te": [
+    "n"
+  ],
+  "no": [
+    "sfx"
+  ],
+  "un": [
+    "parti",
+    "v"
+  ],
+  "os": [
+    "adv"
+  ],
+  "or": [
+    "n"
+  ],
+  "pet": [
+    "n"
+  ],
+  "e": [
+    "intj",
+    "v",
+    "root"
+  ],
+  "mon": [
+    "n",
+    "root"
+  ],
+  "an": [
+    "parti",
+    "v",
+    "root"
+  ],
+  "am": [
+    "n"
+  ],
+  "us": [
+    "v"
+  ],
+  "a": [
+    "auxv",
+    "v"
+  ],
+  "ani": [
+    "postp",
+    "v",
+    "n",
+    "parti"
+  ],
+  "mun": [
+    "n"
+  ],
+  "her": [
+    "n"
+  ],
+  "n": [
+    "sfx"
+  ],
+  "p": [
+    "sfx"
+  ],
+  "six": [
+    "n"
+  ],
+  "not": [
+    "n"
+  ],
+  "sine": [
+    "num"
+  ],
+  "hi": [
+    "n"
+  ],
+  "kuri": [
+    "n"
+  ],
+  "car": [
+    "n"
+  ],
+  "hat": [
+    "n"
+  ],
+  "iki": [
+    "v"
+  ],
+  "su": [
+    "n"
+  ],
+  "kim": [
+    "n"
+  ],
+  "kar": [
+    "v"
+  ],
+  "saha": [
+    "n"
+  ],
+  "so": [
+    "parti",
+    "n"
+  ],
+  "sum": [
+    "v",
+    "n"
+  ],
+  "aykap": [
+    "v"
+  ],
+  "aynu": [
+    "n"
+  ],
+  "aep": [
+    "n"
+  ],
+  "aoka": [
+    "pron"
+  ],
+  "akusu": [
+    "cconj"
+  ],
+  "asi": [
+    "v"
+  ],
+  "ak": [
+    "v",
+    "n"
+  ],
+  "askay": [
+    "v"
+  ],
+  "asikne": [
+    "num"
+  ],
+  "asiknep": [
+    "num"
+  ],
+  "asiknen": [
+    "num"
+  ],
+  "asinuma": [
+    "pron"
+  ],
+  "sinep": [
+    "num"
+  ],
+  "tup": [
+    "num"
+  ],
+  "rep": [
+    "n",
+    "v",
+    "num"
+  ],
+  "inep": [
+    "num"
+  ],
+  "iwanpe": [
+    "num"
+  ],
+  "arwanpe": [
+    "num"
+  ],
+  "tupesanpe": [
+    "num"
+  ],
+  "sinepesanpe": [
+    "num"
+  ],
+  "wanpe": [
+    "num"
+  ],
+  "hotnep": [
+    "num"
+  ],
+  "kani": [
+    "n",
+    "pron"
+  ],
+  "coka": [
+    "pron"
+  ],
+  "eani": [
+    "pron"
+  ],
+  "ecioka": [
+    "pron"
+  ],
+  "sinuma": [
+    "pron"
+  ],
+  "oka": [
+    "v",
+    "n",
+    "pron"
+  ],
+  "kuani": [
+    "pron"
+  ],
+  "asur": [
+    "n"
+  ],
+  "atay": [
+    "n"
+  ],
+  "acapo": [
+    "n"
+  ],
+  "askepet": [
+    "n"
+  ],
+  "asir": [
+    "v"
+  ],
+  "akkari": [
+    "parti",
+    "v"
+  ],
+  "atuy": [
+    "n"
+  ],
+  "atkocike": [
+    "n"
+  ],
+  "anakne": [
+    "parti"
+  ],
+  "tanto": [
+    "n"
+  ],
+  "numan": [
+    "n"
+  ],
+  "nisatta": [
+    "n"
+  ],
+  "tanpa": [
+    "n"
+  ],
+  "oyapa": [
+    "n"
+  ],
+  "pa": [
+    "n",
+    "adv",
+    "v",
+    "auxv",
+    "sfx",
+    "root"
+  ],
+  "sinen": [
+    "num"
+  ],
+  "tun": [
+    "num"
+  ],
+  "ren": [
+    "num"
+  ],
+  "inen": [
+    "num"
+  ],
+  "iwaniw": [
+    "num"
+  ],
+  "arwaniw": [
+    "num"
+  ],
+  "tupesaniw": [
+    "num"
+  ],
+  "sinepesaniw": [
+    "num"
+  ],
+  "waniw": [
+    "num"
+  ],
+  "hotnen": [
+    "num"
+  ],
+  "ine": [
+    "num",
+    "cconj"
+  ],
+  "iwan": [
+    "num"
+  ],
+  "arwan": [
+    "num"
+  ],
+  "tupesan": [
+    "num"
+  ],
+  "sinepesan": [
+    "num"
+  ],
+  "hotne": [
+    "num"
+  ],
+  "ahup": [
+    "v"
+  ],
+  "ahun": [
+    "v"
+  ],
+  "ahupte": [
+    "v"
+  ],
+  "ahunke": [
+    "v"
+  ],
+  "apkas": [
+    "v"
+  ],
+  "at": [
+    "v",
+    "n"
+  ],
+  "kamuy": [
+    "n"
+  ],
+  "cikap": [
+    "n"
+  ],
+  "yukar": [
+    "v",
+    "n",
+    "root"
+  ],
+  "yayeyukar": [
+    "n"
+  ],
+  "sirokani": [
+    "n"
+  ],
+  "konkani": [
+    "n"
+  ],
+  "pe": [
+    "n"
+  ],
+  "ran": [
+    "v"
+  ],
+  "rap": [
+    "v",
+    "n"
+  ],
+  "piskan": [
+    "n"
+  ],
+  "ari": [
+    "parti",
+    "v"
+  ],
+  "rekpo": [
+    "n"
+  ],
+  "ki": [
+    "v"
+  ],
+  "kane": [
+    "parti",
+    "auxv",
+    "n"
+  ],
+  "esoro": [
+    "adv"
+  ],
+  "sap": [
+    "v"
+  ],
+  "san": [
+    "v",
+    "n"
+  ],
+  "hine": [
+    "parti",
+    "cconj"
+  ],
+  "kotan": [
+    "n"
+  ],
+  "enkasike": [
+    "n"
+  ],
+  "enka": [
+    "n"
+  ],
+  "sicorpok": [
+    "n"
+  ],
+  "corpok": [
+    "n"
+  ],
+  "ka": [
+    "parti",
+    "n"
+  ],
+  "kus": [
+    "v"
+  ],
+  "kor": [
+    "parti",
+    "v"
+  ],
+  "un=": [
+    "pfx"
+  ],
+  "a=": [
+    "pfx",
+    "v"
+  ],
+  "=an": [
+    "v",
+    "sfx"
+  ],
+  "=as": [
+    "v",
+    "sfx"
+  ],
+  "ci=": [
+    "pfx",
+    "v"
+  ],
+  "inkar": [
+    "v"
+  ],
+  "ko": [
+    "parti",
+    "v",
+    "n"
+  ],
+  "teeta": [
+    "n"
+  ],
+  "tane": [
+    "adv",
+    "n"
+  ],
+  "wenkur": [
+    "n"
+  ],
+  "nispa": [
+    "n"
+  ],
+  "kotom": [
+    "parti"
+  ],
+  "sir": [
+    "n"
+  ],
+  "apto": [
+    "n"
+  ],
+  "apunno": [
+    "adv"
+  ],
+  "amkir": [
+    "auxv",
+    "n",
+    "v"
+  ],
+  "ku=": [
+    "pfx"
+  ],
+  "arka": [
+    "v"
+  ],
+  "arki": [
+    "v"
+  ],
+  "arpa": [
+    "v"
+  ],
+  "arikiki": [
+    "v"
+  ],
+  "annoski": [
+    "n"
+  ],
+  "anpe": [
+    "n"
+  ],
+  "hawean": [
+    "v"
+  ],
+  "anu": [
+    "v"
+  ],
+  "ahunpar": [
+    "n"
+  ],
+  "par": [
+    "n"
+  ],
+  "poru": [
+    "n"
+  ],
+  "ru": [
+    "n"
+  ],
+  "ahunporu": [
+    "n"
+  ],
+  "ahunrupar": [
+    "n"
+  ],
+  "ape": [
+    "n"
+  ],
+  "apeari": [
+    "v"
+  ],
+  "amam": [
+    "n"
+  ],
+  "amip": [
+    "n"
+  ],
+  "arsuy": [
+    "n"
+  ],
+  "ancikar": [
+    "n"
+  ],
+  "i=": [
+    "pfx"
+  ],
+  "ye": [
+    "v",
+    "n"
+  ],
+  "iomante": [
+    "v",
+    "n"
+  ],
+  "iku": [
+    "v"
+  ],
+  "ku": [
+    "v",
+    "n"
+  ],
+  "ikure": [
+    "v"
+  ],
+  "ikuruy": [
+    "v",
+    "n"
+  ],
+  "isam": [
+    "auxv",
+    "v"
+  ],
+  "isepo": [
+    "n"
+  ],
+  "isoytak": [
+    "v"
+  ],
+  "itak": [
+    "v",
+    "n"
+  ],
+  "itanki": [
+    "n"
+  ],
+  "ikka": [
+    "v"
+  ],
+  "ikkakur": [
+    "n"
+  ],
+  "ihuraye": [
+    "v"
+  ],
+  "ipe": [
+    "v",
+    "n"
+  ],
+  "ipere": [
+    "v"
+  ],
+  "iperusuy": [
+    "v"
+  ],
+  "iyairaykere": [
+    "intj"
+  ],
+  "iyayiraykere": [
+    "intj"
+  ],
+  "iteki": [
+    "adv"
+  ],
+  "iyotta": [
+    "adv"
+  ],
+  "irara": [
+    "v"
+  ],
+  "iwanke": [
+    "v"
+  ],
+  "inne": [
+    "v"
+  ],
+  "iw": [
+    "sfx"
+  ],
+  "ikasma": [
+    "v"
+  ],
+  "oman": [
+    "v"
+  ],
+  "okay": [
+    "v",
+    "pron"
+  ],
+  "pasuy": [
+    "n"
+  ],
+  "ipepasuy": [
+    "n"
+  ],
+  "ikupasuy": [
+    "n"
+  ],
+  "apepasuy": [
+    "n"
+  ],
+  "cise": [
+    "n"
+  ],
+  "isitayki": [
+    "v"
+  ],
+  "icen": [
+    "n"
+  ],
+  "icakkere": [
+    "v"
+  ],
+  "icakkerere": [
+    "v"
+  ],
+  "itese": [
+    "v",
+    "n"
+  ],
+  "inan": [
+    "adn"
+  ],
+  "inaw": [
+    "n"
+  ],
+  "inawke": [
+    "v"
+  ],
+  "inuye": [
+    "v"
+  ],
+  "imeru": [
+    "n"
+  ],
+  "iyohay": [
+    "intj"
+  ],
+  "irwak": [
+    "n"
+  ],
+  "irwakutar": [
+    "n"
+  ],
+  "iruska": [
+    "v"
+  ],
+  "ekasi": [
+    "n"
+  ],
+  "utar": [
+    "n"
+  ],
+  "sonno": [
+    "adv"
+  ],
+  "pase": [
+    "v"
+  ],
+  "sinrit": [
+    "n"
+  ],
+  "upaskuma": [
+    "n"
+  ],
+  "wa": [
+    "parti"
+  ],
+  "rok": [
+    "auxv",
+    "v"
+  ],
+  "kami": [
+    "n"
+  ],
+  "apa": [
+    "n"
+  ],
+  "to": [
+    "n"
+  ],
+  "nupuri": [
+    "n"
+  ],
+  "cikir": [
+    "n"
+  ],
+  "hampe": [
+    "intj",
+    "n"
+  ],
+  "katci": [
+    "intj",
+    "n"
+  ],
+  "ohainu": [
+    "v"
+  ],
+  "ikonnupkoan": [
+    "v"
+  ],
+  "u-": [
+    "pfx"
+  ],
+  "hum": [
+    "n"
+  ],
+  "seysey": [
+    "n"
+  ],
+  "sisam": [
+    "n"
+  ],
+  "ta": [
+    "parti",
+    "v"
+  ],
+  "-ar": [
+    "sfx"
+  ],
+  "-yar": [
+    "sfx"
+  ],
+  "-re": [
+    "sfx"
+  ],
+  "-e": [
+    "sfx"
+  ],
+  "-te": [
+    "sfx"
+  ],
+  "ekte": [
+    "v"
+  ],
+  "-p": [
+    "sfx"
+  ],
+  "-pe": [
+    "sfx"
+  ],
+  "-iw": [
+    "sfx"
+  ],
+  "-n": [
+    "sfx"
+  ],
+  "meni": [
+    "n"
+  ],
+  "ruyanpe": [
+    "n"
+  ],
+  "upas": [
+    "n"
+  ],
+  "rera": [
+    "n"
+  ],
+  "-i": [
+    "sfx"
+  ],
+  "e=": [
+    "pfx"
+  ],
+  "fonto": [
+    "n"
+  ],
+  "itako": [
+    "v"
+  ],
+  "=ci=": [
+    "pfx",
+    "sfx"
+  ],
+  "hem": [
+    "parti",
+    "pronoun",
+    "pron"
+  ],
+  "tasumi": [
+    "n"
+  ],
+  "siyeye": [
+    "n"
+  ],
+  "mosir": [
+    "n"
+  ],
+  "en=": [
+    "pfx"
+  ],
+  "eci=": [
+    "pfx"
+  ],
+  "e=i=": [
+    "pfx"
+  ],
+  "ku=i=": [
+    "pfx"
+  ],
+  "ke": [
+    "rel"
+  ],
+  "orun": [],
+  "atusa-nupuri": [
+    "n"
+  ],
+  "aahak": [
+    "v"
+  ],
+  "ooho": [
+    "v"
+  ],
+  "atusa": [
+    "v"
+  ],
+  "hetuku": [
+    "v"
+  ],
+  "rikoma": [
+    "v"
+  ],
+  "haw": [
+    "n"
+  ],
+  "put": [
+    "n"
+  ],
+  "=a=": [
+    "pfx",
+    "v",
+    "sfx"
+  ],
+  "paro-oyki": [
+    "v"
+  ],
+  "an=": [
+    "pfx"
+  ],
+  "siroma": [
+    "v"
+  ],
+  "tapkop": [
+    "n"
+  ],
+  "nuca": [
+    "n"
+  ],
+  "sik": [
+    "n"
+  ],
+  "enrum": [
+    "n"
+  ],
+  "hoku": [
+    "n"
+  ],
+  "sikkap": [
+    "n"
+  ],
+  "sikkes": [
+    "n"
+  ],
+  "nukar": [
+    "v"
+  ],
+  "hure": [
+    "v"
+  ],
+  "peker": [
+    "v"
+  ],
+  "huci": [
+    "n"
+  ],
+  "sa": [
+    "n",
+    "root"
+  ],
+  "yup": [
+    "n"
+  ],
+  "matak": [
+    "n"
+  ],
+  "tataki": [
+    "v"
+  ],
+  "horkew": [
+    "n"
+  ],
+  "sus": [
+    "v"
+  ],
+  "itakno": [
+    "v"
+  ],
+  "macirpe": [
+    "n"
+  ],
+  "irpe": [
+    "n"
+  ],
+  "anokay": [
+    "pron"
+  ],
+  "eciokay": [
+    "pron"
+  ],
+  "ciokay": [
+    "pron"
+  ],
+  "aokay": [
+    "pron"
+  ],
+  "retar": [
+    "v"
+  ],
+  "kunne": [
+    "postp",
+    "v",
+    "n"
+  ],
+  "siwnin": [
+    "v"
+  ],
+  "anihi": [
+    "pron"
+  ],
+  "ek": [
+    "v"
+  ],
+  "paye": [
+    "v"
+  ],
+  "payeka": [
+    "v"
+  ],
+  "payekay": [
+    "v"
+  ],
+  "omanan": [
+    "v"
+  ],
+  "husko": [
+    "v"
+  ],
+  "kosma": [
+    "v"
+  ],
+  "isram": [
+    "n"
+  ],
+  "ruska": [
+    "v"
+  ],
+  "nu": [
+    "v",
+    "root"
+  ],
+  "anutari": [
+    "pron"
+  ],
+  "ciutari": [
+    "pron"
+  ],
+  "eciutari": [
+    "pron"
+  ],
+  "utaroka": [
+    "pron"
+  ],
+  "po": [
+    "n"
+  ],
+  "mat": [
+    "n"
+  ],
+  "anak": [
+    "parti"
+  ],
+  "cep": [
+    "n"
+  ],
+  "cikappo": [
+    "n"
+  ],
+  "ceppo": [
+    "n"
+  ],
+  "more": [
+    "v"
+  ],
+  "up": [
+    "n"
+  ],
+  "sit": [
+    "n"
+  ],
+  "mean": [
+    "v"
+  ],
+  "rise": [
+    "v"
+  ],
+  "irankarapte": [
+    "intj"
+  ],
+  "epakasnu": [
+    "v"
+  ],
+  "ruwe": [
+    "v",
+    "n"
+  ],
+  "sekor": [
+    "parti"
+  ],
+  "kusu": [
+    "parti",
+    "adv"
+  ],
+  "ramu": [
+    "v",
+    "n"
+  ],
+  "yaynu": [
+    "v"
+  ],
+  "piski": [
+    "v"
+  ],
+  "kikir": [
+    "n"
+  ],
+  "kina": [
+    "n"
+  ],
+  "pirka": [
+    "v",
+    "adv"
+  ],
+  "wen": [
+    "v"
+  ],
+  "korpokkur": [
+    "n"
+  ],
+  "hopuni": [
+    "v"
+  ],
+  "mokor": [
+    "v"
+  ],
+  "na": [
+    "parti",
+    "intj",
+    "adv"
+  ],
+  "sirokane": [
+    "n"
+  ],
+  "konkane": [
+    "n"
+  ],
+  "ohainkar": [
+    "v"
+  ],
+  "enkasi": [
+    "n"
+  ],
+  "kasi": [
+    "n"
+  ],
+  "kasike": [
+    "n"
+  ],
+  "corpoki": [
+    "n"
+  ],
+  "corpokike": [
+    "n"
+  ],
+  "corpokke": [
+    "n"
+  ],
+  "piskani": [
+    "n"
+  ],
+  "piskanike": [
+    "n"
+  ],
+  "oroke": [
+    "n"
+  ],
+  "kimke": [
+    "n"
+  ],
+  "iwa": [
+    "n"
+  ],
+  "kurka": [
+    "n"
+  ],
+  "kurkasi": [
+    "n"
+  ],
+  "kurkasike": [
+    "n"
+  ],
+  "mekka": [
+    "n"
+  ],
+  "hot": [
+    "intj",
+    "num"
+  ],
+  "kipka": [
+    "n"
+  ],
+  "kipkasi": [
+    "n"
+  ],
+  "kipkasike": [
+    "n"
+  ],
+  "kanna": [
+    "adn",
+    "adv"
+  ],
+  "pokna": [
+    "adn"
+  ],
+  "pok": [
+    "n"
+  ],
+  "poki": [
+    "n"
+  ],
+  "-no": [
+    "sfx"
+  ],
+  "kem": [
+    "v",
+    "n"
+  ],
+  "tur": [
+    "n"
+  ],
+  "heri": [
+    "n"
+  ],
+  "supuya": [
+    "n"
+  ],
+  "upar": [
+    "n"
+  ],
+  "tan": [
+    "adn"
+  ],
+  "hura": [
+    "n"
+  ],
+  "nupeki": [
+    "n"
+  ],
+  "e-": [
+    "pfx"
+  ],
+  "may": [
+    "n"
+  ],
+  "sake": [
+    "n"
+  ],
+  "pone": [
+    "n"
+  ],
+  "ora": [
+    "adv"
+  ],
+  "pus": [
+    "v",
+    "n"
+  ],
+  "cup": [
+    "n"
+  ],
+  "ray": [
+    "v",
+    "n"
+  ],
+  "moto": [
+    "n"
+  ],
+  "ami": [
+    "n"
+  ],
+  "ore": [
+    "v"
+  ],
+  "poro": [
+    "v"
+  ],
+  "katu": [
+    "n"
+  ],
+  "susu": [
+    "n"
+  ],
+  "mata": [
+    "n"
+  ],
+  "pera": [
+    "n"
+  ],
+  "unu": [
+    "n"
+  ],
+  "uepeker": [
+    "n"
+  ],
+  "aynusantek": [
+    "n"
+  ],
+  "aykapkur": [
+    "n"
+  ],
+  "caro": [
+    "n"
+  ],
+  "atuyesaman": [
+    "n"
+  ],
+  "attus": [
+    "n"
+  ],
+  "ipetam": [
+    "n"
+  ],
+  "esaman": [
+    "n"
+  ],
+  "-ko": [
+    "sfx"
+  ],
+  "emus": [
+    "n"
+  ],
+  "onkami": [
+    "v"
+  ],
+  "kamuynomi": [
+    "v"
+  ],
+  "konru": [
+    "n"
+  ],
+  "sinotca": [
+    "n"
+  ],
+  "seta": [
+    "n"
+  ],
+  "tuki": [
+    "n"
+  ],
+  "nay": [
+    "n"
+  ],
+  "kanto": [
+    "n"
+  ],
+  "kappa": [
+    "v"
+  ],
+  "nomi": [
+    "v"
+  ],
+  "wata": [
+    "n"
+  ],
+  "mimi": [
+    "n"
+  ],
+  "cape": [
+    "n"
+  ],
+  "neun": [
+    "adv"
+  ],
+  "oma": [
+    "v"
+  ],
+  "siri": [
+    "n"
+  ],
+  "tomo": [
+    "n"
+  ],
+  "sina": [
+    "v"
+  ],
+  "anpa": [
+    "v"
+  ],
+  "pan": [
+    "v",
+    "n",
+    "root"
+  ],
+  "poka": [
+    "parti"
+  ],
+  "supa": [
+    "v"
+  ],
+  "hu": [
+    "v"
+  ],
+  "ro": [
+    "parti"
+  ],
+  "kam": [
+    "n"
+  ],
+  "kiroru": [
+    "n"
+  ],
+  "tokap": [
+    "n"
+  ],
+  "santan": [
+    "n"
+  ],
+  "sat": [
+    "v"
+  ],
+  "suy": [
+    "adv"
+  ],
+  "usa": [
+    "adv"
+  ],
+  "sani": [
+    "n"
+  ],
+  "yaku": [
+    "v"
+  ],
+  "tasu": [
+    "n"
+  ],
+  "atu": [
+    "v",
+    "n"
+  ],
+  "yan": [
+    "parti"
+  ],
+  "ya": [
+    "parti"
+  ],
+  "aha": [
+    "n"
+  ],
+  "numa": [
+    "n"
+  ],
+  "kaha": [
+    "n"
+  ],
+  "kir": [
+    "root"
+  ],
+  "pon": [
+    "v"
+  ],
+  "seri": [
+    "n"
+  ],
+  "omi": [
+    "n"
+  ],
+  "kemi": [
+    "n"
+  ],
+  "tum": [
+    "n"
+  ],
+  "humi": [
+    "n"
+  ],
+  "humas": [
+    "v"
+  ],
+  "merit": [
+    "n"
+  ],
+  "temi": [
+    "n"
+  ],
+  "rakko": [
+    "n"
+  ],
+  "tasa": [
+    "v"
+  ],
+  "kot": [
+    "n"
+  ],
+  "kapatcir": [
+    "n"
+  ],
+  "kat": [
+    "n"
+  ],
+  "kur": [
+    "n"
+  ],
+  "orowano": [
+    "adv"
+  ],
+  "ene": [
+    "adv"
+  ],
+  "pere": [
+    "v"
+  ],
+  "uni": [
+    "n"
+  ],
+  "mur": [
+    "n"
+  ],
+  "ep": [
+    "n"
+  ],
+  "tam": [
+    "n"
+  ],
+  "sut": [
+    "n"
+  ],
+  "sam": [
+    "n"
+  ],
+  "isa": [
+    "n"
+  ],
+  "ita": [
+    "n"
+  ],
+  "kik": [
+    "n"
+  ],
+  "cari": [
+    "v"
+  ],
+  "mina": [
+    "v"
+  ],
+  "ota": [
+    "n"
+  ],
+  "cupi": [
+    "n"
+  ],
+  "tura": [
+    "v",
+    "n"
+  ],
+  "ikia": [
+    "adv"
+  ],
+  "oar": [
+    "adv"
+  ],
+  "karku": [
+    "n"
+  ],
+  "iyayraykere": [
+    "intj"
+  ],
+  "rayke": [
+    "v"
+  ],
+  "yayrayke": [
+    "v"
+  ],
+  "yay-": [
+    "pfx"
+  ],
+  "ruunpe": [
+    "n"
+  ],
+  "menoko": [
+    "n"
+  ],
+  "hioyoy": [
+    "intj"
+  ],
+  "hinna": [
+    "intj"
+  ],
+  "omante": [
+    "v"
+  ],
+  "keraan": [
+    "v"
+  ],
+  "kera": [
+    "n"
+  ],
+  "eramasu": [
+    "v"
+  ],
+  "cuk": [
+    "n"
+  ],
+  "paykar": [
+    "n"
+  ],
+  "sak": [
+    "n"
+  ],
+  "yakne": [
+    "cconj"
+  ],
+  "nep": [
+    "n"
+  ],
+  "tumi": [
+    "n"
+  ],
+  "totto": [
+    "n"
+  ],
+  "merayke": [
+    "v"
+  ],
+  "somo": [
+    "adv"
+  ],
+  "sonko": [
+    "n"
+  ],
+  "eciki": [
+    "adv"
+  ],
+  "esokay": [
+    "pron"
+  ],
+  "nisa": [
+    "auxv"
+  ],
+  "paskur": [
+    "n"
+  ],
+  "makanak": [
+    "adv"
+  ],
+  "hemanta": [
+    "n"
+  ],
+  "hunna": [
+    "n"
+  ],
+  "yak": [
+    "parti"
+  ],
+  "rusuy": [
+    "parti"
+  ],
+  "hosipi": [
+    "v"
+  ],
+  "eraman": [
+    "v"
+  ],
+  "aye": [
+    "n"
+  ],
+  "piri": [
+    "n"
+  ],
+  "nek": [
+    "parti"
+  ],
+  "eramuskari": [
+    "v"
+  ],
+  "erampewtek": [
+    "v"
+  ],
+  "sinean": [
+    "adn"
+  ],
+  "petetok": [
+    "n"
+  ],
+  "etok": [
+    "n"
+  ],
+  "sinot": [
+    "v"
+  ],
+  "esinot": [
+    "v"
+  ],
+  "awa": [
+    "parti",
+    "adv"
+  ],
+  "esinotpe": [
+    "n"
+  ],
+  "totek": [
+    "v"
+  ],
+  "ekurok": [
+    "v"
+  ],
+  "iro": [
+    "n"
+  ],
+  "nikap": [
+    "n"
+  ],
+  "perapasuy": [
+    "n"
+  ],
+  "kunneywa": [
+    "n"
+  ],
+  "nikaop": [
+    "n"
+  ],
+  "suke": [
+    "v"
+  ],
+  "tope": [
+    "n"
+  ],
+  "peko": [
+    "n"
+  ],
+  "nok": [
+    "n"
+  ],
+  "cis": [
+    "v"
+  ],
+  "respa": [
+    "v"
+  ],
+  "nikar": [
+    "n"
+  ],
+  "huraye": [
+    "v"
+  ],
+  "tar": [
+    "n"
+  ],
+  "tap": [
+    "adv",
+    "root"
+  ],
+  "esik": [
+    "v"
+  ],
+  "hamu": [
+    "n"
+  ],
+  "yaka": [
+    "v"
+  ],
+  "ane": [
+    "v"
+  ],
+  "aki": [
+    "n"
+  ],
+  "episne": [
+    "adv"
+  ],
+  "ekimne": [
+    "adv",
+    "v"
+  ],
+  "pis": [
+    "n"
+  ],
+  "opisne": [
+    "adv"
+  ],
+  "ayrap": [
+    "n"
+  ],
+  "o-": [
+    "pfx",
+    "adv"
+  ],
+  "okimne": [
+    "adv"
+  ],
+  "rew": [
+    "v"
+  ],
+  "epekano": [
+    "v"
+  ],
+  "rehe": [
+    "n"
+  ],
+  "hawe": [
+    "n"
+  ],
+  "ayne": [
+    "adv"
+  ],
+  "si-": [
+    "pfx"
+  ],
+  "ekewtumusinocitara": [
+    "v"
+  ],
+  "kore": [
+    "v"
+  ],
+  "okkaypo": [
+    "n"
+  ],
+  "uhuy": [
+    "v"
+  ],
+  "nea": [
+    "adn"
+  ],
+  "okkayo": [
+    "n"
+  ],
+  "susam": [
+    "n"
+  ],
+  "ham": [
+    "n"
+  ],
+  "sino": [
+    "adv"
+  ],
+  "kurmam": [
+    "n"
+  ],
+  "easir": [
+    "adv"
+  ],
+  "sirpirka": [
+    "v"
+  ],
+  "eaykap": [
+    "auxv"
+  ],
+  "easkay": [
+    "auxv"
+  ],
+  "akketek": [
+    "n"
+  ],
+  "pekor": [
+    "parti"
+  ],
+  "yakka": [
+    "parti"
+  ],
+  "kuni": [
+    "n"
+  ],
+  "unihi": [
+    "n"
+  ],
+  "yaykata": [
+    "adv"
+  ],
+  "omare": [
+    "v"
+  ],
+  "cip": [
+    "n"
+  ],
+  "korka": [
+    "parti"
+  ],
+  "yakun": [
+    "parti"
+  ],
+  "koyruska": [
+    "v"
+  ],
+  "ciki": [
+    "parti"
+  ],
+  "cikuni": [
+    "n"
+  ],
+  "pakno": [
+    "adv"
+  ],
+  "neno": [
+    "adv"
+  ],
+  "hene": [
+    "parti"
+  ],
+  "patek": [
+    "adv"
+  ],
+  "noyne": [
+    "parti"
+  ],
+  "matnepo": [
+    "n"
+  ],
+  "matkaci": [
+    "n"
+  ],
+  "hekaci": [
+    "n"
+  ],
+  "katkemat": [
+    "n"
+  ],
+  "maci": [
+    "n"
+  ],
+  "macihi": [
+    "n"
+  ],
+  "kurmat": [
+    "n"
+  ],
+  "rupnemat": [
+    "n"
+  ],
+  "matapa": [
+    "n"
+  ],
+  "mataki": [
+    "n"
+  ],
+  "etun": [
+    "v"
+  ],
+  "unuhu": [
+    "n"
+  ],
+  "onaha": [
+    "n"
+  ],
+  "kunak": [
+    "n"
+  ],
+  "ponmat": [
+    "n"
+  ],
+  "orano": [
+    "cconj"
+  ],
+  "oraun": [
+    "cconj"
+  ],
+  "konto": [
+    "cconj"
+  ],
+  "ranke": [
+    "auxv",
+    "v"
+  ],
+  "caca": [
+    "v",
+    "n"
+  ],
+  "hike": [
+    "cconj"
+  ],
+  "tapne": [
+    "adv"
+  ],
+  "uske": [
+    "n"
+  ],
+  "eun": [
+    "adv"
+  ],
+  "sorekusu": [
+    "adv"
+  ],
+  "hawas": [
+    "v"
+  ],
+  "nani": [
+    "adv"
+  ],
+  "akus": [
+    "cconj"
+  ],
+  "turano": [
+    "adv"
+  ],
+  "opitta": [
+    "adv"
+  ],
+  "earkinne": [
+    "adv"
+  ],
+  "tapan": [
+    "adn"
+  ],
+  "onne": [
+    "v"
+  ],
+  "nankor": [
+    "auxv"
+  ],
+  "easirana": [
+    "intj"
+  ],
+  "siran": [
+    "v"
+  ],
+  "tonoto": [
+    "n"
+  ],
+  "mak": [
+    "adv"
+  ],
+  "nen": [
+    "n"
+  ],
+  "tek": [
+    "auxv",
+    "n"
+  ],
+  "aan": [
+    "auxv"
+  ],
+  "yuk": [
+    "n"
+  ],
+  "turasi": [
+    "adv"
+  ],
+  "utari": [
+    "n"
+  ],
+  "utarihi": [
+    "n"
+  ],
+  "haweoka": [
+    "v"
+  ],
+  "hunak": [
+    "n"
+  ],
+  "orowa": [
+    "adv"
+  ],
+  "soyne": [
+    "v"
+  ],
+  "hoski": [
+    "adv"
+  ],
+  "kokow": [
+    "n"
+  ],
+  "akihi": [
+    "n"
+  ],
+  "cikiri": [
+    "n"
+  ],
+  "cikirihi": [
+    "n"
+  ],
+  "etoko": [
+    "n"
+  ],
+  "etokoho": [
+    "n"
+  ],
+  "hawehe": [
+    "n"
+  ],
+  "humihi": [
+    "n"
+  ],
+  "imaki": [
+    "n"
+  ],
+  "imakihi": [
+    "n"
+  ],
+  "kasihi": [
+    "n"
+  ],
+  "kasikehe": [
+    "n"
+  ],
+  "kaske": [
+    "n"
+  ],
+  "kaskehe": [
+    "n"
+  ],
+  "kewtumu": [
+    "n"
+  ],
+  "kewtumuhu": [
+    "n"
+  ],
+  "kotanu": [
+    "n"
+  ],
+  "kotanuhu": [
+    "n"
+  ],
+  "kotcake": [
+    "n"
+  ],
+  "kotcakehe": [
+    "n"
+  ],
+  "mimaki": [
+    "n"
+  ],
+  "mimakihi": [
+    "n"
+  ],
+  "mippoutari": [
+    "n"
+  ],
+  "mippoutarihi": [
+    "n"
+  ],
+  "osmake": [
+    "n"
+  ],
+  "osmakehe": [
+    "n"
+  ],
+  "otopi": [
+    "n"
+  ],
+  "otopihi": [
+    "n"
+  ],
+  "paro": [
+    "n"
+  ],
+  "paroho": [
+    "n"
+  ],
+  "penake": [
+    "n"
+  ],
+  "penakehe": [
+    "n"
+  ],
+  "penramu": [
+    "n"
+  ],
+  "penramuhu": [
+    "n"
+  ],
+  "rapu": [
+    "n"
+  ],
+  "rapuhu": [
+    "n"
+  ],
+  "rekuci": [
+    "n"
+  ],
+  "rekucihi": [
+    "n"
+  ],
+  "renkayne": [
+    "adv"
+  ],
+  "sakehe": [
+    "n"
+  ],
+  "samaha": [
+    "n"
+  ],
+  "sanmippoutari": [
+    "n"
+  ],
+  "sanmippoutarihi": [
+    "n"
+  ],
+  "sara": [
+    "n"
+  ],
+  "saraha": [
+    "n"
+  ],
+  "sermaka": [
+    "n"
+  ],
+  "sermakaha": [
+    "n"
+  ],
+  "seturu": [
+    "n"
+  ],
+  "seturuhu": [
+    "n"
+  ],
+  "siki": [
+    "n"
+  ],
+  "sikihi": [
+    "n"
+  ],
+  "sittokewe": [
+    "n"
+  ],
+  "sittokewehe": [
+    "n"
+  ],
+  "sittoki": [
+    "n"
+  ],
+  "sittokihi": [
+    "n"
+  ],
+  "teke": [
+    "n"
+  ],
+  "tekehe": [
+    "n"
+  ],
+  "tekkotoro": [
+    "n"
+  ],
+  "tekkotoroho": [
+    "n"
+  ],
+  "imak": [
+    "n"
+  ],
+  "kewtum": [
+    "n"
+  ],
+  "kotca": [
+    "n"
+  ],
+  "mimak": [
+    "n"
+  ],
+  "mitpo": [
+    "n"
+  ],
+  "osmak": [
+    "n"
+  ],
+  "soyenpa": [
+    "v"
+  ],
+  "otop": [
+    "n"
+  ],
+  "penram": [
+    "n"
+  ],
+  "aepi": [
+    "n"
+  ],
+  "amihi": [
+    "n"
+  ],
+  "mip": [
+    "n"
+  ],
+  "mipihi": [
+    "n"
+  ],
+  "ancikari": [
+    "n"
+  ],
+  "ancikarihi": [
+    "n"
+  ],
+  "askepeci": [
+    "n"
+  ],
+  "askepecihi": [
+    "n"
+  ],
+  "asuru": [
+    "n"
+  ],
+  "asuruhu": [
+    "n"
+  ],
+  "atuhu": [
+    "n"
+  ],
+  "ataye": [
+    "n"
+  ],
+  "atayehe": [
+    "n"
+  ],
+  "ayehe": [
+    "n"
+  ],
+  "caroho": [
+    "n"
+  ],
+  "corpokikehe": [
+    "n"
+  ],
+  "corpokkehe": [
+    "n"
+  ],
+  "cupihi": [
+    "n"
+  ],
+  "enkasikehe": [
+    "n"
+  ],
+  "epi": [
+    "n"
+  ],
+  "epihi": [
+    "n"
+  ],
+  "hamuhu": [
+    "n"
+  ],
+  "imakake": [
+    "n"
+  ],
+  "imakakehe": [
+    "n"
+  ],
+  "ipehe": [
+    "n"
+  ],
+  "irwaki": [
+    "n"
+  ],
+  "irwakihi": [
+    "n"
+  ],
+  "kamihi": [
+    "n"
+  ],
+  "karkuhu": [
+    "n"
+  ],
+  "katuhu": [
+    "n"
+  ],
+  "kemihi": [
+    "n"
+  ],
+  "kiki": [
+    "n"
+  ],
+  "kimkehe": [
+    "n"
+  ],
+  "koho": [
+    "n"
+  ],
+  "kokowe": [
+    "n"
+  ],
+  "kokowehe": [
+    "n"
+  ],
+  "koci": [
+    "n"
+  ],
+  "kocihi": [
+    "n"
+  ],
+  "kuhu": [
+    "n"
+  ],
+  "kuwehe": [
+    "n"
+  ],
+  "kurihi": [
+    "n"
+  ],
+  "kurkasikehe": [
+    "n"
+  ],
+  "makke": [
+    "n"
+  ],
+  "matakihi": [
+    "n"
+  ],
+  "matapaha": [
+    "n"
+  ],
+  "matnepoho": [
+    "n"
+  ],
+  "maye": [
+    "n"
+  ],
+  "mayehe": [
+    "n"
+  ],
+  "merici": [
+    "n"
+  ],
+  "mericihi": [
+    "n"
+  ],
+  "mipi": [
+    "n"
+  ],
+  "muru": [
+    "n"
+  ],
+  "muruhu": [
+    "n"
+  ],
+  "nici": [
+    "n"
+  ],
+  "nicihi": [
+    "n"
+  ],
+  "noki": [
+    "n"
+  ],
+  "nokihi": [
+    "n"
+  ],
+  "noni": [
+    "n"
+  ],
+  "nonihi": [
+    "n"
+  ],
+  "noci": [
+    "n"
+  ],
+  "nocihi": [
+    "n"
+  ],
+  "numi": [
+    "n"
+  ],
+  "numihi": [
+    "n"
+  ],
+  "okake": [
+    "n"
+  ],
+  "okakehe": [
+    "n"
+  ],
+  "omihi": [
+    "n"
+  ],
+  "orke": [
+    "n"
+  ],
+  "panake": [
+    "n"
+  ],
+  "panakehe": [
+    "n"
+  ],
+  "pariri": [
+    "n"
+  ],
+  "paririhi": [
+    "n"
+  ],
+  "pehe": [
+    "n"
+  ],
+  "petetoko": [
+    "n"
+  ],
+  "petetokoho": [
+    "n"
+  ],
+  "piye": [
+    "n"
+  ],
+  "piyehe": [
+    "n"
+  ],
+  "poho": [
+    "n"
+  ],
+  "ponehe": [
+    "n"
+  ],
+  "ponmaci": [
+    "n"
+  ],
+  "ponmacihi": [
+    "n"
+  ],
+  "pusi": [
+    "n"
+  ],
+  "pusihi": [
+    "n"
+  ],
+  "putu": [
+    "n"
+  ],
+  "putuhu": [
+    "n"
+  ],
+  "raci": [
+    "n"
+  ],
+  "racihi": [
+    "n"
+  ],
+  "rici": [
+    "n"
+  ],
+  "ricihi": [
+    "n"
+  ],
+  "ruwehe": [
+    "n"
+  ],
+  "rusi": [
+    "n"
+  ],
+  "rusihi": [
+    "n"
+  ],
+  "samake": [
+    "n"
+  ],
+  "samakehe": [
+    "n"
+  ],
+  "saye": [
+    "n"
+  ],
+  "sayehe": [
+    "n"
+  ],
+  "sayke": [
+    "n"
+  ],
+  "saykehe": [
+    "n"
+  ],
+  "serihi": [
+    "n"
+  ],
+  "sere": [
+    "n"
+  ],
+  "serke": [
+    "n"
+  ],
+  "sikkapu": [
+    "n"
+  ],
+  "sikkapuhu": [
+    "n"
+  ],
+  "sikkese": [
+    "n"
+  ],
+  "sikkesehe": [
+    "n"
+  ],
+  "sinrici": [
+    "n"
+  ],
+  "sinricihi": [
+    "n"
+  ],
+  "soyke": [
+    "n"
+  ],
+  "soykehe": [
+    "n"
+  ],
+  "sumi": [
+    "n"
+  ],
+  "sumihi": [
+    "n"
+  ],
+  "suci": [
+    "n"
+  ],
+  "sucihi": [
+    "n"
+  ],
+  "sutu": [
+    "n"
+  ],
+  "sutuhu": [
+    "n"
+  ],
+  "teri": [
+    "n"
+  ],
+  "terihi": [
+    "n"
+  ],
+  "toho": [
+    "n"
+  ],
+  "tumu": [
+    "n"
+  ],
+  "tumuke": [
+    "n"
+  ],
+  "tumukehe": [
+    "n"
+  ],
+  "tumihi": [
+    "n"
+  ],
+  "turi": [
+    "n"
+  ],
+  "turihi": [
+    "n"
+  ],
+  "tuye": [
+    "n"
+  ],
+  "tuyehe": [
+    "n"
+  ],
+  "upi": [
+    "n"
+  ],
+  "upihi": [
+    "n"
+  ],
+  "usisi": [
+    "n"
+  ],
+  "usisihi": [
+    "n"
+  ],
+  "wataha": [
+    "n"
+  ],
+  "yake": [
+    "n"
+  ],
+  "yehe": [
+    "n"
+  ],
+  "yupi": [
+    "n"
+  ],
+  "yupihi": [
+    "n"
+  ],
+  "kimunkamuy": [
+    "n"
+  ],
+  "ko-": [
+    "pfx",
+    "v"
+  ],
+  "amunin": [
+    "n"
+  ],
+  "amunini": [
+    "n"
+  ],
+  "amuninihi": [
+    "n"
+  ],
+  "asam": [
+    "n"
+  ],
+  "asama": [
+    "n"
+  ],
+  "askekursut": [
+    "n"
+  ],
+  "askekursutu": [
+    "n"
+  ],
+  "askekursutuhu": [
+    "n"
+  ],
+  "atkoci": [
+    "n"
+  ],
+  "atpa": [
+    "n"
+  ],
+  "atpake": [
+    "n"
+  ],
+  "atpakehe": [
+    "n"
+  ],
+  "atupok": [
+    "n"
+  ],
+  "atupoki": [
+    "n"
+  ],
+  "atupokihi": [
+    "n"
+  ],
+  "cikas": [
+    "n"
+  ],
+  "cikasi": [
+    "n"
+  ],
+  "cikasihi": [
+    "n"
+  ],
+  "cipuy": [
+    "n"
+  ],
+  "cipuye": [
+    "n"
+  ],
+  "cipuyehe": [
+    "n"
+  ],
+  "ciyay": [
+    "n"
+  ],
+  "ciyaye": [
+    "n"
+  ],
+  "ciyayehe": [
+    "n"
+  ],
+  "cupkes": [
+    "n"
+  ],
+  "cupkesi": [
+    "n"
+  ],
+  "cupkesihi": [
+    "n"
+  ],
+  "eepak": [
+    "n"
+  ],
+  "eepaki": [
+    "n"
+  ],
+  "eepakihi": [
+    "n"
+  ],
+  "eepakke": [
+    "n"
+  ],
+  "eepakkehe": [
+    "n"
+  ],
+  "ekas": [
+    "n"
+  ],
+  "ekasihi": [
+    "n"
+  ],
+  "enkip": [
+    "n"
+  ],
+  "enkipi": [
+    "n"
+  ],
+  "enkipihi": [
+    "n"
+  ],
+  "epuy": [
+    "n"
+  ],
+  "epuyke": [
+    "n"
+  ],
+  "epuykehe": [
+    "n"
+  ],
+  "etor": [
+    "n"
+  ],
+  "etori": [
+    "n"
+  ],
+  "etorihi": [
+    "n"
+  ],
+  "etu": [
+    "n"
+  ],
+  "etuhu": [
+    "n"
+  ],
+  "etuikkew": [
+    "n"
+  ],
+  "etuikkewe": [
+    "n"
+  ],
+  "etuikkewehe": [
+    "n"
+  ],
+  "etupsik": [
+    "n"
+  ],
+  "etupsike": [
+    "n"
+  ],
+  "etupuy": [
+    "n"
+  ],
+  "etupuyke": [
+    "n"
+  ],
+  "eturus": [
+    "n"
+  ],
+  "eturusi": [
+    "n"
+  ],
+  "eturusihi": [
+    "n"
+  ],
+  "hankapuy": [
+    "n"
+  ],
+  "hankapuye": [
+    "n"
+  ],
+  "hankapuyehe": [
+    "n"
+  ],
+  "hanku": [
+    "n"
+  ],
+  "hankuhu": [
+    "n"
+  ],
+  "harkisam": [
+    "n"
+  ],
+  "harkisama": [
+    "n"
+  ],
+  "harkitek": [
+    "n"
+  ],
+  "harkiteke": [
+    "n"
+  ],
+  "harkitekehe": [
+    "n"
+  ],
+  "haruramat": [
+    "n"
+  ],
+  "haruramatu": [
+    "n"
+  ],
+  "haruramatuhu": [
+    "n"
+  ],
+  "heserekut": [
+    "n"
+  ],
+  "heserekuci": [
+    "n"
+  ],
+  "heserekucihi": [
+    "n"
+  ],
+  "hon": [
+    "n"
+  ],
+  "honi": [
+    "n"
+  ],
+  "honihi": [
+    "n"
+  ],
+  "honkes": [
+    "n"
+  ],
+  "honkese": [
+    "n"
+  ],
+  "honkesehe": [
+    "n"
+  ],
+  "hontom": [
+    "n"
+  ],
+  "hontomo": [
+    "n"
+  ],
+  "hontomoho": [
+    "n"
+  ],
+  "hunakor": [
+    "n"
+  ],
+  "hunakoro": [
+    "n"
+  ],
+  "hurkap": [
+    "n"
+  ],
+  "hurkapu": [
+    "n"
+  ],
+  "hurkapuhu": [
+    "n"
+  ],
+  "ikir": [
+    "n"
+  ],
+  "ikiri": [
+    "n"
+  ],
+  "ikirihi": [
+    "n"
+  ],
+  "ikkew": [
+    "n"
+  ],
+  "ikkewe": [
+    "n"
+  ],
+  "ikkewehe": [
+    "n"
+  ],
+  "ikusakanram": [
+    "n"
+  ],
+  "ikusakanrami": [
+    "n"
+  ],
+  "ikusakanramihi": [
+    "n"
+  ],
+  "ikuynimak": [
+    "n"
+  ],
+  "ikuynimaki": [
+    "n"
+  ],
+  "ikuynimakihi": [
+    "n"
+  ],
+  "inawsantek": [
+    "n"
+  ],
+  "inawsanteke": [
+    "n"
+  ],
+  "inawsantekehe": [
+    "n"
+  ],
+  "inay": [
+    "n"
+  ],
+  "inaye": [
+    "n"
+  ],
+  "inayehe": [
+    "n"
+  ],
+  "iperekut": [
+    "n"
+  ],
+  "iperekuci": [
+    "n"
+  ],
+  "iperekucihi": [
+    "n"
+  ],
+  "ipor": [
+    "n"
+  ],
+  "iporo": [
+    "n"
+  ],
+  "iporoho": [
+    "n"
+  ],
+  "kamka": [
+    "n"
+  ],
+  "kamkasi": [
+    "n"
+  ],
+  "kamkasike": [
+    "n"
+  ],
+  "kankap": [
+    "n"
+  ],
+  "kankapu": [
+    "n"
+  ],
+  "kankapuhu": [
+    "n"
+  ],
+  "kannanotkew": [
+    "n"
+  ],
+  "kannanotkewe": [
+    "n"
+  ],
+  "kannanotkewehe": [
+    "n"
+  ],
+  "kannapatoy": [
+    "n"
+  ],
+  "kannapatoye": [
+    "n"
+  ],
+  "kannapatoyehe": [
+    "n"
+  ],
+  "kanpar": [
+    "n"
+  ],
+  "kanparo": [
+    "n"
+  ],
+  "kanparoho": [
+    "n"
+  ],
+  "kap": [
+    "n"
+  ],
+  "kapu": [
+    "n"
+  ],
+  "kapuhu": [
+    "n"
+  ],
+  "kaparkam": [
+    "n"
+  ],
+  "kaparkami": [
+    "n"
+  ],
+  "kaparkamihi": [
+    "n"
+  ],
+  "kaskamuy": [
+    "n"
+  ],
+  "kaskamuye": [
+    "n"
+  ],
+  "katcam": [
+    "n"
+  ],
+  "katcama": [
+    "n"
+  ],
+  "katuyemimak": [
+    "n"
+  ],
+  "katuyemimaki": [
+    "n"
+  ],
+  "katuyemimakihi": [
+    "n"
+  ],
+  "kemorit": [
+    "n"
+  ],
+  "kemorici": [
+    "n"
+  ],
+  "kemoricihi": [
+    "n"
+  ],
+  "kema": [
+    "n"
+  ],
+  "kemaha": [
+    "n"
+  ],
+  "kepuspe": [
+    "n"
+  ],
+  "kepuspehe": [
+    "n"
+  ],
+  "ker": [
+    "n"
+  ],
+  "keri": [
+    "n"
+  ],
+  "kerihi": [
+    "n"
+  ],
+  "kesup": [
+    "n"
+  ],
+  "kesupi": [
+    "n"
+  ],
+  "kesupihi": [
+    "n"
+  ],
+  "kesupasam": [
+    "n"
+  ],
+  "kesupasama": [
+    "n"
+  ],
+  "kesupasamaha": [
+    "n"
+  ],
+  "kew": [
+    "n"
+  ],
+  "kewe": [
+    "n"
+  ],
+  "kewehe": [
+    "n"
+  ],
+  "kewsut": [
+    "n"
+  ],
+  "kewsutu": [
+    "n"
+  ],
+  "kewsutuhu": [
+    "n"
+  ],
+  "kinop": [
+    "n"
+  ],
+  "kinopi": [
+    "n"
+  ],
+  "kinopihi": [
+    "n"
+  ],
+  "kip": [
+    "n"
+  ],
+  "kipi": [
+    "n"
+  ],
+  "kipihi": [
+    "n"
+  ],
+  "kiraw": [
+    "n"
+  ],
+  "kirawe": [
+    "n"
+  ],
+  "kirawehe": [
+    "n"
+  ],
+  "kirkew": [
+    "n"
+  ],
+  "kirkewe": [
+    "n"
+  ],
+  "kirkewehe": [
+    "n"
+  ],
+  "kiror": [
+    "n"
+  ],
+  "kiroro": [
+    "n"
+  ],
+  "kiroroho": [
+    "n"
+  ],
+  "kisanrap": [
+    "n"
+  ],
+  "kisanrapu": [
+    "n"
+  ],
+  "kisanrapuhu": [
+    "n"
+  ],
+  "kisanrit": [
+    "n"
+  ],
+  "kisanritu": [
+    "n"
+  ],
+  "kisanrituhu": [
+    "n"
+  ],
+  "kisar": [
+    "n"
+  ],
+  "kisara": [
+    "n"
+  ],
+  "kisaraha": [
+    "n"
+  ],
+  "kisarpuy": [
+    "n"
+  ],
+  "kisarpuyke": [
+    "n"
+  ],
+  "kisarpuykehe": [
+    "n"
+  ],
+  "kisattur": [
+    "n"
+  ],
+  "kisatturi": [
+    "n"
+  ],
+  "kisatturihi": [
+    "n"
+  ],
+  "kitay": [
+    "n"
+  ],
+  "kitayke": [
+    "n"
+  ],
+  "kitaykehe": [
+    "n"
+  ],
+  "kiyutur": [
+    "n"
+  ],
+  "kiyuturu": [
+    "n"
+  ],
+  "kiyuturuhu": [
+    "n"
+  ],
+  "kokkasapa": [
+    "n"
+  ],
+  "kokkasapaha": [
+    "n"
+  ],
+  "kosmat": [
+    "n"
+  ],
+  "kosmaci": [
+    "n"
+  ],
+  "kosmacihi": [
+    "n"
+  ],
+  "kotkarku": [
+    "n"
+  ],
+  "kotkarkuhu": [
+    "n"
+  ],
+  "kotor": [
+    "n"
+  ],
+  "kotoro": [
+    "n"
+  ],
+  "kotoroho": [
+    "n"
+  ],
+  "kotpar": [
+    "n"
+  ],
+  "kotparu": [
+    "n"
+  ],
+  "kotparuhu": [
+    "n"
+  ],
+  "kotpok": [
+    "n"
+  ],
+  "kotpoki": [
+    "n"
+  ],
+  "kotpokke": [
+    "n"
+  ],
+  "koyka": [
+    "n"
+  ],
+  "koykasi": [
+    "n"
+  ],
+  "koykasike": [
+    "n"
+  ],
+  "koykaske": [
+    "n"
+  ],
+  "koykaskehe": [
+    "n"
+  ],
+  "koypok": [
+    "n"
+  ],
+  "koypokke": [
+    "n"
+  ],
+  "kukew": [
+    "n"
+  ],
+  "kukewe": [
+    "n"
+  ],
+  "kukewehe": [
+    "n"
+  ],
+  "kunnesiknum": [
+    "n"
+  ],
+  "kunnesiknumi": [
+    "n"
+  ],
+  "kunnesiknumihi": [
+    "n"
+  ],
+  "kura": [
+    "n"
+  ],
+  "kuraha": [
+    "n"
+  ],
+  "kursut": [
+    "n"
+  ],
+  "kursutu": [
+    "n"
+  ],
+  "kursutuhu": [
+    "n"
+  ],
+  "kut": [
+    "n"
+  ],
+  "kuci": [
+    "n"
+  ],
+  "kucihi": [
+    "n"
+  ],
+  "kutcam": [
+    "n"
+  ],
+  "kutcama": [
+    "n"
+  ],
+  "kuttom": [
+    "n"
+  ],
+  "kuttomo": [
+    "n"
+  ],
+  "kuttomoho": [
+    "n"
+  ],
+  "kuwa": [
+    "n"
+  ],
+  "kuwaha": [
+    "n"
+  ],
+  "matkarku": [
+    "n"
+  ],
+  "matkarkuhu": [
+    "n"
+  ],
+  "maw": [
+    "n"
+  ],
+  "mawe": [
+    "n"
+  ],
+  "mawehe": [
+    "n"
+  ],
+  "mawka": [
+    "n"
+  ],
+  "mawkasi": [
+    "n"
+  ],
+  "mawkaske": [
+    "n"
+  ],
+  "mecip": [
+    "n"
+  ],
+  "mecipi": [
+    "n"
+  ],
+  "mecipihi": [
+    "n"
+  ],
+  "mesas": [
+    "n"
+  ],
+  "mesasi": [
+    "n"
+  ],
+  "mesasihi": [
+    "n"
+  ],
+  "mim": [
+    "n"
+  ],
+  "mimihi": [
+    "n"
+  ],
+  "mimakutur": [
+    "n"
+  ],
+  "mimakuturu": [
+    "n"
+  ],
+  "mimakuturuhu": [
+    "n"
+  ],
+  "mippo": [
+    "n"
+  ],
+  "mippoho": [
+    "n"
+  ],
+  "mokrap": [
+    "n"
+  ],
+  "mokrapu": [
+    "n"
+  ],
+  "mokrapuhu": [
+    "n"
+  ],
+  "monpok": [
+    "n"
+  ],
+  "monpoki": [
+    "n"
+  ],
+  "monpokihi": [
+    "n"
+  ],
+  "montum": [
+    "n"
+  ],
+  "montumu": [
+    "n"
+  ],
+  "montumuhu": [
+    "n"
+  ],
+  "mor": [
+    "n"
+  ],
+  "moru": [
+    "n"
+  ],
+  "moruhu": [
+    "n"
+  ],
+  "nan": [
+    "n"
+  ],
+  "nanu": [
+    "n"
+  ],
+  "nanuhu": [
+    "n"
+  ],
+  "nankap": [
+    "n"
+  ],
+  "nankapu": [
+    "n"
+  ],
+  "nankapuhu": [
+    "n"
+  ],
+  "nayetok": [
+    "n"
+  ],
+  "nayetoko": [
+    "n"
+  ],
+  "nayetokoho": [
+    "n"
+  ],
+  "nayiwor": [
+    "n"
+  ],
+  "nayiwori": [
+    "n"
+  ],
+  "netopa": [
+    "n"
+  ],
+  "netopake": [
+    "n"
+  ],
+  "netopakehe": [
+    "n"
+  ],
+  "niik": [
+    "n"
+  ],
+  "niiki": [
+    "n"
+  ],
+  "niikihi": [
+    "n"
+  ],
+  "nikor": [
+    "n"
+  ],
+  "nikoro": [
+    "n"
+  ],
+  "nikotor": [
+    "n"
+  ],
+  "nikotoro": [
+    "n"
+  ],
+  "nikotoroho": [
+    "n"
+  ],
+  "nimak": [
+    "n"
+  ],
+  "nimaki": [
+    "n"
+  ],
+  "nimakihi": [
+    "n"
+  ],
+  "nimar": [
+    "n"
+  ],
+  "nimara": [
+    "n"
+  ],
+  "nimaraha": [
+    "n"
+  ],
+  "ninkew": [
+    "n"
+  ],
+  "ninkewe": [
+    "n"
+  ],
+  "ninkewehe": [
+    "n"
+  ],
+  "nip": [
+    "n"
+  ],
+  "nipi": [
+    "n"
+  ],
+  "nipihi": [
+    "n"
+  ],
+  "nipek": [
+    "n"
+  ],
+  "nipeki": [
+    "n"
+  ],
+  "nipekihi": [
+    "n"
+  ],
+  "nippo": [
+    "n"
+  ],
+  "nippoho": [
+    "n"
+  ],
+  "nirus": [
+    "n"
+  ],
+  "nirusi": [
+    "n"
+  ],
+  "nirusihi": [
+    "n"
+  ],
+  "nisap": [
+    "n"
+  ],
+  "nisapi": [
+    "n"
+  ],
+  "nisapihi": [
+    "n"
+  ],
+  "nisikay": [
+    "n"
+  ],
+  "nisikaye": [
+    "n"
+  ],
+  "nisikayehe": [
+    "n"
+  ],
+  "nisut": [
+    "n"
+  ],
+  "nisutu": [
+    "n"
+  ],
+  "nisutuhu": [
+    "n"
+  ],
+  "nitek": [
+    "n"
+  ],
+  "niteke": [
+    "n"
+  ],
+  "nitekehe": [
+    "n"
+  ],
+  "nitumam": [
+    "n"
+  ],
+  "nitumama": [
+    "n"
+  ],
+  "nitumamaha": [
+    "n"
+  ],
+  "niyutur": [
+    "n"
+  ],
+  "niyuturke": [
+    "n"
+  ],
+  "nokpi": [
+    "n"
+  ],
+  "nokpiye": [
+    "n"
+  ],
+  "nokpiyehe": [
+    "n"
+  ],
+  "noski": [
+    "n"
+  ],
+  "noskike": [
+    "n"
+  ],
+  "noskikehe": [
+    "n"
+  ],
+  "notahuy": [
+    "n"
+  ],
+  "notahuye": [
+    "n"
+  ],
+  "notahuyehe": [
+    "n"
+  ],
+  "notak": [
+    "n"
+  ],
+  "notaku": [
+    "n"
+  ],
+  "notakuhu": [
+    "n"
+  ],
+  "notakam": [
+    "n"
+  ],
+  "notakami": [
+    "n"
+  ],
+  "notakamihi": [
+    "n"
+  ],
+  "notarap": [
+    "n"
+  ],
+  "notarapu": [
+    "n"
+  ],
+  "notarapuhu": [
+    "n"
+  ],
+  "notkew": [
+    "n"
+  ],
+  "notkewe": [
+    "n"
+  ],
+  "notkewehe": [
+    "n"
+  ],
+  "notkir": [
+    "n"
+  ],
+  "notkiri": [
+    "n"
+  ],
+  "notkirihi": [
+    "n"
+  ],
+  "noyap": [
+    "n"
+  ],
+  "noyapi": [
+    "n"
+  ],
+  "noyapihi": [
+    "n"
+  ],
+  "nupe": [
+    "n"
+  ],
+  "nupehe": [
+    "n"
+  ],
+  "oarsik": [
+    "n"
+  ],
+  "oarsiki": [
+    "n"
+  ],
+  "oarsikihi": [
+    "n"
+  ],
+  "oatcikir": [
+    "n"
+  ],
+  "oatcikiri": [
+    "n"
+  ],
+  "oatcikirihi": [
+    "n"
+  ],
+  "oattap": [
+    "n"
+  ],
+  "oattapu": [
+    "n"
+  ],
+  "oattapuhu": [
+    "n"
+  ],
+  "oattapcikir": [
+    "n"
+  ],
+  "oattapcikiri": [
+    "n"
+  ],
+  "oattapcikirihi": [
+    "n"
+  ],
+  "oattapsut": [
+    "n"
+  ],
+  "oattapsutu": [
+    "n"
+  ],
+  "oattapsutuhu": [
+    "n"
+  ],
+  "oattek": [
+    "n"
+  ],
+  "oattekke": [
+    "n"
+  ],
+  "oattekkehe": [
+    "n"
+  ],
+  "ois": [
+    "n"
+  ],
+  "oisi": [
+    "n"
+  ],
+  "oisihi": [
+    "n"
+  ],
+  "okka": [
+    "n"
+  ],
+  "okkasi": [
+    "n"
+  ],
+  "okkew": [
+    "n"
+  ],
+  "okkewe": [
+    "n"
+  ],
+  "okkewehe": [
+    "n"
+  ],
+  "okrit": [
+    "n"
+  ],
+  "okrici": [
+    "n"
+  ],
+  "okricihi": [
+    "n"
+  ],
+  "oksut": [
+    "n"
+  ],
+  "oksutu": [
+    "n"
+  ],
+  "oksutuhu": [
+    "n"
+  ],
+  "oksuy": [
+    "n"
+  ],
+  "oksuye": [
+    "n"
+  ],
+  "oksuyehe": [
+    "n"
+  ],
+  "omkursut": [
+    "n"
+  ],
+  "onnay": [
+    "n"
+  ],
+  "onnayke": [
+    "n"
+  ],
+  "onnaykehe": [
+    "n"
+  ],
+  "osor": [
+    "n"
+  ],
+  "osoro": [
+    "n"
+  ],
+  "osoroho": [
+    "n"
+  ],
+  "osorkam": [
+    "n"
+  ],
+  "osorkami": [
+    "n"
+  ],
+  "osorkamihi": [
+    "n"
+  ],
+  "osorpuy": [
+    "n"
+  ],
+  "osorpuye": [
+    "n"
+  ],
+  "osorpuyehe": [
+    "n"
+  ],
+  "oske": [
+    "n"
+  ],
+  "ossike": [
+    "n"
+  ],
+  "ossikehe": [
+    "n"
+  ],
+  "ot": [
+    "n"
+  ],
+  "oci": [
+    "n"
+  ],
+  "ocihi": [
+    "n"
+  ],
+  "ous": [
+    "n"
+  ],
+  "osui": [
+    "n"
+  ],
+  "osuke": [
+    "n"
+  ],
+  "aoypep": [
+    "n"
+  ],
+  "oypepi": [
+    "n"
+  ],
+  "oypepihi": [
+    "n"
+  ],
+  "paenrum": [
+    "n"
+  ],
+  "paenrumi": [
+    "n"
+  ],
+  "paenrumihi": [
+    "n"
+  ],
+  "pahaw": [
+    "n"
+  ],
+  "pahawe": [
+    "n"
+  ],
+  "pahawehe": [
+    "n"
+  ],
+  "pakisar": [
+    "n"
+  ],
+  "pakisara": [
+    "n"
+  ],
+  "pakisaraha": [
+    "n"
+  ],
+  "panikkew": [
+    "n"
+  ],
+  "panikkewe": [
+    "n"
+  ],
+  "panikkewehe": [
+    "n"
+  ],
+  "paratek": [
+    "n"
+  ],
+  "parateke": [
+    "n"
+  ],
+  "paratekehe": [
+    "n"
+  ],
+  "parunpe": [
+    "n"
+  ],
+  "parunpehe": [
+    "n"
+  ],
+  "parur": [
+    "n"
+  ],
+  "parurke": [
+    "n"
+  ],
+  "parurkehe": [
+    "n"
+  ],
+  "paspas": [
+    "n"
+  ],
+  "paspasi": [
+    "n"
+  ],
+  "paspasihi": [
+    "n"
+  ],
+  "patoy": [
+    "n"
+  ],
+  "patoye": [
+    "n"
+  ],
+  "patoyehe": [
+    "n"
+  ],
+  "paypor": [
+    "n"
+  ],
+  "payporo": [
+    "n"
+  ],
+  "payporoho": [
+    "n"
+  ],
+  "penrekut": [
+    "n"
+  ],
+  "penrekuci": [
+    "n"
+  ],
+  "penrekucihi": [
+    "n"
+  ],
+  "petutur": [
+    "n"
+  ],
+  "petuturu": [
+    "n"
+  ],
+  "petuturuhu": [
+    "n"
+  ],
+  "pir": [
+    "n"
+  ],
+  "pirihi": [
+    "n"
+  ],
+  "pokinkap": [
+    "n"
+  ],
+  "pokinkapu": [
+    "n"
+  ],
+  "pokinkapuhu": [
+    "n"
+  ],
+  "pokisir": [
+    "n"
+  ],
+  "pokisirke": [
+    "n"
+  ],
+  "poksapa": [
+    "n"
+  ],
+  "poksapaha": [
+    "n"
+  ],
+  "punkar": [
+    "n"
+  ],
+  "punkari": [
+    "n"
+  ],
+  "punkarihi": [
+    "n"
+  ],
+  "puta": [
+    "n"
+  ],
+  "putaha": [
+    "n"
+  ],
+  "puy": [
+    "n"
+  ],
+  "puye": [
+    "n"
+  ],
+  "puyehe": [
+    "n"
+  ],
+  "raciw": [
+    "n"
+  ],
+  "raciwe": [
+    "n"
+  ],
+  "raciwehe": [
+    "n"
+  ],
+  "ram": [
+    "n"
+  ],
+  "ramuhu": [
+    "n"
+  ],
+  "ramat": [
+    "n"
+  ],
+  "ramatu": [
+    "n"
+  ],
+  "ramatuhu": [
+    "n"
+  ],
+  "ramaci": [
+    "n"
+  ],
+  "ramacihi": [
+    "n"
+  ],
+  "ramram": [
+    "n"
+  ],
+  "ramrami": [
+    "n"
+  ],
+  "ramramihi": [
+    "n"
+  ],
+  "rantupep": [
+    "n"
+  ],
+  "rantupepi": [
+    "n"
+  ],
+  "rantupepihi": [
+    "n"
+  ],
+  "rapok": [
+    "n"
+  ],
+  "rapoki": [
+    "n"
+  ],
+  "rapokke": [
+    "n"
+  ],
+  "rar": [
+    "n"
+  ],
+  "raru": [
+    "n"
+  ],
+  "raruhu": [
+    "n"
+  ],
+  "rarutur": [
+    "n"
+  ],
+  "raruturu": [
+    "n"
+  ],
+  "raruturuhu": [
+    "n"
+  ],
+  "raykew": [
+    "n"
+  ],
+  "raykewe": [
+    "n"
+  ],
+  "raykewehe": [
+    "n"
+  ],
+  "rek": [
+    "n"
+  ],
+  "reki": [
+    "n"
+  ],
+  "rekihi": [
+    "n"
+  ],
+  "rekkisar": [
+    "n"
+  ],
+  "rekkisara": [
+    "n"
+  ],
+  "rekkisaraha": [
+    "n"
+  ],
+  "reprepke": [
+    "n"
+  ],
+  "repkehe": [
+    "n"
+  ],
+  "rerar": [
+    "n"
+  ],
+  "rerari": [
+    "n"
+  ],
+  "rerarihi": [
+    "n"
+  ],
+  "rewkasi": [
+    "n"
+  ],
+  "rewkaske": [
+    "n"
+  ],
+  "rewkurka": [
+    "n"
+  ],
+  "rewkurkasi": [
+    "n"
+  ],
+  "rewkurpok": [
+    "n"
+  ],
+  "rewkurpoki": [
+    "n"
+  ],
+  "ror": [
+    "n"
+  ],
+  "rorke": [
+    "n"
+  ],
+  "rorkehe": [
+    "n"
+  ],
+  "rukum": [
+    "n"
+  ],
+  "rukumi": [
+    "n"
+  ],
+  "rukumihi": [
+    "n"
+  ],
+  "runum": [
+    "n"
+  ],
+  "runumi": [
+    "n"
+  ],
+  "runumihi": [
+    "n"
+  ],
+  "runumnep": [
+    "n"
+  ],
+  "runumnepi": [
+    "n"
+  ],
+  "runumnepihi": [
+    "n"
+  ],
+  "rup": [
+    "n"
+  ],
+  "rupi": [
+    "n"
+  ],
+  "rupihi": [
+    "n"
+  ],
+  "rur": [
+    "n"
+  ],
+  "ruri": [
+    "n"
+  ],
+  "rurihi": [
+    "n"
+  ],
+  "ruwoka": [
+    "n"
+  ],
+  "ruwokake": [
+    "n"
+  ],
+  "ruwor": [
+    "n"
+  ],
+  "ruworo": [
+    "n"
+  ],
+  "sakanram": [
+    "n"
+  ],
+  "sakanrami": [
+    "n"
+  ],
+  "sakanramihi": [
+    "n"
+  ],
+  "saksamaw": [
+    "n"
+  ],
+  "saksamawe": [
+    "n"
+  ],
+  "saksamawehe": [
+    "n"
+  ],
+  "sankemat": [
+    "n"
+  ],
+  "sankemaci": [
+    "n"
+  ],
+  "sankemacihi": [
+    "n"
+  ],
+  "sanpe": [
+    "n"
+  ],
+  "sanpehe": [
+    "n"
+  ],
+  "sanpepok": [
+    "n"
+  ],
+  "sanpepoki": [
+    "n"
+  ],
+  "santek": [
+    "n"
+  ],
+  "santeke": [
+    "n"
+  ],
+  "santekehe": [
+    "n"
+  ],
+  "sapa": [
+    "n"
+  ],
+  "sapaha": [
+    "n"
+  ],
+  "saparus": [
+    "n"
+  ],
+  "saparusi": [
+    "n"
+  ],
+  "saparusihi": [
+    "n"
+  ],
+  "sapikir": [
+    "n"
+  ],
+  "sapikiri": [
+    "n"
+  ],
+  "sapikirihi": [
+    "n"
+  ],
+  "sar": [
+    "n"
+  ],
+  "sari": [
+    "n"
+  ],
+  "sarihi": [
+    "n"
+  ],
+  "satairwak": [
+    "n"
+  ],
+  "satairwaki": [
+    "n"
+  ],
+  "satairwakihi": [
+    "n"
+  ],
+  "sempir": [
+    "n"
+  ],
+  "sempiri": [
+    "n"
+  ],
+  "sempirke": [
+    "n"
+  ],
+  "sikay": [
+    "n"
+  ],
+  "sikaye": [
+    "n"
+  ],
+  "sikayehe": [
+    "n"
+  ],
+  "siknum": [
+    "n"
+  ],
+  "siknumi": [
+    "n"
+  ],
+  "siknumihi": [
+    "n"
+  ],
+  "sikokes": [
+    "n"
+  ],
+  "sikokese": [
+    "n"
+  ],
+  "sikokesehe": [
+    "n"
+  ],
+  "sikpuy": [
+    "n"
+  ],
+  "sikramat": [
+    "n"
+  ],
+  "sikramaci": [
+    "n"
+  ],
+  "sikramacihi": [
+    "n"
+  ],
+  "sikrap": [
+    "n"
+  ],
+  "sikrapu": [
+    "n"
+  ],
+  "sikrapuhu": [
+    "n"
+  ],
+  "simontek": [
+    "n"
+  ],
+  "simonteke": [
+    "n"
+  ],
+  "simontekehe": [
+    "n"
+  ],
+  "simoysam": [
+    "n"
+  ],
+  "simoysama": [
+    "n"
+  ],
+  "sirka": [
+    "n"
+  ],
+  "sirkasi": [
+    "n"
+  ],
+  "sirkaske": [
+    "n"
+  ],
+  "sirpok": [
+    "n"
+  ],
+  "sirpoki": [
+    "n"
+  ],
+  "sirpokke": [
+    "n"
+  ],
+  "siyetok": [
+    "n"
+  ],
+  "siyetoko": [
+    "n"
+  ],
+  "siyetokoho": [
+    "n"
+  ],
+  "siyosmak": [
+    "n"
+  ],
+  "siyosmake": [
+    "n"
+  ],
+  "sos": [
+    "n"
+  ],
+  "sosi": [
+    "n"
+  ],
+  "sosihi": [
+    "n"
+  ],
+  "sowsut": [
+    "n"
+  ],
+  "sowsutu": [
+    "n"
+  ],
+  "sowsutuhu": [
+    "n"
+  ],
+  "soyna": [
+    "n"
+  ],
+  "soynake": [
+    "n"
+  ],
+  "sumaw": [
+    "n"
+  ],
+  "sumawe": [
+    "n"
+  ],
+  "sumawehe": [
+    "n"
+  ],
+  "tapcikir": [
+    "n"
+  ],
+  "tapcikiri": [
+    "n"
+  ],
+  "tapcikirihi": [
+    "n"
+  ],
+  "tapka": [
+    "n"
+  ],
+  "tapkasi": [
+    "n"
+  ],
+  "tapsut": [
+    "n"
+  ],
+  "tapsutu": [
+    "n"
+  ],
+  "tapsutuhu": [
+    "n"
+  ],
+  "tekmekka": [
+    "n"
+  ],
+  "tekmekkasi": [
+    "n"
+  ],
+  "tekrukot": [
+    "n"
+  ],
+  "tekrukoci": [
+    "n"
+  ],
+  "tekrukocihi": [
+    "n"
+  ],
+  "teksam": [
+    "n"
+  ],
+  "teksama": [
+    "n"
+  ],
+  "tektuypok": [
+    "n"
+  ],
+  "tektuypoki": [
+    "n"
+  ],
+  "tekukot": [
+    "n"
+  ],
+  "tekukoci": [
+    "n"
+  ],
+  "tekukocihi": [
+    "n"
+  ],
+  "tem": [
+    "n"
+  ],
+  "temihi": [
+    "n"
+  ],
+  "temsut": [
+    "n"
+  ],
+  "temsutu": [
+    "n"
+  ],
+  "temsutuhu": [
+    "n"
+  ],
+  "tokuy": [
+    "n"
+  ],
+  "tokuye": [
+    "n"
+  ],
+  "tokuyehe": [
+    "n"
+  ],
+  "tononmimak": [
+    "n"
+  ],
+  "tononmimaki": [
+    "n"
+  ],
+  "tononmimakihi": [
+    "n"
+  ],
+  "tottonum": [
+    "n"
+  ],
+  "tottonumi": [
+    "n"
+  ],
+  "tottonumihi": [
+    "n"
+  ],
+  "tom": [
+    "n"
+  ],
+  "tumam": [
+    "n"
+  ],
+  "tumama": [
+    "n"
+  ],
+  "tumamaha": [
+    "n"
+  ],
+  "tupep": [
+    "n"
+  ],
+  "tupepi": [
+    "n"
+  ],
+  "tupepihi": [
+    "n"
+  ],
+  "tures": [
+    "n"
+  ],
+  "turesi": [
+    "n"
+  ],
+  "turesihi": [
+    "n"
+  ],
+  "tus": [
+    "n"
+  ],
+  "tusi": [
+    "n"
+  ],
+  "tusihi": [
+    "n"
+  ],
+  "tusatuypok": [
+    "n"
+  ],
+  "tusatuypoki": [
+    "n"
+  ],
+  "tuyka": [
+    "n"
+  ],
+  "tuykasi": [
+    "n"
+  ],
+  "tuykaske": [
+    "n"
+  ],
+  "ukowtur": [
+    "n"
+  ],
+  "ukowturu": [
+    "n"
+  ],
+  "ukowturuhu": [
+    "n"
+  ],
+  "unarpe": [
+    "n"
+  ],
+  "unarpehe": [
+    "n"
+  ],
+  "upsor": [
+    "n"
+  ],
+  "upsoro": [
+    "n"
+  ],
+  "upsoroho": [
+    "n"
+  ],
+  "ure": [
+    "n"
+  ],
+  "urehe": [
+    "n"
+  ],
+  "ureous": [
+    "n"
+  ],
+  "ureousi": [
+    "n"
+  ],
+  "ureousihi": [
+    "n"
+  ],
+  "ureasam": [
+    "n"
+  ],
+  "ureasama": [
+    "n"
+  ],
+  "urekot": [
+    "n"
+  ],
+  "urekoci": [
+    "n"
+  ],
+  "urekocihi": [
+    "n"
+  ],
+  "urekotor": [
+    "n"
+  ],
+  "urekotoro": [
+    "n"
+  ],
+  "urekotoroho": [
+    "n"
+  ],
+  "uremekka": [
+    "n"
+  ],
+  "uremekkasi": [
+    "n"
+  ],
+  "urencikir": [
+    "n"
+  ],
+  "urencikiri": [
+    "n"
+  ],
+  "urencikirihi": [
+    "n"
+  ],
+  "urenpiskan": [
+    "n"
+  ],
+  "urenpiskani": [
+    "n"
+  ],
+  "urenpiskanike": [
+    "n"
+  ],
+  "urentapcikir": [
+    "n"
+  ],
+  "urentapcikiri": [
+    "n"
+  ],
+  "urentapcikirihi": [
+    "n"
+  ],
+  "urentek": [
+    "n"
+  ],
+  "urenteki": [
+    "n"
+  ],
+  "urentekihi": [
+    "n"
+  ],
+  "urepet": [
+    "n"
+  ],
+  "urepeci": [
+    "n"
+  ],
+  "urepecihi": [
+    "n"
+  ],
+  "utorsam": [
+    "n"
+  ],
+  "utorsama": [
+    "n"
+  ],
+  "utur": [
+    "n"
+  ],
+  "uturu": [
+    "n"
+  ],
+  "uturuke": [
+    "n"
+  ],
+  "uturke": [
+    "n"
+  ],
+  "uturkehe": [
+    "n"
+  ],
+  "yarpok": [
+    "n"
+  ],
+  "yarpokke": [
+    "n"
+  ],
+  "yatupok": [
+    "n"
+  ],
+  "yatupoki": [
+    "n"
+  ],
+  "yatupokihi": [
+    "n"
+  ],
+  "yatupokke": [
+    "n"
+  ],
+  "yomtekkam": [
+    "n"
+  ],
+  "yomtekkami": [
+    "n"
+  ],
+  "yomtekkamihi": [
+    "n"
+  ],
+  "yorpuy": [
+    "n"
+  ],
+  "yorpuye": [
+    "n"
+  ],
+  "yorpuyehe": [
+    "n"
+  ],
+  "yukram": [
+    "n"
+  ],
+  "yukrami": [
+    "n"
+  ],
+  "yukramihi": [
+    "n"
+  ],
+  "asamaha": [
+    "n"
+  ],
+  "aske": [
+    "root"
+  ],
+  "yatuhu": [
+    "n"
+  ],
+  "yatu": [
+    "n"
+  ],
+  "harki-": [
+    "pfx"
+  ],
+  "simon-": [
+    "pfx"
+  ],
+  "asinno": [
+    "adv"
+  ],
+  "mitpoho": [
+    "n"
+  ],
+  "oar-": [
+    "pfx"
+  ],
+  "rewka": [
+    "n"
+  ],
+  "kurpok": [
+    "n"
+  ],
+  "hani": [
+    "parti"
+  ],
+  "urepetam": [
+    "n"
+  ],
+  "cikiraskepet": [
+    "n"
+  ],
+  "uren-": [
+    "pfx"
+  ],
+  "ureneepak": [
+    "n"
+  ],
+  "urenetupsik": [
+    "n"
+  ],
+  "urenka": [
+    "v"
+  ],
+  "urenkema": [
+    "n"
+  ],
+  "urenker": [
+    "n"
+  ],
+  "urensik": [
+    "n"
+  ],
+  "urentapsut": [
+    "n"
+  ],
+  "uweturen": [
+    "n"
+  ],
+  "harkika": [
+    "n"
+  ],
+  "harkimonkor": [
+    "n"
+  ],
+  "harkiso": [
+    "n"
+  ],
+  "oharkiso": [
+    "n"
+  ],
+  "oharkisoun": [
+    "n"
+  ],
+  "oharkisounma": [
+    "n"
+  ],
+  "harkitekkor": [
+    "n"
+  ],
+  "harkiteksam": [
+    "n"
+  ],
+  "yayosura": [
+    "v"
+  ],
+  "yaykar": [
+    "v"
+  ],
+  "yaypusu": [
+    "v"
+  ],
+  "yaysitoma": [
+    "v"
+  ],
+  "yaynikorosma": [
+    "v"
+  ],
+  "koytak": [
+    "v"
+  ],
+  "corawki": [
+    "v"
+  ],
+  "kocorawki": [
+    "n"
+  ],
+  "hokure": [
+    "adv"
+  ],
+  "rupne": [
+    "v"
+  ],
+  "koraci": [
+    "adv"
+  ],
+  "hinak": [
+    "n"
+  ],
+  "hosippa": [
+    "v"
+  ],
+  "arikikpa": [
+    "v"
+  ],
+  "roskiro": [
+    "v"
+  ],
+  "roski": [
+    "v"
+  ],
+  "asin": [
+    "v"
+  ],
+  "asip": [
+    "v"
+  ],
+  "aste": [
+    "v"
+  ],
+  "roskire": [
+    "v"
+  ],
+  "carpa": [
+    "v"
+  ],
+  "catcari": [
+    "v"
+  ],
+  "catcarpa": [
+    "v"
+  ],
+  "cipekusa": [
+    "v"
+  ],
+  "cipekuspa": [
+    "v"
+  ],
+  "cupu": [
+    "v"
+  ],
+  "cuppa": [
+    "v"
+  ],
+  "earpa": [
+    "v"
+  ],
+  "epaye": [
+    "v"
+  ],
+  "ehoyupu": [
+    "v"
+  ],
+  "ehoyuppa": [
+    "v"
+  ],
+  "ekiroroan": [
+    "v"
+  ],
+  "ekirorooka": [
+    "v"
+  ],
+  "arkire": [
+    "v"
+  ],
+  "emakaas": [
+    "v"
+  ],
+  "emakaroski": [
+    "v"
+  ],
+  "eramaspa": [
+    "v"
+  ],
+  "eramuan": [
+    "v"
+  ],
+  "eramuoka": [
+    "v"
+  ],
+  "esiyetaye": [
+    "v"
+  ],
+  "esiyetaypa": [
+    "v"
+  ],
+  "etaye": [
+    "v"
+  ],
+  "etaypa": [
+    "v"
+  ],
+  "etemkorani": [
+    "v"
+  ],
+  "etemkoranpa": [
+    "v"
+  ],
+  "etuye": [
+    "v"
+  ],
+  "etuypa": [
+    "v"
+  ],
+  "ewkohawpuni": [
+    "v"
+  ],
+  "ewkohawpunpa": [
+    "v"
+  ],
+  "eyaykosiramsuye": [
+    "v"
+  ],
+  "eyaykosiramsuypa": [
+    "v"
+  ],
+  "hecawe": [
+    "v"
+  ],
+  "hecawpa": [
+    "v"
+  ],
+  "hecirasa": [
+    "v"
+  ],
+  "heciraspa": [
+    "v"
+  ],
+  "hekote": [
+    "v"
+  ],
+  "hekotpa": [
+    "v"
+  ],
+  "hemesu": [
+    "v"
+  ],
+  "hemespa": [
+    "v"
+  ],
+  "henoye": [
+    "v"
+  ],
+  "henoypa": [
+    "v"
+  ],
+  "hetukpa": [
+    "v"
+  ],
+  "hopunpa": [
+    "v"
+  ],
+  "hopunire": [
+    "v"
+  ],
+  "hopunpare": [
+    "v"
+  ],
+  "horari": [
+    "v"
+  ],
+  "horarpa": [
+    "v"
+  ],
+  "horipi": [
+    "v"
+  ],
+  "horippa": [
+    "v"
+  ],
+  "hosari": [
+    "v"
+  ],
+  "hosarpa": [
+    "v"
+  ],
+  "hosipire": [
+    "v"
+  ],
+  "hosippare": [
+    "v"
+  ],
+  "hotuye": [
+    "v"
+  ],
+  "hotuyepa": [
+    "v"
+  ],
+  "hoyupu": [
+    "v"
+  ],
+  "hoyuppa": [
+    "v"
+  ],
+  "hoyupure": [
+    "v"
+  ],
+  "hoyuppare": [
+    "v"
+  ],
+  "huraypa": [
+    "v"
+  ],
+  "ihuraypa": [
+    "v"
+  ],
+  "ikoahun": [
+    "v"
+  ],
+  "ikoahup": [
+    "v"
+  ],
+  "inukuri": [
+    "v"
+  ],
+  "inukurpa": [
+    "v"
+  ],
+  "itasa": [
+    "v"
+  ],
+  "itaspa": [
+    "v"
+  ],
+  "kapa": [
+    "v"
+  ],
+  "kaye": [
+    "v"
+  ],
+  "kaypa": [
+    "v"
+  ],
+  "kohemesu": [
+    "v"
+  ],
+  "kohemespa": [
+    "v"
+  ],
+  "koykutasa": [
+    "v"
+  ],
+  "koykutaspa": [
+    "v"
+  ],
+  "komo": [
+    "v"
+  ],
+  "kompa": [
+    "v"
+  ],
+  "kopuni": [
+    "v"
+  ],
+  "kopunpa": [
+    "v"
+  ],
+  "korototo": [
+    "v"
+  ],
+  "korototpa": [
+    "v"
+  ],
+  "koruyruye": [
+    "v"
+  ],
+  "koruyruypa": [
+    "v"
+  ],
+  "kouk": [
+    "v"
+  ],
+  "kouyna": [
+    "v"
+  ],
+  "koypuni": [
+    "v"
+  ],
+  "koypunpa": [
+    "v"
+  ],
+  "kucasanke": [
+    "v"
+  ],
+  "kucasapte": [
+    "v"
+  ],
+  "kusa": [
+    "v"
+  ],
+  "kuspa": [
+    "v"
+  ],
+  "mesu": [
+    "v"
+  ],
+  "mespa": [
+    "v"
+  ],
+  "nini": [
+    "v"
+  ],
+  "ninpa": [
+    "v"
+  ],
+  "noye": [
+    "v"
+  ],
+  "noypa": [
+    "v"
+  ],
+  "numkoekomo": [
+    "v"
+  ],
+  "numkoekompa": [
+    "v"
+  ],
+  "nuwe": [
+    "v"
+  ],
+  "nupa": [
+    "v"
+  ],
+  "oarpa": [
+    "v"
+  ],
+  "opaye": [
+    "v"
+  ],
+  "oek": [
+    "v"
+  ],
+  "oarki": [
+    "v"
+  ],
+  "ohetu": [
+    "v"
+  ],
+  "ohetpa": [
+    "v"
+  ],
+  "okere": [
+    "v"
+  ],
+  "okerpa": [
+    "v"
+  ],
+  "okewe": [
+    "v"
+  ],
+  "okewpa": [
+    "v"
+  ],
+  "payoka": [
+    "v"
+  ],
+  "onumposo": [
+    "v"
+  ],
+  "onumpospa": [
+    "v"
+  ],
+  "oputuye": [
+    "v"
+  ],
+  "oputuypa": [
+    "v"
+  ],
+  "osinritkomewe": [
+    "v"
+  ],
+  "osinritkomewpa": [
+    "v"
+  ],
+  "osiraye": [
+    "v"
+  ],
+  "osiraypa": [
+    "v"
+  ],
+  "osura": [
+    "v"
+  ],
+  "osurpa": [
+    "v"
+  ],
+  "otuye": [
+    "v"
+  ],
+  "otuypa": [
+    "v"
+  ],
+  "ouri": [
+    "v"
+  ],
+  "ourpa": [
+    "v"
+  ],
+  "paru": [
+    "v"
+  ],
+  "parpa": [
+    "v"
+  ],
+  "petpa": [
+    "v"
+  ],
+  "piru": [
+    "v"
+  ],
+  "pirpa": [
+    "v"
+  ],
+  "punpa": [
+    "v"
+  ],
+  "puskosanu": [
+    "v"
+  ],
+  "puskosanpa": [
+    "v"
+  ],
+  "ramuan": [
+    "v"
+  ],
+  "ramuoka": [
+    "v"
+  ],
+  "rapte": [
+    "v"
+  ],
+  "rari": [
+    "v"
+  ],
+  "rarpa": [
+    "v"
+  ],
+  "raye": [
+    "v"
+  ],
+  "raypa": [
+    "v"
+  ],
+  "ronnu": [
+    "v"
+  ],
+  "resu": [
+    "v"
+  ],
+  "rewe": [
+    "v"
+  ],
+  "rewpa": [
+    "v"
+  ],
+  "rewsian": [
+    "v"
+  ],
+  "rewsioka": [
+    "v"
+  ],
+  "rikin": [
+    "v"
+  ],
+  "rikip": [
+    "v"
+  ],
+  "rikinka": [
+    "v"
+  ],
+  "rikinkpa": [
+    "v"
+  ],
+  "rispa": [
+    "v"
+  ],
+  "ruki": [
+    "v"
+  ],
+  "rukpa": [
+    "v"
+  ],
+  "sanasanke": [
+    "v"
+  ],
+  "sanasapte": [
+    "v"
+  ],
+  "sanke": [
+    "v"
+  ],
+  "sapte": [
+    "v"
+  ],
+  "sikiru": [
+    "v"
+  ],
+  "sikirpa": [
+    "v"
+  ],
+  "simakoraye": [
+    "v"
+  ],
+  "simakoraypa": [
+    "v"
+  ],
+  "sinewe": [
+    "v"
+  ],
+  "sinewpa": [
+    "v"
+  ],
+  "sipirasa": [
+    "v"
+  ],
+  "sipiraspa": [
+    "v"
+  ],
+  "sipuni": [
+    "v"
+  ],
+  "sipunpa": [
+    "v"
+  ],
+  "siruskosanu": [
+    "v"
+  ],
+  "siruskosanpa": [
+    "v"
+  ],
+  "siyetaye": [
+    "v"
+  ],
+  "siyetaypa": [
+    "v"
+  ],
+  "siyupu": [
+    "v"
+  ],
+  "siyuppa": [
+    "v"
+  ],
+  "soso": [
+    "v"
+  ],
+  "sospa": [
+    "v"
+  ],
+  "soye": [
+    "v"
+  ],
+  "soypa": [
+    "v"
+  ],
+  "soyonpa": [
+    "v"
+  ],
+  "suwe": [
+    "v"
+  ],
+  "tomotarusi": [
+    "v"
+  ],
+  "tomotarusipa": [
+    "v"
+  ],
+  "turpa": [
+    "v"
+  ],
+  "tuypa": [
+    "v"
+  ],
+  "uhekote": [
+    "v"
+  ],
+  "uhekotpa": [
+    "v"
+  ],
+  "uk": [
+    "v"
+  ],
+  "uyna": [
+    "v"
+  ],
+  "ukouk": [
+    "v"
+  ],
+  "ukouyna": [
+    "v"
+  ],
+  "ukoyupu": [
+    "v"
+  ],
+  "ukoyuppa": [
+    "v"
+  ],
+  "uskosanu": [
+    "v"
+  ],
+  "uskosanpa": [
+    "v"
+  ],
+  "utasare": [
+    "v"
+  ],
+  "utasarepa": [
+    "v"
+  ],
+  "uuste": [
+    "v"
+  ],
+  "uuspare": [
+    "v"
+  ],
+  "uwekari": [
+    "v"
+  ],
+  "uwekarpa": [
+    "v"
+  ],
+  "uwekarire": [
+    "v"
+  ],
+  "uwekarpare": [
+    "v"
+  ],
+  "uwekohopi": [
+    "v"
+  ],
+  "uwekohoppa": [
+    "v"
+  ],
+  "uwomare": [
+    "v"
+  ],
+  "uwomarpare": [
+    "v"
+  ],
+  "yakpa": [
+    "v"
+  ],
+  "yakyaku": [
+    "v"
+  ],
+  "yakyakpa": [
+    "v"
+  ],
+  "yap": [
+    "v"
+  ],
+  "yasa": [
+    "v"
+  ],
+  "yaspa": [
+    "v"
+  ],
+  "yayhetukure": [
+    "v"
+  ],
+  "yayhetukpare": [
+    "v"
+  ],
+  "yayosirkonoye": [
+    "v"
+  ],
+  "yayosirkonoypa": [
+    "v"
+  ],
+  "yupu": [
+    "v"
+  ],
+  "yuppa": [
+    "v"
+  ],
+  "unukar": [
+    "v"
+  ],
+  "ikatay": [
+    "intj"
+  ],
+  "konpu": [
+    "n"
+  ],
+  "pake": [
+    "n"
+  ],
+  "sukus": [
+    "n"
+  ],
+  "hoskinuman": [
+    "n"
+  ],
+  "oyasim": [
+    "n"
+  ],
+  "ceywankep": [
+    "n"
+  ],
+  "eywanke": [
+    "v"
+  ],
+  "urki": [
+    "n"
+  ],
+  "rekut": [
+    "n"
+  ],
+  "cotca": [
+    "v"
+  ],
+  "carpacarpa": [
+    "v"
+  ],
+  "arukikkik": [
+    "v"
+  ],
+  "kupapa": [
+    "v"
+  ],
+  "koyaykus": [
+    "auxv"
+  ],
+  "suma": [
+    "n"
+  ],
+  "toytoy": [
+    "n"
+  ],
+  "siknu": [
+    "v"
+  ],
+  "ruy": [
+    "auxv",
+    "v"
+  ],
+  "sitoma": [
+    "v"
+  ],
+  "nunpa": [
+    "v"
+  ],
+  "hacir": [
+    "v"
+  ],
+  "hacire": [
+    "v"
+  ],
+  "pusu": [
+    "v"
+  ],
+  "yaske": [
+    "v"
+  ],
+  "hanke": [
+    "v"
+  ],
+  "tuyma": [
+    "v"
+  ],
+  "hnta": [
+    "intj",
+    "n"
+  ],
+  "hapo": [
+    "n"
+  ],
+  "mici": [
+    "n"
+  ],
+  "kosne": [
+    "v"
+  ],
+  "nonno": [
+    "n"
+  ],
+  "papus": [
+    "n"
+  ],
+  "capus": [
+    "n"
+  ],
+  "wano": [
+    "parti"
+  ],
+  "ney": [
+    "n"
+  ],
+  "peka": [
+    "parti",
+    "v"
+  ],
+  "munin": [
+    "v"
+  ],
+  "patcake": [
+    "n"
+  ],
+  "takne": [
+    "v"
+  ],
+  "tanne": [
+    "v"
+  ],
+  "terus": [
+    "v"
+  ],
+  "yakaye": [
+    "auxv"
+  ],
+  "yayirayke": [
+    "v"
+  ],
+  "isantono": [
+    "n"
+  ],
+  "uwepeker": [
+    "n"
+  ],
+  "taan": [
+    "adn"
+  ],
+  "hawan": [
+    "v"
+  ],
+  "eramiskari": [
+    "v"
+  ],
+  "hetak": [
+    "intj"
+  ],
+  "osma": [
+    "v"
+  ],
+  "siriki": [
+    "v"
+  ],
+  "kaspa": [
+    "auxv"
+  ],
+  "oruspe": [
+    "n"
+  ],
+  "kameasi": [
+    "n"
+  ],
+  "koninkar": [
+    "intj"
+  ],
+  "oroyaciki": [
+    "adv"
+  ],
+  "ranko": [
+    "n"
+  ],
+  "sonnoka": [
+    "adv"
+  ],
+  "etarka": [
+    "adv"
+  ],
+  "keray": [
+    "adv"
+  ],
+  "kikkik": [
+    "v"
+  ],
+  "koturimimse": [
+    "v"
+  ],
+  "cisireanu": [
+    "v"
+  ],
+  "kokururatki": [
+    "v"
+  ],
+  "wentarap": [
+    "v"
+  ],
+  "niwniwse": [
+    "v"
+  ],
+  "-se": [
+    "sfx"
+  ],
+  "tono": [
+    "n"
+  ],
+  "poronno": [
+    "adv"
+  ],
+  "ear-": [
+    "pfx"
+  ],
+  "ikra": [
+    "v"
+  ],
+  "cipapa": [
+    "n"
+  ],
+  "arsoke": [
+    "n"
+  ],
+  "arokamkinno": [
+    "adv"
+  ],
+  "arorkisneno": [
+    "adv"
+  ],
+  "arorkisne": [
+    "adv"
+  ],
+  "matampus": [
+    "n"
+  ],
+  "matanpus": [
+    "n"
+  ],
+  "cipanup": [
+    "n"
+  ],
+  "sapasina": [
+    "v",
+    "n"
+  ],
+  "uekarire": [
+    "v"
+  ],
+  "uekarpare": [
+    "v"
+  ],
+  "matampusi": [
+    "n"
+  ],
+  "esapasina": [
+    "v"
+  ],
+  "cikirpe": [
+    "n"
+  ],
+  "epanu": [
+    "v"
+  ],
+  "-nu": [
+    "sfx"
+  ],
+  "ukomaktekka": [
+    "v"
+  ],
+  "sapanpe": [
+    "n"
+  ],
+  "yayopeyope": [
+    "v"
+  ],
+  "hempara": [
+    "adv"
+  ],
+  "hempak": [
+    "adv"
+  ],
+  "nociw": [
+    "n"
+  ],
+  "einkarpe": [
+    "n"
+  ],
+  "sapaunpe": [
+    "n"
+  ],
+  "paunpe": [
+    "n"
+  ],
+  "inawru": [
+    "n"
+  ],
+  "esoyne": [
+    "adv"
+  ],
+  "ri": [
+    "n"
+  ],
+  "-po": [
+    "sfx"
+  ],
+  "akpo": [
+    "n"
+  ],
+  "siko": [
+    "v"
+  ],
+  "hasinaw": [
+    "n"
+  ],
+  "setur": [
+    "n"
+  ],
+  "sikpuye": [
+    "n"
+  ],
+  "sikpuyehe": [
+    "n"
+  ],
+  "papusi": [
+    "n"
+  ],
+  "urepetami": [
+    "n"
+  ],
+  "-kosanu": [
+    "sfx"
+  ],
+  "erum": [
+    "n"
+  ],
+  "ikor": [
+    "n"
+  ],
+  "meko": [
+    "n"
+  ],
+  "ukoyki": [
+    "v"
+  ],
+  "koyki": [
+    "v"
+  ],
+  "yaykirare": [
+    "v"
+  ],
+  "oyki": [
+    "v"
+  ],
+  "pakasnu": [
+    "v"
+  ],
+  "puyne": [
+    "adv"
+  ],
+  "sirpeker": [
+    "v"
+  ],
+  "ukuran": [
+    "n"
+  ],
+  "yaynure": [
+    "v"
+  ],
+  "ritur": [
+    "n"
+  ],
+  "nekusu": [
+    "cconj"
+  ],
+  "rura": [
+    "v"
+  ],
+  "poniwne": [
+    "v"
+  ],
+  "hikusu": [
+    "cconj"
+  ],
+  "utarpa": [
+    "n"
+  ],
+  "epirka": [
+    "v"
+  ],
+  "tumunci": [
+    "n"
+  ],
+  "rorunpe": [
+    "n"
+  ],
+  "terke": [
+    "v"
+  ],
+  "totekno": [
+    "adv"
+  ],
+  "monrayke": [
+    "adv"
+  ],
+  "opittano": [
+    "adv"
+  ],
+  "rekor": [
+    "v"
+  ],
+  "rekore": [
+    "v"
+  ],
+  "ciperpa": [
+    "v"
+  ],
+  "perpa": [
+    "v"
+  ],
+  "sukup": [
+    "v"
+  ],
+  "konupur": [
+    "v"
+  ],
+  "tantane": [
+    "adv"
+  ],
+  "ohayne": [
+    "intj"
+  ],
+  "niwkes": [
+    "v"
+  ],
+  "iyaykipte": [
+    "v"
+  ],
+  "uymam": [
+    "v",
+    "n"
+  ],
+  "humneani": [
+    "n"
+  ],
+  "eyaykopuntek": [
+    "v"
+  ],
+  "eunpipka": [
+    "v"
+  ],
+  "eramutuy": [
+    "v"
+  ],
+  "okunnure": [
+    "v"
+  ],
+  "episkanne": [
+    "adv"
+  ],
+  "pirkano": [
+    "adv"
+  ],
+  "teppo": [
+    "n"
+  ],
+  "nina": [
+    "v"
+  ],
+  "wente": [
+    "v"
+  ],
+  "eteun": [
+    "adv"
+  ],
+  "puyar": [
+    "n"
+  ],
+  "sinanpa": [
+    "v"
+  ],
+  "casi": [
+    "n"
+  ],
+  "wakka": [
+    "n"
+  ],
+  "ohaw": [
+    "n"
+  ],
+  "ruwokakehe": [
+    "n"
+  ],
+  "suye": [
+    "v"
+  ],
+  "suypa": [
+    "v"
+  ],
+  "cikenki": [
+    "n"
+  ],
+  "tampaku": [
+    "n"
+  ],
+  "hankane": [
+    "n"
+  ],
+  "menkane": [
+    "n"
+  ],
+  "tukci": [
+    "n"
+  ],
+  "yoni": [
+    "v"
+  ],
+  "ehosipi": [
+    "v"
+  ],
+  "ehosippa": [
+    "v"
+  ],
+  "yonpa": [
+    "v"
+  ],
+  "siknure": [
+    "v"
+  ],
+  "hunara": [
+    "v"
+  ],
+  "hunarpa": [
+    "v"
+  ],
+  "homsu": [
+    "v"
+  ],
+  "homsupa": [
+    "v"
+  ],
+  "yayhomsu": [
+    "v"
+  ],
+  "eyayhomsu": [
+    "v"
+  ],
+  "eyayhomsupa": [
+    "v"
+  ],
+  "niyatori": [
+    "n"
+  ],
+  "niwatori": [
+    "n"
+  ],
+  "kere": [
+    "v"
+  ],
+  "moymoyke": [
+    "v"
+  ],
+  "heyoki": [
+    "v"
+  ],
+  "uwerankarap": [
+    "v",
+    "n"
+  ],
+  "erankarap": [
+    "v"
+  ],
+  "rankarap": [
+    "v"
+  ],
+  "karap": [
+    "root"
+  ],
+  "tunpu": [
+    "n"
+  ],
+  "tumpu": [
+    "n"
+  ],
+  "pisno": [
+    "adv"
+  ],
+  "uwekap": [
+    "v"
+  ],
+  "uekap": [
+    "v"
+  ],
+  "reko": [
+    "v"
+  ],
+  "ekanok": [
+    "v"
+  ],
+  "puri": [
+    "n"
+  ],
+  "eyayramekote": [
+    "v"
+  ],
+  "inomi": [
+    "v"
+  ],
+  "uwoeroski": [
+    "v"
+  ],
+  "cisenihi": [
+    "n"
+  ],
+  "ciseni": [
+    "n"
+  ],
+  "kewre": [
+    "v"
+  ],
+  "makiri": [
+    "n"
+  ],
+  "nipes": [
+    "n"
+  ],
+  "utaspa": [
+    "adv",
+    "v"
+  ],
+  "uwowpekare": [
+    "v"
+  ],
+  "irammakaka": [
+    "adv"
+  ],
+  "iyosno": [
+    "adv"
+  ],
+  "kenru": [
+    "n"
+  ],
+  "ontaro": [
+    "n"
+  ],
+  "oripak": [
+    "v",
+    "n"
+  ],
+  "sintoko": [
+    "n"
+  ],
+  "aynukor": [
+    "v"
+  ],
+  "sesekka": [
+    "v"
+  ],
+  "hatto": [
+    "v"
+  ],
+  "tektakusa": [
+    "n"
+  ],
+  "useykar": [
+    "v"
+  ],
+  "usey": [
+    "n"
+  ],
+  "otta": [
+    "colloc"
+  ],
+  "ohta": [
+    "colloc"
+  ],
+  "ohorono": [
+    "adv"
+  ],
+  "ohonno": [
+    "v"
+  ],
+  "tuyaskarap": [
+    "v"
+  ],
+  "yaykoramuosma": [
+    "v"
+  ],
+  "koramuosma": [
+    "v"
+  ],
+  "ramuosma": [
+    "v"
+  ],
+  "ekarkar": [
+    "n"
+  ],
+  "iresu": [
+    "v"
+  ],
+  "irespa": [
+    "v"
+  ],
+  "ramma": [
+    "adv"
+  ],
+  "katkor": [
+    "adv",
+    "v"
+  ],
+  "una": [
+    "v",
+    "n"
+  ],
+  "retarpas": [
+    "n"
+  ],
+  "heriat": [
+    "v"
+  ],
+  "hayta": [
+    "v"
+  ],
+  "iunin": [
+    "v"
+  ],
+  "iuninka": [
+    "v"
+  ],
+  "cupka": [
+    "n"
+  ],
+  "cironnup": [
+    "n"
+  ],
+  "cuppok": [
+    "n"
+  ],
+  "ruhure": [
+    "v"
+  ],
+  "pikata": [
+    "n"
+  ],
+  "sirur": [
+    "n"
+  ],
+  "makanrur": [
+    "n"
+  ],
+  "sirwen": [
+    "v"
+  ],
+  "sirpopke": [
+    "v"
+  ],
+  "kunnecup": [
+    "n"
+  ],
+  "tokapcup": [
+    "n"
+  ],
+  "sirpeketcup": [
+    "n"
+  ],
+  "iruka": [
+    "adv"
+  ],
+  "kamuyhum": [
+    "n"
+  ],
+  "kawkaw": [
+    "n"
+  ],
+  "sirkunne": [
+    "v"
+  ],
+  "sunke": [
+    "n"
+  ],
+  "ikuspe": [
+    "n"
+  ],
+  "irenka": [
+    "n"
+  ],
+  "umurek": [
+    "n"
+  ],
+  "emo": [
+    "n"
+  ],
+  "ermu": [
+    "n"
+  ],
+  "kamuycep": [
+    "n"
+  ],
+  "karus": [
+    "n"
+  ],
+  "siamam": [
+    "n"
+  ],
+  "sirar": [
+    "n"
+  ],
+  "topenpe": [
+    "n"
+  ],
+  "topen": [
+    "v"
+  ],
+  "nitay": [
+    "n"
+  ],
+  "pukuru": [
+    "n"
+  ],
+  "rayoci": [
+    "n"
+  ],
+  "matkunaw": [
+    "n"
+  ],
+  "hapapa": [
+    "intj"
+  ],
+  "isiorore": [
+    "intj"
+  ],
+  "issorore": [
+    "intj"
+  ],
+  "ekotanne": [
+    "v"
+  ],
+  "iekotanne": [
+    "v"
+  ],
+  "uekotanne": [
+    "v"
+  ],
+  "uwekotanne": [
+    "v"
+  ],
+  "iyekotanne": [
+    "v"
+  ],
+  "yayekotanne": [
+    "v"
+  ],
+  "monak": [
+    "v"
+  ],
+  "yaymonakte": [
+    "v"
+  ],
+  "ecisekor": [
+    "v"
+  ],
+  "canupne": [
+    "v"
+  ],
+  "ecanupkor": [
+    "v"
+  ],
+  "canup": [
+    "n"
+  ],
+  "kocanupkor": [
+    "v"
+  ],
+  "yaymoniska": [
+    "v"
+  ],
+  "yaymonsak": [
+    "v"
+  ],
+  "yaymonniska": [
+    "v"
+  ],
+  "yaymoysak": [
+    "v"
+  ],
+  "yaymonikor": [
+    "v"
+  ],
+  "ru-": [
+    "pfx"
+  ],
+  "irukay": [
+    "sfx"
+  ],
+  "nis": [
+    "n"
+  ],
+  "niskur": [
+    "n"
+  ],
+  "koapamaka": [
+    "n"
+  ],
+  "sirpan": [
+    "v"
+  ],
+  "kopan": [
+    "v"
+  ],
+  "nisat": [
+    "n"
+  ],
+  "nisoro": [
+    "n"
+  ],
+  "rikop": [
+    "n"
+  ],
+  "uwanpare": [
+    "v"
+  ],
+  "uanpare": [
+    "v"
+  ],
+  "siruwanpare": [
+    "v"
+  ],
+  "siruanpare": [
+    "v"
+  ],
+  "isirkuran": [
+    "intj"
+  ],
+  "esna": [
+    "v"
+  ],
+  "kemekot": [
+    "v"
+  ],
+  "ekot": [
+    "v"
+  ],
+  "osoma": [
+    "n"
+  ],
+  "tara": [
+    "n"
+  ],
+  "pesos": [
+    "n"
+  ],
+  "onneke": [
+    "n"
+  ],
+  "onnekehe": [
+    "n"
+  ],
+  "sikerpepeus": [
+    "v"
+  ],
+  "pu": [
+    "n"
+  ],
+  "hukinane": [
+    "v"
+  ],
+  "matkor": [
+    "v"
+  ],
+  "utaspano": [
+    "adv"
+  ],
+  "renka": [
+    "v"
+  ],
+  "ekeske": [
+    "v"
+  ],
+  "taspa": [
+    "v"
+  ],
+  "hok": [
+    "v",
+    "n"
+  ],
+  "sirsesek": [
+    "v"
+  ],
+  "sesek": [
+    "v"
+  ],
+  "sirmean": [
+    "v"
+  ],
+  "citarpe": [
+    "n"
+  ],
+  "keweri": [
+    "v"
+  ],
+  "wakkata": [
+    "v"
+  ],
+  "wenresu": [
+    "v"
+  ],
+  "wenrespa": [
+    "v"
+  ],
+  "rukunne": [
+    "v"
+  ],
+  "ahupkar": [
+    "v"
+  ],
+  "rusiwnin": [
+    "v"
+  ],
+  "honne": [
+    "v"
+  ],
+  "kasuy": [
+    "v"
+  ],
+  "ukasuy": [
+    "v"
+  ],
+  "urar": [
+    "n"
+  ],
+  "caranke": [
+    "n"
+  ],
+  "monosir": [
+    "n"
+  ],
+  "watara": [
+    "n"
+  ],
+  "nokan": [
+    "v"
+  ],
+  "repke": [
+    "n"
+  ],
+  "teyne": [
+    "v"
+  ],
+  "oper": [
+    "n"
+  ],
+  "operke": [
+    "n"
+  ],
+  "paraparak": [
+    "v"
+  ],
+  "eramasuy": [
+    "v"
+  ],
+  "eramasuypa": [
+    "v"
+  ],
+  "koroman": [
+    "v"
+  ],
+  "korek": [
+    "v"
+  ],
+  "korarki": [
+    "v"
+  ],
+  "icatkere": [
+    "v"
+  ],
+  "icatkerere": [
+    "v"
+  ],
+  "askannere": [
+    "v"
+  ],
+  "askanne": [
+    "v"
+  ],
+  "epitta": [
+    "adv"
+  ],
+  "sikuma": [
+    "n"
+  ],
+  "yaypekare": [
+    "v"
+  ],
+  "eyaypekare": [
+    "v"
+  ],
+  "senpir": [
+    "n"
+  ],
+  "otke": [
+    "v"
+  ],
+  "menyo": [
+    "n"
+  ],
+  "onpekotope": [
+    "n"
+  ],
+  "popke": [
+    "v"
+  ],
+  "aeynup": [
+    "n"
+  ],
+  "amamecikappo": [
+    "n"
+  ],
+  "anrunnupe": [
+    "n"
+  ],
+  "sirmeman": [
+    "v"
+  ],
+  "meman": [
+    "v"
+  ],
+  "ア": [
+    "pers"
+  ],
+  "アアン": [
+    "auxv"
+  ],
+  "アイヌ": [
+    "n"
+  ],
+  "アイヌイタク": [
+    "n"
+  ],
+  "アイヌフラ": [
+    "n"
+  ],
+  "アイネ": [
+    "sconj"
+  ],
+  "アエプ": [
+    "n"
+  ],
+  "アオイペプ": [
+    "n"
+  ],
+  "アオカ": [
+    "pron"
+  ],
+  "アキヒ": [
+    "n"
+  ],
+  "アク": [
+    "n"
+  ],
+  "アクス": [
+    "sconj"
+  ],
+  "アシ": [
+    "vt"
+  ],
+  "アシ=": [
+    "pers"
+  ],
+  "アシケペチ": [
+    "n"
+  ],
+  "アシケペチヒ": [
+    "n"
+  ],
+  "アシク": [
+    "intj"
+  ],
+  "アシクネ": [
+    "adn"
+  ],
+  "アシクネプ": [
+    "n"
+  ],
+  "アシクネン": [
+    "n"
+  ],
+  "アシヌマ": [
+    "pron"
+  ],
+  "アシリ": [
+    "vi"
+  ],
+  "アシリパノミ": [
+    "n"
+  ],
+  "アシン": [
+    "vi"
+  ],
+  "アシンル": [
+    "n"
+  ],
+  "アチャポ": [
+    "n"
+  ],
+  "アッ": [
+    "vi"
+  ],
+  "アッカリ": [
+    "padv"
+  ],
+  "アッケテク": [
+    "n"
+  ],
+  "アッサプ": [
+    "n"
+  ],
+  "アットﾟシ": [
+    "n"
+  ],
+  "アッニ": [
+    "n"
+  ],
+  "アトﾟイ": [
+    "n"
+  ],
+  "アトﾟポキ": [
+    "n"
+  ],
+  "アナク": [
+    "advp"
+  ],
+  "アナクネ": [
+    "advp"
+  ],
+  "アニ": [
+    "postp"
+  ],
+  "アヌ": [
+    "vt"
+  ],
+  "アネ": [
+    "vi"
+  ],
+  "アハ": [
+    "n"
+  ],
+  "アパ": [
+    "n"
+  ],
+  "アハタ": [
+    "vi"
+  ],
+  "アパッポ": [
+    "n"
+  ],
+  "アプカシ": [
+    "vi"
+  ],
+  "アプト": [
+    "n"
+  ],
+  "アプニタラ": [
+    "adv"
+  ],
+  "アフプ": [
+    "vi"
+  ],
+  "アフプテ": [
+    "vt"
+  ],
+  "アフプテレ": [
+    "vd"
+  ],
+  "アフン": [
+    "vi"
+  ],
+  "アフンケ": [
+    "vt"
+  ],
+  "アプンノ": [
+    "adv"
+  ],
+  "アペ": [
+    "n"
+  ],
+  "アペアリ": [
+    "vi"
+  ],
+  "アペオイ": [
+    "n"
+  ],
+  "アペコロ": [
+    "sconj"
+  ],
+  "アペフチ": [
+    "n"
+  ],
+  "アマメチカッポ": [
+    "n"
+  ],
+  "アミヒ": [
+    "n"
+  ],
+  "アミプ": [
+    "n"
+  ],
+  "アムキリ": [
+    "vt"
+  ],
+  "アムシペ": [
+    "n"
+  ],
+  "アラカ": [
+    "vi"
+  ],
+  "アラカシ": [
+    "n"
+  ],
+  "アラカレ": [
+    "vt"
+  ],
+  "アラキ": [
+    "vi"
+  ],
+  "アラクンネ": [
+    "vi"
+  ],
+  "アラスイ": [
+    "adv"
+  ],
+  "アラパ": [
+    "vi"
+  ],
+  "アラワニウ": [
+    "n"
+  ],
+  "アラワン": [
+    "adn"
+  ],
+  "アラワンペ": [
+    "n"
+  ],
+  "アリ": [
+    "postp"
+  ],
+  "アリキキ": [
+    "vi"
+  ],
+  "アリキキノ": [
+    "adv"
+  ],
+  "アロロキシネ": [
+    "adv"
+  ],
+  "アン": [
+    "vi"
+  ],
+  "アンノシキ": [
+    "n"
+  ],
+  "イ": [
+    "pers"
+  ],
+  "イウォロ": [
+    "n"
+  ],
+  "イウタニ": [
+    "n"
+  ],
+  "イェ": [
+    "vt"
+  ],
+  "イオイラ": [
+    "vi"
+  ],
+  "イオマレ": [
+    "vi"
+  ],
+  "イカシマ": [
+    "vi"
+  ],
+  "イカシマレ": [
+    "vt"
+  ],
+  "イカシッカマ": [
+    "vi"
+  ],
+  "イカスイ": [
+    "vi"
+  ],
+  "イカラカラ": [
+    "vi"
+  ],
+  "イキ": [
+    "vi"
+  ],
+  "イク": [
+    "vi"
+  ],
+  "イクシペ": [
+    "n"
+  ],
+  "イクパスイ": [
+    "n"
+  ],
+  "イサ": [
+    "n"
+  ],
+  "イサム": [
+    "vi"
+  ],
+  "イサンパ": [
+    "vi"
+  ],
+  "イシタイキプ": [
+    "n"
+  ],
+  "イセポ": [
+    "n"
+  ],
+  "イソカピウ": [
+    "n"
+  ],
+  "イタク": [
+    "vi"
+  ],
+  "イタクリキンテ": [
+    "vi"
+  ],
+  "イタッカシカムイ": [
+    "n"
+  ],
+  "イタンキ": [
+    "n"
+  ],
+  "イチェン": [
+    "n"
+  ],
+  "イチャッケレ": [
+    "vi"
+  ],
+  "イチャニウ": [
+    "n"
+  ],
+  "イチャヌイ": [
+    "n"
+  ],
+  "イチャラパ": [
+    "vi"
+  ],
+  "イッケウェ": [
+    "n"
+  ],
+  "イッケウェヘ": [
+    "n"
+  ],
+  "イテキ": [
+    "adv"
+  ],
+  "イテセニ": [
+    "n"
+  ],
+  "イナウ": [
+    "n"
+  ],
+  "イナウケ": [
+    "vi"
+  ],
+  "イナウル": [
+    "n"
+  ],
+  "イナン": [
+    "adn"
+  ],
+  "イヌ": [
+    "vi"
+  ],
+  "イネ": [
+    "vi"
+  ],
+  "イネプ": [
+    "n"
+  ],
+  "イネン": [
+    "n"
+  ],
+  "イパカリプ": [
+    "n"
+  ],
+  "2イピシキ": [
+    "vi"
+  ],
+  "イペ": [
+    "n"
+  ],
+  "イペルスイ": [
+    "vi"
+  ],
+  "イマキ": [
+    "n"
+  ],
+  "イマク": [
+    "n"
+  ],
+  "イモ": [
+    "n"
+  ],
+  "イヤイライケレ": [
+    "intj"
+  ],
+  "イヨッタ": [
+    "adv"
+  ],
+  "イヨンノッカ": [
+    "n"
+  ],
+  "イラマンテ": [
+    "vi"
+  ],
+  "イララ": [
+    "vi"
+  ],
+  "イルシカ": [
+    "vi"
+  ],
+  "イルシカレ": [
+    "vt"
+  ],
+  "イロンネ": [
+    "vi"
+  ],
+  "イワニ": [
+    "n"
+  ],
+  "イワニウ": [
+    "n"
+  ],
+  "イワン": [
+    "pron"
+  ],
+  "イワンケ": [
+    "vi"
+  ],
+  "イワンケノ": [
+    "adv"
+  ],
+  "イワンペ": [
+    "n"
+  ],
+  "インカラ": [
+    "vi"
+  ],
+  "インネ": [
+    "vi"
+  ],
+  "ウイナ": [
+    "vt"
+  ],
+  "ウイワンケレ": [
+    "vi"
+  ],
+  "ウウェコホピ": [
+    "n"
+  ],
+  "ウウェペケレ": [
+    "n"
+  ],
+  "ウエカラパ": [
+    "vi"
+  ],
+  "ウエトﾟナンカラ": [
+    "vi"
+  ],
+  "ウエペケレ": [
+    "n"
+  ],
+  "ウウェペケレウェン": [
+    "vi"
+  ],
+  "ウェンタラプ": [
+    "vi"
+  ],
+  "ウェンフラハ": [
+    "n"
+  ],
+  "ウェンプリコロ": [
+    "vi"
+  ],
+  "ウカオ": [
+    "vt"
+  ],
+  "ウカットﾟイマノ": [
+    "adv"
+  ],
+  "ウク": [
+    "vt"
+  ],
+  "ウクラン": [
+    "n"
+  ],
+  "ウコイキ": [
+    "vi"
+  ],
+  "ウコイソイタク": [
+    "vi"
+  ],
+  "ウコイタク": [
+    "vi"
+  ],
+  "ウコウサライェ": [
+    "vt"
+  ],
+  "ウサ": [
+    "adv"
+  ],
+  "ウシ": [
+    "vt"
+  ],
+  "ウシケ": [
+    "nl"
+  ],
+  "ウシケシ": [
+    "n"
+  ],
+  "ウセイ": [
+    "n"
+  ],
+  "ウタサロシキ": [
+    "vi"
+  ],
+  "ウタラ": [
+    "n"
+  ],
+  "ウタリ": [
+    "n"
+  ],
+  "ウタリヒ": [
+    "n"
+  ],
+  "ウッカ": [
+    "n"
+  ],
+  "ウトﾟラ": [
+    "vi"
+  ],
+  "ウトﾟラノ": [
+    "adv"
+  ],
+  "ウトモキ": [
+    "vt"
+  ],
+  "ウナ": [
+    "n"
+  ],
+  "ウナラペ": [
+    "n"
+  ],
+  "ウニ": [
+    "n"
+  ],
+  "ウニヒ": [
+    "n"
+  ],
+  "ウヌ": [
+    "n"
+  ],
+  "ウヌカラ": [
+    "vi"
+  ],
+  "ウヌフ": [
+    "n"
+  ],
+  "ウパシ": [
+    "n"
+  ],
+  "ウパシクマ": [
+    "n"
+  ],
+  "ウプソロ": [
+    "n"
+  ],
+  "ウフイ": [
+    "vi"
+  ],
+  "ウポポ": [
+    "n"
+  ],
+  "ウレヘ": [
+    "n"
+  ],
+  "ウロクテ": [
+    "vi"
+  ],
+  "ウン": [
+    "pers"
+  ],
+  "ウンマ": [
+    "n"
+  ],
+  "エ": [
+    "vt"
+  ],
+  "エアイカプ": [
+    "auxv"
+  ],
+  "エアク": [
+    "vt"
+  ],
+  "エアシカイ": [
+    "auxv"
+  ],
+  "エアシリ": [
+    "adv"
+  ],
+  "エアニ": [
+    "pron"
+  ],
+  "エアラキンネ": [
+    "adv"
+  ],
+  "エウォンネ": [
+    "vi"
+  ],
+  "エエン": [
+    "vi"
+  ],
+  "エオリパク": [
+    "vt"
+  ],
+  "エカシ": [
+    "n"
+  ],
+  "エカチ": [
+    "n"
+  ],
+  "エカッタラ": [
+    "n"
+  ],
+  "エカラ": [
+    "vd"
+  ],
+  "エキムネ": [
+    "adv"
+  ],
+  "エキロラン": [
+    "vt"
+  ],
+  "エク": [
+    "vi"
+  ],
+  "エクテ": [
+    "vt"
+  ],
+  "エクパ": [
+    "vt"
+  ],
+  "エケウトﾟムシノチタラ　": [
+    "vt"
+  ],
+  "エコイソイタク": [
+    "vd"
+  ],
+  "エサマン": [
+    "n"
+  ],
+  "エシタプ": [
+    "advp"
+  ],
+  "エシノッ": [
+    "vt"
+  ],
+  "エソクソキ": [
+    "n"
+  ],
+  "エソロ": [
+    "padv"
+  ],
+  "エタシペ": [
+    "n"
+  ],
+  "エタリ": [
+    "vt"
+  ],
+  "エチ": [
+    "pers"
+  ],
+  "エチウカ": [
+    "vt"
+  ],
+  "エチオカ": [
+    "pron"
+  ],
+  "エトﾟ": [
+    "n"
+  ],
+  "エトﾟフ": [
+    "n"
+  ],
+  "エトク": [
+    "nl"
+  ],
+  "エトコ": [
+    "nl"
+  ],
+  "エトランネ": [
+    "auxv"
+  ],
+  "エトロ": [
+    "n"
+  ],
+  "エネ": [
+    "adv"
+  ],
+  "エパ": [
+    "vt"
+  ],
+  "エパカシヌ": [
+    "vd"
+  ],
+  "エピスン": [
+    "adv"
+  ],
+  "エピッタ": [
+    "advp"
+  ],
+  "エプンキネ": [
+    "vt"
+  ],
+  "エペカ": [
+    "advp"
+  ],
+  "エミナ": [
+    "vt"
+  ],
+  "エモ": [
+    "n"
+  ],
+  "エモコロ": [
+    "vt"
+  ],
+  "エヤイコシラムスイパ　": [
+    "n"
+  ],
+  "エヤイコプンテク": [
+    "vt"
+  ],
+  "エヤイトﾟパ": [
+    "auxv"
+  ],
+  "エヤミ": [
+    "n"
+  ],
+  "エヤム": [
+    "vt"
+  ],
+  "エヨロッ": [
+    "vt"
+  ],
+  "エラマス": [
+    "vt"
+  ],
+  "エラミシカリ": [
+    "vt"
+  ],
+  "エラムアン": [
+    "vt"
+  ],
+  "エランペウテク": [
+    "vt"
+  ],
+  "エランポキウェン": [
+    "vt"
+  ],
+  "エルム": [
+    "n"
+  ],
+  "エレ": [
+    "vt"
+  ],
+  "エレクシ": [
+    "n"
+  ],
+  "エン": [
+    "pers"
+  ],
+  "エンチ": [
+    "pers"
+  ],
+  "オ": [
+    "vt"
+  ],
+  "オアシ": [
+    "auxv"
+  ],
+  "オアッサム": [
+    "vi"
+  ],
+  "オイペピヒ": [
+    "n"
+  ],
+  "オイナレ": [
+    "vt"
+  ],
+  "オイラ": [
+    "vt"
+  ],
+  "オウペカレ": [
+    "vt"
+  ],
+  "オカ": [
+    "vi"
+  ],
+  "オカイ": [
+    "vi"
+  ],
+  "オケレ": [
+    "vt"
+  ],
+  "オシ": [
+    "padv"
+  ],
+  "オシカンペ": [
+    "n"
+  ],
+  "オシケ": [
+    "nl"
+  ],
+  "オシコニ": [
+    "vt"
+  ],
+  "オシマク": [
+    "nl"
+  ],
+  "オシマケ": [
+    "nl"
+  ],
+  "オシキル": [
+    "vt"
+  ],
+  "オシッテス": [
+    "vi"
+  ],
+  "3オソロ": [
+    "n"
+  ],
+  "オソロホ": [
+    "n"
+  ],
+  "オタ": [
+    "n"
+  ],
+  "オチャッチャリ": [
+    "vd"
+  ],
+  "オッカイポ": [
+    "n"
+  ],
+  "オッカヨ": [
+    "n"
+  ],
+  "オッシケ": [
+    "nl"
+  ],
+  "オテッテレケ": [
+    "vt"
+  ],
+  "オッケ": [
+    "vt"
+  ],
+  "オトピ": [
+    "n"
+  ],
+  "オトピヒ": [
+    "n"
+  ],
+  "オナ": [
+    "n"
+  ],
+  "オナハ": [
+    "n"
+  ],
+  "オヌマン": [
+    "n"
+  ],
+  "オハウ": [
+    "n"
+  ],
+  "オハシリ": [
+    "n"
+  ],
+  "オピウキ": [
+    "vt"
+  ],
+  "オピッタ": [
+    "adv"
+  ],
+  "オプッタノ": [
+    "adv"
+  ],
+  "オホンノ": [
+    "adv"
+  ],
+  "オマ": [
+    "vt"
+  ],
+  "オマナン": [
+    "vi"
+  ],
+  "オマレ": [
+    "vd"
+  ],
+  "オマン": [
+    "vi"
+  ],
+  "オムケ": [
+    "vi"
+  ],
+  "オムケオムケ": [
+    "vi"
+  ],
+  "オムケカラ": [
+    "vi"
+  ],
+  "オヤシム": [
+    "n"
+  ],
+  "オヤパ": [
+    "n"
+  ],
+  "オリパク": [
+    "vi"
+  ],
+  "オルン": [
+    "colloc"
+  ],
+  "オレ": [
+    "vd"
+  ],
+  "オロ": [
+    "nl"
+  ],
+  "オロワ": [
+    "colloc"
+  ],
+  "オンカミ": [
+    "vi"
+  ],
+  "オンナイ": [
+    "nl"
+  ],
+  "オンネ": [
+    "vi"
+  ],
+  "カ": [
+    "advp"
+  ],
+  "カイ": [
+    "advp"
+  ],
+  "カイクマ": [
+    "n"
+  ],
+  "カウカウ": [
+    "n"
+  ],
+  "カエカ": [
+    "vi"
+  ],
+  "カシ": [
+    "nl"
+  ],
+  "カシケ": [
+    "nl"
+  ],
+  "カシパ": [
+    "auxv"
+  ],
+  "カシパオッテ": [
+    "vt"
+  ],
+  "カス": [
+    "auxv"
+  ],
+  "カスイ": [
+    "vt"
+  ],
+  "カタク": [
+    "n"
+  ],
+  "カッケマッ": [
+    "n"
+  ],
+  "カトﾟン": [
+    "n"
+  ],
+  "カニ": [
+    "pron"
+  ],
+  "カニッ": [
+    "n"
+  ],
+  "カネ": [
+    "sconj"
+  ],
+  "カパチリ": [
+    "n"
+  ],
+  "カパラ": [
+    "vi"
+  ],
+  "カピウ": [
+    "n"
+  ],
+  "カム": [
+    "verb"
+  ],
+  "カムタチ": [
+    "n"
+  ],
+  "カムイ": [
+    "n"
+  ],
+  "カムイチェプ": [
+    "n"
+  ],
+  "カムイノミ": [
+    "vi"
+  ],
+  "カムイフチ": [
+    "n"
+  ],
+  "カムイフム": [
+    "n"
+  ],
+  "カムイユカラ": [
+    "n"
+  ],
+  "カラ": [
+    "vt"
+  ],
+  "カルシ": [
+    "n"
+  ],
+  "カント": [
+    "n"
+  ],
+  "カンナ": [
+    "adv"
+  ],
+  "カンピ": [
+    "n"
+  ],
+  "カンピソシ": [
+    "n"
+  ],
+  "キ": [
+    "vt"
+  ],
+  "キサラハ": [
+    "n"
+  ],
+  "キサルンペ": [
+    "n"
+  ],
+  "キッキク": [
+    "vt"
+  ],
+  "キナ": [
+    "n"
+  ],
+  "キナカラ": [
+    "vi"
+  ],
+  "キムンカムイ": [
+    "n"
+  ],
+  "キヤイ": [
+    "n"
+  ],
+  "キヤンネ": [
+    "adn"
+  ],
+  "キラ": [
+    "vi"
+  ],
+  "ク": [
+    "pers"
+  ],
+  "クイクイ": [
+    "vt"
+  ],
+  "クシ": [
+    "vt"
+  ],
+  "クス": [
+    "sconj"
+  ],
+  "クスリ": [
+    "n"
+  ],
+  "クスル": [
+    "n"
+  ],
+  "クッ": [
+    "n"
+  ],
+  "クナウ": [
+    "n"
+  ],
+  "クナク": [
+    "nmlz"
+  ],
+  "クニ": [
+    "nmlz"
+  ],
+  "クニネ": [
+    "sconj"
+  ],
+  "クパパ": [
+    "vt"
+  ],
+  "クル": [
+    "n"
+  ],
+  "クルカ": [
+    "nl"
+  ],
+  "クンネ": [
+    "vi"
+  ],
+  "クンネイワ": [
+    "n"
+  ],
+  "ケウトﾟム": [
+    "n"
+  ],
+  "ケシ": [
+    "nl"
+  ],
+  "ケネ": [
+    "n"
+  ],
+  "ケマ": [
+    "n"
+  ],
+  "ケマエウェン": [
+    "vi"
+  ],
+  "ケマハ": [
+    "n"
+  ],
+  "ケム": [
+    "n"
+  ],
+  "ケラ": [
+    "n"
+  ],
+  "ケラアン": [
+    "vi"
+  ],
+  "ケレ": [
+    "n"
+  ],
+  "コイキ": [
+    "vt"
+  ],
+  "コイサム": [
+    "vt"
+  ],
+  "コイスム": [
+    "n"
+  ],
+  "コイソイタク": [
+    "n"
+  ],
+  "コイチャラパ": [
+    "vt"
+  ],
+  "コクシシノ": [
+    "padv"
+  ],
+  "コシネ": [
+    "vi"
+  ],
+  "コシキリパ": [
+    "vt"
+  ],
+  "コシネウェ": [
+    "vt"
+  ],
+  "コタヌ": [
+    "n"
+  ],
+  "コタン": [
+    "n"
+  ],
+  "コタンコロカムイ": [
+    "n"
+  ],
+  "コッ": [
+    "vt"
+  ],
+  "コッカ": [
+    "n"
+  ],
+  "コッカサパハ": [
+    "n"
+  ],
+  "コッカパケ": [
+    "n"
+  ],
+  "コッチャ": [
+    "nl"
+  ],
+  "コッチャケ": [
+    "nl"
+  ],
+  "コテレケ": [
+    "vt"
+  ],
+  "コパン": [
+    "vt"
+  ],
+  "コピシ": [
+    "vt"
+  ],
+  "コプンテク": [
+    "vt"
+  ],
+  "コレ": [
+    "vd"
+  ],
+  "コロ": [
+    "vt"
+  ],
+  "コロカ": [
+    "sconj"
+  ],
+  "コロカイ": [
+    "sconj"
+  ],
+  "コロカイキ": [
+    "sconj"
+  ],
+  "コロコニ": [
+    "n"
+  ],
+  "コン": [
+    "vt"
+  ],
+  "コンカネ": [
+    "n"
+  ],
+  "コンチ": [
+    "n"
+  ],
+  "コンル": [
+    "n"
+  ],
+  "サウレ": [
+    "vi"
+  ],
+  "サク": [
+    "vt"
+  ],
+  "サクパ": [
+    "n"
+  ],
+  "サクマ": [
+    "n"
+  ],
+  "サケヘ": [
+    "n"
+  ],
+  "サッ": [
+    "vi"
+  ],
+  "サッチェプ": [
+    "n"
+  ],
+  "サッテク": [
+    "vi"
+  ],
+  "サッポロ": [
+    "n"
+  ],
+  "サッケ": [
+    "vt"
+  ],
+  "サハ": [
+    "n"
+  ],
+  "サパ": [
+    "n"
+  ],
+  "サパハ": [
+    "n"
+  ],
+  "サプ": [
+    "vi"
+  ],
+  "サプテ": [
+    "vt"
+  ],
+  "サポ": [
+    "n"
+  ],
+  "サマ": [
+    "nl"
+  ],
+  "サマンペ": [
+    "n"
+  ],
+  "サム": [
+    "nl"
+  ],
+  "4サヨ": [
+    "n"
+  ],
+  "サラ": [
+    "n"
+  ],
+  "サラパ": [
+    "n"
+  ],
+  "サラプトﾟ": [
+    "n"
+  ],
+  "サラニプ": [
+    "n"
+  ],
+  "サロルンチカプ": [
+    "n"
+  ],
+  "サン": [
+    "vi"
+  ],
+  "サンカ": [
+    "n"
+  ],
+  "サンケ": [
+    "vt"
+  ],
+  "サンペ": [
+    "n"
+  ],
+  "シアマム": [
+    "n"
+  ],
+  "シイェイェ": [
+    "vi"
+  ],
+  "シウニン": [
+    "vi"
+  ],
+  "シオイナ": [
+    "adn"
+  ],
+  "シキ": [
+    "n"
+  ],
+  "シキナ": [
+    "n"
+  ],
+  "シキヒ": [
+    "n"
+  ],
+  "シク": [
+    "n"
+  ],
+  "シクプ": [
+    "vi"
+  ],
+  "シクントﾟスッ": [
+    "n"
+  ],
+  "シケトクナワノ": [
+    "adv"
+  ],
+  "シケレペ": [
+    "n"
+  ],
+  "シコッ": [
+    "n"
+  ],
+  "シサム": [
+    "n"
+  ],
+  "シタ": [
+    "advp"
+  ],
+  "シッチャシヌレ": [
+    "vi"
+  ],
+  "シットﾟライヌ": [
+    "vi"
+  ],
+  "シットキヒ": [
+    "n"
+  ],
+  "シットケウェ": [
+    "n"
+  ],
+  "シト": [
+    "n"
+  ],
+  "シトﾟレンテ": [
+    "vt"
+  ],
+  "シトマ": [
+    "vt"
+  ],
+  "シニ": [
+    "vi"
+  ],
+  "シヌマ": [
+    "pron"
+  ],
+  "シネ": [
+    "adn"
+  ],
+  "シネウェ": [
+    "vi"
+  ],
+  "シネウェエエク": [
+    "vi"
+  ],
+  "シネウェクル": [
+    "n"
+  ],
+  "シネプ": [
+    "n"
+  ],
+  "シネペサニウ": [
+    "n"
+  ],
+  "シネペサン": [
+    "adn"
+  ],
+  "シネペサンペ": [
+    "n"
+  ],
+  "シネペシ": [
+    "intj"
+  ],
+  "シネン": [
+    "n"
+  ],
+  "シノ": [
+    "adv"
+  ],
+  "シノッ": [
+    "vi"
+  ],
+  "シノッチャ": [
+    "n"
+  ],
+  "シノッチャキ": [
+    "vi"
+  ],
+  "シペ": [
+    "n"
+  ],
+  "シモン": [
+    "pfx"
+  ],
+  "シラオイ": [
+    "n"
+  ],
+  "シララ": [
+    "n"
+  ],
+  "シリ": [
+    "n"
+  ],
+  "シリクンネ": [
+    "vc"
+  ],
+  "シリコロカムイ": [
+    "n"
+  ],
+  "シリサク": [
+    "vc"
+  ],
+  "シリセセク": [
+    "vc"
+  ],
+  "シリピリカ": [
+    "vc"
+  ],
+  "シリポプケ": [
+    "vc"
+  ],
+  "シリメマン": [
+    "vc"
+  ],
+  "シロカネ": [
+    "n"
+  ],
+  "シンキ": [
+    "vi"
+  ],
+  "シントコ": [
+    "n"
+  ],
+  "シンヌラッパ": [
+    "n"
+  ],
+  "シンリッ": [
+    "n"
+  ],
+  "シンリッコイチャラパ": [
+    "vi"
+  ],
+  "スイ": [
+    "adv"
+  ],
+  "スイェ": [
+    "vt"
+  ],
+  "スイェスイェ": [
+    "vt"
+  ],
+  "スイパ": [
+    "vt"
+  ],
+  "スウェ": [
+    "vt"
+  ],
+  "スウオプ": [
+    "n"
+  ],
+  "スケ": [
+    "vi"
+  ],
+  "スサム": [
+    "n"
+  ],
+  "スス": [
+    "n"
+  ],
+  "スネ": [
+    "n"
+  ],
+  "スプン": [
+    "n"
+  ],
+  "スム": [
+    "n"
+  ],
+  "スムンコッ": [
+    "n"
+  ],
+  "スワッ": [
+    "n"
+  ],
+  "スンク": [
+    "n"
+  ],
+  "セイ": [
+    "n"
+  ],
+  "セコロ": [
+    "advp"
+  ],
+  "セシケ": [
+    "vt"
+  ],
+  "セセク": [
+    "vi"
+  ],
+  "セタ": [
+    "n"
+  ],
+  "セッ": [
+    "n"
+  ],
+  "セトﾟル": [
+    "n"
+  ],
+  "セトﾟルフ": [
+    "n"
+  ],
+  "セレマク": [
+    "nl"
+  ],
+  "セレマカ": [
+    "nl"
+  ],
+  "ソ": [
+    "n"
+  ],
+  "ソイ": [
+    "nl"
+  ],
+  "ソイネ": [
+    "vi"
+  ],
+  "ソモ": [
+    "adv"
+  ],
+  "ソンコオマンテ": [
+    "vi"
+  ],
+  "ソンノ": [
+    "adv"
+  ],
+  "タ": [
+    "postp"
+  ],
+  "タアン": [
+    "adn"
+  ],
+  "タアンペ": [
+    "pron"
+  ],
+  "タオカ": [
+    "adn"
+  ],
+  "タクタク": [
+    "n"
+  ],
+  "タクネ": [
+    "vi"
+  ],
+  "タクパ": [
+    "vt"
+  ],
+  "タシロ": [
+    "n"
+  ],
+  "タヌクラン": [
+    "n",
+    "adv"
+  ],
+  "タネ": [
+    "adv"
+  ],
+  "タパン": [
+    "adn"
+  ],
+  "タプ": [
+    "advp"
+  ],
+  "タプカラ": [
+    "vi"
+  ],
+  "タマ": [
+    "n"
+  ],
+  "タマサイ": [
+    "n"
+  ],
+  "タン": [
+    "adn"
+  ],
+  "タンタ": [
+    "adv"
+  ],
+  "タント": [
+    "n",
+    "adv"
+  ],
+  "タンヌ": [
+    "n"
+  ],
+  "タンネ": [
+    "vi"
+  ],
+  "タンネカムイ": [
+    "n"
+  ],
+  "タンパク": [
+    "n"
+  ],
+  "タンペ": [
+    "pron"
+  ],
+  "チ": [
+    "pers"
+  ],
+  "チェッポ": [
+    "n"
+  ],
+  "チェプ": [
+    "n"
+  ],
+  "チカッポ": [
+    "n"
+  ],
+  "チカプ": [
+    "n"
+  ],
+  "チカラカラペ": [
+    "n"
+  ],
+  "チキ": [
+    "sconj"
+  ],
+  "チキリ": [
+    "n"
+  ],
+  "チクペニ": [
+    "n"
+  ],
+  "チシ": [
+    "vi"
+  ],
+  "チセ": [
+    "n"
+  ],
+  "チタタプ": [
+    "n"
+  ],
+  "チピヤク": [
+    "n"
+  ],
+  "チプ": [
+    "n"
+  ],
+  "チプタチカプ": [
+    "n"
+  ],
+  "チポロ": [
+    "n"
+  ],
+  "チマキナ": [
+    "n"
+  ],
+  "チャッチャリ": [
+    "vt"
+  ],
+  "チャペ": [
+    "n"
+  ],
+  "チャラケ": [
+    "vi"
+  ],
+  "チャリ": [
+    "vt"
+  ],
+  "チャロ": [
+    "n"
+  ],
+  "チュク": [
+    "n"
+  ],
+  "チュプ": [
+    "n"
+  ],
+  "チョ": [
+    "intj"
+  ],
+  "チョカ": [
+    "pron"
+  ],
+  "チョッチャ": [
+    "vt"
+  ],
+  "チョロポキケ": [
+    "nl"
+  ],
+  "チョロポク": [
+    "nl"
+  ],
+  "チョロポッケ": [
+    "nl"
+  ],
+  "チロンヌプ": [
+    "n"
+  ],
+  "テ": [
+    "nl"
+  ],
+  "テイネシ": [
+    "n"
+  ],
+  "テクンペ": [
+    "n"
+  ],
+  "テケ": [
+    "n"
+  ],
+  "テケヘ": [
+    "n"
+  ],
+  "テシパ": [
+    "vt"
+  ],
+  "テッコトロ": [
+    "n"
+  ],
+  "テッコトロホ": [
+    "n"
+  ],
+  "テレケ": [
+    "vi"
+  ],
+  "ト": [
+    "n"
+  ],
+  "トアン": [
+    "adn"
+  ],
+  "トアンペ": [
+    "pron"
+  ],
+  "トイ": [
+    "n"
+  ],
+  "5トﾟ": [
+    "adn"
+  ],
+  "トﾟアン": [
+    "adn"
+  ],
+  "トﾟアンタ": [
+    "adv"
+  ],
+  "トﾟイ": [
+    "vi"
+  ],
+  "トﾟイェ": [
+    "vt"
+  ],
+  "トﾟイパ": [
+    "vt"
+  ],
+  "トﾟイマ": [
+    "vi"
+  ],
+  "トﾟイマノ": [
+    "adv"
+  ],
+  "トﾟキ": [
+    "n"
+  ],
+  "トﾟク": [
+    "vi"
+  ],
+  "トﾟッコ": [
+    "n"
+  ],
+  "トﾟナシ": [
+    "vi"
+  ],
+  "トﾟナシノ": [
+    "adv"
+  ],
+  "トﾟヌニタラ": [
+    "vi"
+  ],
+  "トﾟプ": [
+    "n"
+  ],
+  "トﾟペサニウ": [
+    "n"
+  ],
+  "トﾟペサン": [
+    "adn"
+  ],
+  "トﾟペサンペ": [
+    "n"
+  ],
+  "トﾟペシ": [
+    "intj"
+  ],
+  "トﾟペプ": [
+    "n"
+  ],
+  "トﾟマシヌ": [
+    "vi"
+  ],
+  "トﾟム": [
+    "nl"
+  ],
+  "トﾟラ": [
+    "vt"
+  ],
+  "トﾟラシ": [
+    "padv"
+  ],
+  "トﾟラノ": [
+    "padv"
+  ],
+  "トﾟルセ": [
+    "vi"
+  ],
+  "トﾟレプ": [
+    "n"
+  ],
+  "トﾟレプタ": [
+    "vi"
+  ],
+  "トﾟン": [
+    "n"
+  ],
+  "トﾟンニ": [
+    "n"
+  ],
+  "トﾟンプ": [
+    "n"
+  ],
+  "トオカ": [
+    "adn"
+  ],
+  "トカチ": [
+    "n"
+  ],
+  "トカプチュプ": [
+    "n"
+  ],
+  "トキヨ": [
+    "n"
+  ],
+  "トクセトクセ": [
+    "vi"
+  ],
+  "トクイェ": [
+    "n"
+  ],
+  "トノ": [
+    "n"
+  ],
+  "トノシキ": [
+    "n"
+  ],
+  "トノト": [
+    "n"
+  ],
+  "トプセ": [
+    "vi"
+  ],
+  "トペニ": [
+    "n"
+  ],
+  "トペンペ": [
+    "n"
+  ],
+  "トマ": [
+    "n"
+  ],
+  "トマコマイ": [
+    "n"
+  ],
+  "トランネ": [
+    "vi"
+  ],
+  "ナ": [
+    "sfp"
+  ],
+  "ナイ": [
+    "n"
+  ],
+  "ナヌフ": [
+    "n"
+  ],
+  "ナム": [
+    "vi"
+  ],
+  "ナンコロ": [
+    "auxv"
+  ],
+  "ニ": [
+    "n"
+  ],
+  "ニサ": [
+    "auxv"
+  ],
+  "ニサッタ": [
+    "n"
+  ],
+  "ニサプ": [
+    "adv"
+  ],
+  "ニシ": [
+    "n"
+  ],
+  "ニシテ": [
+    "vi"
+  ],
+  "ニスフチ": [
+    "n"
+  ],
+  "ニソロ": [
+    "n"
+  ],
+  "ニタイ": [
+    "n"
+  ],
+  "ニヌム": [
+    "n"
+  ],
+  "ニプタニ": [
+    "n"
+  ],
+  "ニペシ": [
+    "n"
+  ],
+  "ニペシニ": [
+    "n"
+  ],
+  "ニマ": [
+    "n"
+  ],
+  "ニマク": [
+    "n"
+  ],
+  "ニンカリ": [
+    "n"
+  ],
+  "ニンパ": [
+    "vt"
+  ],
+  "ヌ": [
+    "vt"
+  ],
+  "ヌイェ": [
+    "vt"
+  ],
+  "ヌイト": [
+    "n"
+  ],
+  "ヌイナ": [
+    "vt"
+  ],
+  "ヌウェ": [
+    "vt"
+  ],
+  "ヌカラ": [
+    "vt"
+  ],
+  "ヌカレ": [
+    "vd"
+  ],
+  "ヌサ": [
+    "n"
+  ],
+  "ヌソ": [
+    "n"
+  ],
+  "ヌチマシヌ": [
+    "vi"
+  ],
+  "ヌプキペッ": [
+    "n"
+  ],
+  "ヌプリ": [
+    "n"
+  ],
+  "ヌプル": [
+    "vi"
+  ],
+  "ヌプルペッ": [
+    "n"
+  ],
+  "ヌペッネノ": [
+    "adv"
+  ],
+  "ヌマン": [
+    "n"
+  ],
+  "ヌレ": [
+    "vd"
+  ],
+  "ネ": [
+    "vt"
+  ],
+  "ネア": [
+    "adn"
+  ],
+  "ネアンペ": [
+    "pron"
+  ],
+  "ネイタ": [
+    "adv"
+  ],
+  "ネウン": [
+    "adv"
+  ],
+  "ネノ": [
+    "padv"
+  ],
+  "ネプ": [
+    "n"
+  ],
+  "ネプキ": [
+    "vi"
+  ],
+  "ネロク": [
+    "adn"
+  ],
+  "ネワ": [
+    "advp"
+  ],
+  "ネン": [
+    "n"
+  ],
+  "ネンパク": [
+    "adn"
+  ],
+  "ノ": [
+    "sconj"
+  ],
+  "ノイネ": [
+    "sconj"
+  ],
+  "ノイノイェ": [
+    "vt"
+  ],
+  "ノク": [
+    "n"
+  ],
+  "ノクンネイワノ": [
+    "adv"
+  ],
+  "ノシパ": [
+    "vt"
+  ],
+  "ノチウ": [
+    "n"
+  ],
+  "ノミ": [
+    "vt"
+  ],
+  "ノヤ": [
+    "n"
+  ],
+  "ノンノ": [
+    "n"
+  ],
+  "パ": [
+    "n"
+  ],
+  "パイェ": [
+    "vi"
+  ],
+  "パイカラ": [
+    "n"
+  ],
+  "ハウ": [
+    "n"
+  ],
+  "ハウェ": [
+    "n"
+  ],
+  "ハウェアン": [
+    "auxv"
+  ],
+  "パカリ": [
+    "vt"
+  ],
+  "パクノ": [
+    "padv"
+  ],
+  "パケ": [
+    "n"
+  ],
+  "パシクル": [
+    "n"
+  ],
+  "パスイ": [
+    "n"
+  ],
+  "パセ": [
+    "vi"
+  ],
+  "パセノポ": [
+    "adv"
+  ],
+  "ハチリ": [
+    "vi"
+  ],
+  "ハチレ": [
+    "vt"
+  ],
+  "パテク": [
+    "padv"
+  ],
+  "ハニ": [
+    "sfp"
+  ],
+  "ハポ": [
+    "n"
+  ],
+  "パヨカ": [
+    "vi"
+  ],
+  "ハラキ": [
+    "pfx"
+  ],
+  "パラウレ": [
+    "n"
+  ],
+  "パルンペ": [
+    "n"
+  ],
+  "パルンペヘ": [
+    "n"
+  ],
+  "パロ": [
+    "n"
+  ],
+  "パロホ": [
+    "n"
+  ],
+  "ハンカプイェ": [
+    "n"
+  ],
+  "ハンクフ": [
+    "n"
+  ],
+  "ハンケ": [
+    "vi"
+  ],
+  "ハンケノ": [
+    "adv"
+  ],
+  "ヒ": [
+    "nmlz"
+  ],
+  "ピシ": [
+    "nl"
+  ],
+  "ピシカン": [
+    "nl"
+  ],
+  "ピシキ": [
+    "vt"
+  ],
+  "ピッ": [
+    "n"
+  ],
+  "ヒナク": [
+    "n"
+  ],
+  "ヒナクン": [
+    "colloc"
+  ],
+  "ヒネ": [
+    "sconj"
+  ],
+  "ピパ": [
+    "n"
+  ],
+  "ピラトﾟル": [
+    "n"
+  ],
+  "ピリ": [
+    "n"
+  ],
+  "ピリカ": [
+    "vi"
+  ],
+  "ピリカスクプ": [
+    "vi"
+  ],
+  "ピリカノ": [
+    "adv"
+  ],
+  "ピリカモンライケ": [
+    "vi"
+  ],
+  "ピロ": [
+    "vi"
+  ],
+  "プ": [
+    "nmlz"
+  ],
+  "フ": [
+    "vi"
+  ],
+  "フンタ": [
+    "n"
+  ],
+  "プクサ": [
+    "n"
+  ],
+  "プクサキナ": [
+    "n"
+  ],
+  "フチ": [
+    "n"
+  ],
+  "フッネ": [
+    "vi"
+  ],
+  "フナク": [
+    "n"
+  ],
+  "フプ": [
+    "n"
+  ],
+  "フミ": [
+    "n"
+  ],
+  "フム": [
+    "n"
+  ],
+  "プヤラ": [
+    "n"
+  ],
+  "フラ": [
+    "n"
+  ],
+  "フレ": [
+    "vi"
+  ],
+  "フンナ": [
+    "n"
+  ],
+  "フンペ": [
+    "n"
+  ],
+  "ペ": [
+    "nmlz"
+  ],
+  "6ペカ": [
+    "postp"
+  ],
+  "ヘカチ": [
+    "n"
+  ],
+  "ヘカッタラ": [
+    "n"
+  ],
+  "ペカンペ": [
+    "n"
+  ],
+  "ペコ": [
+    "n"
+  ],
+  "ペコロ": [
+    "sconj"
+  ],
+  "ペシ": [
+    "padv"
+  ],
+  "ヘタク": [
+    "intj"
+  ],
+  "ヘチラサ": [
+    "vi"
+  ],
+  "ヘチラシパ": [
+    "vi"
+  ],
+  "ペッ": [
+    "n"
+  ],
+  "ペットモトﾟイェ": [
+    "vi"
+  ],
+  "ペッカス": [
+    "vi"
+  ],
+  "ペナケ": [
+    "nl"
+  ],
+  "ヘネ": [
+    "advp"
+  ],
+  "ペネエモ": [
+    "n"
+  ],
+  "ヘペレアイ": [
+    "n"
+  ],
+  "ヘペレ": [
+    "n"
+  ],
+  "ヘマンタ": [
+    "n"
+  ],
+  "ヘム": [
+    "advp"
+  ],
+  "ペレ": [
+    "vt"
+  ],
+  "ペレパ": [
+    "vt"
+  ],
+  "ヘンパキウ": [
+    "n"
+  ],
+  "ヘンパク": [
+    "adn"
+  ],
+  "ヘンパラ": [
+    "adv"
+  ],
+  "ペンラム": [
+    "n"
+  ],
+  "ペンラムフ": [
+    "n"
+  ],
+  "ポ": [
+    "n"
+  ],
+  "ポイ": [
+    "vi"
+  ],
+  "ポイサロ": [
+    "n"
+  ],
+  "ポイソン": [
+    "n"
+  ],
+  "ホイヌ": [
+    "n"
+  ],
+  "ポカ": [
+    "advp"
+  ],
+  "ホク": [
+    "vt"
+  ],
+  "ホクレ": [
+    "adv"
+  ],
+  "ホシ": [
+    "n"
+  ],
+  "ホシキ": [
+    "adv"
+  ],
+  "ホシッパ": [
+    "vi"
+  ],
+  "ホシピ": [
+    "vi"
+  ],
+  "ホッケ": [
+    "vi"
+  ],
+  "ホニ": [
+    "n"
+  ],
+  "ポニウネ": [
+    "adn"
+  ],
+  "ホニヒ": [
+    "n"
+  ],
+  "ポプケ": [
+    "vi"
+  ],
+  "ホプニ": [
+    "vi"
+  ],
+  "ホプンパ": [
+    "vi"
+  ],
+  "ポホ": [
+    "n"
+  ],
+  "ホメカラ": [
+    "vt"
+  ],
+  "ホユッパ": [
+    "vi"
+  ],
+  "ホユプ": [
+    "vi"
+  ],
+  "ホリッパ": [
+    "vi"
+  ],
+  "ホリピ": [
+    "vi"
+  ],
+  "ポロ": [
+    "vi"
+  ],
+  "ホロケウ": [
+    "n"
+  ],
+  "ポロセ": [
+    "vt"
+  ],
+  "ポロンノ": [
+    "adv"
+  ],
+  "ホン": [
+    "n"
+  ],
+  "ポン": [
+    "vi"
+  ],
+  "ポンチェプ": [
+    "n"
+  ],
+  "ポントノマッ": [
+    "n"
+  ],
+  "ホントム": [
+    "nl"
+  ],
+  "ポンノ": [
+    "adv"
+  ],
+  "マ": [
+    "vi"
+  ],
+  "マウ": [
+    "n"
+  ],
+  "マカ": [
+    "vt"
+  ],
+  "マカナク": [
+    "adv"
+  ],
+  "マカヨ": [
+    "n"
+  ],
+  "マキリ": [
+    "n"
+  ],
+  "マク": [
+    "adv"
+  ],
+  "マタ": [
+    "n"
+  ],
+  "マタキヒ": [
+    "n"
+  ],
+  "マチ": [
+    "n"
+  ],
+  "マッカチ": [
+    "n"
+  ],
+  "マヌ": [
+    "auxv"
+  ],
+  "マヤイケ": [
+    "vi"
+  ],
+  "ミ": [
+    "vt"
+  ],
+  "ミク": [
+    "vi"
+  ],
+  "ミチ": [
+    "n"
+  ],
+  "ミッポウタリ": [
+    "n"
+  ],
+  "ミッポ": [
+    "n"
+  ],
+  "ミナ": [
+    "vi"
+  ],
+  "ミナレ": [
+    "vt"
+  ],
+  "ミピヒ": [
+    "n"
+  ],
+  "ミマキ": [
+    "n"
+  ],
+  "ミマキヒ": [
+    "n"
+  ],
+  "ミムシ": [
+    "vi"
+  ],
+  "ムイェ": [
+    "vt"
+  ],
+  "ムカ": [
+    "n"
+  ],
+  "ムッケ": [
+    "vi"
+  ],
+  "ムヤンキ": [
+    "n"
+  ],
+  "メアン": [
+    "vc"
+  ],
+  "メエコッ": [
+    "n"
+  ],
+  "メナシ": [
+    "n"
+  ],
+  "メノコ": [
+    "n"
+  ],
+  "モイレ": [
+    "vi"
+  ],
+  "モウル": [
+    "n"
+  ],
+  "モコロ": [
+    "vi"
+  ],
+  "モシ": [
+    "vi"
+  ],
+  "モシマ": [
+    "padv"
+  ],
+  "モシリ": [
+    "n"
+  ],
+  "モペッ": [
+    "n"
+  ],
+  "モム": [
+    "vi"
+  ],
+  "モムカ": [
+    "vt"
+  ],
+  "モユク": [
+    "n"
+  ],
+  "モンライケ": [
+    "vi"
+  ],
+  "ヤ": [
+    "sfp"
+  ],
+  "ヤイカタ": [
+    "adv"
+  ],
+  "ヤイコサンニヨ": [
+    "vi"
+  ],
+  "ヤイサマネナ": [
+    "n"
+  ],
+  "ヤイサムネ": [
+    "adv"
+  ],
+  "ヤイヌ": [
+    "vi"
+  ],
+  "ヤイヌパ": [
+    "vi"
+  ],
+  "ヤイライケ": [
+    "vi"
+  ],
+  "ヤク": [
+    "sconj"
+  ],
+  "ヤクン": [
+    "sconj"
+  ],
+  "ヤッカ": [
+    "sconj"
+  ],
+  "ヤッカイキ": [
+    "sconj"
+  ],
+  "ヤトﾟポキヒ": [
+    "n"
+  ],
+  "ヤプ": [
+    "vi"
+  ],
+  "ヤム": [
+    "n"
+  ],
+  "ヤン": [
+    "sfp"
+  ],
+  "ヤンケ": [
+    "vt"
+  ],
+  "ユカラ": [
+    "n"
+  ],
+  "ユク": [
+    "n"
+  ],
+  "ユピ": [
+    "n"
+  ],
+  "ユピヒ": [
+    "n"
+  ],
+  "ユプケ": [
+    "vi"
+  ],
+  "ユプケノ": [
+    "adv"
+  ],
+  "ユポ": [
+    "n"
+  ],
+  "ライ": [
+    "vi"
+  ],
+  "ライェ": [
+    "vt"
+  ],
+  "ライクル": [
+    "intj"
+  ],
+  "ライケ": [
+    "vt"
+  ],
+  "ライホトﾟイパ": [
+    "vi"
+  ],
+  "ラカ": [
+    "n"
+  ],
+  "ラク": [
+    "vt"
+  ],
+  "ラクル": [
+    "n"
+  ],
+  "ラタシケプ": [
+    "n"
+  ],
+  "ラチッケレ": [
+    "vt"
+  ],
+  "ラッチノ": [
+    "adv"
+  ],
+  "ラプ": [
+    "vi"
+  ],
+  "ラプフ": [
+    "n"
+  ],
+  "ラム": [
+    "vt"
+  ],
+  "ララ": [
+    "n"
+  ],
+  "ララク": [
+    "vi"
+  ],
+  "ラル": [
+    "n"
+  ],
+  "ラルフ": [
+    "n"
+  ],
+  "ラン": [
+    "vi"
+  ],
+  "ランケ": [
+    "vt"
+  ],
+  "ランコ": [
+    "n"
+  ],
+  "リ": [
+    "vi"
+  ],
+  "リキプ": [
+    "vi"
+  ],
+  "リキン": [
+    "vi"
+  ],
+  "リムセ": [
+    "vi"
+  ],
+  "ル": [
+    "n"
+  ],
+  "ルアンペ": [
+    "n"
+  ],
+  "ルアンペアシテ": [
+    "vi"
+  ],
+  "ルアンペアシテカムイ　": [
+    "n"
+  ],
+  "ルイ": [
+    "vi"
+  ],
+  "ルイノ": [
+    "adv"
+  ],
+  "ルウェ": [
+    "n"
+  ],
+  "ルキ": [
+    "vt"
+  ],
+  "ルスイ": [
+    "auxv"
+  ],
+  "ルプ": [
+    "n"
+  ],
+  "ルプシ": [
+    "vi"
+  ],
+  "ルレ": [
+    "vt"
+  ],
+  "レ": [
+    "n"
+  ],
+  "7レウェ": [
+    "vt"
+  ],
+  "レウシ": [
+    "vi"
+  ],
+  "レウシレ": [
+    "vt"
+  ],
+  "レウパ": [
+    "vt"
+  ],
+  "レクチ": [
+    "n"
+  ],
+  "レクチヒ": [
+    "n"
+  ],
+  "レクトﾟンペ": [
+    "n"
+  ],
+  "レタラ": [
+    "vi"
+  ],
+  "レプ": [
+    "n"
+  ],
+  "レプニ": [
+    "n"
+  ],
+  "レプンカムイ": [
+    "n"
+  ],
+  "レヘ": [
+    "n"
+  ],
+  "レラ": [
+    "n"
+  ],
+  "レレコ": [
+    "n"
+  ],
+  "レン": [
+    "n"
+  ],
+  "レンカイネ": [
+    "padv"
+  ],
+  "ロ": [
+    "sfp"
+  ],
+  "ロク": [
+    "sfp"
+  ],
+  "ロシキ": [
+    "vi"
+  ],
+  "ロルンプヤラ": [
+    "n"
+  ],
+  "ワ": [
+    "sconj"
+  ],
+  "ワッカ": [
+    "n"
+  ],
+  "ワニウ": [
+    "n"
+  ],
+  "ワノ": [
+    "postp"
+  ],
+  "ワン": [
+    "adn"
+  ],
+  "ワンパッカ": [
+    "n"
+  ],
+  "ワンペ": [
+    "n"
+  ]
+}
