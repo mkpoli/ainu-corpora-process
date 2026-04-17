@@ -8,5 +8,55 @@
     "lemma": "ci=",
     "glosses": ["私達が"],
     "poses": ["pers"]
+  },
+  "taa": {
+    "lemma": "taa",
+    "glosses": ["ここに"],
+    "poses": ["adv"]
+  },
+  "konno": {
+    "lemma": "konno",
+    "glosses": ["すると"],
+    "poses": ["sconj"]
+  },
+  "u": {
+    "lemma": "u",
+    "glosses": ["（挿入音）"],
+    "poses": ["intj"]
+  },
+  "hawki": {
+    "lemma": "hawki",
+    "glosses": ["言う"],
+    "poses": ["vi"]
+  },
+  "teh": {
+    "lemma": "teh",
+    "glosses": ["て"],
+    "poses": ["sconj"]
+  },
+  "yupo": {
+    "lemma": "yupo",
+    "glosses": ["兄さん"],
+    "poses": ["n"]
+  },
+  "sapo": {
+    "lemma": "sapo",
+    "glosses": ["お姉さん"],
+    "poses": ["n"]
+  },
+  "sirkunpato": {
+    "lemma": "sirkunpato",
+    "glosses": ["（雷神のサケへ）"],
+    "poses": ["intj"]
+  },
+  "ike": {
+    "lemma": "hike",
+    "glosses": ["～したら"],
+    "poses": ["nmlz"]
+  },
+  "neya": {
+    "lemma": "nea",
+    "glosses": ["その"],
+    "poses": ["adn"]
   }
 }
