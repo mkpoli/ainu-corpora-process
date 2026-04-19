@@ -1,39 +1,57 @@
 [benchmark]
-pages = [2, 68, 78, 100, 184, 256, 334, 408]
+pages = [2, 37, 68, 78, 100, 101, 184, 256, 334, 408]
 dpi = 300
 models = [
   "openrouter/openai/gpt-5.4",
-  "openrouter/openai/gpt-5.4-mini",
-  "openrouter/openai/gpt-5.4-nano",
+  # "openrouter/openai/gpt-5.4-mini",
+  # "openrouter/openai/gpt-5.4-nano",
   "openrouter/google/gemini-3-flash-preview",
-  "openrouter/google/gemini-3.1-pro-preview",
-  "openrouter/anthropic/claude-sonnet-4.6",
-  "openrouter/x-ai/grok-4.20",
-  "openrouter/qwen/qwen3.5-27b",
+  # "openrouter/google/gemini-3.1-pro-preview",
+  # "openrouter/anthropic/claude-sonnet-4.6",
+  # "openrouter/x-ai/grok-4.20",
+  # "openrouter/qwen/qwen3.5-27b",
 ]
 prompt = """
 You are performing OCR on a scanned Japanese dictionary page containing Ainu written in katakana and adjacent Latin transliteration.
 
 Return only the recognized text in reading order.
+Keep indentations below each entry (0 for head, 1 full width for definitions).
 Preserve line breaks where they are visually meaningful.
 Do not add explanations, notes, or Markdown.
 Do not normalize away unusual characters.
 
 Important Ainu rule:
-Small katakana for final consonants are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+Small kana in Ainu orthography are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+
+In this dictionary, the relevant small kana are:\
+- k -> ㇰ
+- s -> ㇱ
+- t -> ッ
+- p -> ㇷ゚
+- m -> ㇺ
+- tu -> トゥ
+
+Especially important rule for r:
+When Latin transcription shows syllable-final r after a vowel, the katakana should use the corresponding small r kana, not a full-sized リ or ル.
+- ar -> ㇻ
+- ir -> ㇼ
+- ur -> ㇽ
+- er -> ㇾ
+- or -> ㇿ
+
+This reflects repeated-vowel writing in Ainu orthography, e.g. uirkur is written ウイㇼクㇽ, understood as uir(i)kur(u).
+So if the Latin is uirkur, do not output ウイリクル, ウイリクㇽ, or ウイルクㇽ. Output ウイㇼクㇽ.
 
 Examples:
-- Output ウイㇼクㇽ when the adjacent Latin is uirkur, not ウイリクル.
+- Output ウイㇼクㇽ when the adjacent Latin is uirkur.
 - Output ウエウㇱ when the adjacent Latin is ueus.
 - Output ウエカㇻパレ when the adjacent Latin indicates uekarpare.
 
-Relevant small kana include: ㇰ ㇱ ㇲ ㇳ ㇴ ㇵ ㇶ ㇷ ㇸ ㇹ ㇷ゚ ㇺ ㇻ ㇼ ㇽ ㇾ ㇿ
-
-If the katakana looks ambiguous but the neighboring Latin transcription is clear, prefer the reading supported by the Latin transcription.
+Don't put "=" in Kana, only in Latn.
 """
 
 [benchmark.crop_padding]
-left = 23
-top = 40
-right = 23
-bottom = 50
+left = 5
+top = 11
+right = 5
+bottom = 9

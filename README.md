@@ -14,7 +14,7 @@ Benchmark sampled pages from the Nakagawa dictionary PDF with multimodal LLMs:
 uv run python -m dictionary.nakagawa_ocr_benchmark
 ```
 
-The default settings live in `dictionary/nakagawa_ocr_benchmark.toml`, including pages, models, prompt, and crop padding.
+The default settings live in `dictionary/nakagawa_ocr_benchmark.toml`, including pages, models, prompt, and crop margins. Crop values are percentages of page width/height.
 
 CLI flags override the config file when needed. For example:
 
@@ -50,4 +50,4 @@ The checked-in benchmark config defaults to OpenRouter model IDs, so `OPENROUTER
 
 Use `--skip-ocr` to render and crop pages without calling any models.
 
-Outputs are written under `dictionary/output/nakagawa-ocr-benchmark/`, including `backend_status.json`, rendered page images, and per-backend OCR text files.
+Outputs are written under `dictionary/output/nakagawa-ocr-benchmark/`, including `backend_status.json`, `images/full_page.png`, `images/cropped_page.png`, and per-backend OCR text files.

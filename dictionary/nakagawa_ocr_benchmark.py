@@ -33,17 +33,17 @@ DEFAULT_MODELS = [
     "openrouter/qwen/qwen3.5-27b",
 ]
 TOTAL_PDF_PAGES = 455
-CROP_PADDING_LEFT = 23
-CROP_PADDING_TOP = 36
-CROP_PADDING_RIGHT = 23
-CROP_PADDING_BOTTOM = 50
+CROP_PADDING_LEFT = 1.13
+CROP_PADDING_TOP = 1.45
+CROP_PADDING_RIGHT = 1.13
+CROP_PADDING_BOTTOM = 1.82
 CROP_RANGE_ADJUST = 0
 CROP_BACKGROUND_THRESHOLD = 245
 CROP_MIN_DARK_PIXELS_PER_ROW = 40
 CROP_MIN_DARK_PIXELS_PER_COL = 12
 CROP_MIN_ROW_RUN = 2
 CROP_MIN_COL_RUN = 20
-AINU_SMALL_KANA = "ㇰ ㇱ ㇲ ㇳ ㇴ ㇵ ㇶ ㇷ゚ ㇸ ㇹ ㇺ ㇻ ㇼ ㇽ ㇾ ㇿ"
+AINU_SMALL_KANA = "ㇰ ㇱ ㇲ ッ ㇷ゚ ㇺ ゥ(トゥ only) ㇻ ㇼ ㇽ ㇾ ㇿ"
 OCR_PROMPT = f"""You are performing OCR on a scanned Japanese dictionary page containing Ainu written in katakana and adjacent Latin transliteration.
 
 Return only the recognized text in reading order.
@@ -52,14 +52,25 @@ Do not add explanations, notes, or Markdown.
 Do not normalize away unusual characters.
 
 Important Ainu rule:
-Small katakana for final consonants are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+Small kana in Ainu orthography are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+
+In this dictionary, the relevant small kana are: {AINU_SMALL_KANA}
+
+Especially important rule for r:
+When Latin transcription shows syllable-final r after a vowel, the katakana should use the corresponding small r kana, not a full-sized リ or ル.
+- ar -> ㇻ
+- ir -> ㇼ
+- ur -> ㇽ
+- er -> ㇾ
+- or -> ㇿ
+
+This reflects repeated-vowel writing in Ainu orthography, e.g. uirkur is written ウイㇼクㇽ, understood as uir(i)kur(u).
+So if the Latin is uirkur, do not output ウイリクル, ウイリクㇽ, or ウイルクㇽ. Output ウイㇼクㇽ.
 
 Examples:
-- Output ウイㇼクㇽ when the adjacent Latin is uirkur, not ウイリクル.
+- Output ウイㇼクㇽ when the adjacent Latin is uirkur.
 - Output ウエウㇱ when the adjacent Latin is ueus.
 - Output ウエカㇻパレ when the adjacent Latin indicates uekarpare.
-
-Relevant small kana include: {AINU_SMALL_KANA}
 
 If the katakana looks ambiguous but the neighboring Latin transcription is clear, prefer the reading supported by the Latin transcription.
 """
@@ -67,10 +78,10 @@ If the katakana looks ambiguous but the neighboring Latin transcription is clear
 
 @dataclass
 class CropPadding:
-    left: int
-    top: int
-    right: int
-    bottom: int
+    left: float
+    top: float
+    right: float
+    bottom: float
 
 
 @dataclass
@@ -240,10 +251,18 @@ def write_status_file(path: Path, status: BenchmarkStatusFile) -> None:
     )
 
 
-def build_input_hashes(raw_image: Path) -> dict[str, str]:
+def build_input_hashes(cropped_page_image: Path) -> dict[str, str]:
     return {
         "pdf": file_sha256(PDF_PATH),
-        "raw_image": file_sha256(raw_image),
+        "cropped_page_image": file_sha256(cropped_page_image),
+    }
+
+
+def build_image_hashes(full_page_image: Path, cropped_page_image: Path) -> dict[str, str]:
+    return {
+        "pdf": file_sha256(PDF_PATH),
+        "full_page_image": file_sha256(full_page_image),
+        "cropped_page_image": file_sha256(cropped_page_image),
     }
 
 
@@ -465,43 +484,13 @@ def find_content_bounds(
 def detect_crop_box(
     image: Image.Image, crop_padding: CropPadding
 ) -> tuple[int, int, int, int] | None:
-    gray = ImageOps.grayscale(image)
-    binary = gray.point(
-        lambda px: 255 if px < CROP_BACKGROUND_THRESHOLD else 0,
-        mode="1",
+    left = max(0, round(image.width * crop_padding.left / 100))
+    top = max(0, round(image.height * crop_padding.top / 100))
+    right = min(image.width, image.width - round(image.width * crop_padding.right / 100))
+    bottom = min(
+        image.height,
+        image.height - round(image.height * crop_padding.bottom / 100),
     )
-    ink = binary.load()
-
-    row_counts = [
-        sum(1 for x in range(binary.width) if ink[x, y] != 0)
-        for y in range(binary.height)
-    ]
-    col_counts = [
-        sum(1 for y in range(binary.height) if ink[x, y] != 0)
-        for x in range(binary.width)
-    ]
-
-    row_bounds = find_content_bounds(
-        row_counts,
-        minimum_pixels=CROP_MIN_DARK_PIXELS_PER_ROW,
-        minimum_run=CROP_MIN_ROW_RUN,
-        strategy="outer",
-    )
-    col_bounds = find_content_bounds(
-        col_counts,
-        minimum_pixels=CROP_MIN_DARK_PIXELS_PER_COL,
-        minimum_run=CROP_MIN_COL_RUN,
-        strategy="largest",
-    )
-    if row_bounds is None or col_bounds is None:
-        return None
-
-    top, bottom = row_bounds
-    left, right = col_bounds
-    left = max(0, left - crop_padding.left + CROP_RANGE_ADJUST)
-    top = max(0, top - crop_padding.top + CROP_RANGE_ADJUST)
-    right = min(image.width, right + crop_padding.right - CROP_RANGE_ADJUST)
-    bottom = min(image.height, bottom + crop_padding.bottom - CROP_RANGE_ADJUST)
     if left >= right or top >= bottom:
         return None
     return left, top, right, bottom
@@ -511,6 +500,14 @@ def crop_image(source: Path, destination: Path, crop_box: tuple[int, int, int, i
     ensure_dir(destination.parent)
     with Image.open(source) as image:
         image.crop(crop_box).save(destination)
+
+
+def format_crop_box(crop_box: tuple[int, int, int, int]) -> str:
+    left, top, right, bottom = crop_box
+    return (
+        f"left={left}, top={top}, right={right}, bottom={bottom}, "
+        f"width={right - left}, height={bottom - top}"
+    )
 
 
 def parse_models(model_args: list[str] | None) -> list[ModelSpec]:
@@ -530,10 +527,10 @@ def build_benchmark_config(args: argparse.Namespace) -> BenchmarkConfig:
         models=models,
         prompt=str(config_value(args.prompt, file_config.get("prompt"), OCR_PROMPT)),
         crop_padding=CropPadding(
-            left=int(config_value(args.crop_pad_left, crop_config.get("left"), CROP_PADDING_LEFT)),
-            top=int(config_value(args.crop_pad_top, crop_config.get("top"), CROP_PADDING_TOP)),
-            right=int(config_value(args.crop_pad_right, crop_config.get("right"), CROP_PADDING_RIGHT)),
-            bottom=int(config_value(args.crop_pad_bottom, crop_config.get("bottom"), CROP_PADDING_BOTTOM)),
+            left=float(config_value(args.crop_pad_left, crop_config.get("left"), CROP_PADDING_LEFT)),
+            top=float(config_value(args.crop_pad_top, crop_config.get("top"), CROP_PADDING_TOP)),
+            right=float(config_value(args.crop_pad_right, crop_config.get("right"), CROP_PADDING_RIGHT)),
+            bottom=float(config_value(args.crop_pad_bottom, crop_config.get("bottom"), CROP_PADDING_BOTTOM)),
         ),
     )
 
@@ -662,14 +659,36 @@ def bench_pages(
         page_dir = BENCH_ROOT / f"page-{page:03d}"
         status_path = page_dir / "status.json"
         previous_status = read_status_file(status_path)
-        raw_image = page_dir / "images" / "raw.png"
-        render_page(page, raw_image, dpi)
+        full_page_image = page_dir / "images" / "full_page.png"
+        cropped_page_image = page_dir / "images" / "cropped_page.png"
+        render_page(page, full_page_image, dpi)
 
-        with Image.open(raw_image) as rendered:
+        with Image.open(full_page_image) as rendered:
+            rendered_size = rendered.size
             crop_box = detect_crop_box(rendered, crop_padding)
+        log_progress(
+            f"[page {page}] crop margins from config left={crop_padding.left:.2f}% top={crop_padding.top:.2f}% right={crop_padding.right:.2f}% bottom={crop_padding.bottom:.2f}%"
+        )
         if crop_box is not None:
-            log_progress(f"[page {page}] cropping raw")
-            crop_image(raw_image, raw_image, crop_box)
+            log_progress(
+                f"[page {page}] detected crop box on rendered {rendered_size[0]}x{rendered_size[1]}: {format_crop_box(crop_box)}"
+            )
+            log_progress(f"[page {page}] cropping full page image")
+            crop_image(full_page_image, cropped_page_image, crop_box)
+            with Image.open(cropped_page_image) as cropped:
+                cropped_size = cropped.size
+            log_progress(
+                f"[page {page}] wrote cropped page image {cropped_size[0]}x{cropped_size[1]} to {cropped_page_image}"
+            )
+        else:
+            log_progress(
+                f"[page {page}] crop detection found no content bounds; copying rendered page unchanged"
+            )
+            ensure_dir(cropped_page_image.parent)
+            shutil.copy2(full_page_image, cropped_page_image)
+            log_progress(
+                f"[page {page}] wrote uncropped page image {rendered_size[0]}x{rendered_size[1]} to {cropped_page_image}"
+            )
 
         current_status = BenchmarkStatusFile(
             page=page,
@@ -677,7 +696,7 @@ def bench_pages(
             crop_padding=crop_padding,
             crop_range_adjust=CROP_RANGE_ADJUST,
             prompt_hash=prompt_hash,
-            inputs=build_input_hashes(raw_image),
+            inputs=build_image_hashes(full_page_image, cropped_page_image),
             runs={},
         )
         write_status_file(status_path, current_status)
@@ -730,7 +749,7 @@ def bench_pages(
 
             try:
                 log_progress(f"[page {page}] running {model.id}")
-                result = run_llm_ocr(raw_image, model, prompt)
+                result = run_llm_ocr(cropped_page_image, model, prompt)
                 write_text(output_path, result.text)
                 record_run_status(
                     current_status,
@@ -768,10 +787,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dpi", type=int)
     parser.add_argument("--model", action="append", dest="models")
     parser.add_argument("--prompt")
-    parser.add_argument("--crop-pad-left", type=int)
-    parser.add_argument("--crop-pad-top", type=int)
-    parser.add_argument("--crop-pad-right", type=int)
-    parser.add_argument("--crop-pad-bottom", type=int)
+    parser.add_argument("--crop-pad-left", type=float)
+    parser.add_argument("--crop-pad-top", type=float)
+    parser.add_argument("--crop-pad-right", type=float)
+    parser.add_argument("--crop-pad-bottom", type=float)
     parser.add_argument(
         "--skip-ocr",
         action="store_true",
