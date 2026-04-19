@@ -1,0 +1,35 @@
+[benchmark]
+pages = [2, 68, 184, 334]
+dpi = 300
+models = [
+  "openai/gpt-5.4",
+  "openai/gpt-5.4-mini",
+  "anthropic/claude-4.5-haiku",
+  "gemini/gemini-3-flash",
+]
+prompt = """
+You are performing OCR on a scanned Japanese dictionary page containing Ainu written in katakana and adjacent Latin transliteration.
+
+Return only the recognized text in reading order.
+Preserve line breaks where they are visually meaningful.
+Do not add explanations, notes, or Markdown.
+Do not normalize away unusual characters.
+
+Important Ainu rule:
+Small katakana for final consonants are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+
+Examples:
+- Output ウイㇼクㇽ when the adjacent Latin is uirkur, not ウイリクル.
+- Output ウエウㇱ when the adjacent Latin is ueus.
+- Output ウエカㇻパレ when the adjacent Latin indicates uekarpare.
+
+Relevant small kana include: ㇰ ㇱ ㇲ ㇳ ㇴ ㇵ ㇶ ㇷ゚ ㇸ ㇹ ㇺ ㇻ ㇼ ㇽ ㇾ ㇿ
+
+If the katakana looks ambiguous but the neighboring Latin transcription is clear, prefer the reading supported by the Latin transcription.
+"""
+
+[benchmark.crop_padding]
+left = 23
+top = 36
+right = 23
+bottom = 50

@@ -8,12 +8,44 @@ This repository uses [aynumosir/ainu-corpora](https://huggingface.co/datasets/ay
 
 ## OCR Benchmark
 
-Benchmark sampled pages from the Nakagawa dictionary PDF with:
+Benchmark sampled pages from the Nakagawa dictionary PDF with multimodal LLMs:
 
 ```bash
-uv run python -m dictionary.nakagawa_ocr_benchmark --skip-ocr
+uv run python -m dictionary.nakagawa_ocr_benchmark
 ```
 
-Use `--skip-ocr` to render pages, preprocess them, and extract the existing ABBYY text layer only. Remove `--skip-ocr` after installing OCR backends such as `tesseract` and `paddleocr`.
+The default settings live in `dictionary/nakagawa_ocr_benchmark.toml`, including pages, models, prompt, and crop padding.
+
+CLI flags override the config file when needed. For example:
+
+```bash
+uv run python -m dictionary.nakagawa_ocr_benchmark \
+  --pages 2 68 184 334 \
+  --model openai/gpt-5.4 \
+  --model openai/gpt-5.4-mini \
+  --model anthropic/claude-4.5-haiku \
+  --model gemini/gemini-3-flash
+```
+
+Use an alternate config file with:
+
+```bash
+uv run python -m dictionary.nakagawa_ocr_benchmark --config path/to/benchmark.toml
+```
+
+The benchmark uses cropped raw page images only, writes one OCR file per model, skips successful reruns when the page image and prompt are unchanged, and generates `cost_report.md` / `cost_report.json` under `dictionary/output/nakagawa-ocr-benchmark/`.
+
+API keys can be provided in either `.env` at repo root or `dictionary/.env`; `dictionary/.env` overrides root values.
+
+Typical keys:
+
+```env
+OPENAI_API_KEY=...
+ANTHROPIC_API_KEY=...
+GOOGLE_API_KEY=...
+OPENROUTER_API_KEY=...
+```
+
+Use `--skip-ocr` to render and crop pages without calling any models.
 
 Outputs are written under `dictionary/output/nakagawa-ocr-benchmark/`, including `backend_status.json`, rendered page images, and per-backend OCR text files.

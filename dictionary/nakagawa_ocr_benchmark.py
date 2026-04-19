@@ -7,6 +7,7 @@ import json
 import os
 import shutil
 import subprocess
+import tomllib
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -19,6 +20,7 @@ from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 PDF_PATH = ROOT / "dictionary" / "input" / "nakagawa" / "アイヌ語千歳方言辞典.pdf"
 BENCH_ROOT = ROOT / "dictionary" / "output" / "nakagawa-ocr-benchmark"
+DEFAULT_CONFIG_PATH = ROOT / "dictionary" / "nakagawa_ocr_benchmark.toml"
 DEFAULT_PAGES = [2, 68, 184, 334]
 DEFAULT_MODELS = ["openai/gpt-5.4", "openai/gpt-5.4-mini"]
 TOTAL_PDF_PAGES = 455
@@ -93,6 +95,15 @@ class OCRRunResult:
     response_cost: float | None
 
 
+@dataclass
+class BenchmarkConfig:
+    pages: list[int]
+    dpi: int
+    models: list[ModelSpec]
+    prompt: str
+    crop_padding: CropPadding
+
+
 def run_command(
     command: list[str], *, cwd: Path | None = None
 ) -> subprocess.CompletedProcess[str]:
@@ -126,6 +137,21 @@ def string_sha256(value: str) -> str:
 
 def sanitize_model_id(model_id: str) -> str:
     return "".join(char if char.isalnum() or char in {"-", ".", "_"} else "_" for char in model_id)
+
+
+def read_config_file(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    with path.open("rb") as handle:
+        payload = tomllib.load(handle)
+    benchmark = payload.get("benchmark", {})
+    if not isinstance(benchmark, dict):
+        raise ValueError(f"Invalid benchmark config in {path}")
+    return benchmark
+
+
+def config_value(cli_value: Any, file_value: Any, default_value: Any) -> Any:
+    return cli_value if cli_value is not None else file_value if file_value is not None else default_value
 
 
 def load_env_files() -> None:
@@ -479,6 +505,26 @@ def parse_models(model_args: list[str] | None) -> list[ModelSpec]:
     return [ModelSpec(id=model_id) for model_id in model_ids]
 
 
+def build_benchmark_config(args: argparse.Namespace) -> BenchmarkConfig:
+    config_path = Path(args.config) if args.config is not None else DEFAULT_CONFIG_PATH
+    file_config = read_config_file(config_path)
+    crop_config = file_config.get("crop_padding", {}) if isinstance(file_config.get("crop_padding", {}), dict) else {}
+    pages = config_value(args.pages, file_config.get("pages"), DEFAULT_PAGES)
+    models = parse_models(config_value(args.models, file_config.get("models"), DEFAULT_MODELS))
+    return BenchmarkConfig(
+        pages=list(pages),
+        dpi=int(config_value(args.dpi, file_config.get("dpi"), 300)),
+        models=models,
+        prompt=str(config_value(args.prompt, file_config.get("prompt"), OCR_PROMPT)),
+        crop_padding=CropPadding(
+            left=int(config_value(args.crop_pad_left, crop_config.get("left"), CROP_PADDING_LEFT)),
+            top=int(config_value(args.crop_pad_top, crop_config.get("top"), CROP_PADDING_TOP)),
+            right=int(config_value(args.crop_pad_right, crop_config.get("right"), CROP_PADDING_RIGHT)),
+            bottom=int(config_value(args.crop_pad_bottom, crop_config.get("bottom"), CROP_PADDING_BOTTOM)),
+        ),
+    )
+
+
 def image_data_url(image_path: Path) -> str:
     encoded_image = base64.b64encode(image_path.read_bytes()).decode("ascii")
     return f"data:image/png;base64,{encoded_image}"
@@ -704,14 +750,15 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Benchmark multimodal LLM OCR on sampled Nakagawa pages."
     )
-    parser.add_argument("--pages", nargs="*", type=int, default=DEFAULT_PAGES)
-    parser.add_argument("--dpi", type=int, default=300)
+    parser.add_argument("--config")
+    parser.add_argument("--pages", nargs="*", type=int)
+    parser.add_argument("--dpi", type=int)
     parser.add_argument("--model", action="append", dest="models")
     parser.add_argument("--prompt")
-    parser.add_argument("--crop-pad-left", type=int, default=CROP_PADDING_LEFT)
-    parser.add_argument("--crop-pad-top", type=int, default=CROP_PADDING_TOP)
-    parser.add_argument("--crop-pad-right", type=int, default=CROP_PADDING_RIGHT)
-    parser.add_argument("--crop-pad-bottom", type=int, default=CROP_PADDING_BOTTOM)
+    parser.add_argument("--crop-pad-left", type=int)
+    parser.add_argument("--crop-pad-top", type=int)
+    parser.add_argument("--crop-pad-right", type=int)
+    parser.add_argument("--crop-pad-bottom", type=int)
     parser.add_argument(
         "--skip-ocr",
         action="store_true",
@@ -723,20 +770,14 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     load_env_files()
     args = parse_args()
-    crop_padding = CropPadding(
-        left=args.crop_pad_left,
-        top=args.crop_pad_top,
-        right=args.crop_pad_right,
-        bottom=args.crop_pad_bottom,
-    )
-    models = parse_models(args.models)
+    config = build_benchmark_config(args)
     bench_pages(
-        args.pages,
-        dpi=args.dpi,
+        config.pages,
+        dpi=config.dpi,
         skip_ocr=args.skip_ocr,
-        models=models,
-        crop_padding=crop_padding,
-        prompt=args.prompt or OCR_PROMPT,
+        models=config.models,
+        crop_padding=config.crop_padding,
+        prompt=config.prompt,
     )
     print(f"Wrote benchmark outputs to {BENCH_ROOT}")
 
