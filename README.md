@@ -21,10 +21,10 @@ CLI flags override the config file when needed. For example:
 ```bash
 uv run python -m dictionary.nakagawa_ocr_benchmark \
   --pages 2 68 184 334 \
-  --model openai/gpt-5.4 \
-  --model openai/gpt-5.4-mini \
-  --model anthropic/claude-4.5-haiku \
-  --model gemini/gemini-3-flash
+  --model openrouter/openai/gpt-5.4 \
+  --model openrouter/openai/gpt-5.4-mini \
+  --model openrouter/google/gemini-3-flash-preview \
+  --model openrouter/anthropic/claude-sonnet-4.6
 ```
 
 Use an alternate config file with:
@@ -45,6 +45,8 @@ ANTHROPIC_API_KEY=...
 GOOGLE_API_KEY=...
 OPENROUTER_API_KEY=...
 ```
+
+The checked-in benchmark config defaults to OpenRouter model IDs, so `OPENROUTER_API_KEY` is enough for the default run.
 
 Use `--skip-ocr` to render and crop pages without calling any models.
 

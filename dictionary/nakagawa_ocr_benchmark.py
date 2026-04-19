@@ -22,7 +22,16 @@ PDF_PATH = ROOT / "dictionary" / "input" / "nakagawa" / "アイヌ語千歳方�
 BENCH_ROOT = ROOT / "dictionary" / "output" / "nakagawa-ocr-benchmark"
 DEFAULT_CONFIG_PATH = ROOT / "dictionary" / "nakagawa_ocr_benchmark.toml"
 DEFAULT_PAGES = [2, 68, 184, 334]
-DEFAULT_MODELS = ["openai/gpt-5.4", "openai/gpt-5.4-mini"]
+DEFAULT_MODELS = [
+    "openrouter/openai/gpt-5.4",
+    "openrouter/openai/gpt-5.4-mini",
+    "openrouter/openai/gpt-5.4-nano",
+    "openrouter/google/gemini-3-flash-preview",
+    "openrouter/google/gemini-3.1-pro-preview",
+    "openrouter/anthropic/claude-sonnet-4.6",
+    "openrouter/x-ai/grok-4.20",
+    "openrouter/qwen/qwen3.5-27b",
+]
 TOTAL_PDF_PAGES = 455
 CROP_PADDING_LEFT = 23
 CROP_PADDING_TOP = 36
@@ -171,6 +180,10 @@ def provider_env_var_names(model_id: str) -> list[str]:
         return ["DEEPSEEK_API_KEY"]
     if provider == "openrouter":
         return ["OPENROUTER_API_KEY"]
+    if provider in {"x-ai", "xai"}:
+        return ["XAI_API_KEY"]
+    if provider == "qwen":
+        return []
     return []
 
 
