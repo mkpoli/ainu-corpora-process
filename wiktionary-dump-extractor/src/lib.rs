@@ -15,6 +15,7 @@ struct Entry {
 fn parse_wiktionary_dump(
     reader: BufReader<File>,
     writer: &mut BufWriter<File>,
+    lang_tgt: &str,
 ) -> std::io::Result<()> {
     let mut xml_reader = Reader::from_reader(reader);
     xml_reader.trim_text(true);
@@ -29,7 +30,12 @@ fn parse_wiktionary_dump(
     let mut ns = String::new();
     let mut text = String::new();
 
-    let regex = Regex::new(r"==[^=]*(?:\{\{(?:L\|ain|ain)\}\}|アイヌ語)[^=]*==").unwrap();
+    let regex_str = if lang_tgt == "en" {
+        r"==[^=]*Ainu[^=]*=="
+    } else {
+        r"==[^=]*(?:\{\{(?:L\|ain|ain)\}\}|アイヌ語)[^=]*=="
+    };
+    let regex = Regex::new(regex_str).unwrap();
 
     write!(writer, "[")?;
     let mut first = true;
@@ -110,7 +116,20 @@ fn extract_ainu_entries(input_path: &str, output_path: &str) -> PyResult<()> {
     let output_file = File::create(output_path)?;
     let mut writer = BufWriter::new(output_file);
 
-    parse_wiktionary_dump(reader, &mut writer)?;
+    parse_wiktionary_dump(reader, &mut writer, "ja")?;
+
+    Ok(())
+}
+
+#[pyfunction]
+fn extract_ainu_entries_en(input_path: &str, output_path: &str) -> PyResult<()> {
+    let input_file = File::open(input_path)?;
+    let reader = BufReader::new(input_file);
+
+    let output_file = File::create(output_path)?;
+    let mut writer = BufWriter::new(output_file);
+
+    parse_wiktionary_dump(reader, &mut writer, "en")?;
 
     Ok(())
 }
@@ -118,5 +137,6 @@ fn extract_ainu_entries(input_path: &str, output_path: &str) -> PyResult<()> {
 #[pymodule]
 fn wiktionary_dump_extractor(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(extract_ainu_entries, m)?)?;
+    m.add_function(wrap_pyfunction!(extract_ainu_entries_en, m)?)?;
     Ok(())
 }
