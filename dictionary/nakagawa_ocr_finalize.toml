@@ -1,0 +1,6 @@
+[finalize]
+compare_dir = "dictionary/output/nakagawa-ocr-compare"
+output_dir = "dictionary/output/nakagawa-ocr-final"
+review_dir = "dictionary/output/nakagawa-ocr-review"
+overrides_path = "dictionary/output/nakagawa-ocr-compare/manual_overrides.tsv"
+allow_unresolved_fallback = false

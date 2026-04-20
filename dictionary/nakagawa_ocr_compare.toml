@@ -1,0 +1,12 @@
+[compare]
+input_dir = "dictionary/output/nakagawa-ocr-prod"
+output_dir = "dictionary/output/nakagawa-ocr-compare"
+page_range = [17, 447]
+candidate_models = [
+  "openrouter/openai/gpt-5.4",
+  "openrouter/google/gemini-3-flash-preview",
+]
+preferred_tie_winner = "openrouter/openai/gpt-5.4"
+judge_model = "openrouter/openai/gpt-5.4-nano"
+judge_min_confidence = 0.75
+judge_max_tokens = 400

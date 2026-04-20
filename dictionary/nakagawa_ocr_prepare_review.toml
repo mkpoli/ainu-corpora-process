@@ -1,0 +1,4 @@
+[review]
+compare_dir = "dictionary/output/nakagawa-ocr-compare"
+output_dir = "dictionary/output/nakagawa-ocr-review"
+all_pages = false
