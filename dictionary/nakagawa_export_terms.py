@@ -34,6 +34,10 @@ def normalize_spaces(text: str) -> str:
     return re.sub(r"[ \t]+", " ", text.replace("　", " ")).strip()
 
 
+def flatten_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text.replace("　", " ")).strip()
+
+
 def is_indented(line: str) -> bool:
     return bool(line) and line[0] in {" ", "　", "\t"}
 
@@ -139,7 +143,7 @@ def extract_entries(text: str, offsets: list[tuple[int, int]]) -> list[Entry]:
             continue
         description_start = match.end()
         description_end = matches[match_index + 1].start() if match_index + 1 < len(matches) else len(text)
-        description = normalize_spaces(text[description_start:description_end])
+        description = flatten_text(text[description_start:description_end])
         if not description:
             continue
         entries.append(
