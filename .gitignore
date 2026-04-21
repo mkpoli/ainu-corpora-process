@@ -1,5 +1,7 @@
 **/output/
 
+dictionary/input/nakagawa/*.pdf
+
 .env
 
 # Byte-compiled / optimized / DLL files
