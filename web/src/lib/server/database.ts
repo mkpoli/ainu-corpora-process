@@ -1,11 +1,5 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { Entry } from '$lib/types';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATABASE_PATH = path.resolve(__dirname, '../../../../morpheme_db/output/morpheme_database.json');
-const SEED_FALLBACK_PATH = path.resolve(__dirname, '../../../../morpheme_db/seed/morphemes.json');
+import bundled from '$lib/data/morpheme_database.json';
 
 interface DatabaseSnapshot {
 	entries: Entry[];
@@ -19,16 +13,6 @@ interface DatabaseSnapshot {
 	// the lemma stripped of attachment markers, plus markered variants when
 	// they're meaningfully distinct.
 	segmentationKeys: string[];
-	// File timestamp, so callers can decide to refresh.
-	mtimeMs: number;
-}
-
-let cache: DatabaseSnapshot | null = null;
-let cachedSource: string | null = null;
-
-async function readJson(filePath: string): Promise<Entry[]> {
-	const raw = await fs.readFile(filePath, 'utf-8');
-	return JSON.parse(raw) as Entry[];
 }
 
 function buildIndex(entries: Entry[]): {
@@ -53,38 +37,27 @@ function buildIndex(entries: Entry[]): {
 		for (const key of keys) {
 			if (!key) continue;
 			if (!byKey.has(key)) byKey.set(key, entry);
-			// For greedy segmentation we want the bare form (no attachment
-			// markers), because that's what appears inside compounds.
 			const stripped = key.replace(/^[-=]+|[-=]+$/g, '');
 			if (stripped.length >= 1) segmentationSet.add(stripped);
 		}
 	}
 
-	const segmentationKeys = [...segmentationSet].sort((a, b) => b.length - a.length || a.localeCompare(b));
+	const segmentationKeys = [...segmentationSet].sort(
+		(a, b) => b.length - a.length || a.localeCompare(b)
+	);
 	return { byKey, byId, segmentationKeys };
 }
 
+// Built once per worker / dev-server boot. The JSON is statically imported so
+// it lives inside the bundle — important for Cloudflare Workers, which has no
+// filesystem at runtime.
+let cache: DatabaseSnapshot | null = null;
+
 export async function loadDatabase(): Promise<DatabaseSnapshot> {
-	let source = DATABASE_PATH;
-	let stat;
-	try {
-		stat = await fs.stat(DATABASE_PATH);
-	} catch {
-		stat = null;
-	}
-	if (!stat) {
-		source = SEED_FALLBACK_PATH;
-		stat = await fs.stat(source);
-	}
-
-	if (cache && cachedSource === source && cache.mtimeMs === stat.mtimeMs) {
-		return cache;
-	}
-
-	const entries = await readJson(source);
+	if (cache) return cache;
+	const entries = bundled as Entry[];
 	const { byKey, byId, segmentationKeys } = buildIndex(entries);
-	cache = { entries, byKey, byId, segmentationKeys, mtimeMs: stat.mtimeMs };
-	cachedSource = source;
+	cache = { entries, byKey, byId, segmentationKeys };
 	return cache;
 }
 
