@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import type { CompositionNode } from './types';
+	import { valencyDelta } from './composition';
 	import ValencyFrame from './ValencyFrame.svelte';
 	import CompositionTree from './CompositionTree.svelte';
 
@@ -61,6 +62,18 @@
 			{/if}
 			{#if node.entry?.morph_type}
 				<span class="text-[10px] uppercase tracking-wider opacity-70">{node.entry.morph_type}</span>
+			{/if}
+			{#if node.entry}
+				{@const delta = valencyDelta(node.entry)}
+				{#if delta !== null && delta !== 0}
+					<span
+						class="rounded-full px-1.5 py-[1px] font-mono text-[10px] font-semibold
+							{delta > 0 ? 'bg-leaf/15 text-leaf' : 'bg-accent/15 text-accent'}"
+						title="arity change applied by this morpheme"
+					>
+						{delta > 0 ? `+${delta}` : delta}
+					</span>
+				{/if}
 			{/if}
 		</button>
 	{:else}

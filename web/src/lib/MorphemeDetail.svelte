@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
+	import { valencyDelta } from './composition';
 	import type { Entry } from './types';
 	import ValencyFrame from './ValencyFrame.svelte';
 
@@ -45,8 +46,19 @@
 		</header>
 
 		{#if entry.base_frame || entry.rules.length}
+			{@const delta = valencyDelta(entry)}
 			<section class="flex flex-col gap-2">
-				<h3 class="text-xs font-semibold uppercase tracking-widest text-ink/60">{m.detail_valency()}</h3>
+				<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
+					{m.detail_valency()}
+					{#if delta !== null && delta !== 0}
+						<span
+							class="rounded-full px-1.5 py-[1px] font-mono text-[10px] normal-case
+								{delta > 0 ? 'bg-leaf/15 text-leaf' : 'bg-accent/15 text-accent'}"
+						>
+							{delta > 0 ? `+${delta}` : delta}
+						</span>
+					{/if}
+				</h3>
 				{#if entry.base_frame}
 					<div class="flex flex-col gap-2">
 						<span class="text-xs text-ink/60">{m.detail_base_frame()}</span>
