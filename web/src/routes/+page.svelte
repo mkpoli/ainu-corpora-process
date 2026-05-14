@@ -15,9 +15,11 @@
 
 	// data.query refreshes via SvelteKit's data prop after navigation. Keep
 	// the input field in sync when the user picks a demo button or arrives
-	// via a permalink with ?q=… set.
+	// via a permalink with ?q=… set. When the page renders the default
+	// example (no explicit query), surface that in the field too so the
+	// user can edit it directly.
 	$effect(() => {
-		inputValue = data.query;
+		inputValue = data.query || data.resolvedQuery;
 	});
 
 	// Auto-select the head of the tree on first render of a new query so the

@@ -8,9 +8,15 @@ interface SuggestionsBuckets {
 	compounds: Entry[];
 }
 
+const DEFAULT_EXAMPLE = 'e-yay-ko-si-ram-suy-pa';
+
 export const load: PageServerLoad = async ({ url }) => {
 	const db = await loadDatabase();
-	const q = url.searchParams.get('q')?.trim() ?? '';
+	// If no explicit query is supplied, fall back to the paper's signature
+	// polysynthetic example so the empty state actually showcases the tree.
+	const explicitQ = url.searchParams.get('q')?.trim() ?? '';
+	const q = explicitQ || DEFAULT_EXAMPLE;
+	const isDefault = !explicitQ;
 
 	const composition: CompositionResult | null = q
 		? compose(q, { byKey: db.byKey, segmentationKeys: db.segmentationKeys })
@@ -53,7 +59,9 @@ export const load: PageServerLoad = async ({ url }) => {
 	};
 
 	return {
-		query: q,
+		query: explicitQ,
+		resolvedQuery: q,
+		isDefault,
 		composition,
 		detailEntries,
 		otherUses,
@@ -69,16 +77,18 @@ export const load: PageServerLoad = async ({ url }) => {
 };
 
 function pickSamples(entries: Entry[]): string[] {
-	// Curated demo queries that showcase the tree.
+	// Curated demo queries that showcase the tree, with the paper's
+	// signature polysynthetic example up front.
 	const demos = [
-		'nukar',
-		'nukar-e',
+		'e-yay-ko-si-ram-suy-pa',
 		'si-nukar-e',
+		'yay-ko-nukar',
+		'nukar-e',
 		'yay-nukar',
 		'i-nukar',
 		'nukar-yar',
-		'yay-ko-nukar',
-		'cep koyki'
+		'cep koyki',
+		'nukar'
 	];
 	// Drop any that don't resolve in the current DB to anything.
 	const byKey = new Set<string>();
