@@ -77,9 +77,9 @@ export const load: PageServerLoad = async ({ url }) => {
 };
 
 export interface WordFamily {
-	title: string;
-	gloss_en: string;
-	gloss_jp: string;
+	// Optional anchor (the morpheme the row is built around). Not shown as a
+	// caption — only used as a stable key on the client side.
+	key: string;
 	examples: string[];
 }
 
@@ -94,61 +94,32 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 		demo
 			.split(/[\s-]+/)
 			.filter(Boolean)
-			.some((tok) => byKey.has(tok) || byKey.has(tok.replace(/^[-=]+|[-=]+$/g, '')));
+			.every((tok) => byKey.has(tok) || byKey.has(tok.replace(/^[-=]+|[-=]+$/g, '')));
 
+	// Hand-picked rows of attested forms only. Every entry below either
+	// appears in the paper (sections introduction / system / database /
+	// compute) or is curated in morpheme_db/seed/morphemes.json. We avoid
+	// listing single-morpheme heads (which are not compositions) and we
+	// avoid productive forms that aren't recorded as attested Ainu words.
 	const families: WordFamily[] = [
 		{
-			title: 'nukar',
-			gloss_en: '“see” — derivations',
-			gloss_jp: '「見る」 の派生',
-			examples: ['nukar', 'inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar', 'i-nukar', 'yay-ko-nukar', 'nukar-yar']
+			key: 'nukar',
+			// Worked example from system.typ §2.1 + the curated inkar reduction.
+			examples: ['inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar']
 		},
 		{
-			title: 'ku',
-			gloss_en: '“drink” — fused indef object',
-			gloss_jp: '「飲む」 と i-ku の縮約',
-			examples: ['ku', 'iku', 'i-ku']
+			key: 'koyki',
+			// Noun-incorporation example cited in system.typ.
+			examples: ['cep koyki']
 		},
 		{
-			title: 'kor',
-			gloss_en: '“have” — applicative & indef',
-			gloss_jp: '「持つ」 への ko-/i- 派生',
-			examples: ['kor', 'i-kor', 'ko-kor', 'yay-kor']
+			key: 'iku',
+			// Curated phonological reduction (i- + ku).
+			examples: ['iku']
 		},
 		{
-			title: 'ki',
-			gloss_en: '“do” — light verb compounds',
-			gloss_jp: '「する」 軽動詞構文',
-			examples: ['ki', 'i-ki', 'ki-yar', 'si-ki']
-		},
-		{
-			title: 'ye',
-			gloss_en: '“say” — quotative compounds',
-			gloss_jp: '「言う」 引用関連',
-			examples: ['ye', 'ko-ye', 'e-ye', 'i-ye', 'ye-yar']
-		},
-		{
-			title: 'an / oka',
-			gloss_en: '“be (sg/pl)” — suppletion',
-			gloss_jp: '「ある」 単複の補充',
-			examples: ['an', 'oka']
-		},
-		{
-			title: 'arpa / paye',
-			gloss_en: '“go (sg/pl)” — suppletion',
-			gloss_jp: '「行く」 単複の補充',
-			examples: ['arpa', 'paye']
-		},
-		{
-			title: 'cep koyki',
-			gloss_en: 'noun incorporation',
-			gloss_jp: '名詞抱合',
-			examples: ['cep koyki', 'koyki', 'cep']
-		},
-		{
-			title: 'paper example',
-			gloss_en: 'polysynthetic compound from §1',
-			gloss_jp: '第 1 節の複合形',
+			key: 'polysynthetic',
+			// The paper's headline example (introduction.typ §1).
 			examples: ['e-yay-ko-si-ram-suy-pa']
 		}
 	];
