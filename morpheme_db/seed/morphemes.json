@@ -230,6 +230,19 @@
     "notes": "Plural counterpart of arpa."
   },
   {
+    "id": "payoka",
+    "lemma": "payoka",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["paye", "oka"],
+    "composition_note": "Lexicalised fusion of paye + oka (go.PL + exist.PL); synchronically a one-argument verb meaning 'walk around (plural subject)'.",
+    "glosses_en": ["walk around (plural)"],
+    "glosses_jp": ["（複数で）歩き回る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
     "id": "-e",
     "lemma": "-e",
     "allomorphs": ["-e", "-re", "-te"],
