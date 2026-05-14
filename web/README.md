@@ -74,8 +74,7 @@ re-running NINJAL extraction.
 ## Deploying to Cloudflare Workers
 
 The app builds with `@sveltejs/adapter-cloudflare` and deploys as a single
-Worker with the bundled JSON as a static module — no runtime filesystem
-access required. The custom domain `mdb.aynu.org` is configured in
+Worker. The custom domain `mdb.aynu.org` is configured in
 `wrangler.jsonc`; `workers_dev = false` so the `*.workers.dev` preview URL
 is disabled.
 
@@ -87,11 +86,44 @@ bunx wrangler login
 bun run deploy
 ```
 
-The `predev` / `prebuild` hooks copy
-`../morpheme_db/output/morpheme_database.json` into
-`src/lib/data/morpheme_database.json` so the latest data goes into the
-Worker bundle. Re-run `uv run python -m morpheme_db.cli build` first if
-you've edited the seed or the NINJAL extractor.
+### Data: bundled JSON (default) vs D1 (recommended for production)
+
+Two data sources are supported by `src/lib/server/database.ts`:
+
+1. **Bundled JSON** — `src/lib/data/morpheme_database.json` is imported
+   statically and bundled into the Worker. The
+   `predev` / `prebuild` hooks copy
+   `../morpheme_db/output/morpheme_database.json` here automatically.
+   This is what runs locally and is the fallback in production when no
+   D1 binding is present. Re-run
+   `uv run python -m morpheme_db.cli build` to refresh the data.
+
+2. **Cloudflare D1** — if `platform.env.DB` is bound, the loader reads
+   from the D1 `entries` table on cold start instead. To publish a new
+   snapshot:
+
+   ```sh
+   bun run publish:d1     # creates a new ainu-mdb-<UTC-timestamp> db
+                          # and imports the SQL dump from morpheme_db
+   bun run deploy
+   ```
+
+   The `publish:d1` script (see `scripts/publish-d1.mjs`):
+
+   - Re-runs `python -m morpheme_db.export_sqlite` to regenerate
+     `morpheme_db/output/morpheme_database.sql`.
+   - Mints a fresh D1 database `ainu-mdb-YYYYMMDD-HHMM` (UTC).
+   - Imports the SQL dump via `wrangler d1 execute --remote --file=…`.
+   - Rewrites the `d1_databases` block in `wrangler.jsonc` to point at
+     the new database, leaving the previous one available as a
+     rollback target.
+
+   Every publish creates a new database rather than overwriting the
+   previous one — following Cloudflare's import/export guidance
+   ([docs](https://developers.cloudflare.com/d1/best-practices/import-export-data/)).
+   The `d1_databases` block in `wrangler.jsonc` is commented out by
+   default so a freshly cloned checkout works without D1 credentials;
+   `publish:d1` activates and populates it on first run.
 
 You can verify the bundle without uploading via `bunx wrangler deploy
 --dry-run --outdir /tmp/wrangler-dry`.
