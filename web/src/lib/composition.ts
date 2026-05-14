@@ -115,42 +115,92 @@ function resolveToken(token: string, byKey: Map<string, Entry>): Entry | null {
 	return null;
 }
 
-// Greedy longest-match segmentation against the known morpheme set.
-function segmentGreedy(
+// Best-scoring segmentation against the known morpheme inventory.
+//
+// The naïve "longest-first match" is wrong for cases like `sinukare`, where
+// `sinu` is a valid morpheme but the right parse is `si-, nukar, -e`. We do
+// a small dynamic-programming search over all valid segmentations, then
+// score each candidate so that parses including a verb head outrank parses
+// that don't, parses with more recognised affixes outrank shorter ones,
+// and shorter unresolved spans outrank longer ones.
+function segmentBest(
 	text: string,
-	keys: string[]
+	keys: string[],
+	byKey: Map<string, Entry>
 ): { segments: string[]; unresolved: string[] } {
-	const segments: string[] = [];
-	const unresolved: string[] = [];
-	let cursor = 0;
 	const cleaned = text.toLowerCase();
-	const buffer: string[] = [];
-	const flushBuffer = () => {
-		if (buffer.length) {
-			unresolved.push(buffer.join(''));
-			buffer.length = 0;
-		}
+	const n = cleaned.length;
+	if (!n) return { segments: [], unresolved: [] };
+
+	type Parse = {
+		segments: string[];
+		unresolved: string[];
+		hasHead: boolean;
+		recognised: number;
+		score: number;
 	};
-	while (cursor < cleaned.length) {
-		let matched: string | null = null;
-		for (const key of keys) {
-			if (key.length > cleaned.length - cursor) continue;
-			if (cleaned.startsWith(key, cursor)) {
-				matched = key;
-				break;
+
+	const keysByPrefixLength = [...keys].sort((a, b) => b.length - a.length);
+
+	// best[i] = best parse covering cleaned[0..i]
+	const best: (Parse | null)[] = new Array(n + 1).fill(null);
+	best[0] = { segments: [], unresolved: [], hasHead: false, recognised: 0, score: 0 };
+
+	const scoreOf = (p: Parse): number => {
+		// Big bonus for a head with a base_frame — pins the analysis onto a
+		// real verb root. Then reward recognised characters, then penalise
+		// leftover characters.
+		const headBonus = p.hasHead ? 1000 : 0;
+		const unresolvedChars = p.unresolved.reduce((sum, u) => sum + u.length, 0);
+		return headBonus + p.recognised * 10 - unresolvedChars * 5 - p.segments.length;
+	};
+
+	const extend = (prev: Parse, atEnd: number, addSegment: string | null, addChar: string | null): Parse => {
+		const segments = [...prev.segments];
+		const unresolved = [...prev.unresolved];
+		let hasHead = prev.hasHead;
+		let recognised = prev.recognised;
+		if (addSegment) {
+			segments.push(addSegment);
+			recognised += addSegment.length;
+			// Resolve the segment against any registered key variant.
+			const entry = resolveToken(addSegment, byKey);
+			if (entry?.base_frame) hasHead = true;
+		} else if (addChar) {
+			if (unresolved.length && segments.length === 0) {
+				// Run of unresolved chars at the start: keep appending.
+				unresolved[unresolved.length - 1] += addChar;
+			} else if (unresolved.length && atEnd === prev.segments.length) {
+				unresolved[unresolved.length - 1] += addChar;
+			} else {
+				unresolved.push(addChar);
 			}
 		}
-		if (matched) {
-			flushBuffer();
-			segments.push(matched);
-			cursor += matched.length;
-		} else {
-			buffer.push(cleaned[cursor]);
-			cursor += 1;
+		const next: Parse = { segments, unresolved, hasHead, recognised, score: 0 };
+		next.score = scoreOf(next);
+		return next;
+	};
+
+	for (let i = 0; i < n; i += 1) {
+		const here = best[i];
+		if (!here) continue;
+		// Option A: skip an unrecognised character.
+		const skipNext = extend(here, here.segments.length, null, cleaned[i]);
+		if (!best[i + 1] || skipNext.score > best[i + 1]!.score) best[i + 1] = skipNext;
+		// Option B: consume a known morpheme.
+		for (const key of keysByPrefixLength) {
+			if (key.length > n - i) continue;
+			if (cleaned.startsWith(key, i)) {
+				const candidate = extend(here, here.segments.length, key, null);
+				const target = i + key.length;
+				if (!best[target] || candidate.score > best[target]!.score) best[target] = candidate;
+			}
 		}
 	}
-	flushBuffer();
-	return { segments, unresolved };
+
+	const final = best[n];
+	if (!final) return { segments: [], unresolved: [text] };
+	return { segments: final.segments, unresolved: final.unresolved.filter(Boolean) };
 }
 
 // --- Splitting user input -------------------------------------------------
@@ -358,7 +408,7 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 		fusedRoot = directMatch;
 		source = 'composition';
 	} else if (directMatch && !looksCompound) {
-		const seg = segmentGreedy(directMatch.lemma.replace(/^[-=]+|[-=]+$/g, ''), index.segmentationKeys);
+		const seg = segmentBest(directMatch.lemma.replace(/^[-=]+|[-=]+$/g, ''), index.segmentationKeys, index.byKey);
 		if (seg.segments.length >= 2 && seg.unresolved.length === 0) {
 			tokens = seg.segments;
 			matched = tokens.map((t) => ({ token: t, entry: resolveToken(t, index.byKey) }));
@@ -371,7 +421,7 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	} else {
 		tokens = splitInput(raw);
 		if (tokens.length === 1 && !directMatch) {
-			const seg = segmentGreedy(tokens[0].toLowerCase(), index.segmentationKeys);
+			const seg = segmentBest(tokens[0].toLowerCase(), index.segmentationKeys, index.byKey);
 			if (seg.segments.length >= 1) {
 				tokens = seg.segments;
 				unresolved = seg.unresolved;
