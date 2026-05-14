@@ -52,10 +52,7 @@
 				<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
 					{m.detail_valency()}
 					{#if delta !== null && delta !== 0}
-						<span
-							class="rounded-full px-1.5 py-[1px] font-mono text-[10px] normal-case
-								{delta > 0 ? 'bg-leaf/15 text-leaf' : 'bg-accent/15 text-accent'}"
-						>
+						<span class="font-mono text-[10px] normal-case text-ink/70">
 							{delta > 0 ? `+${delta}` : delta}
 						</span>
 					{/if}
