@@ -18,6 +18,11 @@ from pathlib import Path
 
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
 from morpheme_db.ingest_wiktionary import enrich_with_wiktionary, load_json_dict
+from morpheme_db.ingest_tommy1949 import (
+    ingest_tommy1949,
+    load_decomposed as load_tommy_decomposed,
+    load_glosses as load_tommy_glosses,
+)
 from morpheme_db.ingest_wiktionary_compositions import (
     ingest_wiktionary_compositions,
     load_compositions,
@@ -35,6 +40,8 @@ WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_o
 WIKT_COMPOSITIONS_PATH = (
     REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_word_compositions.json"
 )
+TOMMY_DECOMP_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_decomposed_words.json"
+TOMMY_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_aynudictionary_glosses.json"
 OUTPUT_DIR = REPO_ROOT / "morpheme_db" / "output"
 
 
@@ -108,6 +115,8 @@ def build(
     wikt_en_gloss_path: Path | None = WIKT_EN_GLOSS_PATH,
     wikt_ja_pos_path: Path | None = WIKT_JA_POS_PATH,
     wikt_compositions_path: Path | None = WIKT_COMPOSITIONS_PATH,
+    tommy_decomp_path: Path | None = TOMMY_DECOMP_PATH,
+    tommy_gloss_path: Path | None = TOMMY_GLOSS_PATH,
     output_dir: Path = OUTPUT_DIR,
 ) -> tuple[list[Entry], dict[str, int]]:
     seed = load_entries(seed_path)
@@ -122,12 +131,32 @@ def build(
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
 
-    counters = {"compositions_attached": 0, "compositions_skipped": 0}
+    counters = {
+        "wikt_compositions_attached": 0,
+        "wikt_compositions_skipped": 0,
+        "tommy_compositions_attached": 0,
+        "tommy_compositions_skipped": 0,
+        "tommy_new_entries": 0,
+        "tommy_glosses_added": 0,
+    }
     if wikt_compositions_path and wikt_compositions_path.exists():
         comps = load_compositions(wikt_compositions_path)
         entries, attached, skipped = ingest_wiktionary_compositions(entries, comps)
-        counters["compositions_attached"] = attached
-        counters["compositions_skipped"] = skipped
+        counters["wikt_compositions_attached"] = attached
+        counters["wikt_compositions_skipped"] = skipped
+
+    if tommy_decomp_path and tommy_decomp_path.exists():
+        decomp = load_tommy_decomposed(tommy_decomp_path)
+        tommy_gl = (
+            load_tommy_glosses(tommy_gloss_path)
+            if tommy_gloss_path and tommy_gloss_path.exists()
+            else {}
+        )
+        entries, tc = ingest_tommy1949(entries, decomp, tommy_gl)
+        counters["tommy_compositions_attached"] = tc["compositions_attached"]
+        counters["tommy_compositions_skipped"] = tc["compositions_skipped"]
+        counters["tommy_new_entries"] = tc["new_entries"]
+        counters["tommy_glosses_added"] = tc["glosses_added"]
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
@@ -178,6 +207,23 @@ def main(argv: list[str] | None = None) -> int:
         help="Skip Wiktionary enrichment.",
     )
     parser.add_argument(
+        "--tommy-decomp",
+        type=Path,
+        default=TOMMY_DECOMP_PATH,
+        help="Tommy 1949 decomposed-words JSON (optional).",
+    )
+    parser.add_argument(
+        "--tommy-gloss",
+        type=Path,
+        default=TOMMY_GLOSS_PATH,
+        help="Tommy 1949 gloss JSON (optional).",
+    )
+    parser.add_argument(
+        "--no-tommy",
+        action="store_true",
+        help="Skip Tommy 1949 enrichment.",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=OUTPUT_DIR,
@@ -190,6 +236,8 @@ def main(argv: list[str] | None = None) -> int:
     wikt_en = None if args.no_wiktionary else args.wikt_en
     wikt_pos = None if args.no_wiktionary else args.wikt_ja_pos
     wikt_comps = None if args.no_wiktionary else args.wikt_compositions
+    tommy_decomp = None if args.no_tommy else args.tommy_decomp
+    tommy_gloss = None if args.no_tommy else args.tommy_gloss
     entries, counters = build(
         seed_path=args.seed,
         ninjal_path=ninjal_path,
@@ -197,6 +245,8 @@ def main(argv: list[str] | None = None) -> int:
         wikt_en_gloss_path=wikt_en,
         wikt_ja_pos_path=wikt_pos,
         wikt_compositions_path=wikt_comps,
+        tommy_decomp_path=tommy_decomp,
+        tommy_gloss_path=tommy_gloss,
         output_dir=args.output_dir,
     )
 
@@ -208,9 +258,13 @@ def main(argv: list[str] | None = None) -> int:
         f"Wrote {len(entries)} entries to {args.output_dir} "
         f"({verified} curated, {len(entries) - verified} unverified; "
         f"{with_category} with category, {with_frame} with valency frame, "
-        f"{with_composition} with composition; "
-        f"wiktionary compositions attached={counters['compositions_attached']} "
-        f"skipped={counters['compositions_skipped']})."
+        f"{with_composition} with composition).\n"
+        f"  Wiktionary compositions: attached={counters['wikt_compositions_attached']} "
+        f"skipped={counters['wikt_compositions_skipped']}\n"
+        f"  Tommy 1949: attached={counters['tommy_compositions_attached']} "
+        f"new={counters['tommy_new_entries']} "
+        f"glosses_added={counters['tommy_glosses_added']} "
+        f"skipped={counters['tommy_compositions_skipped']}"
     )
     return 0
 
