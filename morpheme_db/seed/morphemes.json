@@ -425,6 +425,12 @@
     "morph_type": "root",
     "composition": ["cep", "koyki"],
     "composition_note": "Noun-incorporation compound: cep (fish) is incorporated as the patient of koyki, leaving a one-argument verb 'to catch fish'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "魚を獲る人"},
+        {"role": "patient", "realization": "internal_incorp", "label_jp": "魚"}
+      ]
+    },
     "glosses_en": ["catch fish", "fish"],
     "glosses_jp": ["魚を獲る", "魚とりをする"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
@@ -451,6 +457,12 @@
     "morph_type": "root",
     "composition": ["ninjal:aynu", "koyki"],
     "composition_note": "Noun-incorporation compound: aynu (person) is incorporated as the patient of koyki, yielding 'attack people'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "襲う人"},
+        {"role": "patient", "realization": "internal_incorp", "label_jp": "人"}
+      ]
+    },
     "glosses_en": ["attack people"],
     "glosses_jp": ["人を襲う"],
     "sources": ["田村1996アイヌ語沙流方言辞典"],
@@ -464,6 +476,12 @@
     "morph_type": "root",
     "composition": ["ninjal:cikap", "koyki"],
     "composition_note": "Noun-incorporation compound: cikap (bird) + koyki → 'to shoot/catch birds'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "鳥を打つ人"},
+        {"role": "patient", "realization": "internal_incorp", "label_jp": "鳥"}
+      ]
+    },
     "glosses_en": ["catch birds", "shoot birds"],
     "glosses_jp": ["鳥を打つ", "鳥打ちをする"],
     "sources": ["田村1996アイヌ語沙流方言辞典"],
