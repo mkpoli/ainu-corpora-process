@@ -11,6 +11,17 @@
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
+	// Cloudflare D1 binding for the morpheme database. The `database_name`
+	// and `database_id` fields are rewritten by `bun run publish:d1`, which
+	// mints a new datetime-suffixed database on each publish and imports the
+	// SQL dump produced by `python -m morpheme_db.export_sqlite`.
+	// "d1_databases": [
+	// 	{
+	// 		"binding": "DB",
+	// 		"database_name": "ainu-mdb-PENDING",
+	// 		"database_id": "PENDING"
+	// 	}
+	// ],
 	"routes": [
 		{
 			"pattern": "mdb.aynu.org",

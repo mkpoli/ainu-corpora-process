@@ -10,8 +10,8 @@ interface SuggestionsBuckets {
 
 const DEFAULT_EXAMPLE = 'e-yay-ko-si-ram-suy-pa';
 
-export const load: PageServerLoad = async ({ url }) => {
-	const db = await loadDatabase();
+export const load: PageServerLoad = async ({ url, platform }) => {
+	const db = await loadDatabase(platform);
 	// If no explicit query is supplied, fall back to the paper's signature
 	// polysynthetic example so the empty state actually showcases the tree.
 	const explicitQ = url.searchParams.get('q')?.trim() ?? '';

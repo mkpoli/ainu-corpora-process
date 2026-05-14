@@ -13,6 +13,7 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"publish:d1": "node scripts/publish-d1.mjs",
 		"deploy": "bun run build && wrangler deploy"
 	},
 	"devDependencies": {
