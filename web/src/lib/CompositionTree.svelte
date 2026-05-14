@@ -67,8 +67,7 @@
 				{@const delta = valencyDelta(node.entry)}
 				{#if delta !== null && delta !== 0}
 					<span
-						class="rounded-full px-1.5 py-[1px] font-mono text-[10px] font-semibold
-							{delta > 0 ? 'bg-leaf/15 text-leaf' : 'bg-accent/15 text-accent'}"
+						class="font-mono text-[10px] font-semibold opacity-75"
 						title="arity change applied by this morpheme"
 					>
 						{delta > 0 ? `+${delta}` : delta}
