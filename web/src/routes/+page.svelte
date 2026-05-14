@@ -179,8 +179,8 @@
 					</p>
 				{/if}
 
-				<div class="overflow-x-auto pt-2">
-					<div class="mx-auto inline-flex justify-center">
+				<div class="flex justify-center overflow-x-auto pt-2">
+					<div class="mx-auto flex justify-center px-4">
 						<CompositionTree
 							node={data.composition.tree}
 							{selectedId}
