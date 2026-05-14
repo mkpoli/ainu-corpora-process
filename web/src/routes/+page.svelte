@@ -119,29 +119,20 @@
 		</form>
 
 		{#if data.families.length}
-			{@const localeIsJa = m.locale_label() === '言語'}
-			<section class="flex flex-col gap-2">
+			<section class="flex flex-col gap-1.5">
 				<span class="text-[10px] uppercase tracking-widest text-ink/60">{m.try_label()}</span>
 				<ul class="flex flex-col gap-1.5">
-					{#each data.families as family}
-						<li class="flex flex-wrap items-center gap-2">
-							<span class="inline-flex min-w-[7.5rem] flex-col">
-								<span class="font-mono text-xs text-ink/85">{family.title}</span>
-								<span class="text-[11px] italic text-ink/50">
-									{localeIsJa ? family.gloss_jp : family.gloss_en}
-								</span>
-							</span>
-							<span class="flex flex-wrap items-center gap-1.5">
-								{#each family.examples as demo}
-									<button
-										type="button"
-										onclick={() => pickDemo(demo)}
-										class="rounded-full bg-paper px-2.5 py-0.5 font-mono text-xs ring-1 ring-rule transition hover:bg-accent-soft hover:ring-accent/40"
-									>
-										{demo}
-									</button>
-								{/each}
-							</span>
+					{#each data.families as family (family.key)}
+						<li class="flex flex-wrap items-center gap-1.5">
+							{#each family.examples as demo}
+								<button
+									type="button"
+									onclick={() => pickDemo(demo)}
+									class="rounded-full bg-paper px-2.5 py-0.5 font-mono text-xs ring-1 ring-rule transition hover:bg-accent-soft hover:ring-accent/40"
+								>
+									{demo}
+								</button>
+							{/each}
 						</li>
 					{/each}
 				</ul>
