@@ -11,7 +11,8 @@
 	let { data }: { data: PageData } = $props();
 
 	let inputValue = $state('');
-	let selectedId = $state<string | null>(null);
+	// User clicks override the auto-selected head; null means "use the head".
+	let userSelectedId = $state<string | null>(null);
 
 	// data.query refreshes via SvelteKit's data prop after navigation. Keep
 	// the input field in sync when the user picks a demo button or arrives
@@ -22,21 +23,25 @@
 		inputValue = data.query || data.resolvedQuery;
 	});
 
-	// Auto-select the head of the tree on first render of a new query so the
-	// detail panel always has something useful.
+	// Reset the user selection whenever the query changes so the head of the
+	// new tree becomes the auto-focus.
 	$effect(() => {
-		if (data.composition) {
-			let head = data.composition.tree.entry?.id ?? null;
-			let cursor = data.composition.tree;
-			while (!head && cursor.body) {
-				cursor = cursor.body;
-				head = cursor.entry?.id ?? null;
-			}
-			selectedId = head;
-		} else {
-			selectedId = null;
-		}
+		void data.resolvedQuery;
+		userSelectedId = null;
 	});
+
+	function defaultHeadId(): string | null {
+		if (!data.composition) return null;
+		let head = data.composition.tree.entry?.id ?? null;
+		let cursor = data.composition.tree;
+		while (!head && cursor.body) {
+			cursor = cursor.body;
+			head = cursor.entry?.id ?? null;
+		}
+		return head;
+	}
+
+	const selectedId = $derived(userSelectedId ?? defaultHeadId());
 
 	const selectedEntry = $derived(
 		selectedId ? data.detailEntries.find((e) => e.id === selectedId) ?? null : null
@@ -189,7 +194,7 @@
 						<CompositionTree
 							node={data.composition.tree}
 							{selectedId}
-							onSelect={(id) => (selectedId = id)}
+							onSelect={(id) => (userSelectedId = id)}
 						/>
 					</div>
 				</div>

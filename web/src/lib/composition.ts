@@ -477,6 +477,17 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	};
 }
 
+// "Appears in" — return only candidates where we have *positive structural
+// evidence* that this morpheme is a constituent. Two trusted sources:
+//
+//   1. The candidate's `composition` field explicitly references this entry
+//      by id (curated truth, used for fused forms like inkar ← [i-, nukar]).
+//   2. The candidate's lemma is a hyphen-/equals-marked compound and one
+//      of its segments matches this morpheme's bare form.
+//
+// We deliberately do *not* fall back to substring matching: ‘inkar’ contains
+// ‘kar’ as a substring but morphologically it is i- + nukar, so naive
+// substring search would lie. If the data doesn't say so, we don't claim it.
 export function findOtherUses(
 	entry: Entry,
 	allEntries: Entry[],
@@ -485,21 +496,34 @@ export function findOtherUses(
 	const target = entry.lemma.replace(/^[-=]+|[-=]+$/g, '').toLowerCase();
 	if (!target) return [];
 	const out: Entry[] = [];
+	const seen = new Set<string>();
+
 	for (const candidate of allEntries) {
 		if (candidate.id === entry.id) continue;
-		const lemma = candidate.lemma.replace(/^[-=]+|[-=]+$/g, '').toLowerCase();
-		if (lemma === target) continue;
-		if (lemma.length <= target.length) continue;
-		if (
-			lemma.includes(`-${target}`) ||
-			lemma.includes(`${target}-`) ||
-			lemma.startsWith(`${target}`) ||
-			lemma.endsWith(`${target}`) ||
-			lemma.includes(target)
-		) {
+		if (seen.has(candidate.id)) continue;
+
+		// Source 1: curated composition reference.
+		if (candidate.composition?.length && candidate.composition.includes(entry.id)) {
 			out.push(candidate);
+			seen.add(candidate.id);
 			if (out.length >= limit) break;
+			continue;
 		}
+
+		// Source 2: lemma is an explicit hyphen/equals-marked compound and
+		// one of its segments is this morpheme's bare form.
+		const lemma = candidate.lemma.toLowerCase();
+		if (!/[-=]/.test(lemma)) continue;
+		const segments = lemma
+			.split(/[-=]/)
+			.map((s) => s.trim())
+			.filter(Boolean);
+		if (segments.length < 2) continue;
+		if (!segments.includes(target)) continue;
+
+		out.push(candidate);
+		seen.add(candidate.id);
+		if (out.length >= limit) break;
 	}
 	return out;
 }
