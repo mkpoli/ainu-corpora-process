@@ -206,6 +206,19 @@ class Entry:
     """True for hand-curated entries; False for entries auto-ingested from the
     NINJAL lexicon or other observational sources."""
 
+    composition: list[str] = field(default_factory=list)
+    """Underlying composition as an ordered list of morpheme ``id``s.
+
+    Used for lexicalised reductions where the surface form has undergone
+    phonological fusion and can no longer be recovered by simple text
+    segmentation (e.g. ``inkar`` ← ``i-`` + ``nukar``). When present, the
+    valency engine and UI tree use this list as the structural truth, and
+    the surface ``lemma`` is shown as the lexicalised head."""
+
+    composition_note: str = ""
+    """Short note explaining the reduction (e.g. ``phonological fusion of
+    i-nukar with loss of medial vowel``). Shown in the UI."""
+
     def to_dict(self) -> dict[str, Any]:
         out: dict[str, Any] = {
             "id": self.id,
@@ -226,6 +239,8 @@ class Entry:
             "notes": self.notes,
             "frequency": self.frequency,
             "verified": self.verified,
+            "composition": list(self.composition),
+            "composition_note": self.composition_note,
         }
         return out
 
@@ -250,6 +265,8 @@ class Entry:
             notes=data.get("notes", ""),
             frequency=int(data.get("frequency", 0)),
             verified=bool(data.get("verified", False)),
+            composition=list(data.get("composition", [])),
+            composition_note=data.get("composition_note", ""),
         )
 
 

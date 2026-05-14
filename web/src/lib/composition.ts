@@ -12,6 +12,7 @@ import type {
 	CompositionKind,
 	CompositionNode,
 	CompositionResult,
+	CompositionSource,
 	Entry,
 	Rule,
 	Slot,
@@ -20,6 +21,7 @@ import type {
 
 interface EntryIndex {
 	byKey: Map<string, Entry>;
+	byId?: Map<string, Entry>;
 	segmentationKeys: string[];
 }
 
@@ -296,6 +298,18 @@ function wrapAffix(
 
 // --- Public entry point ---------------------------------------------------
 
+function resolveById(id: string, index: EntryIndex): Entry | null {
+	if (index.byId) {
+		const found = index.byId.get(id);
+		if (found) return found;
+	}
+	// Fall back to byKey if the caller didn't supply byId.
+	for (const e of index.byKey.values()) {
+		if (e.id === id) return e;
+	}
+	return null;
+}
+
 export function compose(input: string, index: EntryIndex): CompositionResult {
 	const warnings: string[] = [];
 	const raw = input.trim();
@@ -306,61 +320,110 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 			tokens: [],
 			unresolved: [],
 			warnings,
-			tree: { surface: '', kind: 'unknown', entry: null, frame: null, isLeaf: true }
+			tree: { surface: '', kind: 'unknown', entry: null, frame: null, isLeaf: true },
+			source: 'unknown',
+			unseen: false
 		};
 	}
 
-	// Case 1: the whole input matches a known entry directly. Use the entry's
-	// lemma as a single-node tree, but still try to expand its surface form
-	// into a composition if it looks compound (contains '-' or has multiple
-	// known morphemes inside it).
+	// Case 1: the whole input matches a known entry directly. Three sub-cases
+	// in priority order:
+	//   1a. The entry declares an explicit `composition` (e.g. inkar →
+	//       [i-, nukar]). We trust that as the structural truth and build
+	//       the tree from it, regardless of what segmentation would suggest.
+	//   1b. The entry's lemma cleanly segments into multiple known morphemes
+	//       and the input doesn't already look hyphen-segmented — we expose
+	//       that internal structure.
+	//   1c. Otherwise we keep the direct match as a standalone leaf.
 	const directMatch = index.byKey.get(raw) ?? index.byKey.get(raw.toLowerCase());
 	const looksCompound = raw.includes('-') || /\s/.test(raw);
 
 	let tokens: string[];
 	let unresolved: string[] = [];
 	let matched: { token: string; entry: Entry | null }[] = [];
+	let source: CompositionSource = 'unknown';
+	let fusedRoot: Entry | null = null;
 
-	if (directMatch && !looksCompound) {
-		// Try to segment the lemma against the known morpheme set for further
-		// composition. If segmentation finds at least two morphemes we use it;
-		// otherwise we keep the direct match as a standalone node.
+	if (directMatch && directMatch.composition.length && !looksCompound) {
+		const resolved = directMatch.composition.map((id) => {
+			const entry = resolveById(id, index);
+			if (!entry) {
+				warnings.push(`composition references unknown entry id ${id}`);
+				unresolved.push(id);
+			}
+			return { token: entry?.lemma ?? id, entry };
+		});
+		tokens = resolved.map((r) => r.entry?.lemma ?? r.token);
+		matched = resolved;
+		fusedRoot = directMatch;
+		source = 'composition';
+	} else if (directMatch && !looksCompound) {
 		const seg = segmentGreedy(directMatch.lemma.replace(/^[-=]+|[-=]+$/g, ''), index.segmentationKeys);
 		if (seg.segments.length >= 2 && seg.unresolved.length === 0) {
 			tokens = seg.segments;
 			matched = tokens.map((t) => ({ token: t, entry: resolveToken(t, index.byKey) }));
+			source = 'segmented';
 		} else {
 			tokens = [directMatch.lemma];
 			matched = [{ token: directMatch.lemma, entry: directMatch }];
+			source = 'direct';
 		}
 	} else {
 		tokens = splitInput(raw);
 		if (tokens.length === 1 && !directMatch) {
-			// Whole-word fallback: greedy segment against known morphemes.
 			const seg = segmentGreedy(tokens[0].toLowerCase(), index.segmentationKeys);
 			if (seg.segments.length >= 1) {
 				tokens = seg.segments;
 				unresolved = seg.unresolved;
+				source = 'segmented';
 			}
+		} else if (looksCompound) {
+			source = 'split';
 		}
 		matched = tokens.map((t) => {
 			const entry = resolveToken(t, index.byKey);
 			if (!entry) unresolved.push(t);
 			return { token: t, entry };
 		});
-		// Deduplicate unresolved.
 		unresolved = [...new Set(unresolved)];
 	}
 
-	const tree = buildTree(matched, warnings);
+	let tree = buildTree(matched, warnings);
+	if (fusedRoot) {
+		// Wrap the structural tree in a "fused" root that displays the lexicalised
+		// surface form. The inner tree carries the i-/nukar structure.
+		const frame = tree.frame ? cloneFrame(tree.frame) : null;
+		const fusedLeaf: CompositionNode = {
+			surface: fusedRoot.lemma,
+			kind: 'head',
+			entry: fusedRoot,
+			frame,
+			isLeaf: true
+		};
+		tree = {
+			surface: fusedRoot.lemma,
+			kind: 'fused',
+			entry: null,
+			frame,
+			affix: fusedLeaf,
+			body: tree,
+			isLeaf: false
+		};
+	}
 	const matchedEntry = directMatch ?? null;
+	const matchedAnyEntry = matched.some((m) => m.entry !== null);
+	const unseen =
+		!directMatch && !matchedAnyEntry; // nothing recognised at all
+
 	return {
 		input,
 		matchedEntry,
 		tokens,
 		unresolved,
 		warnings,
-		tree
+		tree,
+		source,
+		unseen
 	};
 }
 

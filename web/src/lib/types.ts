@@ -46,10 +46,12 @@ export interface Entry {
 	notes: string;
 	frequency: number;
 	verified: boolean;
+	composition: string[];
+	composition_note: string;
 }
 
 // One node in the bracketed composition tree.
-export type CompositionKind = 'head' | 'prefix' | 'suffix' | 'standalone' | 'unknown';
+export type CompositionKind = 'head' | 'prefix' | 'suffix' | 'standalone' | 'unknown' | 'fused';
 
 export interface CompositionNode {
 	// Surface form for this constituent — for a leaf, the morpheme; for an
@@ -72,6 +74,8 @@ export interface CompositionNode {
 	isLeaf: boolean;
 }
 
+export type CompositionSource = 'direct' | 'composition' | 'split' | 'segmented' | 'unknown';
+
 export interface CompositionResult {
 	input: string;
 	matchedEntry: Entry | null;
@@ -79,4 +83,9 @@ export interface CompositionResult {
 	tokens: string[];
 	unresolved: string[];
 	warnings: string[];
+	source: CompositionSource;
+	/** True when the input did not match any entry and segmentation also
+	 * could not produce a useful decomposition. The UI shows a "we've never
+	 * seen this word" warning in that case. */
+	unseen: boolean;
 }

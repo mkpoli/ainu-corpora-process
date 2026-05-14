@@ -170,6 +170,49 @@
     "notes": "Suppletive plural counterpart is paye. The 沙流/千歳 dialect lemma is arpa; 樺太 has oman."
   },
   {
+    "id": "inkar",
+    "lemma": "inkar",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "nukar"],
+    "composition_note": "Phonological fusion of i-nukar (INDEF.OBJ + see) with loss of the medial /u/ — synchronically a one-argument verb meaning 'look (at something)'.",
+    "glosses_en": ["look", "see (indefinite object)"],
+    "glosses_jp": ["ものを見る", "見る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "iku",
+    "lemma": "iku",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "ku"],
+    "composition_note": "Lexicalised i-ku (INDEF.OBJ + drink), synchronically a one-argument verb 'drink alcohol'.",
+    "glosses_en": ["drink (alcohol)"],
+    "glosses_jp": ["酒を飲む"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ku",
+    "lemma": "ku",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "飲む人"},
+        {"role": "patient", "realization": "external", "label_jp": "飲まれるもの"}
+      ]
+    },
+    "glosses_en": ["drink"],
+    "glosses_jp": ["～を飲む"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "paye",
     "lemma": "paye",
     "category": "vi",

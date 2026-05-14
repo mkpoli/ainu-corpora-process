@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const isDefault = !explicitQ;
 
 	const composition: CompositionResult | null = q
-		? compose(q, { byKey: db.byKey, segmentationKeys: db.segmentationKeys })
+		? compose(q, { byKey: db.byKey, byId: db.byId, segmentationKeys: db.segmentationKeys })
 		: null;
 
 	const detailEntries: Entry[] = [];

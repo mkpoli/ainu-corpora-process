@@ -9,7 +9,8 @@
 		prefix: () => m.kind_prefix(),
 		suffix: () => m.kind_suffix(),
 		standalone: () => m.kind_standalone(),
-		unknown: () => m.kind_unknown()
+		unknown: () => m.kind_unknown(),
+		fused: () => m.kind_fused()
 	};
 
 	let {
@@ -29,7 +30,8 @@
 		prefix: 'border-affix/60 bg-affix-soft text-affix',
 		suffix: 'border-affix/60 bg-affix-soft text-affix',
 		standalone: 'border-leaf/60 bg-leaf-soft text-leaf',
-		unknown: 'border-rule bg-paper text-ink/60 border-dashed'
+		unknown: 'border-rule bg-paper text-ink/60 border-dashed',
+		fused: 'border-accent/60 bg-accent-soft text-accent'
 	};
 
 	const isLeaf = $derived(node.entry !== null || node.isLeaf);
