@@ -71,9 +71,35 @@ re-running NINJAL extraction.
 - The page is server-rendered (load runs in `+page.server.ts`). Switching
   to client-only would lose Node FS access to the JSON.
 
+## Deploying to Cloudflare Workers
+
+The app builds with `@sveltejs/adapter-cloudflare` and deploys as a single
+Worker with the bundled JSON as a static module — no runtime filesystem
+access required. The custom domain `mdb.aynu.org` is configured in
+`wrangler.jsonc`; `workers_dev = false` so the `*.workers.dev` preview URL
+is disabled.
+
+```sh
+# one-time auth
+bunx wrangler login
+
+# build + deploy
+bun run deploy
+```
+
+The `predev` / `prebuild` hooks copy
+`../morpheme_db/output/morpheme_database.json` into
+`src/lib/data/morpheme_database.json` so the latest data goes into the
+Worker bundle. Re-run `uv run python -m morpheme_db.cli build` first if
+you've edited the seed or the NINJAL extractor.
+
+You can verify the bundle without uploading via `bunx wrangler deploy
+--dry-run --outdir /tmp/wrangler-dry`.
+
 ## Stack
 
-- SvelteKit 2 + Svelte 5 (runes)
+- SvelteKit 2 + Svelte 5 (runes) + `@sveltejs/adapter-cloudflare`
 - Tailwind v4 (`@tailwindcss/vite`)
+- `@inlang/paraglide-js` for i18n (en + ja)
 - TypeScript strict mode
-- Bun
+- Bun + Wrangler
