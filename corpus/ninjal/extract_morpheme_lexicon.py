@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import csv
+import html
 import json
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,8 +17,10 @@ OUTPUT_DIR = INPUT_DIR / "lexicon"
 @dataclass(slots=True)
 class MorphemeOccurrence:
     morpheme: str
+    raw_morpheme: str
     gloss_en: str
     gloss_jp: str
+    normalization_note: str
     story_id: str
     story_sentence_id: str
     unit_index: int
@@ -26,6 +30,28 @@ class MorphemeOccurrence:
     unit_gloss_jp: str
     translation_en: str
     translation_jp: str
+
+
+LEADING_QUOTES = '"“”‘’「『'
+TRAILING_QUOTES = '"“”‘’」』'
+TRAILING_PUNCTUATION = ",.?!;:"
+NOISE_VALUES = {"", "―", "ー", "***", "...", "…", "?"}
+JAPANESE_TEXT_PATTERN = re.compile(r"[ぁ-んァ-ン一-龯々〆ヵヶ]")
+RAW_REFRain_PATTERN = re.compile(r"^V(?:\d+)?(?:[:(].*)?$")
+RAW_JAP_SOURCE_PATTERN = re.compile(
+    r"^(?P<base>[A-Za-z=\-]+)\(<(?P<source>[^)>]+)>?\)$"
+)
+RAW_OPTIONAL_SEGMENT_PATTERN = re.compile(r"^\((?P<prefix>[A-Za-z=]*)\)(?P<rest>[A-Za-z=\-]+)$")
+RAW_BRACKET_SEGMENT_PATTERN = re.compile(r"^(?P<prefix>[A-Za-z=\-]*)\[(?P<inside>[A-Za-z=]+)\](?P<suffix>[A-Za-z=\-]*)$")
+RAW_QUESTION_PATTERN = re.compile(r"^(?P<base>[A-Za-z=\-]+)\(\?\)$")
+RAW_NI_DOT_PATTERN = re.compile(r"^NI\.(?P<rest>[A-Za-z=\-]+)$")
+
+
+@dataclass(slots=True)
+class MorphemeNormalization:
+    morpheme: str
+    note: str
+    drop: bool = False
 
 
 def split_units(text: str) -> list[str]:
@@ -38,6 +64,88 @@ def split_compound(text: str) -> list[str]:
     if not text:
         return []
     return text.split("-")
+
+
+def normalize_morpheme(text: str) -> str:
+    normalized = text.strip()
+    normalized = normalized.strip(LEADING_QUOTES + TRAILING_QUOTES)
+    normalized = normalized.rstrip(TRAILING_PUNCTUATION)
+    normalized = normalized.strip(LEADING_QUOTES + TRAILING_QUOTES)
+    normalized = re.sub(r"\s+", "", normalized)
+    return normalized
+
+
+def normalize_gloss(text: str) -> str:
+    return text.strip()
+
+
+def is_noise_morpheme(text: str) -> bool:
+    return text in NOISE_VALUES
+
+
+def combine_notes(*notes: str) -> str:
+    return " | ".join(note for note in notes if note)
+
+
+def normalize_morpheme_with_note(text: str) -> MorphemeNormalization:
+    raw = normalize_morpheme(html.unescape(text))
+    if not raw:
+        return MorphemeNormalization(morpheme="", note="empty", drop=True)
+
+    if is_noise_morpheme(raw):
+        return MorphemeNormalization(morpheme=raw, note="noise_token", drop=True)
+
+    if RAW_REFRain_PATTERN.fullmatch(raw):
+        return MorphemeNormalization(morpheme=raw, note="refrain_marker", drop=True)
+
+    if raw in {"って", "ここへ、蝿だからここへ"} or JAPANESE_TEXT_PATTERN.search(raw):
+        return MorphemeNormalization(morpheme=raw, note="japanese_transcript_noise", drop=True)
+
+    note = ""
+    normalized = raw
+
+    match = RAW_JAP_SOURCE_PATTERN.fullmatch(normalized)
+    if match:
+        normalized = match.group("base")
+        note = combine_notes(note, f"source:{match.group('source')}")
+
+    match = RAW_OPTIONAL_SEGMENT_PATTERN.fullmatch(normalized)
+    if match:
+        normalized = f"{match.group('prefix')}{match.group('rest')}"
+        note = combine_notes(note, "optional_segment_unwrapped")
+
+    match = RAW_QUESTION_PATTERN.fullmatch(normalized)
+    if match:
+        normalized = match.group("base")
+        note = combine_notes(note, "uncertain_form_marker_removed")
+
+    match = RAW_BRACKET_SEGMENT_PATTERN.fullmatch(normalized)
+    if match:
+        normalized = f"{match.group('prefix')}{match.group('inside')}{match.group('suffix')}"
+        note = combine_notes(note, "bracket_markup_removed")
+
+    match = RAW_NI_DOT_PATTERN.fullmatch(normalized)
+    if match:
+        normalized = match.group("rest")
+        note = combine_notes(note, "ni_prefix_annotation_removed")
+
+    normalized = normalize_morpheme(normalized)
+    if not normalized or is_noise_morpheme(normalized):
+        return MorphemeNormalization(morpheme=normalized, note=combine_notes(note, "empty_after_normalization"), drop=True)
+
+    return MorphemeNormalization(morpheme=normalized, note=note, drop=False)
+
+
+def expand_japanese_gloss(gloss_jp: str, target_len: int) -> list[str] | None:
+    if target_len == 1:
+        return [gloss_jp]
+
+    parts = split_compound(gloss_jp)
+    if len(parts) == target_len:
+        return parts
+    if len(parts) == 1:
+        return [gloss_jp] * target_len
+    return None
 
 
 def load_story_rows(path: Path) -> list[dict[str, str]]:
@@ -76,27 +184,74 @@ def extract_occurrences() -> tuple[list[MorphemeOccurrence], list[dict[str, str]
                 unit_gloss_en = gloss_en_units[unit_index]
                 unit_gloss_jp = gloss_jp_units[unit_index]
 
-                morpheme_parts = split_compound(unit_morpheme)
-                gloss_en_parts = split_compound(unit_gloss_en)
-                gloss_jp_parts = split_compound(unit_gloss_jp)
+                unit_normalization = normalize_morpheme_with_note(unit_morpheme)
+                normalized_unit_morpheme = unit_normalization.morpheme
+                normalized_unit_gloss_en = normalize_gloss(unit_gloss_en)
+                normalized_unit_gloss_jp = normalize_gloss(unit_gloss_jp)
 
-                if len(morpheme_parts) == len(gloss_en_parts) == len(gloss_jp_parts):
-                    for part_index, (morpheme, gloss_en, gloss_jp) in enumerate(
-                        zip(morpheme_parts, gloss_en_parts, gloss_jp_parts),
+                if unit_normalization.drop:
+                    unresolved.append(
+                        {
+                            "reason": "dropped_noise_or_annotation",
+                            "story_id": story_id,
+                            "story_sentence_id": row.get("story_sentence_id", ""),
+                            "unit_index": str(unit_index + 1),
+                            "unit_morpheme": unit_morpheme,
+                            "unit_gloss_en": normalized_unit_gloss_en,
+                            "unit_gloss_jp": normalized_unit_gloss_jp,
+                            "normalization_note": unit_normalization.note,
+                            "translation_en": row.get("translation_en", ""),
+                            "translation_jp": row.get("translation_jp", ""),
+                        }
+                    )
+                    continue
+
+                raw_part_units = split_compound(unit_morpheme)
+                part_normalizations = [
+                    normalize_morpheme_with_note(part)
+                    for part in raw_part_units
+                ]
+                kept_parts = [
+                    (raw_part, part)
+                    for raw_part, part in zip(raw_part_units, part_normalizations)
+                    if not part.drop
+                ]
+                morpheme_parts = [part.morpheme for _raw_part, part in kept_parts]
+                morpheme_part_notes = [part.note for _raw_part, part in kept_parts]
+                raw_part_forms = [raw_part for raw_part, _part in kept_parts]
+                gloss_en_parts = [
+                    normalize_gloss(part) for part in split_compound(normalized_unit_gloss_en)
+                ]
+                gloss_jp_parts = expand_japanese_gloss(normalized_unit_gloss_jp, len(morpheme_parts))
+
+                if not morpheme_parts:
+                    continue
+
+                if len(morpheme_parts) == len(gloss_en_parts) and gloss_jp_parts is not None:
+                    for part_index, (morpheme, gloss_en, gloss_jp, raw_part, note_part) in enumerate(
+                        zip(
+                            morpheme_parts,
+                            gloss_en_parts,
+                            gloss_jp_parts,
+                            raw_part_forms,
+                            morpheme_part_notes,
+                        ),
                         start=1,
                     ):
                         occurrences.append(
                             MorphemeOccurrence(
                                 morpheme=morpheme,
+                                raw_morpheme=raw_part,
                                 gloss_en=gloss_en,
                                 gloss_jp=gloss_jp,
+                                normalization_note=combine_notes(unit_normalization.note, note_part),
                                 story_id=story_id,
                                 story_sentence_id=row.get("story_sentence_id", ""),
                                 unit_index=unit_index + 1,
                                 part_index=part_index,
-                                unit_morpheme=unit_morpheme,
-                                unit_gloss_en=unit_gloss_en,
-                                unit_gloss_jp=unit_gloss_jp,
+                                unit_morpheme=normalized_unit_morpheme,
+                                unit_gloss_en=normalized_unit_gloss_en,
+                                unit_gloss_jp=normalized_unit_gloss_jp,
                                 translation_en=row.get("translation_en", ""),
                                 translation_jp=row.get("translation_jp", ""),
                             )
@@ -109,28 +264,70 @@ def extract_occurrences() -> tuple[list[MorphemeOccurrence], list[dict[str, str]
                         "story_id": story_id,
                         "story_sentence_id": row.get("story_sentence_id", ""),
                         "unit_index": str(unit_index + 1),
-                        "unit_morpheme": unit_morpheme,
-                        "unit_gloss_en": unit_gloss_en,
-                        "unit_gloss_jp": unit_gloss_jp,
+                        "unit_morpheme": normalized_unit_morpheme,
+                        "unit_gloss_en": normalized_unit_gloss_en,
+                        "unit_gloss_jp": normalized_unit_gloss_jp,
                         "morpheme_parts": " | ".join(morpheme_parts),
                         "gloss_en_parts": " | ".join(gloss_en_parts),
-                        "gloss_jp_parts": " | ".join(gloss_jp_parts),
+                        "gloss_jp_parts": "" if gloss_jp_parts is None else " | ".join(gloss_jp_parts),
                         "translation_en": row.get("translation_en", ""),
                         "translation_jp": row.get("translation_jp", ""),
                     }
                 )
+
+                if len(morpheme_parts) > 1:
+                    fallback_gloss_en_parts = gloss_en_parts
+                    if len(fallback_gloss_en_parts) != len(morpheme_parts):
+                        fallback_gloss_en_parts = [""] * len(morpheme_parts)
+
+                    fallback_gloss_jp_parts = gloss_jp_parts
+                    if fallback_gloss_jp_parts is None or len(fallback_gloss_jp_parts) != len(morpheme_parts):
+                        fallback_gloss_jp_parts = [""] * len(morpheme_parts)
+
+                    for part_index, (morpheme, gloss_en, gloss_jp, raw_part, note_part) in enumerate(
+                        zip(
+                            morpheme_parts,
+                            fallback_gloss_en_parts,
+                            fallback_gloss_jp_parts,
+                            raw_part_forms,
+                            morpheme_part_notes,
+                        ),
+                        start=1,
+                    ):
+                        occurrences.append(
+                            MorphemeOccurrence(
+                                morpheme=morpheme,
+                                raw_morpheme=raw_part,
+                                gloss_en=gloss_en,
+                                gloss_jp=gloss_jp,
+                                normalization_note=combine_notes(unit_normalization.note, note_part),
+                                story_id=story_id,
+                                story_sentence_id=row.get("story_sentence_id", ""),
+                                unit_index=unit_index + 1,
+                                part_index=part_index,
+                                unit_morpheme=normalized_unit_morpheme,
+                                unit_gloss_en=normalized_unit_gloss_en,
+                                unit_gloss_jp=normalized_unit_gloss_jp,
+                                translation_en=row.get("translation_en", ""),
+                                translation_jp=row.get("translation_jp", ""),
+                            )
+                        )
+                    continue
+
                 occurrences.append(
                     MorphemeOccurrence(
-                        morpheme=unit_morpheme,
-                        gloss_en=unit_gloss_en,
-                        gloss_jp=unit_gloss_jp,
+                        morpheme=normalized_unit_morpheme,
+                        raw_morpheme=unit_morpheme,
+                        gloss_en=normalized_unit_gloss_en,
+                        gloss_jp=normalized_unit_gloss_jp,
+                        normalization_note=unit_normalization.note,
                         story_id=story_id,
                         story_sentence_id=row.get("story_sentence_id", ""),
                         unit_index=unit_index + 1,
                         part_index=1,
-                        unit_morpheme=unit_morpheme,
-                        unit_gloss_en=unit_gloss_en,
-                        unit_gloss_jp=unit_gloss_jp,
+                        unit_morpheme=normalized_unit_morpheme,
+                        unit_gloss_en=normalized_unit_gloss_en,
+                        unit_gloss_jp=normalized_unit_gloss_jp,
                         translation_en=row.get("translation_en", ""),
                         translation_jp=row.get("translation_jp", ""),
                     )
@@ -145,8 +342,10 @@ def write_occurrences(path: Path, occurrences: list[MorphemeOccurrence]) -> None
         writer.writerow(
             [
                 "morpheme",
+                "raw_morpheme",
                 "gloss_en",
                 "gloss_jp",
+                "normalization_note",
                 "story_id",
                 "story_sentence_id",
                 "unit_index",
@@ -162,8 +361,10 @@ def write_occurrences(path: Path, occurrences: list[MorphemeOccurrence]) -> None
             writer.writerow(
                 [
                     item.morpheme,
+                    item.raw_morpheme,
                     item.gloss_en,
                     item.gloss_jp,
+                    item.normalization_note,
                     item.story_id,
                     item.story_sentence_id,
                     item.unit_index,
@@ -180,16 +381,26 @@ def write_occurrences(path: Path, occurrences: list[MorphemeOccurrence]) -> None
 def write_lexicon(path: Path, occurrences: list[MorphemeOccurrence]) -> None:
     gloss_en_counts: dict[str, Counter[str]] = defaultdict(Counter)
     gloss_jp_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    raw_morpheme_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    normalization_note_counts: dict[str, Counter[str]] = defaultdict(Counter)
     story_counts: Counter[str] = Counter()
     sentence_counts: Counter[str] = Counter()
     examples: dict[str, MorphemeOccurrence] = {}
 
     for item in occurrences:
-        gloss_en_counts[item.morpheme][item.gloss_en] += 1
-        gloss_jp_counts[item.morpheme][item.gloss_jp] += 1
+        if item.gloss_en:
+            gloss_en_counts[item.morpheme][item.gloss_en] += 1
+        if item.gloss_jp:
+            gloss_jp_counts[item.morpheme][item.gloss_jp] += 1
+        raw_morpheme_counts[item.morpheme][item.raw_morpheme] += 1
+        if item.normalization_note:
+            normalization_note_counts[item.morpheme][item.normalization_note] += 1
         story_counts[item.morpheme] += 1
         sentence_counts[f"{item.morpheme}\t{item.story_sentence_id}"] += 1
-        examples.setdefault(item.morpheme, item)
+        if item.morpheme not in examples:
+            examples[item.morpheme] = item
+        elif not examples[item.morpheme].gloss_en and item.gloss_en:
+            examples[item.morpheme] = item
 
     sentence_totals: Counter[str] = Counter()
     for key in sentence_counts:
@@ -201,6 +412,8 @@ def write_lexicon(path: Path, occurrences: list[MorphemeOccurrence]) -> None:
         writer.writerow(
             [
                 "morpheme",
+                "raw_morpheme_variants",
+                "normalization_notes",
                 "occurrence_count",
                 "sentence_count",
                 "primary_gloss_en",
@@ -221,6 +434,8 @@ def write_lexicon(path: Path, occurrences: list[MorphemeOccurrence]) -> None:
             writer.writerow(
                 [
                     morpheme,
+                    join_counter(raw_morpheme_counts[morpheme]),
+                    join_counter(normalization_note_counts[morpheme]),
                     story_counts[morpheme],
                     sentence_totals[morpheme],
                     most_common_string(gloss_en_counts[morpheme]),
