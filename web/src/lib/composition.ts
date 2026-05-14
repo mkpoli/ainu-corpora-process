@@ -102,6 +102,40 @@ export function arity(frame: ValencyFrame | null): number {
 	return frame.slots.filter((s) => s.realization === 'external').length;
 }
 
+/**
+ * The arity delta a single morpheme's rules contribute to the host frame.
+ *
+ * - `add_slot` with external realisation → +1
+ * - `add_slot` with internal realisation → 0 (added but not externally visible)
+ * - `remove_slot` of an external slot → −1 (we approximate; without a host
+ *   we assume the targeted slot was external)
+ * - `internalize` of a slot → −1 (an external slot becomes internal)
+ * - `noop` or unknown → 0
+ *
+ * Returns ``null`` when the entry has no rules (so the UI can omit the chip
+ * entirely rather than show a noisy 0).
+ */
+export function valencyDelta(entry: Entry): number | null {
+	if (!entry.rules.length) return null;
+	let delta = 0;
+	for (const rule of entry.rules) {
+		switch (rule.operation) {
+			case 'add_slot':
+				if (!rule.realization || rule.realization === 'external') delta += 1;
+				break;
+			case 'remove_slot':
+				delta -= 1;
+				break;
+			case 'internalize':
+				delta -= 1;
+				break;
+			default:
+				break;
+		}
+	}
+	return delta;
+}
+
 // --- Token resolution ----------------------------------------------------
 
 function resolveToken(token: string, byKey: Map<string, Entry>): Entry | null {
