@@ -119,23 +119,22 @@
 		</form>
 
 		{#if data.families.length}
-			<section class="flex flex-col gap-1.5">
-				<span class="text-[10px] uppercase tracking-widest text-ink/60">{m.try_label()}</span>
-				<ul class="flex flex-col gap-1.5">
-					{#each data.families as family (family.key)}
-						<li class="flex flex-wrap items-center gap-1.5">
-							{#each family.examples as demo}
-								<button
-									type="button"
-									onclick={() => pickDemo(demo)}
-									class="rounded-full bg-paper px-2.5 py-0.5 font-mono text-xs ring-1 ring-rule transition hover:bg-accent-soft hover:ring-accent/40"
-								>
-									{demo}
-								</button>
-							{/each}
-						</li>
+			<section class="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-xs text-ink/60">
+				<span class="uppercase tracking-widest text-[10px]">{m.try_label()}</span>
+				{#each data.families as family, familyIndex (family.key)}
+					{#if familyIndex > 0}
+						<span aria-hidden="true" class="select-none text-ink/30">·</span>
+					{/if}
+					{#each family.examples as demo}
+						<button
+							type="button"
+							onclick={() => pickDemo(demo)}
+							class="rounded-full bg-paper px-2.5 py-0.5 font-mono ring-1 ring-rule transition hover:bg-accent-soft hover:ring-accent/40"
+						>
+							{demo}
+						</button>
 					{/each}
-				</ul>
+				{/each}
 			</section>
 		{/if}
 	</header>
