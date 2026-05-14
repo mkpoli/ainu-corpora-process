@@ -103,21 +103,28 @@ export function arity(frame: ValencyFrame | null): number {
 }
 
 /**
- * The arity delta a single morpheme's rules contribute to the host frame.
+ * The arity delta a single morpheme contributes to the running frame.
  *
- * - `add_slot` with external realisation → +1
- * - `add_slot` with internal realisation → 0 (added but not externally visible)
- * - `remove_slot` of an external slot → −1 (we approximate; without a host
- *   we assume the targeted slot was external)
- * - `internalize` of a slot → −1 (an external slot becomes internal)
- * - `noop` or unknown → 0
+ * Two sources stack:
  *
- * Returns ``null`` when the entry has no rules (so the UI can omit the chip
- * entirely rather than show a noisy 0).
+ *  - A verb/noun root introduces its own ``base_frame``, so it contributes
+ *    +N where N is the external arity of that frame (e.g. nukar = +2,
+ *    an = +1, cepkoyki = +1 because the patient is incorporated).
+ *  - Each rule on the entry shifts arity by +1 (``add_slot`` to external
+ *    slot), −1 (``remove_slot`` / ``internalize`` of an external slot),
+ *    or 0 otherwise.
+ *
+ * Returns ``null`` when the entry has neither a base_frame nor rules — so
+ * pure-data nouns without their own frame contribute no chip.
  */
 export function valencyDelta(entry: Entry): number | null {
-	if (!entry.rules.length) return null;
+	if (!entry.base_frame && !entry.rules.length) return null;
 	let delta = 0;
+	if (entry.base_frame) {
+		for (const slot of entry.base_frame.slots) {
+			if (slot.realization === 'external') delta += 1;
+		}
+	}
 	for (const rule of entry.rules) {
 		switch (rule.operation) {
 			case 'add_slot':
