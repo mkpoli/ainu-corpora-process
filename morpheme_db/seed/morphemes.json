@@ -385,6 +385,104 @@
     "verified": true
   },
   {
+    "id": "u-",
+    "lemma": "u-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vt"],
+    "rules": [
+      {
+        "operation": "internalize",
+        "role": "patient",
+        "realization": "internal_refl",
+        "label_jp": "相互",
+        "description": "Reciprocal prefix u-: the patient is identified with the (plural) agent — 'each other'."
+      }
+    ],
+    "glosses_en": ["REC", "each other"],
+    "glosses_jp": ["互いに"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "kur",
+    "lemma": "kur",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["person"],
+    "glosses_jp": ["人", "者"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Bound-like nominaliser/agent suffix in many compounds (e.g. cepkoykikur 'fisherman')."
+  },
+  {
+    "id": "cepkoyki",
+    "lemma": "cepkoyki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["cep", "koyki"],
+    "composition_note": "Noun-incorporation compound: cep (fish) is incorporated as the patient of koyki, leaving a one-argument verb 'to catch fish'.",
+    "glosses_en": ["catch fish", "fish"],
+    "glosses_jp": ["魚を獲る", "魚とりをする"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "cepkoykikur",
+    "lemma": "cepkoykikur",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["cep", "koyki", "kur"],
+    "composition_note": "Deverbal noun: cepkoyki + kur (person) → 'fisherman'.",
+    "glosses_en": ["fisherman"],
+    "glosses_jp": ["漁師"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "aynukoyki",
+    "lemma": "aynukoyki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:aynu", "koyki"],
+    "composition_note": "Noun-incorporation compound: aynu (person) is incorporated as the patient of koyki, yielding 'attack people'.",
+    "glosses_en": ["attack people"],
+    "glosses_jp": ["人を襲う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "cikapkoyki",
+    "lemma": "cikapkoyki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:cikap", "koyki"],
+    "composition_note": "Noun-incorporation compound: cikap (bird) + koyki → 'to shoot/catch birds'.",
+    "glosses_en": ["catch birds", "shoot birds"],
+    "glosses_jp": ["鳥を打つ", "鳥打ちをする"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ukoyki",
+    "lemma": "ukoyki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["u-", "koyki"],
+    "composition_note": "Reciprocal prefix u- attached to koyki: the patient is identified with the (plural) agent → 'fight each other'.",
+    "glosses_en": ["fight", "fight each other"],
+    "glosses_jp": ["戦う", "喧嘩する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "e-",
     "lemma": "e-",
     "category": "pfx",
