@@ -18,6 +18,10 @@ from pathlib import Path
 
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
 from morpheme_db.ingest_wiktionary import enrich_with_wiktionary, load_json_dict
+from morpheme_db.ingest_wiktionary_compositions import (
+    ingest_wiktionary_compositions,
+    load_compositions,
+)
 from morpheme_db.schema import Entry, load_entries, save_entries
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +32,9 @@ NINJAL_LEXICON_PATH = (
 WIKT_JA_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses.json"
 WIKT_EN_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses_en.json"
 WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_of_speech.json"
+WIKT_COMPOSITIONS_PATH = (
+    REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_word_compositions.json"
+)
 OUTPUT_DIR = REPO_ROOT / "morpheme_db" / "output"
 
 
@@ -100,8 +107,9 @@ def build(
     wikt_ja_gloss_path: Path | None = WIKT_JA_GLOSS_PATH,
     wikt_en_gloss_path: Path | None = WIKT_EN_GLOSS_PATH,
     wikt_ja_pos_path: Path | None = WIKT_JA_POS_PATH,
+    wikt_compositions_path: Path | None = WIKT_COMPOSITIONS_PATH,
     output_dir: Path = OUTPUT_DIR,
-) -> list[Entry]:
+) -> tuple[list[Entry], dict[str, int]]:
     seed = load_entries(seed_path)
     entries = list(seed)
     if ninjal_path is not None and ninjal_path.exists():
@@ -114,9 +122,16 @@ def build(
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
 
+    counters = {"compositions_attached": 0, "compositions_skipped": 0}
+    if wikt_compositions_path and wikt_compositions_path.exists():
+        comps = load_compositions(wikt_compositions_path)
+        entries, attached, skipped = ingest_wiktionary_compositions(entries, comps)
+        counters["compositions_attached"] = attached
+        counters["compositions_skipped"] = skipped
+
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
-    return entries
+    return entries, counters
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -152,6 +167,12 @@ def main(argv: list[str] | None = None) -> int:
         help="Wiktionary JA part-of-speech JSON (optional).",
     )
     parser.add_argument(
+        "--wikt-compositions",
+        type=Path,
+        default=WIKT_COMPOSITIONS_PATH,
+        help="Wiktionary word-composition JSON (optional).",
+    )
+    parser.add_argument(
         "--no-wiktionary",
         action="store_true",
         help="Skip Wiktionary enrichment.",
@@ -168,22 +189,28 @@ def main(argv: list[str] | None = None) -> int:
     wikt_ja = None if args.no_wiktionary else args.wikt_ja
     wikt_en = None if args.no_wiktionary else args.wikt_en
     wikt_pos = None if args.no_wiktionary else args.wikt_ja_pos
-    entries = build(
+    wikt_comps = None if args.no_wiktionary else args.wikt_compositions
+    entries, counters = build(
         seed_path=args.seed,
         ninjal_path=ninjal_path,
         wikt_ja_gloss_path=wikt_ja,
         wikt_en_gloss_path=wikt_en,
         wikt_ja_pos_path=wikt_pos,
+        wikt_compositions_path=wikt_comps,
         output_dir=args.output_dir,
     )
 
     verified = sum(1 for e in entries if e.verified)
     with_category = sum(1 for e in entries if e.category)
     with_frame = sum(1 for e in entries if e.base_frame is not None)
+    with_composition = sum(1 for e in entries if e.composition)
     print(
         f"Wrote {len(entries)} entries to {args.output_dir} "
         f"({verified} curated, {len(entries) - verified} unverified; "
-        f"{with_category} with category, {with_frame} with valency frame)."
+        f"{with_category} with category, {with_frame} with valency frame, "
+        f"{with_composition} with composition; "
+        f"wiktionary compositions attached={counters['compositions_attached']} "
+        f"skipped={counters['compositions_skipped']})."
     )
     return 0
 

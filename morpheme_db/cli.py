@@ -22,6 +22,7 @@ from morpheme_db.build import (
     NINJAL_LEXICON_PATH,
     OUTPUT_DIR,
     SEED_PATH,
+    WIKT_COMPOSITIONS_PATH,
     WIKT_EN_GLOSS_PATH,
     WIKT_JA_GLOSS_PATH,
     WIKT_JA_POS_PATH,
@@ -141,6 +142,8 @@ def cmd_build(args: argparse.Namespace) -> int:
             str(args.wikt_en),
             "--wikt-ja-pos",
             str(args.wikt_ja_pos),
+            "--wikt-compositions",
+            str(args.wikt_compositions),
             "--output-dir",
             str(args.output_dir),
         ]
@@ -157,6 +160,9 @@ def main(argv: list[str] | None = None) -> int:
     p_build.add_argument("--wikt-ja", type=Path, default=WIKT_JA_GLOSS_PATH)
     p_build.add_argument("--wikt-en", type=Path, default=WIKT_EN_GLOSS_PATH)
     p_build.add_argument("--wikt-ja-pos", type=Path, default=WIKT_JA_POS_PATH)
+    p_build.add_argument(
+        "--wikt-compositions", type=Path, default=WIKT_COMPOSITIONS_PATH
+    )
     p_build.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
     p_build.set_defaults(func=cmd_build)
 
