@@ -1,0 +1,353 @@
+[
+  {
+    "id": "nukar",
+    "lemma": "nukar",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "見る主体"},
+        {"role": "patient", "realization": "external", "label_jp": "見られる対象"}
+      ]
+    },
+    "glosses_en": ["see", "look at"],
+    "glosses_jp": ["～を見る"],
+    "sources": ["佐藤2023アイヌ語の動詞の結合価と3項動詞"],
+    "verified": true
+  },
+  {
+    "id": "koyki",
+    "lemma": "koyki",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "捕る人"},
+        {"role": "patient", "realization": "external", "label_jp": "獲られるもの"}
+      ]
+    },
+    "glosses_en": ["catch", "take"],
+    "glosses_jp": ["～を獲る", "～を捕る"],
+    "sources": ["中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "cep",
+    "lemma": "cep",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["fish"],
+    "glosses_jp": ["魚"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kamuy",
+    "lemma": "kamuy",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["god", "deity", "spirit"],
+    "glosses_jp": ["神", "カムイ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ram",
+    "lemma": "ram",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["heart", "mind"],
+    "glosses_jp": ["心"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Appears as an incorporated noun in compound verbs such as e-yay-ko-tuyma-si-ram-suy-pa."
+  },
+  {
+    "id": "kor",
+    "lemma": "kor",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "持つ人"},
+        {"role": "patient", "realization": "external", "label_jp": "持たれるもの"}
+      ]
+    },
+    "glosses_en": ["have", "possess"],
+    "glosses_jp": ["～を持つ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ki",
+    "lemma": "ki",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "する人"},
+        {"role": "patient", "realization": "external", "label_jp": "されること"}
+      ]
+    },
+    "glosses_en": ["do"],
+    "glosses_jp": ["～をする"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ye",
+    "lemma": "ye",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "言う人"},
+        {"role": "patient", "realization": "external", "label_jp": "言われること"}
+      ]
+    },
+    "glosses_en": ["say", "speak"],
+    "glosses_jp": ["～を言う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "an",
+    "lemma": "an",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "いるもの"}
+      ]
+    },
+    "glosses_en": ["exist.SG", "be (singular)"],
+    "glosses_jp": ["ある", "いる（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Suppletive plural counterpart is oka. The homophonous clitic =an realises an indefinite 4S argument and is a separate entry."
+  },
+  {
+    "id": "oka",
+    "lemma": "oka",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "いるもの"}
+      ]
+    },
+    "glosses_en": ["exist.PL", "be (plural)"],
+    "glosses_jp": ["いる（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of an."
+  },
+  {
+    "id": "arpa",
+    "lemma": "arpa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "行く人"}
+      ]
+    },
+    "glosses_en": ["go.SG"],
+    "glosses_jp": ["行く（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive plural counterpart is paye. The 沙流/千歳 dialect lemma is arpa; 樺太 has oman."
+  },
+  {
+    "id": "paye",
+    "lemma": "paye",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "行く人々"}
+      ]
+    },
+    "glosses_en": ["go.PL"],
+    "glosses_jp": ["行く（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of arpa."
+  },
+  {
+    "id": "-e",
+    "lemma": "-e",
+    "allomorphs": ["-e", "-re", "-te"],
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "causer",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "使役主",
+        "description": "Productive causative; adds an external causer (arity +1)."
+      }
+    ],
+    "glosses_en": ["CAUS"],
+    "glosses_jp": ["～させる"],
+    "sources": [
+      "ブガエワ2014アイヌ語使役構文に関する再考察",
+      "中川2024アイヌ語広文典"
+    ],
+    "verified": true,
+    "notes": "Allomorph distribution: -re after vowel-final stems, -te in restricted contexts, -e elsewhere. Treated as a single morpheme for valency purposes."
+  },
+  {
+    "id": "-yar",
+    "lemma": "-yar",
+    "allomorphs": ["-yar", "-ar"],
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "causer",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "使役主",
+        "description": "Indefinite causative: introduces a causer."
+      },
+      {
+        "operation": "remove_slot",
+        "role": "agent",
+        "label_jp": "",
+        "description": "Indefinite causative: the original subject is dropped from the clause (中川2024 'アリティ 0')."
+      }
+    ],
+    "glosses_en": ["CAUS.INDEF"],
+    "glosses_jp": ["～させる（不定使役）"],
+    "sources": ["中川2024アイヌ語広文典"],
+    "verified": true,
+    "notes": "Net arity change is zero: a new causer is added while the original subject is demoted out of the clause."
+  },
+  {
+    "id": "si-",
+    "lemma": "si-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "internalize",
+        "role": "causer",
+        "realization": "internal_refl",
+        "label_jp": "再帰",
+        "description": "Indirect reflexive: identifies the newly added causer with another argument (佐藤2007)."
+      }
+    ],
+    "glosses_en": ["REFL.INDIR"],
+    "glosses_jp": ["（間接再帰）"],
+    "sources": ["佐藤2007アイヌ語千歳方言の再帰接頭辞yayとsiについて"],
+    "verified": true
+  },
+  {
+    "id": "yay-",
+    "lemma": "yay-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vt"],
+    "rules": [
+      {
+        "operation": "internalize",
+        "role": "patient",
+        "realization": "internal_refl",
+        "label_jp": "再帰",
+        "description": "Direct reflexive: the patient is identified with the agent (佐藤2007)."
+      }
+    ],
+    "glosses_en": ["REFL.DIR"],
+    "glosses_jp": ["（直接再帰）"],
+    "sources": ["佐藤2007アイヌ語千歳方言の再帰接頭辞yayとsiについて"],
+    "verified": true
+  },
+  {
+    "id": "i-",
+    "lemma": "i-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vt"],
+    "rules": [
+      {
+        "operation": "internalize",
+        "role": "patient",
+        "realization": "internal_indef",
+        "label_jp": "不定目的語",
+        "description": "Indefinite-object prefix: saturates the patient slot."
+      }
+    ],
+    "glosses_en": ["INDEF.OBJ"],
+    "glosses_jp": ["不定の目的語"],
+    "sources": ["佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "ko-",
+    "lemma": "ko-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "goal",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "対象",
+        "description": "Applicative: adds an oblique goal/recipient as an external argument."
+      }
+    ],
+    "glosses_en": ["APPL"],
+    "glosses_jp": ["～に対して"],
+    "sources": ["佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "e-",
+    "lemma": "e-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "theme",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "対象",
+        "description": "Applicative e-: adds an oblique theme as an external argument."
+      }
+    ],
+    "glosses_en": ["APPL.about"],
+    "glosses_jp": ["～について"],
+    "sources": ["佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  }
+]
