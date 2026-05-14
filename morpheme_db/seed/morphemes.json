@@ -488,6 +488,132 @@
     "verified": true
   },
   {
+    "id": "suy",
+    "lemma": "suy",
+    "category": "vi",
+    "bound": true,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "揺れるもの"}
+      ]
+    },
+    "glosses_en": ["shake (intransitive)", "sway"],
+    "glosses_jp": ["揺れる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Bound verb stem. Singular finite form is suye '揺らす'; plural is suypa. Occurs incorporated in polysynthetic compounds such as si-ram-suy-pa '心が揺れる → ponder'. Distinct from the homophonous adverb suy 'again'."
+  },
+  {
+    "id": "-pa",
+    "lemma": "-pa",
+    "allomorphs": ["pa"],
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi", "vt"],
+    "glosses_en": ["PL"],
+    "glosses_jp": ["複数"],
+    "sources": ["佐藤2008アイヌ文法の基礎", "中川2024アイヌ語広文典"],
+    "verified": true,
+    "notes": "Verbal plural suffix. Marks plural agreement on its host but does not change the argument structure, so it carries no valency rule."
+  },
+  {
+    "id": "tuyma",
+    "lemma": "tuyma",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "遠いもの"}
+      ]
+    },
+    "glosses_en": ["far", "distant"],
+    "glosses_jp": ["遠い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "NINJALCorpus"],
+    "verified": true,
+    "notes": "Adjective-like intransitive verb. Incorporated as a manner modifier in yaykotuymasiramsuypa '思い巡らす' (far-shake-one's-heart)."
+  },
+  {
+    "id": "yaykosiramsuypa",
+    "lemma": "yaykosiramsuypa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "ko-", "si-", "ram", "suy", "-pa"],
+    "composition_note": "yay-「自分」+ ko-「と共に」+ si-「自分で」+ ram「心」+ suy「揺れる」+ -pa「複数」. Literally 'one's own heart shakes (along) with itself' → idiomatic 'to think deeply'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "考える人"}
+      ]
+    },
+    "glosses_en": ["think deeply", "ponder"],
+    "glosses_jp": ["じっくり考える"],
+    "sources": ["Wiktionary JA", "田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eyaykosiramsuypa",
+    "lemma": "eyaykosiramsuypa",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ko-", "si-", "ram", "suy", "-pa"],
+    "composition_note": "Transitive variant of yaykosiramsuypa: e-「について」 adds an external object slot — 'to think deeply about ~'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "考える対象"},
+        {"role": "agent", "realization": "external", "label_jp": "考える人"}
+      ]
+    },
+    "glosses_en": ["think deeply about", "ponder ~"],
+    "glosses_jp": ["～をじっくり考える"],
+    "sources": ["Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "yaykotuymasiramsuypa",
+    "lemma": "yaykotuymasiramsuypa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
+    "composition_note": "Like yaykosiramsuypa but with tuyma「遠い」 incorporated as a manner modifier — 'one's heart shakes far (within oneself)' → 'to mull over / let the mind wander'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "思い巡らす人"}
+      ]
+    },
+    "glosses_en": ["ponder", "mull over"],
+    "glosses_jp": ["思い巡らす"],
+    "sources": ["Wiktionary JA", "田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eyaykotuymasiramsuypa",
+    "lemma": "eyaykotuymasiramsuypa",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
+    "composition_note": "Transitive variant — the paper's signature polysynthetic compound. Morphemic gloss: APPL.DAT-REFL-INS-far-ACAUS-heart-shake-PL → 'to ponder about ~'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "思い巡らす対象"},
+        {"role": "agent", "realization": "external", "label_jp": "思い巡らす人"}
+      ]
+    },
+    "glosses_en": ["ponder about", "muse over ~"],
+    "glosses_jp": ["～を思い巡らす"],
+    "sources": [
+      "Wiktionary JA",
+      "田村1996アイヌ語沙流方言辞典",
+      "中川2024アイヌ語広文典"
+    ],
+    "verified": true
+  },
+  {
     "id": "ukoyki",
     "lemma": "ukoyki",
     "category": "vi",
