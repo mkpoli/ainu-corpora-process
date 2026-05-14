@@ -474,9 +474,16 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 
 	let tree = buildTree(matched, warnings);
 	if (fusedRoot) {
-		// Wrap the structural tree in a "fused" root that displays the lexicalised
-		// surface form. The inner tree carries the i-/nukar structure.
-		const frame = tree.frame ? cloneFrame(tree.frame) : null;
+		// When the fused entry has its own base_frame, treat that as the truth
+		// for the lexicalised lemma — useful for noun-incorporation compounds
+		// like cepkoyki, where the constituents (cep + koyki) do not on their
+		// own indicate that the patient slot is incorporated. The structural
+		// tree below still expands the constituents for inspection.
+		const frame = fusedRoot.base_frame
+			? cloneFrame(fusedRoot.base_frame)
+			: tree.frame
+				? cloneFrame(tree.frame)
+				: null;
 		const fusedLeaf: CompositionNode = {
 			surface: fusedRoot.lemma,
 			kind: 'head',
