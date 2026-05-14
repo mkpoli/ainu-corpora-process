@@ -109,8 +109,8 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 		},
 		{
 			key: 'koyki',
-			// Noun-incorporation example cited in system.typ.
-			examples: ['cep koyki']
+			// Noun-incorporation family — all curated from田村1996/中川1995.
+			examples: ['cepkoyki', 'aynukoyki', 'cikapkoyki', 'ukoyki', 'cepkoykikur']
 		},
 		{
 			key: 'iku',
