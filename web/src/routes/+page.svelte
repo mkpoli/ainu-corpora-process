@@ -228,8 +228,4 @@
 		</aside>
 	</div>
 
-	<footer class="pt-2 text-center text-[11px] text-ink/50">
-		{m.footer_built_from({ path: 'morpheme_db/output/morpheme_database.json' })}
-		{m.footer_credit()}
-	</footer>
 </div>
