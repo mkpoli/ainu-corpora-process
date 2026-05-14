@@ -147,9 +147,25 @@
 					</div>
 				</div>
 
-				{#if data.composition.unresolved.length}
+				{#if data.composition.unseen}
+					<div class="flex flex-col gap-1 rounded-xl bg-accent-soft px-3 py-2 text-xs text-accent">
+						<strong class="text-sm">{m.unseen_word_title()}</strong>
+						<span>{m.unseen_word_body({ word: data.composition.input })}</span>
+					</div>
+				{:else if data.composition.unresolved.length}
 					<p class="rounded-xl bg-accent-soft px-3 py-2 text-xs text-accent">
 						{m.unresolved_segments()}: <span class="font-mono">{data.composition.unresolved.join(', ')}</span>
+					</p>
+				{/if}
+
+				{#if data.composition.source && data.composition.source !== 'unknown' && data.composition.source !== 'direct'}
+					{@const sourceLabels = {
+						composition: m.composition_source_composition(),
+						split: m.composition_source_split(),
+						segmented: m.composition_source_segmented()
+					}}
+					<p class="text-[11px] italic text-ink/55">
+						{sourceLabels[data.composition.source as keyof typeof sourceLabels] ?? ''}
 					</p>
 				{/if}
 

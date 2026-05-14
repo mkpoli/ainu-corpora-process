@@ -12,6 +12,8 @@ interface DatabaseSnapshot {
 	// Lookup map: surface form → entry. Includes lemma + allomorphs, with
 	// verified entries indexed first so they win ties.
 	byKey: Map<string, Entry>;
+	// Lookup by stable entry id — used for `composition` references.
+	byId: Map<string, Entry>;
 	// Morphemes sorted by descending length for greedy segmentation. We keep
 	// only the surface keys that can appear inside a longer compound — i.e.
 	// the lemma stripped of attachment markers, plus markered variants when
@@ -31,9 +33,11 @@ async function readJson(filePath: string): Promise<Entry[]> {
 
 function buildIndex(entries: Entry[]): {
 	byKey: Map<string, Entry>;
+	byId: Map<string, Entry>;
 	segmentationKeys: string[];
 } {
 	const byKey = new Map<string, Entry>();
+	const byId = new Map<string, Entry>();
 	const segmentationSet = new Set<string>();
 
 	const sorted = [...entries].sort((a, b) => {
@@ -42,6 +46,7 @@ function buildIndex(entries: Entry[]): {
 	});
 
 	for (const entry of sorted) {
+		byId.set(entry.id, entry);
 		const keys = new Set<string>([entry.lemma, ...entry.allomorphs]);
 		const bare = entry.lemma.replace(/^[-=]+|[-=]+$/g, '');
 		if (bare) keys.add(bare);
@@ -56,7 +61,7 @@ function buildIndex(entries: Entry[]): {
 	}
 
 	const segmentationKeys = [...segmentationSet].sort((a, b) => b.length - a.length || a.localeCompare(b));
-	return { byKey, segmentationKeys };
+	return { byKey, byId, segmentationKeys };
 }
 
 export async function loadDatabase(): Promise<DatabaseSnapshot> {
@@ -77,8 +82,8 @@ export async function loadDatabase(): Promise<DatabaseSnapshot> {
 	}
 
 	const entries = await readJson(source);
-	const { byKey, segmentationKeys } = buildIndex(entries);
-	cache = { entries, byKey, segmentationKeys, mtimeMs: stat.mtimeMs };
+	const { byKey, byId, segmentationKeys } = buildIndex(entries);
+	cache = { entries, byKey, byId, segmentationKeys, mtimeMs: stat.mtimeMs };
 	cachedSource = source;
 	return cache;
 }
