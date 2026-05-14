@@ -19,11 +19,12 @@ import re
 from pathlib import Path
 
 from morpheme_db.build import (
-    COMBINED_GLOSS_PATH,
-    COMBINED_POS_PATH,
     NINJAL_LEXICON_PATH,
     OUTPUT_DIR,
     SEED_PATH,
+    WIKT_EN_GLOSS_PATH,
+    WIKT_JA_GLOSS_PATH,
+    WIKT_JA_POS_PATH,
     main as build_main,
 )
 from morpheme_db.schema import Entry, load_entries
@@ -134,10 +135,12 @@ def cmd_build(args: argparse.Namespace) -> int:
             str(args.seed),
             "--ninjal",
             str(args.ninjal),
-            "--pos",
-            str(args.pos),
-            "--gloss",
-            str(args.gloss),
+            "--wikt-ja",
+            str(args.wikt_ja),
+            "--wikt-en",
+            str(args.wikt_en),
+            "--wikt-ja-pos",
+            str(args.wikt_ja_pos),
             "--output-dir",
             str(args.output_dir),
         ]
@@ -151,8 +154,9 @@ def main(argv: list[str] | None = None) -> int:
     p_build = sub.add_parser("build", help="Build the unified morpheme database.")
     p_build.add_argument("--seed", type=Path, default=SEED_PATH)
     p_build.add_argument("--ninjal", type=Path, default=NINJAL_LEXICON_PATH)
-    p_build.add_argument("--pos", type=Path, default=COMBINED_POS_PATH)
-    p_build.add_argument("--gloss", type=Path, default=COMBINED_GLOSS_PATH)
+    p_build.add_argument("--wikt-ja", type=Path, default=WIKT_JA_GLOSS_PATH)
+    p_build.add_argument("--wikt-en", type=Path, default=WIKT_EN_GLOSS_PATH)
+    p_build.add_argument("--wikt-ja-pos", type=Path, default=WIKT_JA_POS_PATH)
     p_build.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
     p_build.set_defaults(func=cmd_build)
 
