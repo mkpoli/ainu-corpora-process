@@ -16,12 +16,8 @@ import argparse
 import csv
 from pathlib import Path
 
-from morpheme_db.ingest_dictionary import (
-    enrich_entries,
-    load_combined_glosses,
-    load_combined_pos,
-)
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
+from morpheme_db.ingest_wiktionary import enrich_with_wiktionary, load_json_dict
 from morpheme_db.schema import Entry, load_entries, save_entries
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -29,8 +25,9 @@ SEED_PATH = REPO_ROOT / "morpheme_db" / "seed" / "morphemes.json"
 NINJAL_LEXICON_PATH = (
     REPO_ROOT / "corpus" / "output" / "ninjal" / "lexicon" / "ninjal_morpheme_lexicon.tsv"
 )
-COMBINED_POS_PATH = REPO_ROOT / "dictionary" / "output" / "combined_part_of_speech.json"
-COMBINED_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "combined_glosses.json"
+WIKT_JA_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses.json"
+WIKT_EN_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses_en.json"
+WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_of_speech.json"
 OUTPUT_DIR = REPO_ROOT / "morpheme_db" / "output"
 
 
@@ -100,8 +97,9 @@ def write_tsv(entries: list[Entry], path: Path) -> None:
 def build(
     seed_path: Path = SEED_PATH,
     ninjal_path: Path | None = NINJAL_LEXICON_PATH,
-    pos_path: Path | None = COMBINED_POS_PATH,
-    gloss_path: Path | None = COMBINED_GLOSS_PATH,
+    wikt_ja_gloss_path: Path | None = WIKT_JA_GLOSS_PATH,
+    wikt_en_gloss_path: Path | None = WIKT_EN_GLOSS_PATH,
+    wikt_ja_pos_path: Path | None = WIKT_JA_POS_PATH,
     output_dir: Path = OUTPUT_DIR,
 ) -> list[Entry]:
     seed = load_entries(seed_path)
@@ -110,10 +108,11 @@ def build(
         ninjal = ingest_ninjal_lexicon(ninjal_path)
         entries = merge_with_seed(seed, ninjal)
 
-    pos_data = load_combined_pos(pos_path) if pos_path and pos_path.exists() else {}
-    gloss_data = load_combined_glosses(gloss_path) if gloss_path and gloss_path.exists() else {}
-    if pos_data or gloss_data:
-        enrich_entries(entries, pos_data, gloss_data)
+    ja_glosses = load_json_dict(wikt_ja_gloss_path) if wikt_ja_gloss_path and wikt_ja_gloss_path.exists() else {}
+    en_glosses = load_json_dict(wikt_en_gloss_path) if wikt_en_gloss_path and wikt_en_gloss_path.exists() else {}
+    ja_pos = load_json_dict(wikt_ja_pos_path) if wikt_ja_pos_path and wikt_ja_pos_path.exists() else {}
+    if ja_glosses or en_glosses or ja_pos:
+        enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
@@ -135,21 +134,27 @@ def main(argv: list[str] | None = None) -> int:
         help="Skip the NINJAL ingest even when the lexicon TSV is present.",
     )
     parser.add_argument(
-        "--pos",
+        "--wikt-ja",
         type=Path,
-        default=COMBINED_POS_PATH,
-        help="Combined dictionary POS JSON (optional).",
+        default=WIKT_JA_GLOSS_PATH,
+        help="Wiktionary JA glosses JSON (optional).",
     )
     parser.add_argument(
-        "--gloss",
+        "--wikt-en",
         type=Path,
-        default=COMBINED_GLOSS_PATH,
-        help="Combined dictionary gloss JSON (optional).",
+        default=WIKT_EN_GLOSS_PATH,
+        help="Wiktionary EN glosses JSON (optional).",
     )
     parser.add_argument(
-        "--no-dictionary",
+        "--wikt-ja-pos",
+        type=Path,
+        default=WIKT_JA_POS_PATH,
+        help="Wiktionary JA part-of-speech JSON (optional).",
+    )
+    parser.add_argument(
+        "--no-wiktionary",
         action="store_true",
-        help="Skip dictionary enrichment.",
+        help="Skip Wiktionary enrichment.",
     )
     parser.add_argument(
         "--output-dir",
@@ -160,13 +165,15 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     ninjal_path = None if args.no_ninjal else args.ninjal
-    pos_path = None if args.no_dictionary else args.pos
-    gloss_path = None if args.no_dictionary else args.gloss
+    wikt_ja = None if args.no_wiktionary else args.wikt_ja
+    wikt_en = None if args.no_wiktionary else args.wikt_en
+    wikt_pos = None if args.no_wiktionary else args.wikt_ja_pos
     entries = build(
         seed_path=args.seed,
         ninjal_path=ninjal_path,
-        pos_path=pos_path,
-        gloss_path=gloss_path,
+        wikt_ja_gloss_path=wikt_ja,
+        wikt_en_gloss_path=wikt_en,
+        wikt_ja_pos_path=wikt_pos,
         output_dir=args.output_dir,
     )
 
