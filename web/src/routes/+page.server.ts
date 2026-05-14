@@ -8,7 +8,7 @@ interface SuggestionsBuckets {
 	compounds: Entry[];
 }
 
-const DEFAULT_EXAMPLE = 'e-yay-ko-si-ram-suy-pa';
+const DEFAULT_EXAMPLE = 'eyaykotuymasiramsuypa';
 
 export const load: PageServerLoad = async ({ url, platform }) => {
 	const db = await loadDatabase(platform);
@@ -118,9 +118,16 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			examples: ['iku']
 		},
 		{
-			key: 'polysynthetic',
-			// The paper's headline example (introduction.typ §1).
-			examples: ['e-yay-ko-si-ram-suy-pa']
+			key: 'suypa',
+			// The "ponder" family. Single-word lemmas are the attested forms;
+			// eyaykotuymasiramsuypa is the paper's headline polysynthetic
+			// example (introduction.typ §1).
+			examples: [
+				'yaykosiramsuypa',
+				'eyaykosiramsuypa',
+				'yaykotuymasiramsuypa',
+				'eyaykotuymasiramsuypa'
+			]
 		}
 	];
 
