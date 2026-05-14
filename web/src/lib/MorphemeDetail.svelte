@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { valencyDelta } from './composition';
+	import { sourceLabel, sourceUrl } from './sources';
 	import type { Entry } from './types';
 	import ValencyFrame from './ValencyFrame.svelte';
 
@@ -125,7 +126,23 @@
 				<h3 class="text-xs font-semibold uppercase tracking-widest text-ink/60">{m.detail_sources()}</h3>
 				<ul class="flex flex-wrap gap-1.5">
 					{#each entry.sources as src}
-						<li class="rounded-full bg-paper px-2 py-0.5 text-[11px] text-ink/70 ring-1 ring-rule">{src}</li>
+						{@const url = sourceUrl(src, entry.lemma)}
+						<li>
+							{#if url}
+								<a
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="rounded-full bg-paper px-2 py-0.5 text-[11px] text-ink/80 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+								>
+									{sourceLabel(src)}
+								</a>
+							{:else}
+								<span class="rounded-full bg-paper px-2 py-0.5 text-[11px] text-ink/70 ring-1 ring-rule">
+									{sourceLabel(src)}
+								</span>
+							{/if}
+						</li>
 					{/each}
 				</ul>
 			</section>
