@@ -437,6 +437,51 @@
     "verified": true
   },
   {
+    "id": "-ka",
+    "lemma": "-ka",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "causer",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "使役主",
+        "description": "Direct causative (non-productive): adds a causer; only attaches to a closed class of stative/intransitive stems (e.g. uhuy → uhuy-ka, pirka → pirka-ka)."
+      }
+    ],
+    "glosses_en": ["CAUS.DIR"],
+    "glosses_jp": ["～にする（直接使役）"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true,
+    "notes": "Less productive than -e/-re/-te. Direct causative only: the causee is typically a non-volitional state or process and may be incorporated or anti-passivised, unlike the indirect causative formed with -e/-re/-te."
+  },
+  {
+    "id": "ci-",
+    "lemma": "ci-",
+    "category": "pfx",
+    "bound": true,
+    "morph_type": "prefix",
+    "attaches_to": ["vt"],
+    "rules": [
+      {
+        "operation": "internalize",
+        "role": "agent",
+        "realization": "internal_refl",
+        "label_jp": "中動・自発",
+        "description": "Anti-causative/middle prefix ci-: backgrounds the agent (originally 1pl.EXC), yielding a self-acting/spontaneous reading (e.g. ci-koyki-p 'game animal', ci-sanasanke 'descend')."
+      }
+    ],
+    "glosses_en": ["MID", "ANTIC"],
+    "glosses_jp": ["（中動・自発）"],
+    "sources": ["佐藤2023アイヌ語の動詞の結合価と3項動詞"],
+    "verified": true,
+    "notes": "Derivational reflex of the 1pl.EXC subject clitic ci=. Productivity is limited compared with i- (INDEF.OBJ); attested mainly with stems that admit a self-acting/middle reading."
+  },
+  {
     "id": "kur",
     "lemma": "kur",
     "category": "n",
@@ -654,6 +699,110 @@
     "glosses_jp": ["（何かを）聞く", "耳を傾ける"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
     "verified": true
+  },
+  {
+    "id": "moy",
+    "lemma": "moy",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "動かす人"},
+        {"role": "patient", "realization": "external", "label_jp": "動かされるもの"}
+      ]
+    },
+    "glosses_en": ["move", "stir"],
+    "glosses_jp": ["～を動かす"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "NINJALCorpus"],
+    "verified": true,
+    "notes": "Base verb root that reduplicates to moymoy (iterative) and combines with the lexical causative -ke in moymoyke."
+  },
+  {
+    "id": "moymoyke",
+    "lemma": "moymoyke",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "ゆさぶる人"},
+        {"role": "patient", "realization": "external", "label_jp": "ゆさぶられるもの"}
+      ]
+    },
+    "glosses_en": ["fiddle with", "jiggle", "shake (iteratively)"],
+    "glosses_jp": ["～をいじる", "～を揺さぶる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Tommy 1949"],
+    "verified": true,
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "moymoy",
+          "category": "vt",
+          "morph_type": "root",
+          "gloss_en": "move (iterative)",
+          "gloss_jp": "繰り返し動かす",
+          "valency": 2,
+          "process": "reduplication",
+          "derived_from": {
+            "lemma": "moy",
+            "category": "vt",
+            "morph_type": "root",
+            "gloss_en": "move",
+            "gloss_jp": "～を動かす",
+            "valency": 2
+          }
+        },
+        {
+          "lemma": "-ke",
+          "category": "sfx",
+          "morph_type": "suffix",
+          "gloss_en": "lexical causative",
+          "gloss_jp": "（語彙的）使役"
+        }
+      ],
+      "note": "Reduplicated moy intensifies / iterates motion; -ke adds the causative dimension. Lexical causative -ke is distinct from the productive -e / -re / -te.",
+      "source": "田村1996アイヌ語沙流方言辞典"
+    }
+  },
+  {
+    "id": "itak",
+    "lemma": "itak",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "話す人"}
+      ]
+    },
+    "glosses_en": ["speak", "talk"],
+    "glosses_jp": ["話す", "しゃべる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "NINJALCorpus"],
+    "verified": true,
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "itak",
+          "category": "n",
+          "morph_type": "root",
+          "gloss_en": "word, speech, language",
+          "gloss_jp": "言葉・言語",
+          "process": "zero_derivation",
+          "process_delta": -1,
+          "derived_from": {
+            "lemma": "itak",
+            "category": "vi",
+            "morph_type": "root",
+            "gloss_en": "speak",
+            "gloss_jp": "話す",
+            "valency": 1
+          }
+        }
+      ],
+      "note": "Same surface form serves as verb 'speak' and noun 'word / language' via zero-derivation — a textbook category-conversion example.",
+      "source": "佐藤2020アイヌ語における文法的カテゴリーの転換について"
+    }
   },
   {
     "id": "enukor",

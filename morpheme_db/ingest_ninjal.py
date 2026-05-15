@@ -115,22 +115,70 @@ def _lemma_keys(lemma: str) -> list[str]:
     return keys
 
 
+def _norm_gloss(text: str) -> str:
+    return text.strip().lower().rstrip("?")
+
+
+def _glosses_overlap(seed: Entry, candidate: Entry) -> bool:
+    """Are the seed and candidate plausibly the same morpheme by gloss?
+
+    Used to gate fuzzy bare-form merges. We only require the candidate's
+    primary EN gloss to match *some* gloss the seed carries (case- and
+    ``?``-stripped). When the seed has no English gloss the check is
+    permissive (returns True) because there's nothing to compare against.
+    """
+    if not candidate.glosses_en:
+        return False
+    seed_glosses = {_norm_gloss(g) for g in seed.glosses_en if g}
+    if not seed_glosses:
+        return True
+    cand_primary = _norm_gloss(candidate.glosses_en[0])
+    return cand_primary in seed_glosses
+
+
 def merge_with_seed(seed: list[Entry], ninjal: list[Entry]) -> list[Entry]:
     """Merge NINJAL candidates with curated seed entries.
 
-    Match is by lemma (with bare-form aliasing for affixes). Where a curated
-    entry exists, the NINJAL frequency is folded into it but the curated
-    valency/category/glosses are preserved. The original NINJAL form is kept
-    as an ``allomorph`` so the CLI resolver finds the curated entry from a
-    bare-form lookup.
+    Match priority:
+
+    1. Exact lemma match (always merges).
+    2. Curator-declared allomorph match (always merges — the curator has
+       explicitly stated this is the same morpheme).
+    3. Bare-form aliasing (e.g. NINJAL ``e`` → seed ``-e``): merges only
+       when the candidate's primary English gloss overlaps with the seed's,
+       so distinct morphemes that happen to share a bare form (the ``ka``
+       particle vs the ``-ka`` causative; ``e`` POSS vs ``-e`` CAUS) stay
+       separate.
+
+    Where a merge happens, the NINJAL frequency is folded into the seed but
+    the curated valency/category/glosses are preserved.
     """
-    index: dict[str, Entry] = {}
+    exact_index: dict[str, Entry] = {}
+    fuzzy_index: dict[str, Entry] = {}
     for entry in seed:
-        for key in _lemma_keys(entry.lemma):
-            index.setdefault(key, entry)
+        exact_index.setdefault(entry.lemma, entry)
+        # Curator-declared allomorphs match exactly — they're explicit.
+        for variant in entry.allomorphs:
+            if variant != entry.lemma:
+                exact_index.setdefault(variant, entry)
+        # Marker-stripped forms (e.g. "-e" → "e", "-te" → "te") are fuzzy
+        # aliases: gloss must overlap before they merge.
+        for form in (entry.lemma, *entry.allomorphs):
+            bare = form.strip("-=")
+            if bare and bare not in exact_index:
+                fuzzy_index.setdefault(bare, entry)
+
+    def _resolve(candidate: Entry) -> Entry | None:
+        if candidate.lemma in exact_index:
+            return exact_index[candidate.lemma]
+        seed_entry = fuzzy_index.get(candidate.lemma)
+        if seed_entry is not None and _glosses_overlap(seed_entry, candidate):
+            return seed_entry
+        return None
+
     merged: list[Entry] = list(seed)
     for candidate in ninjal:
-        existing = index.get(candidate.lemma)
+        existing = _resolve(candidate)
         if existing is not None:
             existing.frequency = max(existing.frequency, candidate.frequency)
             for source in candidate.sources:

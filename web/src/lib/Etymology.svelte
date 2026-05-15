@@ -19,7 +19,9 @@
 	// Localised, short labels for derivational processes — the explainer
 	// page at /processes documents each one in detail.
 	const PROCESS_LABEL: Record<string, () => string> = {
-		zero_derivation: () => m.process_zero_derivation()
+		zero_derivation: () => m.process_zero_derivation(),
+		reduplication: () => m.process_reduplication(),
+		affixation: () => m.process_affixation()
 	};
 
 	function processLabel(key: string | undefined): string {
