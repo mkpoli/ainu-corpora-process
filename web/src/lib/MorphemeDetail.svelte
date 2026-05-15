@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { valencyDelta } from './composition';
+	import { categoryLabel, morphTypeLabel } from './labels';
 	import { sourceLabel, sourceUrl } from './sources';
 	import type { Entry } from './types';
 	import ValencyFrame from './ValencyFrame.svelte';
@@ -30,7 +31,7 @@
 			<div class="flex items-baseline gap-3">
 				<h2 class="font-mono text-3xl text-ink">{entry.lemma}</h2>
 				<span class="text-xs uppercase tracking-widest text-ink/60">
-					{entry.morph_type}{entry.category ? ` · ${entry.category}` : ''}
+					{morphTypeLabel(entry.morph_type)}{entry.category ? ` · ${categoryLabel(entry.category)}` : ''}
 				</span>
 				{#if entry.verified}
 					<span class="rounded-full bg-leaf/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-leaf">{m.detail_curated()}</span>
@@ -100,12 +101,12 @@
 				<h3 class="text-xs font-semibold uppercase tracking-widest text-ink/60">{m.detail_combinatorics()}</h3>
 				{#if entry.attaches_to.length}
 					<p class="text-xs text-ink/70">
-						{m.detail_attaches_to()}: <span class="font-mono">{entry.attaches_to.join(', ')}</span>
+						{m.detail_attaches_to()}: <span>{entry.attaches_to.map((c) => categoryLabel(c)).join(', ')}</span>
 					</p>
 				{/if}
 				{#if entry.category_alt.length}
 					<p class="text-xs text-ink/70">
-						{m.detail_also()}: <span class="font-mono">{entry.category_alt.join(', ')}</span>
+						{m.detail_also()}: <span>{entry.category_alt.map((c) => categoryLabel(c)).join(', ')}</span>
 					</p>
 				{/if}
 			</section>

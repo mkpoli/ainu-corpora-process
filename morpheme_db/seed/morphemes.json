@@ -23,7 +23,7 @@
           "morph_type": "root",
           "gloss_en": "eye",
           "gloss_jp": "目",
-          "process": "zero-derivation N←V",
+          "process": "zero_derivation",
           "process_delta": -1,
           "derived_from": {
             "lemma": "nu",

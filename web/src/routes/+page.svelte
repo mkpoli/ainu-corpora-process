@@ -105,6 +105,12 @@
 						{m.morphemes_link()}
 					</a>
 					<a
+						href="/processes"
+						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
+					>
+						{m.processes_link()}
+					</a>
+					<a
 						href="/references"
 						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
 					>
