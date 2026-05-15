@@ -54,6 +54,13 @@ the literature cited in `database.typ` / `system.typ` / `compute.typ` —
 notably 佐藤2023 (3項動詞 / 項スロット), ブガエワ2014 (使役),
 中川2024 (アリティ整理), and 佐藤2007 (yay-/si-).
 
+A second curated file, `seed/translations.json`, backfills English /
+Japanese glosses for compound entries that the Tommy 1949 and Japanese
+Wiktionary ingests left one-sided. The map is keyed by lemma; values may
+be a string (single English gloss), a list of strings (English glosses),
+or `{en: [...], jp: [...]}`. The ingest step only fills empty `glosses_en`
+or `glosses_jp` fields — existing data is never overwritten.
+
 The NINJAL ingest (`ingest_ninjal.py`) reads
 `corpus/output/ninjal/lexicon/ninjal_morpheme_lexicon.tsv` produced by
 `corpus/ninjal/extract_morpheme_lexicon.py` and emits ~1400 unverified
