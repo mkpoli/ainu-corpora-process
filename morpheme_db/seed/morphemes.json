@@ -29,8 +29,8 @@
             "lemma": "nu",
             "category": "vi",
             "morph_type": "root",
-            "gloss_en": "sense / hear",
-            "gloss_jp": "聞く・感じる",
+            "gloss_en": "sense, hear",
+            "gloss_jp": "聞く、感じる",
             "valency": 1
           }
         },
@@ -38,15 +38,15 @@
           "lemma": "kar",
           "category": "vt",
           "morph_type": "root",
-          "gloss_en": "act on (in compounds)",
-          "gloss_jp": "〜に作用する（複合語中）",
+          "gloss_en": "act on",
+          "gloss_jp": "〜に作用する",
           "valency": 2,
           "process": "grammaticalization",
           "derived_from": {
             "lemma": "kar",
             "category": "vt",
             "morph_type": "root",
-            "gloss_en": "make, create",
+            "gloss_en": "make",
             "gloss_jp": "〜を作る",
             "valency": 2
           }
