@@ -54,8 +54,23 @@ export interface Entry {
 export interface EtymologyPart {
 	lemma: string;
 	id?: string;
+	category?: string;
+	morph_type?: string;
 	gloss_en?: string;
 	gloss_jp?: string;
+	/** Static valency annotation for this form: +N for arity, displayed in
+	 * the chip like the synchronic +1/−1 badge. Optional. */
+	valency?: number;
+	/** If this part is itself derived from another morpheme, the underlying
+	 * form. Renders as another chip beneath this one, connected by a labelled
+	 * arrow. */
+	derived_from?: EtymologyPart;
+	/** Name of the derivational process that produced this part from
+	 * `derived_from`. E.g. "zero-derivation N←V". */
+	process?: string;
+	/** Signed arity change applied by `process` (e.g. -1 for zero-derivation
+	 * dropping the verbal argument). */
+	process_delta?: number;
 }
 
 export interface Etymology {
