@@ -1,42 +1,48 @@
-// Map source-attribution strings to URLs when we know one. The morpheme
-// database uses ad-hoc citation keys (e.g. "佐藤2023…", "NINJALCorpus"), so
-// this is a small explicit table rather than something inferred.
+// Decide where to send a user when they click a source-attribution chip.
 //
-// `Wiktionary EN` / `Wiktionary JA` get lemma-specific URLs because Wiktionary
-// pages exist for each Ainu morpheme.
+// Resolution order:
+//   1. If the source resolves to a refs.yml entry (`resolveReferenceKey`),
+//      link to the bibliography page anchor: `/references#<encoded-key>`.
+//   2. Otherwise, fall back to a handful of hard-coded URLs for
+//      lemma-specific Wiktionary deep links and a couple of corpora
+//      that don't have a refs.yml entry.
+//   3. Anything else stays non-clickable.
+//
+// The label is always normalised so legacy ingest strings (WiktionaryJA,
+// NINJALCorpus, ...) render with their friendlier names.
+
+import { resolveReferenceKey } from './references';
 
 const FIXED_URLS: Record<string, string> = {
-	NINJALCorpus: 'https://ainu.ninjal.ac.jp/topic/',
-	NAMCorpus: 'https://ainugo.nam.go.jp/',
-	AACorpus: 'https://aacorpus.aa-ken.jp/'
+	'Tommy 1949': 'https://www.dampopo.jp/~ahirohaifu/aynudictionary.html',
+	Tommy1949: 'https://www.dampopo.jp/~ahirohaifu/aynudictionary.html'
 };
 
 export function sourceUrl(source: string, lemma?: string): string | null {
+	const refKey = resolveReferenceKey(source);
+	if (refKey) return `/references#${encodeURIComponent(refKey)}`;
+
 	if (FIXED_URLS[source]) return FIXED_URLS[source];
 
 	const target = (lemma ?? '').replace(/^[-=]+|[-=]+$/g, '');
-	if (!target) return null;
-
-	if (source === 'Wiktionary EN' || source === 'WiktionaryEN') {
-		return `https://en.wiktionary.org/wiki/${encodeURIComponent(target)}#Ainu`;
-	}
-	if (source === 'Wiktionary JA' || source === 'WiktionaryJA') {
-		return `https://ja.wiktionary.org/wiki/${encodeURIComponent(target)}#.E3.82.A2.E3.82.A4.E3.83.8C.E8.AA.9E`;
-	}
-	if (source === 'Tommy 1949' || source === 'Tommy1949') {
-		return 'https://www.dampopo.jp/~ahirohaifu/aynudictionary.html';
+	if (target) {
+		if (source === 'Wiktionary EN' || source === 'WiktionaryEN') {
+			return `https://en.wiktionary.org/wiki/${encodeURIComponent(target)}#Ainu`;
+		}
+		if (source === 'Wiktionary JA' || source === 'WiktionaryJA') {
+			return `https://ja.wiktionary.org/wiki/${encodeURIComponent(target)}#.E3.82.A2.E3.82.A4.E3.83.8C.E8.AA.9E`;
+		}
 	}
 	return null;
 }
 
 export function sourceLabel(source: string): string {
-	// Normalise a couple of variants for display.
 	if (source === 'WiktionaryJA') return 'Wiktionary JA';
 	if (source === 'WiktionaryEN') return 'Wiktionary EN';
 	if (source === 'Tommy1949') return 'Tommy 1949';
 	if (source === 'NINJALCorpus') return 'NINJAL Corpus';
 	if (source === 'NAMCorpus') return 'NAM Archive';
 	if (source === 'AACorpus') return 'AA-Corpus';
-	if (source === 'Dictionary') return 'Dictionary'; // legacy, kept until ingests migrate
+	if (source === 'Dictionary') return 'Dictionary';
 	return source;
 }

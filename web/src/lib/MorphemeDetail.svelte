@@ -124,12 +124,13 @@
 				<ul class="flex flex-wrap gap-1.5">
 					{#each entry.sources as src}
 						{@const url = sourceUrl(src, entry.lemma)}
+						{@const isInternal = url?.startsWith('/') ?? false}
 						<li>
 							{#if url}
 								<a
 									href={url}
-									target="_blank"
-									rel="noopener noreferrer"
+									target={isInternal ? undefined : '_blank'}
+									rel={isInternal ? undefined : 'noopener noreferrer'}
 									class="rounded-full bg-paper px-2 py-0.5 text-[11px] text-ink/80 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
 								>
 									{sourceLabel(src)}
