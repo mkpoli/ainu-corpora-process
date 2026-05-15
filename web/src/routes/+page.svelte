@@ -248,6 +248,7 @@
 							{expanded}
 							onToggleExpand={toggleExpand}
 							{entryById}
+							matchedEntryId={data.composition.matchedEntry?.id ?? null}
 						/>
 					</div>
 				</div>

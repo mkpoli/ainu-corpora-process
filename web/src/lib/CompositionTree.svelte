@@ -26,7 +26,8 @@
 		expanded = new Set<string>(),
 		onToggleExpand,
 		entryById = {},
-		ancestors = new Set<string>()
+		ancestors = new Set<string>(),
+		matchedEntryId = null
 	}: {
 		node: CompositionNode;
 		selectedId: string | null;
@@ -37,6 +38,10 @@
 		onToggleExpand?: (entryId: string) => void;
 		entryById?: Record<string, Entry>;
 		ancestors?: Set<string>;
+		/** The entry the user originally queried. Its own leaf doesn't get
+		 *  the "..." expand affordance — the top-level Etymology block under
+		 *  the tree already covers the head's derivation. */
+		matchedEntryId?: string | null;
 	} = $props();
 
 	const expandable = $derived.by(() => {
@@ -44,6 +49,9 @@
 		// Don't offer to expand the same node we're already inside a sub-tree
 		// of — that would loop forever.
 		if (ancestors.has(node.entry.id)) return false;
+		// Don't offer to expand the queried entry's own leaf — its derivation
+		// is already shown at the top level of the Composition section.
+		if (matchedEntryId && node.entry.id === matchedEntryId) return false;
 		const hasSub = subtrees[node.entry.id] !== undefined;
 		const entry = entryById[node.entry.id] ?? node.entry;
 		const hasEtym = entry?.etymology != null;
@@ -143,6 +151,7 @@
 							{onToggleExpand}
 							{entryById}
 							ancestors={childAncestors}
+							{matchedEntryId}
 						/>
 					{/if}
 					{#if subEntry?.etymology}
@@ -196,6 +205,7 @@
 					{onToggleExpand}
 					{entryById}
 					ancestors={childAncestors}
+					{matchedEntryId}
 				/>
 				{/if}
 				{#if node.body}
@@ -209,6 +219,7 @@
 					{onToggleExpand}
 					{entryById}
 					ancestors={childAncestors}
+					{matchedEntryId}
 				/>
 				{/if}
 			{:else}
@@ -223,6 +234,7 @@
 					{onToggleExpand}
 					{entryById}
 					ancestors={childAncestors}
+					{matchedEntryId}
 				/>
 				{/if}
 				{#if node.affix}
@@ -236,6 +248,7 @@
 					{onToggleExpand}
 					{entryById}
 					ancestors={childAncestors}
+					{matchedEntryId}
 				/>
 				{/if}
 			{/if}

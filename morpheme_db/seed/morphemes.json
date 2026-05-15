@@ -38,9 +38,18 @@
           "lemma": "kar",
           "category": "vt",
           "morph_type": "root",
-          "gloss_en": "act on",
-          "gloss_jp": "〜に作用する",
-          "valency": 2
+          "gloss_en": "act on (in compounds)",
+          "gloss_jp": "〜に作用する（複合語中）",
+          "valency": 2,
+          "process": "grammaticalization",
+          "derived_from": {
+            "lemma": "kar",
+            "category": "vt",
+            "morph_type": "root",
+            "gloss_en": "make, create",
+            "gloss_jp": "〜を作る",
+            "valency": 2
+          }
         }
       ],
       "note": "cf. nupe = nu + pe 'eye-water = tear'.",
