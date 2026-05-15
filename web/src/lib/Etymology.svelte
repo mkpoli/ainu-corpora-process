@@ -21,7 +21,8 @@
 	const PROCESS_LABEL: Record<string, () => string> = {
 		zero_derivation: () => m.process_zero_derivation(),
 		reduplication: () => m.process_reduplication(),
-		affixation: () => m.process_affixation()
+		affixation: () => m.process_affixation(),
+		grammaticalization: () => m.process_grammaticalization()
 	};
 
 	function processLabel(key: string | undefined): string {

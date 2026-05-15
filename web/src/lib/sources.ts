@@ -43,5 +43,6 @@ export function sourceLabel(source: string): string {
 	if (source === 'NINJALCorpus') return 'NINJAL Corpus';
 	if (source === 'NAMCorpus') return 'NAM Archive';
 	if (source === 'AACorpus') return 'AA-Corpus';
+	if (source === 'ainu-corpora' || source === 'AinuCorpora') return 'Ainu Corpora';
 	return source;
 }

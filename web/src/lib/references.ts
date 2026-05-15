@@ -34,7 +34,10 @@ const ALIASES: Record<string, string> = {
 	'NAM Archive': 'NAMCorpus',
 	NAMCorpus: 'NAMCorpus',
 	'AA-Corpus': 'AACorpus',
-	AACorpus: 'AACorpus'
+	AACorpus: 'AACorpus',
+	'ainu-corpora': 'AinuCorpora',
+	'Ainu Corpora': 'AinuCorpora',
+	AinuCorpora: 'AinuCorpora'
 };
 
 export function resolveReferenceKey(source: string): string | null {

@@ -69,12 +69,17 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 	while (subtreeQueue.length) {
 		const { entry, depth } = subtreeQueue.shift()!;
 		if (subtrees[entry.id]) continue;
+		// Only compute a sub-tree when the entry has an actual `composition` —
+		// for entries that only carry an `etymology`, the Etymology component
+		// already handles the rendering and a single-leaf "sub-tree" matching
+		// the parent's lemma would just be a duplicate.
+		if (entry.composition.length === 0) continue;
 		const sub = compose(entry.lemma, {
 			byKey: db.byKey,
 			byId: db.byId,
 			segmentationKeys: db.segmentationKeys
 		});
-		if (!sub.tree) continue;
+		if (!sub.tree || sub.tree.isLeaf) continue;
 		subtrees[entry.id] = sub.tree;
 		// Walk the new sub-tree so its own leaves become candidates for
 		// further expansion (until SUBTREE_DEPTH).
