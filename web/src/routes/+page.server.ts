@@ -118,6 +118,41 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			examples: ['ku', 'iku']
 		},
 		{
+			key: 'ruska',
+			// Bugaeva 2014 — extreme valency manipulation with stacked
+			// applicatives / reflexives / reciprocals / causatives.
+			examples: [
+				'ruska',
+				'koiruska',
+				'sikoiruska',
+				'iruskare',
+				'koiruskare',
+				'sikoiruskare',
+				'ukoiruskare'
+			]
+		},
+		{
+			key: 'applicative-refl',
+			// Applicative + reflexive / reciprocal stacks.
+			examples: [
+				'eyaykopuntek',
+				'ewkoysoytak',
+				'iyayraykere',
+				'uminare',
+				'sikasuyre'
+			]
+		},
+		{
+			key: 'incorporation-heavy',
+			// Noun incorporation + multiple affixes.
+			examples: [
+				'eyayrampokwen',
+				'eyaypoktacis',
+				'eyayrikikurkosnepuni',
+				'eyaykewtumekosanniyo'
+			]
+		},
+		{
 			key: 'suypa',
 			// The "ponder" family. Single-word lemmas are the attested forms;
 			// eyaykotuymasiramsuypa is the paper's headline polysynthetic
@@ -127,7 +162,8 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 				'yaykosiramsuypa',
 				'eyaykosiramsuypa',
 				'yaykotuymasiramsuypa',
-				'eyaykotuymasiramsuypa'
+				'eyaykotuymasiramsuypa',
+				'aeyaykotuymasiramsuypa'
 			]
 		}
 	];
