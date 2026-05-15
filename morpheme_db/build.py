@@ -16,6 +16,7 @@ import argparse
 import csv
 from pathlib import Path
 
+from morpheme_db.ingest_ff_ainu import enrich_with_ff_ainu, load_ff_ainu_pos
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
 from morpheme_db.ingest_wiktionary import enrich_with_wiktionary, load_json_dict
 from morpheme_db.ingest_tommy1949 import (
@@ -42,6 +43,7 @@ NINJAL_LEXICON_PATH = (
 WIKT_JA_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses.json"
 WIKT_EN_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses_en.json"
 WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_of_speech.json"
+FF_AINU_SARU_PATH = REPO_ROOT / "dictionary" / "output" / "ff-ainu-saru-terms.json"
 WIKT_COMPOSITIONS_PATH = (
     REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_word_compositions.json"
 )
@@ -132,6 +134,7 @@ def build(
     translations_path: Path | None = TRANSLATIONS_PATH,
     corpora_token_freq_path: Path | None = CORPORA_TOKEN_FREQ_PATH,
     corpora_lemma_freq_path: Path | None = CORPORA_LEMMA_FREQ_PATH,
+    ff_ainu_saru_path: Path | None = FF_AINU_SARU_PATH,
     output_dir: Path = OUTPUT_DIR,
 ) -> tuple[list[Entry], dict[str, int]]:
     seed = load_entries(seed_path)
@@ -145,6 +148,16 @@ def build(
     ja_pos = load_json_dict(wikt_ja_pos_path) if wikt_ja_pos_path and wikt_ja_pos_path.exists() else {}
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
+
+    ff_ainu_pos = (
+        load_ff_ainu_pos(ff_ainu_saru_path)
+        if ff_ainu_saru_path and ff_ainu_saru_path.exists()
+        else {}
+    )
+    if ff_ainu_pos:
+        ff_counters = enrich_with_ff_ainu(entries, ff_ainu_pos)
+    else:
+        ff_counters = {"categories_set": 0, "categories_upgraded": 0, "alts_added": 0}
 
     counters = {
         "wikt_compositions_attached": 0,
@@ -161,6 +174,9 @@ def build(
         "corpora_freq_unmatched": 0,
         "corpora_freq_replaced": 0,
         "corpora_freq_kept_existing": 0,
+        "ff_ainu_categories_set": ff_counters["categories_set"],
+        "ff_ainu_categories_upgraded": ff_counters["categories_upgraded"],
+        "ff_ainu_alts_added": ff_counters["alts_added"],
     }
     if wikt_compositions_path and wikt_compositions_path.exists():
         comps = load_compositions(wikt_compositions_path)
@@ -186,6 +202,14 @@ def build(
     # JA/EN glosses for their lemma.
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
+
+    # Re-run FF Ainu enrichment for the same reason — newly-created entries
+    # from the composition ingests need their categories upgraded too.
+    if ff_ainu_pos:
+        ff_counters2 = enrich_with_ff_ainu(entries, ff_ainu_pos)
+        counters["ff_ainu_categories_set"] += ff_counters2["categories_set"]
+        counters["ff_ainu_categories_upgraded"] += ff_counters2["categories_upgraded"]
+        counters["ff_ainu_alts_added"] += ff_counters2["alts_added"]
 
     if translations_path and translations_path.exists():
         translations = load_translations(translations_path)
@@ -322,7 +346,10 @@ def main(argv: list[str] | None = None) -> int:
         f"matched_lemma={counters['corpora_freq_matched_lemma']} "
         f"replaced={counters['corpora_freq_replaced']} "
         f"kept_existing={counters['corpora_freq_kept_existing']} "
-        f"unmatched={counters['corpora_freq_unmatched']}"
+        f"unmatched={counters['corpora_freq_unmatched']}\n"
+        f"  FF Ainu Saru POS: categories_set={counters['ff_ainu_categories_set']} "
+        f"transitivity_upgraded={counters['ff_ainu_categories_upgraded']} "
+        f"alts_added={counters['ff_ainu_alts_added']}"
     )
     return 0
 
