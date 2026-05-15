@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as m from '$lib/paraglide/messages.js';
-	import { categoryLabel, morphTypeLabel } from '$lib/labels';
+	import { categoryLabel, groupCategories, morphTypeLabel } from '$lib/labels';
 	import LocaleSwitcher from '$lib/LocaleSwitcher.svelte';
 	import type { PageData } from './$types';
 
@@ -47,6 +47,7 @@
 	}
 
 	const totalPages = $derived(Math.max(1, Math.ceil(data.total / data.pageSize)));
+	const categoryGroups = $derived(groupCategories(data.categories));
 </script>
 
 <svelte:head>
@@ -82,8 +83,12 @@
 				onchange={(e) => pushParam('cat', (e.currentTarget as HTMLSelectElement).value)}
 			>
 				<option value="">{m.morphemes_all_categories()}</option>
-				{#each data.categories as cat}
-					<option value={cat}>{categoryLabel(cat)}</option>
+				{#each categoryGroups as group (group.key)}
+					<optgroup label={group.label}>
+						{#each group.options as opt (opt.code)}
+							<option value={opt.code}>{opt.label}</option>
+						{/each}
+					</optgroup>
 				{/each}
 			</select>
 			<label class="inline-flex items-center gap-1.5 text-xs text-ink/70">
