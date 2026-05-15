@@ -112,18 +112,25 @@ def enrich_with_wiktionary(
                     entry.category = xpos
             _add_source(entry, "Wiktionary EN")
 
-        if pos_record and not entry.category:
+        if pos_record:
+            mapped: list[str] = []
             for raw in pos_record:
                 xpos = _xpos_from(raw)
                 if xpos:
-                    entry.category = xpos
+                    if xpos not in mapped:
+                        mapped.append(xpos)
+                elif raw not in entry.category_alt:
+                    entry.category_alt.append(raw)
+            if mapped:
+                if not entry.category:
+                    entry.category = mapped[0]
                     _add_source(entry, "Wiktionary JA")
-                    break
-            else:
-                # Even if no XPOS matched, record category_alt for review.
-                for raw in pos_record:
-                    if raw not in entry.category_alt:
-                        entry.category_alt.append(raw)
+                # Surface any POS the lemma carries beyond the chosen one so
+                # genuinely polysemous forms (e.g. ``ta`` as both particle and
+                # verb) keep their alternatives visible in the UI.
+                for xpos in mapped:
+                    if xpos != entry.category and xpos not in entry.category_alt:
+                        entry.category_alt.append(xpos)
 
         # Upgrade morph_type when category is unambiguously a structural tag.
         if entry.morph_type == "root":
