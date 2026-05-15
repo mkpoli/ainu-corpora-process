@@ -128,6 +128,7 @@
 	"composition_source_segmented": "Decomposition: best-effort guess from known morphemes — not verified",
 	"kind_fused": "fused",
 	"kind_compound": "compound",
+	"kind_incorporation": "incorporation",
 	"kind_lexeme": "lexeme",
 	"kind_etymology": "etymology",
 	"reduced_form_badge": "reduced form",

@@ -388,7 +388,21 @@ function buildTree(
 		};
 	}
 
+	// Prefer an entry with an explicit base_frame; otherwise prefer the first
+	// non-affix lexical entry (so productive prefixes like e- / ko- don't
+	// accidentally become "head" in a compound whose actual head is an
+	// unverified NINJAL noun/verb). Only fall back to the first entry of any
+	// kind if nothing else matches.
 	let headIndex = matched.findIndex((m) => m.entry?.base_frame);
+	if (headIndex === -1) {
+		headIndex = matched.findIndex(
+			(m) =>
+				m.entry &&
+				m.entry.morph_type !== 'prefix' &&
+				m.entry.morph_type !== 'suffix' &&
+				m.entry.morph_type !== 'clitic'
+		);
+	}
 	if (headIndex === -1) headIndex = matched.findIndex((m) => m.entry);
 	if (headIndex === -1) {
 		// Everything unresolved.
@@ -424,15 +438,43 @@ function buildTree(
 		isLeaf: true
 	};
 
-	// Wrap suffixes inside-out (i.e. apply -e before applying anything else
-	// that sits further right).
+	// Productive prefixes / suffixes (morph_type === 'prefix' | 'suffix') are
+	// applied OUTERMOST; non-affix lexical material (incorporated nouns,
+	// deverbal nominalisers like -kur, -pe) binds tightly to the head and
+	// is applied innermost. This gives the bracketing (cep-koyki)-kur for
+	// cepkoykikur — kur wraps the cep+koyki incorporation core — while
+	// si-(nukar-e) still works because both si- and -e are productive
+	// affixes and -e (closer to head) still applies before si-.
+	const isAffixPart = (m: { entry: Entry | null }) =>
+		m.entry?.morph_type === 'prefix' || m.entry?.morph_type === 'suffix';
+
+	// Pass 1: lexical (non-affix) elements on the prefix side (innermost,
+	// closest to head first → right-to-left walk).
+	for (let i = headIndex - 1; i >= 0; i -= 1) {
+		if (isAffixPart(matched[i])) continue;
+		node = wrapAffix(node, matched[i], 'prefix', warnings);
+	}
+
+	// Pass 2: lexical (non-affix) elements on the suffix side (closest to
+	// head first → left-to-right walk).
 	for (let i = headIndex + 1; i < matched.length; i += 1) {
+		if (isAffixPart(matched[i])) continue;
 		node = wrapAffix(node, matched[i], 'suffix', warnings);
 	}
 
-	// Wrap prefixes outside-in (so si- in si-nukar-e applies AFTER -e has
-	// already created the causer slot).
+	// Pass 3: productive suffix affixes (still inner-to-outer in the suffix
+	// direction so -e applies before -yar, and -e creates a slot that an
+	// outer si- can later see).
+	for (let i = headIndex + 1; i < matched.length; i += 1) {
+		if (!isAffixPart(matched[i])) continue;
+		node = wrapAffix(node, matched[i], 'suffix', warnings);
+	}
+
+	// Pass 4: productive prefix affixes (closest to head first, working
+	// outward, so ko- applies before yay-, and si- still applies after
+	// -e has run in Pass 3).
 	for (let i = headIndex - 1; i >= 0; i -= 1) {
+		if (!isAffixPart(matched[i])) continue;
 		node = wrapAffix(node, matched[i], 'prefix', warnings);
 	}
 
@@ -465,9 +507,27 @@ function wrapAffix(
 	const affixBare = (entry?.lemma ?? child.token).replace(/^[-=]+|[-=]+$/g, '');
 	const bodyBare = body.surface.replace(/^[-=]+|[-=]+$/g, '');
 	const surface = side === 'prefix' ? `${affixBare}-${bodyBare}` : `${bodyBare}-${affixBare}`;
+
+	// Pick a bracket kind: productive affixes (morph_type prefix/suffix)
+	// keep the structural prefix/suffix label; non-affix lexical material is
+	// labelled either incorporation (noun adjacent to a verb host) or
+	// compound (everything else).
+	let wrapKind: CompositionKind = side;
+	if (entry && entry.morph_type !== 'prefix' && entry.morph_type !== 'suffix') {
+		const hostEntry =
+			body.entry ?? body.body?.entry ?? body.affix?.entry ?? null;
+		const hostIsVerb = (() => {
+			const c = hostEntry?.category ?? '';
+			return c === 'vt' || c === 'vi' || c === 'vd' || c === 'vc' || c === 'v';
+		})();
+		const cat = entry.category ?? '';
+		const isNoun = cat === 'n' || cat === 'nl' || cat === 'nmlz' || cat === 'propn';
+		wrapKind = isNoun && hostIsVerb ? 'incorporation' : 'compound';
+	}
+
 	return {
 		surface,
-		kind: side,
+		kind: wrapKind,
 		entry: null,
 		frame: nextFrame,
 		affix: affixLeaf,
@@ -570,65 +630,70 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 
 	let tree = buildTree(matched, warnings);
 
-	// For atomic matches (the query is a single lexeme with no composition),
-	// wrap with a "lexeme" root node so the layout matches compound queries
-	// — a header at top, then the leaf beneath — and the head morpheme is
-	// always reachable as both the wrapper's affix and the body leaf.
-	if (!fusedRoot && directMatch && tree.isLeaf && tree.entry?.id === directMatch.id) {
-		const frame = tree.frame ? cloneFrame(tree.frame) : null;
-		const headLeaf: CompositionNode = {
-			surface: directMatch.lemma,
-			kind: 'head',
-			entry: directMatch,
-			frame,
-			isLeaf: true
-		};
-		tree = {
-			surface: directMatch.lemma,
-			kind: 'lexeme',
-			entry: null,
-			frame,
-			affix: headLeaf,
-			isLeaf: false
-		};
-	}
-
 	if (fusedRoot) {
-		// Distinguish actually-reduced compounds (the surface lemma differs
-		// from the concatenated constituents, e.g. inkar ≠ i+nukar = inukar,
-		// payoka ≠ paye+oka) from purely *transparent* compounds where the
-		// hyphenation is an analytical convention and the surface lemma is
-		// just the concatenation of its constituents (nupe = nu+pe,
-		// cepkoyki = cep+koyki). The former get the 'fused' kind label
-		// (signalling a phonological reduction); the latter get the plain
-		// 'compound' label so the UI doesn't pretend a reduction happened.
+		// Distinguish actually-reduced compounds (surface lemma ≠ concat of
+		// constituents — inkar ≠ i+nukar = inukar, payoka ≠ paye+oka) from
+		// purely transparent compounds where the hyphenation is an analytical
+		// convention and the surface lemma is just the concatenation of its
+		// constituents (nupe = nu+pe, cepkoyki = cep+koyki). Reduced forms
+		// keep the wrap-with-head-chip 'fused' treatment; transparent
+		// compounds are flattened — no intermediate "cep-koyki" node, no
+		// duplicated head leaf, just a single bracket directly above the
+		// constituent leaves.
 		const composedBare = matched
 			.map((mch) => (mch.entry?.lemma ?? mch.token).replace(/^[-=]+|[-=]+$/g, ''))
 			.join('');
 		const lemmaBare = fusedRoot.lemma.replace(/^[-=]+|[-=]+$/g, '');
-		const wrapKind: CompositionKind = composedBare !== lemmaBare ? 'fused' : 'compound';
+		const isReduced = composedBare !== lemmaBare;
 
 		const frame = fusedRoot.base_frame
 			? cloneFrame(fusedRoot.base_frame)
 			: tree.frame
 				? cloneFrame(tree.frame)
 				: null;
-		const headLeaf: CompositionNode = {
-			surface: fusedRoot.lemma,
-			kind: 'head',
-			entry: fusedRoot,
-			frame,
-			isLeaf: true
-		};
-		tree = {
-			surface: fusedRoot.lemma,
-			kind: wrapKind,
-			entry: null,
-			frame,
-			affix: headLeaf,
-			body: tree,
-			isLeaf: false
-		};
+
+		if (isReduced) {
+			const headLeaf: CompositionNode = {
+				surface: fusedRoot.lemma,
+				kind: 'head',
+				entry: fusedRoot,
+				frame,
+				isLeaf: true
+			};
+			tree = {
+				surface: fusedRoot.lemma,
+				kind: 'fused',
+				entry: null,
+				frame,
+				affix: headLeaf,
+				body: tree,
+				isLeaf: false
+			};
+		} else if (!tree.isLeaf) {
+			// Pick a bracket label based on the constituents:
+			//   noun + verb  → incorporation (cep + koyki, aynu + koyki, …)
+			//   prefix/suffix involved → keep the structural prefix/suffix
+			//     wrapping (ukoyki = u- + koyki is prefixation, not
+			//     compounding)
+			//   everything else (n+n, v+v, …) → plain 'compound'
+			const isAffix = (e: Entry | null | undefined) =>
+				e?.morph_type === 'prefix' || e?.morph_type === 'suffix';
+			const isNoun = (e: Entry | null | undefined) => {
+				const c = e?.category ?? '';
+				return c === 'n' || c === 'nl' || c === 'nmlz' || c === 'propn';
+			};
+			const isVerb = (e: Entry | null | undefined) => {
+				const c = e?.category ?? '';
+				return c === 'vt' || c === 'vi' || c === 'vd' || c === 'vc' || c === 'v';
+			};
+			const hasAffix = matched.some((m) => isAffix(m.entry));
+			const newKind: CompositionKind = hasAffix
+				? tree.kind
+				: matched.some((m) => isNoun(m.entry)) && matched.some((m) => isVerb(m.entry))
+					? 'incorporation'
+					: 'compound';
+			tree = { ...tree, kind: newKind, surface: fusedRoot.lemma, frame };
+		}
 	}
 	const matchedEntry = directMatch ?? null;
 	const matchedAnyEntry = matched.some((m) => m.entry !== null);

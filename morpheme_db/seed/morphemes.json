@@ -349,6 +349,32 @@
     "notes": "Allomorph distribution: -re after vowel-final stems, -te in restricted contexts, -e elsewhere. Treated as a single morpheme for valency purposes."
   },
   {
+    "id": "-re",
+    "lemma": "-re",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi", "vt"],
+    "rules": [
+      {
+        "operation": "add_slot",
+        "role": "causer",
+        "realization": "external",
+        "position": "front",
+        "label_jp": "使役主",
+        "description": "Productive causative; adds an external causer (arity +1). Surfaces after vowel-final stems."
+      }
+    ],
+    "glosses_en": ["CAUS"],
+    "glosses_jp": ["～させる"],
+    "sources": [
+      "ブガエワ2014アイヌ語使役構文に関する再考察",
+      "中川2024アイヌ語広文典"
+    ],
+    "verified": true,
+    "notes": "Allomorph of the productive causative -e / -re / -te; distributed by phonotactics (this -re form follows vowel-final stems such as ruska-re, iruska-re)."
+  },
+  {
     "id": "-yar",
     "lemma": "-yar",
     "allomorphs": ["-yar", "-ar"],
@@ -1001,7 +1027,7 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["i-", "ruska", "-e"],
+    "composition": ["i-", "ruska", "-re"],
     "composition_note": "i-ruska is intransitive 'be angry (at indef)'; -re/-e adds a causer → 'make someone angry at something'.",
     "base_frame": {
       "slots": [
@@ -1021,7 +1047,7 @@
     "category": "vd",
     "bound": false,
     "morph_type": "root",
-    "composition": ["ko-", "i-", "ruska", "-e"],
+    "composition": ["ko-", "i-", "ruska", "-re"],
     "composition_note": "Ditransitive: ko- adds goal, -re/-e adds causer over the i-ruska base.",
     "base_frame": {
       "slots": [
@@ -1042,7 +1068,7 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["si-", "ko-", "i-", "ruska", "-e"],
+    "composition": ["si-", "ko-", "i-", "ruska", "-re"],
     "composition_note": "si- coreferences the ko-added goal with one of the higher arguments — 'make someone angry at something towards oneself'.",
     "base_frame": {
       "slots": [
@@ -1063,7 +1089,7 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["u-", "ko-", "i-", "ruska", "-e"],
+    "composition": ["u-", "ko-", "i-", "ruska", "-re"],
     "composition_note": "u- coreferences the ko-added goal with another argument (reciprocal) — 'make several people angry at something at each other'.",
     "base_frame": {
       "slots": [
