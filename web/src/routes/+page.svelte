@@ -50,12 +50,15 @@
 
 	function defaultHeadId(): string | null {
 		if (!data.composition) return null;
-		// For fused trees (lexicalised reductions like inkar / cepkoyki /
-		// nukar), the affix slot holds the lexicalised lemma — that's what
-		// the user typed and what should be auto-selected. Falling through
-		// to body would walk us into the underlying constituents.
+		// For any wrapper kind (fused, compound, or lexeme) the affix slot
+		// holds the lexicalised / queried lemma — that's what should be
+		// auto-selected. Falling through to body would walk us into the
+		// underlying constituents.
 		const root = data.composition.tree;
-		if (root.kind === 'fused' && root.affix?.entry?.id) {
+		if (
+			(root.kind === 'fused' || root.kind === 'compound' || root.kind === 'lexeme') &&
+			root.affix?.entry?.id
+		) {
 			return root.affix.entry.id;
 		}
 		let head = root.entry?.id ?? null;
@@ -84,7 +87,9 @@
 	const compositionHead = $derived.by(() => {
 		const tree = data.composition?.tree;
 		if (!tree) return null;
-		const headId = (tree.kind === 'fused' ? tree.affix?.entry?.id : null) ?? tree.entry?.id ?? null;
+		const isWrapper =
+			tree.kind === 'fused' || tree.kind === 'compound' || tree.kind === 'lexeme';
+		const headId = (isWrapper ? tree.affix?.entry?.id : null) ?? tree.entry?.id ?? null;
 		if (!headId) return null;
 		return data.detailEntries.find((e) => e.id === headId) ?? null;
 	});

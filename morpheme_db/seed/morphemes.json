@@ -52,7 +52,65 @@
     "glosses_en": ["catch", "take"],
     "glosses_jp": ["～を獲る", "～を捕る"],
     "sources": ["中川1995アイヌ語千歳方言辞典"],
-    "verified": true
+    "verified": true,
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "ko-",
+          "category": "pfx",
+          "morph_type": "prefix",
+          "gloss_en": "APPL",
+          "gloss_jp": "〜に対して"
+        },
+        {
+          "lemma": "iki",
+          "category": "vi",
+          "morph_type": "root",
+          "gloss_en": "do",
+          "gloss_jp": "（何かを）する",
+          "valency": 1
+        }
+      ],
+      "note": "Click iki to expand further: iki itself etymologises as i- + ki.",
+      "source": "田村1996アイヌ語沙流方言辞典"
+    }
+  },
+  {
+    "id": "iki",
+    "lemma": "iki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "する人"}
+      ]
+    },
+    "glosses_en": ["do (something)", "act"],
+    "glosses_jp": ["（何かを）する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "i-",
+          "category": "pfx",
+          "morph_type": "prefix",
+          "gloss_en": "INDEF.OBJ",
+          "gloss_jp": "不定目的語"
+        },
+        {
+          "lemma": "ki",
+          "category": "vt",
+          "morph_type": "root",
+          "gloss_en": "do",
+          "gloss_jp": "～をする",
+          "valency": 2
+        }
+      ],
+      "note": "Indefinite-object + 'do' → intransitive 'do something'.",
+      "source": "田村1996アイヌ語沙流方言辞典"
+    }
   },
   {
     "id": "cep",
