@@ -76,6 +76,7 @@
 	"composition_source_split": "入力どおりにハイフン／空白で分割（未検証）",
 	"composition_source_segmented": "既知の形態素集合からの自動推定（未検証）",
 	"kind_fused": "縮約",
+	"kind_etymology": "語源",
 	"reduced_form_badge": "縮約形",
 	"locale_label": "言語",
 	"locale_en": "English",

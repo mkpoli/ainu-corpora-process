@@ -76,6 +76,7 @@
 	"composition_source_split": "Decomposition: as you typed it (split on hyphens / whitespace) — not verified",
 	"composition_source_segmented": "Decomposition: best-effort guess from known morphemes — not verified",
 	"kind_fused": "fused",
+	"kind_etymology": "etymology",
 	"reduced_form_badge": "reduced form",
 	"locale_label": "Language",
 	"locale_en": "English",

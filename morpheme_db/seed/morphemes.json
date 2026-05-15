@@ -17,10 +17,10 @@
     "verified": true,
     "etymology": {
       "parts": [
-        {"lemma": "nu", "gloss_en": "eye (zero-derived from the verb 'sense/hear')", "gloss_jp": "目（動詞「聞く・感じる」からのゼロ派生）"},
+        {"lemma": "nu", "gloss_en": "eye (← verb 'sense / hear')", "gloss_jp": "目（動詞「聞く」のゼロ派生）"},
         {"lemma": "kar", "gloss_en": "act on", "gloss_jp": "〜に作用する"}
       ],
-      "note": "Synchronically atomic, but historically analysable as nu-kar (Nakagawa 1995). The first element is the verbal root nu 'hear/sense' zero-derived into a noun 'eye' — the same noun-root surfaces in nupe (nu + pe 'eye + water' = 'tear'). Synchronically nukar is no longer transparent to native speakers.",
+      "note": "cf. nupe = nu + pe 'eye-water = tear'.",
       "source": "中川1995アイヌ語千歳方言辞典"
     }
   },
