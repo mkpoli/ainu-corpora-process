@@ -17,8 +17,31 @@
     "verified": true,
     "etymology": {
       "parts": [
-        {"lemma": "nu", "gloss_en": "eye (← verb 'sense / hear')", "gloss_jp": "目（動詞「聞く」のゼロ派生）"},
-        {"lemma": "kar", "gloss_en": "act on", "gloss_jp": "〜に作用する"}
+        {
+          "lemma": "nu",
+          "category": "n",
+          "morph_type": "root",
+          "gloss_en": "eye",
+          "gloss_jp": "目",
+          "process": "zero-derivation N←V",
+          "process_delta": -1,
+          "derived_from": {
+            "lemma": "nu",
+            "category": "vi",
+            "morph_type": "root",
+            "gloss_en": "sense / hear",
+            "gloss_jp": "聞く・感じる",
+            "valency": 1
+          }
+        },
+        {
+          "lemma": "kar",
+          "category": "vt",
+          "morph_type": "root",
+          "gloss_en": "act on",
+          "gloss_jp": "〜に作用する",
+          "valency": 2
+        }
       ],
       "note": "cf. nupe = nu + pe 'eye-water = tear'.",
       "source": "中川1995アイヌ語千歳方言辞典"
