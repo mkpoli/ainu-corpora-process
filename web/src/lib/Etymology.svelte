@@ -16,6 +16,21 @@
 		return v > 0 ? `+${v}` : String(v);
 	}
 
+	// Mirror the kind styles used in CompositionTree so etymology chips read
+	// as the same kind of card as the composition leaves.
+	const KIND_STYLE: Record<string, string> = {
+		head: 'border-accent/60 bg-accent-soft text-accent',
+		prefix: 'border-affix/60 bg-affix-soft text-affix',
+		suffix: 'border-affix/60 bg-affix-soft text-affix',
+		standalone: 'border-leaf/60 bg-leaf-soft text-leaf'
+	};
+
+	function chipKind(part: EtymologyPart): string {
+		if (part.morph_type === 'prefix') return 'prefix';
+		if (part.morph_type === 'suffix') return 'suffix';
+		return 'standalone';
+	}
+
 	// Localised, short labels for derivational processes — the explainer
 	// page at /processes documents each one in detail.
 	const PROCESS_LABEL: Record<string, () => string> = {
@@ -40,25 +55,21 @@
 {#snippet partChip(part: EtymologyPart)}
 	<a
 		href={`/?q=${encodeURIComponent(part.lemma)}`}
-		class="group flex min-w-[6rem] flex-col items-center gap-0.5 rounded-2xl border border-dashed border-ink/40 bg-paper px-3 py-1.5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
+		class="group flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
+			{KIND_STYLE[chipKind(part)] ?? 'border-rule bg-paper'}"
 	>
-		<span class="font-mono text-sm">{part.lemma}</span>
-		{#if part.gloss_en || part.gloss_jp}
-			<span class="text-[10px] italic text-ink/60">
-				{part.gloss_en ?? ''}{part.gloss_en && part.gloss_jp ? ' · ' : ''}{part.gloss_jp ?? ''}
-			</span>
+		<span class="font-mono text-base leading-tight">{part.lemma}</span>
+		{#if part.gloss_en}
+			<span class="text-xs italic opacity-80">{part.gloss_en}</span>
+		{:else if part.gloss_jp}
+			<span class="text-xs italic opacity-80">{part.gloss_jp}</span>
 		{/if}
-		<div class="flex items-center gap-1 text-[10px] uppercase tracking-wider text-ink/55">
-			{#if part.morph_type}
-				<span>{part.morph_type}</span>
-			{/if}
-			{#if part.category}
-				<span class="font-mono">{part.category}</span>
-			{/if}
-			{#if formatValency(part.valency)}
-				<span class="font-mono font-semibold opacity-75">{formatValency(part.valency)}</span>
-			{/if}
-		</div>
+		{#if part.morph_type}
+			<span class="text-[10px] uppercase tracking-wider opacity-70">{part.morph_type}</span>
+		{/if}
+		{#if formatValency(part.valency)}
+			<span class="font-mono text-[10px] font-semibold opacity-75">{formatValency(part.valency)}</span>
+		{/if}
 	</a>
 {/snippet}
 
