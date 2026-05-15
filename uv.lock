@@ -1932,6 +1932,11 @@ dependencies = [
     { name = "wordcloud" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pyyaml" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "ainconv", specifier = ">=0.8.0" },
@@ -1959,6 +1964,9 @@ requires-dist = [
     { name = "wiktionary-dump-extractor", directory = "wiktionary-dump-extractor" },
     { name = "wordcloud", specifier = ">=1.9.4" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pyyaml", specifier = ">=6.0.2" }]
 
 [[package]]
 name = "prompt-toolkit"

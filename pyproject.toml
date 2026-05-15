@@ -44,6 +44,11 @@ package = true
 [tool.hatch.build.targets.wheel]
 packages = ["dictionary"]
 
+[dependency-groups]
+dev = [
+    "pyyaml>=6.0.2",
+]
+
 [tool.uv.workspace]
 members = ["utils"]
 

@@ -76,8 +76,16 @@
 				<p class="text-sm text-ink/60 max-w-2xl">{m.app_subtitle()}</p>
 			</div>
 			<div class="flex flex-col items-end gap-2">
-				<LocaleSwitcher />
-				<dl class="flex flex-wrap gap-3 text-xs text-ink/60">
+				<div class="flex items-center gap-3 text-xs">
+					<a
+						href="/references"
+						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
+					>
+						{m.references_link()}
+					</a>
+					<LocaleSwitcher />
+				</div>
+				<dl class="flex flex-wrap justify-end gap-3 text-xs text-ink/60">
 					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
 						<dt class="uppercase tracking-widest text-[10px]">{m.stats_entries()}</dt>
 						<dd class="font-mono text-base text-ink">{data.stats.total.toLocaleString()}</dd>
