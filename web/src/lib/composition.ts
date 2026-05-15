@@ -569,18 +569,51 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	}
 
 	let tree = buildTree(matched, warnings);
+
+	// For atomic matches (the query is a single lexeme with no composition),
+	// wrap with a "lexeme" root node so the layout matches compound queries
+	// — a header at top, then the leaf beneath — and the head morpheme is
+	// always reachable as both the wrapper's affix and the body leaf.
+	if (!fusedRoot && directMatch && tree.isLeaf && tree.entry?.id === directMatch.id) {
+		const frame = tree.frame ? cloneFrame(tree.frame) : null;
+		const headLeaf: CompositionNode = {
+			surface: directMatch.lemma,
+			kind: 'head',
+			entry: directMatch,
+			frame,
+			isLeaf: true
+		};
+		tree = {
+			surface: directMatch.lemma,
+			kind: 'lexeme',
+			entry: null,
+			frame,
+			affix: headLeaf,
+			isLeaf: false
+		};
+	}
+
 	if (fusedRoot) {
-		// When the fused entry has its own base_frame, treat that as the truth
-		// for the lexicalised lemma — useful for noun-incorporation compounds
-		// like cepkoyki, where the constituents (cep + koyki) do not on their
-		// own indicate that the patient slot is incorporated. The structural
-		// tree below still expands the constituents for inspection.
+		// Distinguish actually-reduced compounds (the surface lemma differs
+		// from the concatenated constituents, e.g. inkar ≠ i+nukar = inukar,
+		// payoka ≠ paye+oka) from purely *transparent* compounds where the
+		// hyphenation is an analytical convention and the surface lemma is
+		// just the concatenation of its constituents (nupe = nu+pe,
+		// cepkoyki = cep+koyki). The former get the 'fused' kind label
+		// (signalling a phonological reduction); the latter get the plain
+		// 'compound' label so the UI doesn't pretend a reduction happened.
+		const composedBare = matched
+			.map((mch) => (mch.entry?.lemma ?? mch.token).replace(/^[-=]+|[-=]+$/g, ''))
+			.join('');
+		const lemmaBare = fusedRoot.lemma.replace(/^[-=]+|[-=]+$/g, '');
+		const wrapKind: CompositionKind = composedBare !== lemmaBare ? 'fused' : 'compound';
+
 		const frame = fusedRoot.base_frame
 			? cloneFrame(fusedRoot.base_frame)
 			: tree.frame
 				? cloneFrame(tree.frame)
 				: null;
-		const fusedLeaf: CompositionNode = {
+		const headLeaf: CompositionNode = {
 			surface: fusedRoot.lemma,
 			kind: 'head',
 			entry: fusedRoot,
@@ -589,10 +622,10 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 		};
 		tree = {
 			surface: fusedRoot.lemma,
-			kind: 'fused',
+			kind: wrapKind,
 			entry: null,
 			frame,
-			affix: fusedLeaf,
+			affix: headLeaf,
 			body: tree,
 			isLeaf: false
 		};

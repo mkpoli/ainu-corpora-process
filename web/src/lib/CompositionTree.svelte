@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import type { CompositionNode } from './types';
-	import { valencyDelta } from './composition';
+	import { effectiveValencyDelta } from './composition';
 	import Etymology from './Etymology.svelte';
 	import ValencyFrame from './ValencyFrame.svelte';
 	import CompositionTree from './CompositionTree.svelte';
@@ -12,8 +12,33 @@
 		suffix: () => m.kind_suffix(),
 		standalone: () => m.kind_standalone(),
 		unknown: () => m.kind_unknown(),
-		fused: () => m.kind_fused()
+		fused: () => m.kind_fused(),
+		compound: () => m.kind_compound(),
+		lexeme: () => m.kind_lexeme()
 	};
+
+	// Pick a colour scheme for a chip based on the morpheme's *grammatical
+	// category*, so the UI consistently signals what kind of morpheme each
+	// chip is — red/accent for verb roots, green/leaf for nouns, blue/affix
+	// for prefixes and suffixes — instead of leaking the structural role
+	// (head vs prefix-wrap vs suffix-wrap) into the colour.
+	function chipCategoryClass(entry: import('./types').Entry | null | undefined): string {
+		if (!entry) return 'border-rule bg-paper text-ink/60 border-dashed';
+		const cat = entry.category;
+		if (cat === 'vt' || cat === 'vi' || cat === 'vd' || cat === 'vc' || cat === 'v') {
+			return 'border-accent/60 bg-accent-soft text-accent';
+		}
+		if (cat === 'n' || cat === 'nl' || cat === 'nmlz' || cat === 'propn') {
+			return 'border-leaf/60 bg-leaf-soft text-leaf';
+		}
+		if (cat === 'pfx' || entry.morph_type === 'prefix') {
+			return 'border-affix/60 bg-affix-soft text-affix';
+		}
+		if (cat === 'sfx' || entry.morph_type === 'suffix') {
+			return 'border-affix/60 bg-affix-soft text-affix';
+		}
+		return 'border-rule bg-paper';
+	}
 
 	import type { Entry } from './types';
 
@@ -68,13 +93,17 @@
 		return next;
 	});
 
+	// Legacy structural-kind → colour map (only used as a fallback when an
+	// entry has no category to colour by).
 	const KIND_STYLE: Record<string, string> = {
 		head: 'border-accent/60 bg-accent-soft text-accent',
 		prefix: 'border-affix/60 bg-affix-soft text-affix',
 		suffix: 'border-affix/60 bg-affix-soft text-affix',
 		standalone: 'border-leaf/60 bg-leaf-soft text-leaf',
 		unknown: 'border-rule bg-paper text-ink/60 border-dashed',
-		fused: 'border-accent/60 bg-accent-soft text-accent'
+		fused: 'border-accent/60 bg-accent-soft text-accent',
+		compound: 'border-rule bg-paper text-ink/85',
+		lexeme: 'border-rule bg-paper text-ink/85'
 	};
 
 	const isLeaf = $derived(node.entry !== null || node.isLeaf);
@@ -98,7 +127,7 @@
 			onclick={handleClick}
 			disabled={!node.entry}
 			class="group flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition disabled:cursor-default disabled:opacity-70
-				{KIND_STYLE[node.kind] ?? 'border-rule bg-paper'}
+				{node.entry ? chipCategoryClass(node.entry) : KIND_STYLE[node.kind] ?? 'border-rule bg-paper'}
 				{isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'hover:-translate-y-0.5 hover:shadow-md'}"
 		>
 			<span class="font-mono text-base leading-tight">{node.entry?.lemma ?? node.surface}</span>
@@ -111,7 +140,7 @@
 				<span class="text-[10px] uppercase tracking-wider opacity-70">{node.entry.morph_type}</span>
 			{/if}
 			{#if node.entry}
-				{@const delta = valencyDelta(node.entry)}
+				{@const delta = effectiveValencyDelta(node.entry)}
 				{#if delta !== null && delta !== 0}
 					<span
 						class="font-mono text-[10px] font-semibold opacity-75"
