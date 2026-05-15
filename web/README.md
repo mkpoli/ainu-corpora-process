@@ -71,6 +71,17 @@ re-running NINJAL extraction.
 - The page is server-rendered (load runs in `+page.server.ts`). Switching
   to client-only would lose Node FS access to the JSON.
 
+## Routes
+
+- `/` — interactive composition explorer (search box + bracketed tree
+  + detail panel for the selected morpheme).
+- `/morphemes` — sortable / filterable table of every entry in the
+  database. Useful for browsing the inventory without driving the
+  composition engine.
+- `/references` — bibliography of dictionaries, corpora, and papers
+  cited by the morpheme database. Source chips on the home and table
+  routes link to anchors on this page.
+
 ## Deploying to Cloudflare Workers
 
 The app builds with `@sveltejs/adapter-cloudflare` and deploys as a single
@@ -127,6 +138,27 @@ Two data sources are supported by `src/lib/server/database.ts`:
 
 You can verify the bundle without uploading via `bunx wrangler deploy
 --dry-run --outdir /tmp/wrangler-dry`.
+
+### Deploying from GitHub Actions
+
+`.github/workflows/deploy.yml` is a `workflow_dispatch` job (manual
+trigger from the Actions tab) that:
+
+1. Installs Bun + repo dependencies.
+2. Optionally re-publishes the morpheme database to D1
+   (`publish_d1: true` input), which mints a fresh
+   `ainu-mdb-<UTC-timestamp>` database and rewrites `wrangler.jsonc`.
+   When omitted, the deployed Worker still reads from whichever D1 db
+   is currently bound (or falls back to the bundled JSON).
+3. Syncs the bundled JSON fallback, type-checks, builds with
+   `adapter-cloudflare`, and runs `wrangler deploy`.
+
+Required repository secrets:
+
+- `CLOUDFLARE_API_TOKEN` — token with `Workers Scripts:Edit`,
+  `User Details:Read`, and (for D1 re-publish)
+  `D1:Edit`.
+- `CLOUDFLARE_ACCOUNT_ID` — your account UUID.
 
 ## Stack
 
