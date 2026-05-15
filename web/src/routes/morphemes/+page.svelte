@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as m from '$lib/paraglide/messages.js';
+	import { categoryLabel, morphTypeLabel } from '$lib/labels';
 	import LocaleSwitcher from '$lib/LocaleSwitcher.svelte';
 	import type { PageData } from './$types';
 
@@ -82,7 +83,7 @@
 			>
 				<option value="">{m.morphemes_all_categories()}</option>
 				{#each data.categories as cat}
-					<option value={cat}>{cat}</option>
+					<option value={cat}>{categoryLabel(cat)}</option>
 				{/each}
 			</select>
 			<label class="inline-flex items-center gap-1.5 text-xs text-ink/70">
@@ -118,7 +119,7 @@
 
 	<div class="overflow-x-auto rounded-2xl bg-white/70 ring-1 ring-rule">
 		<table class="w-full border-collapse text-sm">
-			<thead class="text-left text-[10px] uppercase tracking-widest text-ink/60">
+			<thead class="text-left text-[10px] uppercase tracking-widest text-ink/60 [&_button]:uppercase">
 				<tr class="border-b border-rule">
 					<th class="px-3 py-2">
 						<button class="hover:text-accent" onclick={() => setSort('lemma')}>
@@ -167,8 +168,8 @@
 								{row.lemma}
 							</a>
 						</td>
-						<td class="px-3 py-2 font-mono text-[12px] text-ink/70">{row.category || '—'}</td>
-						<td class="px-3 py-2 text-[12px] text-ink/70">{row.morph_type}</td>
+						<td class="px-3 py-2 text-[12px] text-ink/70">{row.category ? categoryLabel(row.category) : '—'}</td>
+						<td class="px-3 py-2 text-[12px] text-ink/70">{morphTypeLabel(row.morph_type)}</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_en || '—'}</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_jp || '—'}</td>
 						<td class="px-3 py-2 text-right font-mono text-[12px]">{row.arity ?? '—'}</td>

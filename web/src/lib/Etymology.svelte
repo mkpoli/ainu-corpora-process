@@ -15,6 +15,23 @@
 		if (v === undefined || v === 0) return null;
 		return v > 0 ? `+${v}` : String(v);
 	}
+
+	// Localised, short labels for derivational processes — the explainer
+	// page at /processes documents each one in detail.
+	const PROCESS_LABEL: Record<string, () => string> = {
+		zero_derivation: () => m.process_zero_derivation()
+	};
+
+	function processLabel(key: string | undefined): string {
+		if (!key) return '';
+		return PROCESS_LABEL[key]?.() ?? key;
+	}
+
+	function processHref(key: string | undefined): string | null {
+		if (!key) return null;
+		if (PROCESS_LABEL[key]) return `/processes#${encodeURIComponent(key)}`;
+		return null;
+	}
 </script>
 
 {#snippet partChip(part: EtymologyPart)}
@@ -46,15 +63,26 @@
 	<div class="flex flex-col items-center gap-1">
 		{@render partChip(part)}
 		{#if part.derived_from}
-			<!-- Vertical "zero-derivation" connector + label inside the part column. -->
+			<!-- Vertical derivation connector + label inside the part column. -->
 			<span class="h-3 w-px bg-rule"></span>
-			<span
-				class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/55 ring-1 ring-rule"
-			>
-				{part.process ?? 'derived from'}{formatValency(part.process_delta)
-					? ` ${formatValency(part.process_delta)}`
-					: ''}
-			</span>
+			{@const href = processHref(part.process)}
+			{@const label = processLabel(part.process)}
+			{@const delta = formatValency(part.process_delta)}
+			{#if href}
+				<a
+					{href}
+					class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/65 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+					title="see /processes for details"
+				>
+					{label}{delta ? ` ${delta}` : ''}
+				</a>
+			{:else}
+				<span
+					class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/55 ring-1 ring-rule"
+				>
+					{label}{delta ? ` ${delta}` : ''}
+				</span>
+			{/if}
 			<span class="h-3 w-px bg-rule"></span>
 			{@render partColumn(part.derived_from)}
 		{/if}
@@ -68,7 +96,7 @@
 	<div class="-mb-3 flex flex-col items-center">
 		<span class="h-3 w-px bg-rule"></span>
 	</div>
-	<section class="rounded-2xl border-2 border-dashed border-ink/30 bg-paper/60 p-4 pt-2 shadow-inner">
+	<section class="rounded-2xl border-2 border-dashed border-ink/40 bg-white/70 p-4 pt-2">
 		<!-- The "etymology" bracket label sits at the top, immediately under
 		     the inbound connector. -->
 		<div class="flex flex-col items-center">
