@@ -46,6 +46,16 @@ WIKTIONARY_XPOS_MAP: dict[str, str] = {
     "rel": "rel",
 }
 
+# Lemmas whose Wiktionary "parti" tag actually refers to a case particle
+# (格助詞 / postposition). Wiktionary lumps every 助詞 under a single tag,
+# but Ainu distinguishes 格助詞 (locative ta, allative un, …) from other
+# 助詞 (e.g. focus ka, topic anak), so we override the mapping for the
+# known case particles. ``wa`` is intentionally excluded here because its
+# dominant NINJAL sense is the conjunctive ``and`` (して), not the
+# ablative case particle ``from``; the ablative ``wa`` lives as a separate
+# curated seed entry instead.
+CASE_PARTICLE_LEMMAS: frozenset[str] = frozenset({"ta", "un"})
+
 
 def load_json_dict(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -67,10 +77,13 @@ def _add_source(entry: Entry, source: str) -> None:
         entry.sources.append(source)
 
 
-def _xpos_from(raw: str | None) -> str:
+def _xpos_from(raw: str | None, *, lemma: str = "") -> str:
     if not raw:
         return ""
-    return WIKTIONARY_XPOS_MAP.get(raw, "")
+    xpos = WIKTIONARY_XPOS_MAP.get(raw, "")
+    if xpos == "parti" and lemma.strip("-=") in CASE_PARTICLE_LEMMAS:
+        return "postp"
+    return xpos
 
 
 def enrich_with_wiktionary(
@@ -98,7 +111,7 @@ def enrich_with_wiktionary(
             if not entry.glosses_jp:
                 entry.glosses_jp = list(ja_record.get("glosses", []))
             if not entry.category:
-                xpos = _xpos_from(ja_record.get("pos"))
+                xpos = _xpos_from(ja_record.get("pos"), lemma=entry.lemma)
                 if xpos:
                     entry.category = xpos
             _add_source(entry, "Wiktionary JA")
@@ -107,7 +120,7 @@ def enrich_with_wiktionary(
             if not entry.glosses_en:
                 entry.glosses_en = list(en_record.get("glosses", []))
             if not entry.category:
-                xpos = _xpos_from(en_record.get("pos"))
+                xpos = _xpos_from(en_record.get("pos"), lemma=entry.lemma)
                 if xpos:
                     entry.category = xpos
             _add_source(entry, "Wiktionary EN")
@@ -115,21 +128,44 @@ def enrich_with_wiktionary(
         if pos_record:
             mapped: list[str] = []
             for raw in pos_record:
-                xpos = _xpos_from(raw)
+                xpos = _xpos_from(raw, lemma=entry.lemma)
                 if xpos:
                     if xpos not in mapped:
                         mapped.append(xpos)
                 elif raw not in entry.category_alt:
                     entry.category_alt.append(raw)
             if mapped:
-                if not entry.category:
+                # Known case particles: the postposition reading is the
+                # dominant one (e.g. locative ``ta``, ablative ``wa``,
+                # allative ``un``). Force ``postp`` as the primary category
+                # and demote any other reading to ``category_alt``, even if
+                # an earlier JA-only verb record already set the category.
+                is_case_particle = (
+                    entry.lemma.strip("-=") in CASE_PARTICLE_LEMMAS
+                    and "postp" in mapped
+                )
+                if is_case_particle:
+                    if entry.category and entry.category != "postp":
+                        if entry.category not in entry.category_alt:
+                            entry.category_alt.append(entry.category)
+                    entry.category = "postp"
+                    _add_source(entry, "Wiktionary JA")
+                elif not entry.category:
                     entry.category = mapped[0]
                     _add_source(entry, "Wiktionary JA")
                 # Surface any POS the lemma carries beyond the chosen one so
                 # genuinely polysemous forms (e.g. ``ta`` as both particle and
-                # verb) keep their alternatives visible in the UI.
+                # verb) keep their alternatives visible in the UI. Skip the
+                # generic ``v`` when the primary category is already a more
+                # specific transitivity (vt/vi/vd/vc) — ``v`` is just less
+                # informative, not a distinct reading.
+                specific_verbs = {"vt", "vi", "vd", "vc"}
                 for xpos in mapped:
-                    if xpos != entry.category and xpos not in entry.category_alt:
+                    if xpos == entry.category:
+                        continue
+                    if xpos == "v" and entry.category in specific_verbs:
+                        continue
+                    if xpos not in entry.category_alt:
                         entry.category_alt.append(xpos)
 
         # Upgrade morph_type when category is unambiguously a structural tag.
