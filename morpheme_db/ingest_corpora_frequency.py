@@ -66,6 +66,15 @@ def apply_corpora_frequencies(
         "replaced": 0,
         "kept_existing": 0,
     }
+    # The corpus is sense-blind: a token spelled ``wa`` could be the
+    # conjunctive ``and`` or the ablative ``from``. When the database has
+    # several homograph entries sharing one lemma, only the first one we
+    # encounter (which corresponds to the primary/most-frequent sense, since
+    # the seed lists it first and NINJAL frequency merges there) gets the
+    # corpus count; the rest are left with whatever their own ingest pipeline
+    # produced. Without this, every sense would inherit the same conflated
+    # number.
+    claimed_lemmas: set[str] = set()
     for entry in entries:
         keys = [entry.lemma, *entry.allomorphs]
         found: int | None = None
@@ -84,6 +93,15 @@ def apply_corpora_frequencies(
         if found is None:
             counters["unmatched"] += 1
             continue
+
+        if entry.lemma in claimed_lemmas:
+            # A previous homograph already absorbed the corpus count for
+            # this lemma. Skip silently — no source attribution either,
+            # since this entry's frequency didn't actually come from the
+            # corpus lookup.
+            counters["kept_existing"] += 1
+            continue
+        claimed_lemmas.add(entry.lemma)
 
         counters[match_kind] += 1
         if "ainu-corpora" not in entry.sources:
