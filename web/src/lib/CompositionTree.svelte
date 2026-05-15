@@ -2,6 +2,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import type { CompositionNode } from './types';
 	import { valencyDelta } from './composition';
+	import Etymology from './Etymology.svelte';
 	import ValencyFrame from './ValencyFrame.svelte';
 	import CompositionTree from './CompositionTree.svelte';
 
@@ -14,17 +15,50 @@
 		fused: () => m.kind_fused()
 	};
 
+	import type { Entry } from './types';
+
 	let {
 		node,
 		selectedId,
 		depth = 0,
-		onSelect
+		onSelect,
+		subtrees = {},
+		expanded = new Set<string>(),
+		onToggleExpand,
+		entryById = {},
+		ancestors = new Set<string>()
 	}: {
 		node: CompositionNode;
 		selectedId: string | null;
 		depth?: number;
 		onSelect: (entryId: string) => void;
+		subtrees?: Record<string, CompositionNode>;
+		expanded?: Set<string>;
+		onToggleExpand?: (entryId: string) => void;
+		entryById?: Record<string, Entry>;
+		ancestors?: Set<string>;
 	} = $props();
+
+	const expandable = $derived.by(() => {
+		if (!node.entry) return false;
+		// Don't offer to expand the same node we're already inside a sub-tree
+		// of — that would loop forever.
+		if (ancestors.has(node.entry.id)) return false;
+		const hasSub = subtrees[node.entry.id] !== undefined;
+		const entry = entryById[node.entry.id] ?? node.entry;
+		const hasEtym = entry?.etymology != null;
+		// Sub-tree from composition OR an etymology block to reveal.
+		return hasSub || hasEtym;
+	});
+
+	const isExpanded = $derived(node.entry ? expanded.has(node.entry.id) : false);
+
+	const childAncestors = $derived.by(() => {
+		if (!node.entry) return ancestors;
+		const next = new Set(ancestors);
+		next.add(node.entry.id);
+		return next;
+	});
 
 	const KIND_STYLE: Record<string, string> = {
 		head: 'border-accent/60 bg-accent-soft text-accent',
@@ -41,6 +75,11 @@
 
 	function handleClick() {
 		if (node.entry) onSelect(node.entry.id);
+	}
+
+	function handleToggle(event: MouseEvent) {
+		event.stopPropagation();
+		if (node.entry && onToggleExpand) onToggleExpand(node.entry.id);
 	}
 </script>
 
@@ -75,6 +114,53 @@
 				{/if}
 			{/if}
 		</button>
+
+		{#if expandable && node.entry}
+			{#if isExpanded}
+				{@const subEntry = entryById[node.entry.id] ?? node.entry}
+				{@const sub = subtrees[node.entry.id]}
+				<div class="flex flex-col items-center">
+					<span class="h-2 w-px bg-rule"></span>
+					<button
+						type="button"
+						onclick={handleToggle}
+						aria-label="collapse derivations"
+						class="rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/60 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+					>
+						−
+					</button>
+					<span class="h-2 w-px bg-rule"></span>
+				</div>
+				<div class="flex flex-col items-center gap-2">
+					{#if sub}
+						<CompositionTree
+							node={sub}
+							{selectedId}
+							depth={depth + 1}
+							{onSelect}
+							{subtrees}
+							{expanded}
+							{onToggleExpand}
+							{entryById}
+							ancestors={childAncestors}
+						/>
+					{/if}
+					{#if subEntry?.etymology}
+						<Etymology entry={subEntry} />
+					{/if}
+				</div>
+			{:else}
+				<button
+					type="button"
+					onclick={handleToggle}
+					aria-label="expand further derivations"
+					title="expand further derivations"
+					class="mt-1 rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/55 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+				>
+					…
+				</button>
+			{/if}
+		{/if}
 	{:else}
 		<!-- Internal node: surface header with the effective valency, then the
 		     two-child bracket below. -->
@@ -100,17 +186,57 @@
 		<div class="flex flex-wrap items-start justify-center gap-6">
 			{#if sideIsPrefix}
 				{#if node.affix}
-					<CompositionTree node={node.affix} {selectedId} depth={depth + 1} {onSelect} />
+					<CompositionTree
+					node={node.affix}
+					{selectedId}
+					depth={depth + 1}
+					{onSelect}
+					{subtrees}
+					{expanded}
+					{onToggleExpand}
+					{entryById}
+					ancestors={childAncestors}
+				/>
 				{/if}
 				{#if node.body}
-					<CompositionTree node={node.body} {selectedId} depth={depth + 1} {onSelect} />
+					<CompositionTree
+					node={node.body}
+					{selectedId}
+					depth={depth + 1}
+					{onSelect}
+					{subtrees}
+					{expanded}
+					{onToggleExpand}
+					{entryById}
+					ancestors={childAncestors}
+				/>
 				{/if}
 			{:else}
 				{#if node.body}
-					<CompositionTree node={node.body} {selectedId} depth={depth + 1} {onSelect} />
+					<CompositionTree
+					node={node.body}
+					{selectedId}
+					depth={depth + 1}
+					{onSelect}
+					{subtrees}
+					{expanded}
+					{onToggleExpand}
+					{entryById}
+					ancestors={childAncestors}
+				/>
 				{/if}
 				{#if node.affix}
-					<CompositionTree node={node.affix} {selectedId} depth={depth + 1} {onSelect} />
+					<CompositionTree
+					node={node.affix}
+					{selectedId}
+					depth={depth + 1}
+					{onSelect}
+					{subtrees}
+					{expanded}
+					{onToggleExpand}
+					{entryById}
+					ancestors={childAncestors}
+				/>
 				{/if}
 			{/if}
 		</div>

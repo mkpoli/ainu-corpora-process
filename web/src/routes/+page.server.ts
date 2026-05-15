@@ -1,7 +1,9 @@
 import { loadDatabase } from '$lib/server/database';
 import { compose, findOtherUses } from '$lib/composition';
-import type { CompositionResult, Entry } from '$lib/types';
+import type { CompositionNode, CompositionResult, Entry } from '$lib/types';
 import type { PageServerLoad } from './$types';
+
+const SUBTREE_DEPTH = 3;
 
 interface SuggestionsBuckets {
 	morphemes: Entry[];
@@ -24,26 +26,59 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 
 	const detailEntries: Entry[] = [];
 	const otherUses: Record<string, Entry[]> = {};
+	// Sub-trees keyed by entry id, for inline "..." expand-to-further-derivation
+	// on each leaf chip. We precompute up to SUBTREE_DEPTH levels deep so that
+	// expanding ``nukar`` inside an ``inkar`` tree reveals nukar's etymology;
+	// expanding nu inside that, the verb→noun derivation chain, etc.
+	const subtrees: Record<string, CompositionNode> = {};
+	const subtreeQueue: Array<{ entry: Entry; depth: number }> = [];
+
+	const collectEntry = (entry: Entry | null | undefined) => {
+		if (!entry) return;
+		if (detailEntries.some((e) => e.id === entry.id)) return;
+		detailEntries.push(entry);
+		otherUses[entry.id] = findOtherUses(entry, db.entries, 8);
+	};
+
+	const queueForSubtree = (entry: Entry | null | undefined, depth: number) => {
+		if (!entry) return;
+		if (depth > SUBTREE_DEPTH) return;
+		if (subtrees[entry.id]) return;
+		const hasExpansion = entry.composition.length > 0 || entry.etymology != null;
+		if (!hasExpansion) return;
+		subtreeQueue.push({ entry, depth });
+	};
+
+	const walkTree = (
+		node: CompositionNode | undefined,
+		depth: number,
+		seen: Set<CompositionNode>
+	) => {
+		if (!node || seen.has(node)) return;
+		seen.add(node);
+		collectEntry(node.entry);
+		queueForSubtree(node.entry, depth);
+		walkTree(node.affix as CompositionNode | undefined, depth, seen);
+		walkTree(node.body as CompositionNode | undefined, depth, seen);
+	};
+
 	if (composition) {
-		const visited = new Set<string>();
-		const collect = (entry: Entry | null | undefined) => {
-			if (!entry) return;
-			if (visited.has(entry.id)) return;
-			visited.add(entry.id);
-			detailEntries.push(entry);
-			otherUses[entry.id] = findOtherUses(entry, db.entries, 8);
-		};
-		const walk = (
-			node: typeof composition.tree | undefined,
-			seen: Set<typeof composition.tree>
-		) => {
-			if (!node || seen.has(node)) return;
-			seen.add(node);
-			collect(node.entry);
-			walk(node.affix as typeof composition.tree | undefined, seen);
-			walk(node.body as typeof composition.tree | undefined, seen);
-		};
-		walk(composition.tree, new Set());
+		walkTree(composition.tree, 1, new Set());
+	}
+
+	while (subtreeQueue.length) {
+		const { entry, depth } = subtreeQueue.shift()!;
+		if (subtrees[entry.id]) continue;
+		const sub = compose(entry.lemma, {
+			byKey: db.byKey,
+			byId: db.byId,
+			segmentationKeys: db.segmentationKeys
+		});
+		if (!sub.tree) continue;
+		subtrees[entry.id] = sub.tree;
+		// Walk the new sub-tree so its own leaves become candidates for
+		// further expansion (until SUBTREE_DEPTH).
+		walkTree(sub.tree, depth + 1, new Set());
 	}
 
 	const families = pickFamilies(db.entries);
@@ -65,6 +100,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		composition,
 		detailEntries,
 		otherUses,
+		subtrees,
 		suggestions,
 		families,
 		stats: {

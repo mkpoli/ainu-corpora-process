@@ -13,6 +13,22 @@
 	let inputValue = $state('');
 	// User clicks override the auto-selected head; null means "use the head".
 	let userSelectedId = $state<string | null>(null);
+	// Inline-expand state for leaf chips. Click "..." to drill into a
+	// morpheme's own composition / etymology without leaving the page.
+	let expanded = $state(new Set<string>());
+
+	function toggleExpand(entryId: string) {
+		const next = new Set(expanded);
+		if (next.has(entryId)) next.delete(entryId);
+		else next.add(entryId);
+		expanded = next;
+	}
+
+	const entryById = $derived.by(() => {
+		const out: Record<string, typeof data.detailEntries[number]> = {};
+		for (const e of data.detailEntries) out[e.id] = e;
+		return out;
+	});
 
 	// data.query refreshes via SvelteKit's data prop after navigation. Keep
 	// the input field in sync when the user picks a demo button or arrives
@@ -24,10 +40,12 @@
 	});
 
 	// Reset the user selection whenever the query changes so the head of the
-	// new tree becomes the auto-focus.
+	// new tree becomes the auto-focus, and clear any inline-expand state
+	// since it belongs to the previous tree.
 	$effect(() => {
 		void data.resolvedQuery;
 		userSelectedId = null;
+		expanded = new Set<string>();
 	});
 
 	function defaultHeadId(): string | null {
@@ -226,11 +244,19 @@
 							node={data.composition.tree}
 							{selectedId}
 							onSelect={(id) => (userSelectedId = id)}
+							subtrees={data.subtrees}
+							{expanded}
+							onToggleExpand={toggleExpand}
+							{entryById}
 						/>
 					</div>
 				</div>
 
-				{#if compositionHead?.etymology}
+				{#if compositionHead?.etymology && !expanded.has(compositionHead.id)}
+					<!-- Top-level etymology summary, shown only while the head's
+					     leaf chip in the tree hasn't been expanded yet. Once the
+					     user clicks "…" on the head, the leaf-level Etymology
+					     takes over so we don't render it twice. -->
 					<Etymology entry={compositionHead} />
 				{/if}
 
