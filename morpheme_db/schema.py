@@ -219,6 +219,30 @@ class Entry:
     """Short note explaining the reduction (e.g. ``phonological fusion of
     i-nukar with loss of medial vowel``). Shown in the UI."""
 
+    etymology: dict[str, Any] | None = None
+    """Optional historical / etymological decomposition.
+
+    Distinct from :attr:`composition`, which records the synchronic
+    structure. Etymology captures analyses that hold diachronically but are
+    *not* part of the synchronic grammar — e.g. ``nukar`` is synchronically
+    atomic but historically analysable as ``nu (eye) + kar (act on)`` (per
+    Nakagawa 1995).
+
+    Shape::
+
+        {
+            "parts": [
+                {"lemma": "nu²", "gloss_en": "eye (root)", "gloss_jp": "目（語根）"},
+                {"lemma": "kar",  "gloss_en": "act on",   "gloss_jp": "〜に作用する"}
+            ],
+            "note":   "ヌペ nu-pe 'tear' parallels the analysis.",
+            "source": "中川1995アイヌ語千歳方言辞典"
+        }
+
+    The ``source`` field is a refs.yml citation key. ``parts`` may be empty
+    if all that's known is a textual note. Entries that are perfectly
+    transparent synchronically don't need this field."""
+
     def to_dict(self) -> dict[str, Any]:
         out: dict[str, Any] = {
             "id": self.id,
@@ -241,6 +265,7 @@ class Entry:
             "verified": self.verified,
             "composition": list(self.composition),
             "composition_note": self.composition_note,
+            "etymology": self.etymology,
         }
         return out
 
@@ -267,6 +292,7 @@ class Entry:
             verified=bool(data.get("verified", False)),
             composition=list(data.get("composition", [])),
             composition_note=data.get("composition_note", ""),
+            etymology=data.get("etymology"),
         )
 
 

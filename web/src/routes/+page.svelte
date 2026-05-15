@@ -32,8 +32,16 @@
 
 	function defaultHeadId(): string | null {
 		if (!data.composition) return null;
-		let head = data.composition.tree.entry?.id ?? null;
-		let cursor = data.composition.tree;
+		// For fused trees (lexicalised reductions like inkar / cepkoyki /
+		// nukar), the affix slot holds the lexicalised lemma — that's what
+		// the user typed and what should be auto-selected. Falling through
+		// to body would walk us into the underlying constituents.
+		const root = data.composition.tree;
+		if (root.kind === 'fused' && root.affix?.entry?.id) {
+			return root.affix.entry.id;
+		}
+		let head = root.entry?.id ?? null;
+		let cursor = root;
 		while (!head && cursor.body) {
 			cursor = cursor.body;
 			head = cursor.entry?.id ?? null;

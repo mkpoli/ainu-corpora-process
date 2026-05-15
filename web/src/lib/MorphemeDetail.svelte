@@ -5,6 +5,11 @@
 	import type { Entry } from './types';
 	import ValencyFrame from './ValencyFrame.svelte';
 
+	function etymologyHref(source: string | undefined, lemma: string): string | null {
+		if (!source) return null;
+		return sourceUrl(source, lemma);
+	}
+
 	let {
 		entry,
 		otherUses,
@@ -106,6 +111,64 @@
 				{#if entry.category_alt.length}
 					<p class="text-xs text-ink/70">
 						{m.detail_also()}: <span class="font-mono">{entry.category_alt.join(', ')}</span>
+					</p>
+				{/if}
+			</section>
+		{/if}
+
+		{#if entry.etymology}
+			{@const etym = entry.etymology}
+			{@const sourceHref = etymologyHref(etym.source, entry.lemma)}
+			<section class="rounded-2xl border-2 border-dashed border-ink/30 bg-paper/60 p-3 shadow-inner">
+				<div class="mb-2 flex items-baseline justify-between gap-2">
+					<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
+						{m.detail_etymology()}
+						<span class="rounded-full bg-paper px-2 py-0.5 text-[10px] normal-case text-ink/55 ring-1 ring-rule">
+							{m.detail_etymology_note()}
+						</span>
+					</h3>
+				</div>
+				<div class="flex flex-col items-center gap-2 px-2 py-3">
+					<!-- Inner "encapsulated" surface form. -->
+					<span class="rounded-2xl border border-accent/60 bg-accent-soft px-4 py-1.5 font-mono text-base text-accent">
+						{entry.lemma}
+					</span>
+					{#if etym.parts && etym.parts.length}
+						<span aria-hidden="true" class="text-[10px] uppercase tracking-widest text-ink/40">←</span>
+						<div class="flex flex-wrap items-center justify-center gap-1.5">
+							{#each etym.parts as part, idx}
+								{#if idx > 0}
+									<span aria-hidden="true" class="text-ink/40">+</span>
+								{/if}
+								<div class="rounded-xl bg-paper px-2.5 py-1 ring-1 ring-rule text-center">
+									<div class="font-mono text-sm">{part.lemma}</div>
+									{#if part.gloss_en || part.gloss_jp}
+										<div class="text-[10px] italic text-ink/55">
+											{part.gloss_en ?? ''}{part.gloss_en && part.gloss_jp ? ' · ' : ''}{part.gloss_jp ?? ''}
+										</div>
+									{/if}
+								</div>
+							{/each}
+						</div>
+					{/if}
+				</div>
+				{#if etym.note}
+					<p class="mt-1 text-xs italic leading-relaxed text-ink/70">{etym.note}</p>
+				{/if}
+				{#if etym.source}
+					<p class="mt-2 text-[11px] text-ink/55">
+						{#if sourceHref}
+							<a
+								href={sourceHref}
+								target={sourceHref.startsWith('/') ? undefined : '_blank'}
+								rel={sourceHref.startsWith('/') ? undefined : 'noopener noreferrer'}
+								class="rounded-full bg-paper px-2 py-0.5 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+							>
+								{sourceLabel(etym.source)}
+							</a>
+						{:else}
+							<span class="rounded-full bg-paper px-2 py-0.5 ring-1 ring-rule">{sourceLabel(etym.source)}</span>
+						{/if}
 					</p>
 				{/if}
 			</section>

@@ -27,6 +27,8 @@
 	"detail_also": "他の範疇",
 	"detail_notes": "注記",
 	"detail_sources": "出典",
+	"detail_etymology": "語源",
+	"detail_etymology_note": "歴史的分析——共時的には分解不能",
 	"detail_appears_in_one": "{count} 件の複合形に出現",
 	"detail_appears_in_other": "{count} 件の複合形に出現",
 	"detail_observed": "NINJAL コーパス内で {count} 回観察．",

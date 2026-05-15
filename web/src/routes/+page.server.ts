@@ -108,6 +108,13 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			examples: ['nukar', 'inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar']
 		},
 		{
+			key: 'nu-family',
+			// The nu / "sensory" family: nu (hear/sense) zero-derives to a
+			// noun 'eye' in compounds; same root underlies nukar (see),
+			// nupe (tear), yaynu (think), inu (listen), enukor (watch over).
+			examples: ['nu', 'nupe', 'yaynu', 'inu', 'enukor']
+		},
+		{
 			key: 'koyki',
 			// Noun-incorporation family — all curated from田村1996/中川1995.
 			examples: ['koyki', 'cepkoyki', 'aynukoyki', 'cikapkoyki', 'ukoyki', 'cepkoykikur']
