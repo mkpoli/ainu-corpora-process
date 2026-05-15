@@ -388,22 +388,50 @@ function buildTree(
 		};
 	}
 
-	// Prefer an entry with an explicit base_frame; otherwise prefer the first
-	// non-affix lexical entry (so productive prefixes like e- / ko- don't
-	// accidentally become "head" in a compound whose actual head is an
-	// unverified NINJAL noun/verb). Only fall back to the first entry of any
-	// kind if nothing else matches.
-	let headIndex = matched.findIndex((m) => m.entry?.base_frame);
-	if (headIndex === -1) {
-		headIndex = matched.findIndex(
-			(m) =>
-				m.entry &&
-				m.entry.morph_type !== 'prefix' &&
-				m.entry.morph_type !== 'suffix' &&
-				m.entry.morph_type !== 'clitic'
-		);
+	// Pick the head as the RIGHTMOST entry that meets the criteria, so in
+	// compounds with multiple verb roots (tuyma + siram + suypa) the
+	// outermost / final verb (suypa) is the head and everything to its left
+	// wraps as inner modifiers. Walking right-to-left lets us prefer:
+	//   1. a non-affix, non-clitic entry with an explicit base_frame
+	//   2. otherwise any non-affix, non-clitic lexical entry (so productive
+	//      affixes like e- / ko- don't accidentally become "head")
+	//   3. otherwise the rightmost entry with a base_frame (incl. affixes)
+	//   4. otherwise any rightmost matched entry
+	let headIndex = -1;
+	const isAffixOrClitic = (e: Entry | null | undefined) =>
+		e?.morph_type === 'prefix' || e?.morph_type === 'suffix' || e?.morph_type === 'clitic';
+	for (let i = matched.length - 1; i >= 0; i -= 1) {
+		const e = matched[i].entry;
+		if (e?.base_frame && !isAffixOrClitic(e)) {
+			headIndex = i;
+			break;
+		}
 	}
-	if (headIndex === -1) headIndex = matched.findIndex((m) => m.entry);
+	if (headIndex === -1) {
+		for (let i = matched.length - 1; i >= 0; i -= 1) {
+			const e = matched[i].entry;
+			if (e && !isAffixOrClitic(e)) {
+				headIndex = i;
+				break;
+			}
+		}
+	}
+	if (headIndex === -1) {
+		for (let i = matched.length - 1; i >= 0; i -= 1) {
+			if (matched[i].entry?.base_frame) {
+				headIndex = i;
+				break;
+			}
+		}
+	}
+	if (headIndex === -1) {
+		for (let i = matched.length - 1; i >= 0; i -= 1) {
+			if (matched[i].entry) {
+				headIndex = i;
+				break;
+			}
+		}
+	}
 	if (headIndex === -1) {
 		// Everything unresolved.
 		return {
@@ -445,13 +473,17 @@ function buildTree(
 	// cepkoykikur — kur wraps the cep+koyki incorporation core — while
 	// si-(nukar-e) still works because both si- and -e are productive
 	// affixes and -e (closer to head) still applies before si-.
+	const isClitic = (m: { entry: Entry | null }) => m.entry?.morph_type === 'clitic';
 	const isAffixPart = (m: { entry: Entry | null }) =>
 		m.entry?.morph_type === 'prefix' || m.entry?.morph_type === 'suffix';
 
 	// Pass 1: lexical (non-affix) elements on the prefix side (innermost,
-	// closest to head first → right-to-left walk).
+	// closest to head first → right-to-left walk). Clitics are deferred to
+	// Pass 5 (outermost scope) and skipped here even though they're not
+	// strictly "affixes" in the morph_type sense.
 	for (let i = headIndex - 1; i >= 0; i -= 1) {
 		if (isAffixPart(matched[i])) continue;
+		if (isClitic(matched[i])) continue;
 		node = wrapAffix(node, matched[i], 'prefix', warnings);
 	}
 
@@ -459,6 +491,7 @@ function buildTree(
 	// head first → left-to-right walk).
 	for (let i = headIndex + 1; i < matched.length; i += 1) {
 		if (isAffixPart(matched[i])) continue;
+		if (isClitic(matched[i])) continue;
 		node = wrapAffix(node, matched[i], 'suffix', warnings);
 	}
 
@@ -472,9 +505,25 @@ function buildTree(
 
 	// Pass 4: productive prefix affixes (closest to head first, working
 	// outward, so ko- applies before yay-, and si- still applies after
-	// -e has run in Pass 3).
+	// -e has run in Pass 3). Clitics are deferred to Pass 5 because they
+	// have the lowest scope priority — personal-affix clitics (a=, =an,
+	// ku=, e=, eci=) are syntactic and bind outside every derivational
+	// affix.
 	for (let i = headIndex - 1; i >= 0; i -= 1) {
 		if (!isAffixPart(matched[i])) continue;
+		if (isClitic(matched[i])) continue;
+		node = wrapAffix(node, matched[i], 'prefix', warnings);
+	}
+
+	// Pass 5: clitics on either side, outermost. Pre-head clitics wrap
+	// right-to-left (closest to head first); post-head clitics wrap
+	// left-to-right.
+	for (let i = headIndex + 1; i < matched.length; i += 1) {
+		if (!isClitic(matched[i])) continue;
+		node = wrapAffix(node, matched[i], 'suffix', warnings);
+	}
+	for (let i = headIndex - 1; i >= 0; i -= 1) {
+		if (!isClitic(matched[i])) continue;
 		node = wrapAffix(node, matched[i], 'prefix', warnings);
 	}
 
@@ -508,12 +557,17 @@ function wrapAffix(
 	const bodyBare = body.surface.replace(/^[-=]+|[-=]+$/g, '');
 	const surface = side === 'prefix' ? `${affixBare}-${bodyBare}` : `${bodyBare}-${affixBare}`;
 
-	// Pick a bracket kind: productive affixes (morph_type prefix/suffix)
-	// keep the structural prefix/suffix label; non-affix lexical material is
-	// labelled either incorporation (noun adjacent to a verb host) or
-	// compound (everything else).
+	// Pick a bracket kind: productive affixes (morph_type prefix/suffix) and
+	// personal-affix clitics keep the structural prefix/suffix label; other
+	// non-affix lexical material is labelled either incorporation (noun
+	// adjacent to a verb host) or compound (everything else).
 	let wrapKind: CompositionKind = side;
-	if (entry && entry.morph_type !== 'prefix' && entry.morph_type !== 'suffix') {
+	if (
+		entry &&
+		entry.morph_type !== 'prefix' &&
+		entry.morph_type !== 'suffix' &&
+		entry.morph_type !== 'clitic'
+	) {
 		const hostEntry =
 			body.entry ?? body.body?.entry ?? body.affix?.entry ?? null;
 		const hostIsVerb = (() => {
