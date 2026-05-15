@@ -1,5 +1,5 @@
 import { loadDatabase } from '$lib/server/database';
-import { valencyDelta } from '$lib/composition';
+import { effectiveValencyDelta, valencyDelta } from '$lib/composition';
 import type { Entry } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
@@ -48,22 +48,27 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 
 	const categories = [...new Set(db.entries.map((e) => e.category).filter(Boolean))].sort();
 
-	const rows = slice.map((entry) => ({
-		id: entry.id,
-		lemma: entry.lemma,
-		morph_type: entry.morph_type,
-		category: entry.category,
-		verified: entry.verified,
-		frequency: entry.frequency,
-		composition_length: entry.composition.length,
-		gloss_en: entry.glosses_en[0] ?? '',
-		gloss_jp: entry.glosses_jp[0] ?? '',
-		source_count: entry.sources.length,
-		delta: valencyDelta(entry),
-		arity: entry.base_frame
-			? entry.base_frame.slots.filter((s) => s.realization === 'external').length
-			: null
-	}));
+	const rows = slice.map((entry) => {
+		const explicit = valencyDelta(entry);
+		const effective = effectiveValencyDelta(entry);
+		return {
+			id: entry.id,
+			lemma: entry.lemma,
+			morph_type: entry.morph_type,
+			category: entry.category,
+			verified: entry.verified,
+			frequency: entry.frequency,
+			composition_length: entry.composition.length,
+			gloss_en: entry.glosses_en[0] ?? '',
+			gloss_jp: entry.glosses_jp[0] ?? '',
+			source_count: entry.sources.length,
+			delta: effective,
+			delta_inferred: explicit === null && effective !== null,
+			arity: entry.base_frame
+				? entry.base_frame.slots.filter((s) => s.realization === 'external').length
+				: null
+		};
+	});
 
 	return {
 		rows,
@@ -108,6 +113,9 @@ function compareEntries(a: Entry, b: Entry, sort: string): number {
 }
 
 function arityOf(e: Entry): number {
-	if (!e.base_frame) return -1;
-	return e.base_frame.slots.filter((s) => s.realization === 'external').length;
+	if (e.base_frame) {
+		return e.base_frame.slots.filter((s) => s.realization === 'external').length;
+	}
+	const inferred = effectiveValencyDelta(e);
+	return inferred ?? -1;
 }

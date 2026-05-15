@@ -143,6 +143,95 @@ export function valencyDelta(entry: Entry): number | null {
 	return delta;
 }
 
+/**
+ * Heuristic arity for entries that carry neither a ``base_frame`` nor
+ * explicit ``rules`` — read off from the part-of-speech alone.
+ *
+ *  - Verbs: vi=+1, vt=+2, vd=+3, vc=0 (impersonal). Generic ``v`` stays
+ *    unknown.
+ *  - Common nouns and proper nouns: −1 (the canonical incorporable, e.g.
+ *    cep in cep-koyki saturates one external slot).
+ *  - Possessed-noun classes (``nl`` locative noun, ``nmlz`` formal noun): 0
+ *    — the possessor is part of the noun's own frame, not a host's.
+ *  - Person clitics / personal affixes: −1 by default; ``eci=`` is −2
+ *    (encodes 2pl agent + 1sg object simultaneously).
+ *  - Everything else (adverbials, particles, conjunctions, …): 0.
+ *
+ * Returns ``null`` when the category gives no usable signal.
+ */
+const NOUN_INCORP_CATEGORIES = new Set(['n', 'propn']);
+const NEUTRAL_CATEGORIES = new Set([
+	'adv',
+	'adn',
+	'advp',
+	'auxv',
+	'cconj',
+	'colloc',
+	'cop',
+	'det',
+	'idiom',
+	'int',
+	'intj',
+	'nl',
+	'nmlz',
+	'num',
+	'padv',
+	'parti',
+	'post',
+	'postp',
+	'punct',
+	'rel',
+	'sconj',
+	'sfp',
+	'sfx',
+	'pfx',
+	'root'
+]);
+const PERSON_CATEGORIES = new Set(['pers', 'pron']);
+
+function isPersonClitic(entry: Entry): boolean {
+	if (!PERSON_CATEGORIES.has(entry.category)) return false;
+	return entry.morph_type === 'clitic' || entry.lemma.includes('=');
+}
+
+export function inferredValencyDelta(entry: Entry): number | null {
+	switch (entry.category) {
+		case 'vi':
+			return 1;
+		case 'vt':
+			return 2;
+		case 'vd':
+			return 3;
+		case 'vc':
+			return 0;
+	}
+	if (NOUN_INCORP_CATEGORIES.has(entry.category)) {
+		// Common/proper nouns are canonically incorporable: as a morpheme
+		// building block they saturate one external slot of their host.
+		return -1;
+	}
+	if (isPersonClitic(entry)) {
+		// eci= uniquely fuses 2pl agent + 1sg object → saturates two slots.
+		const bare = entry.lemma.replace(/^[-=]+|[-=]+$/g, '');
+		if (bare === 'eci') return -2;
+		return -1;
+	}
+	if (NEUTRAL_CATEGORIES.has(entry.category)) return 0;
+	return null;
+}
+
+/**
+ * Effective delta for UI/sort purposes: explicit when available, otherwise
+ * the category-based inference. Callers that need to distinguish the two
+ * (e.g. to render the inferred value in a softer style) can compare against
+ * ``valencyDelta`` directly.
+ */
+export function effectiveValencyDelta(entry: Entry): number | null {
+	const explicit = valencyDelta(entry);
+	if (explicit !== null) return explicit;
+	return inferredValencyDelta(entry);
+}
+
 // --- Token resolution ----------------------------------------------------
 
 function resolveToken(token: string, byKey: Map<string, Entry>): Entry | null {

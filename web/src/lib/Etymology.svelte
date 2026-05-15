@@ -63,24 +63,26 @@
 	<div class="flex flex-col items-center gap-1">
 		{@render partChip(part)}
 		{#if part.derived_from}
-			<!-- Vertical derivation connector + label inside the part column. -->
+			<!-- Vertical derivation connector + label inside the part column.
+			     The label names the process only — the underlying chip already
+			     carries the +N valency badge, so we don't duplicate the delta
+			     here. Details are on /processes. -->
 			<span class="h-3 w-px bg-rule"></span>
 			{@const href = processHref(part.process)}
 			{@const label = processLabel(part.process)}
-			{@const delta = formatValency(part.process_delta)}
 			{#if href}
 				<a
 					{href}
 					class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/65 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
 					title="see /processes for details"
 				>
-					{label}{delta ? ` ${delta}` : ''}
+					{label}
 				</a>
 			{:else}
 				<span
 					class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/55 ring-1 ring-rule"
 				>
-					{label}{delta ? ` ${delta}` : ''}
+					{label}
 				</span>
 			{/if}
 			<span class="h-3 w-px bg-rule"></span>
