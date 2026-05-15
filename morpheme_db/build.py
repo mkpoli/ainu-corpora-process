@@ -158,6 +158,12 @@ def build(
         counters["tommy_new_entries"] = tc["new_entries"]
         counters["tommy_glosses_added"] = tc["glosses_added"]
 
+    # Re-run Wiktionary enrichment so entries created by the composition
+    # ingests (Wiktionary compositions, Tommy 1949) also pick up Wiktionary
+    # JA/EN glosses for their lemma.
+    if ja_glosses or en_glosses or ja_pos:
+        enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
+
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
     return entries, counters

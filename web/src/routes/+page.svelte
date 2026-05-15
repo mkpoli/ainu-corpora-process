@@ -5,7 +5,6 @@
 	import Etymology from '$lib/Etymology.svelte';
 	import LocaleSwitcher from '$lib/LocaleSwitcher.svelte';
 	import MorphemeDetail from '$lib/MorphemeDetail.svelte';
-	import ValencyFrame from '$lib/ValencyFrame.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import type { PageData } from './$types';
 
@@ -187,9 +186,6 @@
 						<span>
 							{m.composition_tokens()}: <span class="font-mono">{data.composition.tokens.join(' · ')}</span>
 						</span>
-						{#if data.composition.tree.frame}
-							<ValencyFrame frame={data.composition.tree.frame} />
-						{/if}
 					</div>
 				</div>
 
