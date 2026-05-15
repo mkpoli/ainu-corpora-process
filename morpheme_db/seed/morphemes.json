@@ -645,7 +645,41 @@
     "glosses_jp": ["～を聞く", "～を感じる", "～を嗅ぐ"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
     "verified": true,
-    "notes": "Highly polysemous sensory verb covering hear / listen / smell / sense / feel and an extended 'be effective' reading. The semantic range closely parallels Japanese 聞く (kiku) and Korean 듣다 (deutda) — likely areal calque rather than borrowing. Zero-derives to a noun 'eye' in compounds (nu-kar 'see', nu-pe 'tear'); the noun sense is no longer productive in isolation, but Nakagawa 1995 records ヌ nu² as a bound noun root."
+    "notes": "Highly polysemous sensory verb covering hear / listen / smell / sense / feel and an extended 'be effective' reading. The semantic range closely parallels Japanese 聞く (kiku) and Korean 듣다 (deutda) — likely areal calque rather than borrowing. Zero-derives to a noun 'eye' (see nu-n entry); the noun sense is no longer productive in isolation, but Nakagawa 1995 records ヌ nu² as a bound noun root."
+  },
+  {
+    "id": "nu-n",
+    "lemma": "nu",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["eye"],
+    "glosses_jp": ["目"],
+    "sources": ["中川1995アイヌ語千歳方言辞典", "佐藤2020アイヌ語における文法的カテゴリーの転換について"],
+    "verified": true,
+    "notes": "Zero-derived noun-root form of the sensory verb nu. Surfaces only as the first member of compounds (nu-kar 'see', nu-pe 'tear', e-nu-kor 'watch over'); not used in isolation.",
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "nu",
+          "category": "n",
+          "morph_type": "root",
+          "gloss_en": "eye",
+          "gloss_jp": "目",
+          "process": "zero_derivation",
+          "process_delta": -1,
+          "derived_from": {
+            "lemma": "nu",
+            "category": "vi",
+            "morph_type": "root",
+            "gloss_en": "sense, hear",
+            "gloss_jp": "聞く、感じる",
+            "valency": 1
+          }
+        }
+      ],
+      "source": "佐藤2020アイヌ語における文法的カテゴリーの転換について"
+    }
   },
   {
     "id": "pe",
@@ -665,8 +699,8 @@
     "category": "n",
     "bound": false,
     "morph_type": "root",
-    "composition": ["nu", "pe"],
-    "composition_note": "nu (eye, zero-derived from the sensory verb 'hear / sense') + pe (water/liquid) → 'tear'. The zero-derivation step turns the verb root into a noun root that can stand as the first member of an N-N compound.",
+    "composition": ["nu-n", "pe"],
+    "composition_note": "nu-n (eye, zero-derived from the sensory verb nu) + pe (water/liquid) → 'tear'.",
     "glosses_en": ["tear", "tears"],
     "glosses_jp": ["涙"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
@@ -819,8 +853,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "nu", "kor"],
-    "composition_note": "e- (APPL 'about/with') + nu (sense / hear) + kor (have / hold). Literally 'have one's senses about ~' → 'watch over ~'. Used especially of gods watching over places or people.",
+    "composition": ["e-", "nu-n", "kor"],
+    "composition_note": "e- (APPL 'about/with') + nu-n (eye, zero-derived noun-root form) + kor (have / hold). Literally 'have one's eye about ~' → 'watch over ~'. Used especially of gods watching over places or people.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "見守られるもの"},
