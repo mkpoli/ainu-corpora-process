@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import CompositionTree from '$lib/CompositionTree.svelte';
+	import Etymology from '$lib/Etymology.svelte';
 	import LocaleSwitcher from '$lib/LocaleSwitcher.svelte';
 	import MorphemeDetail from '$lib/MorphemeDetail.svelte';
 	import ValencyFrame from '$lib/ValencyFrame.svelte';
@@ -57,6 +58,19 @@
 	const selectedUses = $derived(
 		selectedId ? (data.otherUses[selectedId] ?? []) : []
 	);
+
+	// The lexicalised head of the current composition, used to decide
+	// whether the Composition region should show an etymology frame for the
+	// looked-up word. For fused trees this is the wrapping lemma (inkar,
+	// nukar, payoka, …); for atomic queries it's the directly-matched
+	// entry.
+	const compositionHead = $derived.by(() => {
+		const tree = data.composition?.tree;
+		if (!tree) return null;
+		const headId = (tree.kind === 'fused' ? tree.affix?.entry?.id : null) ?? tree.entry?.id ?? null;
+		if (!headId) return null;
+		return data.detailEntries.find((e) => e.id === headId) ?? null;
+	});
 
 	function submit(event: SubmitEvent) {
 		event.preventDefault();
@@ -213,6 +227,10 @@
 						/>
 					</div>
 				</div>
+
+				{#if compositionHead?.etymology}
+					<Etymology entry={compositionHead} />
+				{/if}
 
 				{#if data.composition.warnings.length}
 					<details class="text-xs text-ink/60">
