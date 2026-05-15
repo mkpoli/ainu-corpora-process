@@ -1151,7 +1151,7 @@
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["i-", "yay-", "tommy1949:rayke", "-e"],
+    "composition": ["i-", "yay-", "tommy1949:rayke", "-re"],
     "composition_note": "Lexicalised politeness expression — literally i-(INDEF.OBJ) + yay-(REFL) + rayke (kill/thank) + -re (CAUS) 'make oneself thank for something'. Used as the standard polite 'thank you'.",
     "base_frame": {
       "slots": [
@@ -1170,7 +1170,7 @@
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["u-", "ninjal:mina", "-e"],
+    "composition": ["u-", "ninjal:mina", "-re"],
     "composition_note": "u- (reciprocal) + mina (laugh) + -re (causative) — 'to laugh together'.",
     "base_frame": {
       "slots": [
@@ -1188,7 +1188,7 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["si-", "ninjal:kasuy", "-e"],
+    "composition": ["si-", "ninjal:kasuy", "-re"],
     "composition_note": "si- (indirect reflexive) + kasuy (help) + -re (causative) — 'to make someone help oneself' → 'to get help'.",
     "base_frame": {
       "slots": [
