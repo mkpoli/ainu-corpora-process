@@ -27,6 +27,11 @@ from morpheme_db.ingest_wiktionary_compositions import (
     ingest_wiktionary_compositions,
     load_compositions,
 )
+from morpheme_db.ingest_translations import apply_translations, load_translations
+from morpheme_db.ingest_corpora_frequency import (
+    apply_corpora_frequencies,
+    load_frequency_table,
+)
 from morpheme_db.schema import Entry, load_entries, save_entries
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -39,6 +44,13 @@ WIKT_EN_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glos
 WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_of_speech.json"
 WIKT_COMPOSITIONS_PATH = (
     REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_word_compositions.json"
+)
+TRANSLATIONS_PATH = REPO_ROOT / "morpheme_db" / "seed" / "translations.json"
+CORPORA_TOKEN_FREQ_PATH = (
+    REPO_ROOT / "corpus" / "output" / "ainu_corpora" / "token_frequency.tsv"
+)
+CORPORA_LEMMA_FREQ_PATH = (
+    REPO_ROOT / "corpus" / "output" / "ainu_corpora" / "lemma_frequency.tsv"
 )
 TOMMY_DECOMP_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_decomposed_words.json"
 TOMMY_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_aynudictionary_glosses.json"
@@ -117,6 +129,9 @@ def build(
     wikt_compositions_path: Path | None = WIKT_COMPOSITIONS_PATH,
     tommy_decomp_path: Path | None = TOMMY_DECOMP_PATH,
     tommy_gloss_path: Path | None = TOMMY_GLOSS_PATH,
+    translations_path: Path | None = TRANSLATIONS_PATH,
+    corpora_token_freq_path: Path | None = CORPORA_TOKEN_FREQ_PATH,
+    corpora_lemma_freq_path: Path | None = CORPORA_LEMMA_FREQ_PATH,
     output_dir: Path = OUTPUT_DIR,
 ) -> tuple[list[Entry], dict[str, int]]:
     seed = load_entries(seed_path)
@@ -138,6 +153,14 @@ def build(
         "tommy_compositions_skipped": 0,
         "tommy_new_entries": 0,
         "tommy_glosses_added": 0,
+        "translations_en_added": 0,
+        "translations_jp_added": 0,
+        "translations_lemmas_not_found": 0,
+        "corpora_freq_matched_token": 0,
+        "corpora_freq_matched_lemma": 0,
+        "corpora_freq_unmatched": 0,
+        "corpora_freq_replaced": 0,
+        "corpora_freq_kept_existing": 0,
     }
     if wikt_compositions_path and wikt_compositions_path.exists():
         comps = load_compositions(wikt_compositions_path)
@@ -163,6 +186,27 @@ def build(
     # JA/EN glosses for their lemma.
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
+
+    if translations_path and translations_path.exists():
+        translations = load_translations(translations_path)
+        tcounters = apply_translations(entries, translations)
+        counters["translations_en_added"] = tcounters["en_added"]
+        counters["translations_jp_added"] = tcounters["jp_added"]
+        counters["translations_lemmas_not_found"] = tcounters["lemmas_not_found"]
+
+    if corpora_token_freq_path and corpora_token_freq_path.exists():
+        token_freq = load_frequency_table(corpora_token_freq_path)
+        lemma_freq = (
+            load_frequency_table(corpora_lemma_freq_path)
+            if corpora_lemma_freq_path and corpora_lemma_freq_path.exists()
+            else {}
+        )
+        fcounters = apply_corpora_frequencies(entries, token_freq, lemma_freq)
+        counters["corpora_freq_matched_token"] = fcounters["matched_token"]
+        counters["corpora_freq_matched_lemma"] = fcounters["matched_lemma"]
+        counters["corpora_freq_unmatched"] = fcounters["unmatched"]
+        counters["corpora_freq_replaced"] = fcounters["replaced"]
+        counters["corpora_freq_kept_existing"] = fcounters["kept_existing"]
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
@@ -270,7 +314,15 @@ def main(argv: list[str] | None = None) -> int:
         f"  Tommy 1949: attached={counters['tommy_compositions_attached']} "
         f"new={counters['tommy_new_entries']} "
         f"glosses_added={counters['tommy_glosses_added']} "
-        f"skipped={counters['tommy_compositions_skipped']}"
+        f"skipped={counters['tommy_compositions_skipped']}\n"
+        f"  Translations: en_added={counters['translations_en_added']} "
+        f"jp_added={counters['translations_jp_added']} "
+        f"lemmas_not_found={counters['translations_lemmas_not_found']}\n"
+        f"  Corpora freq: matched_token={counters['corpora_freq_matched_token']} "
+        f"matched_lemma={counters['corpora_freq_matched_lemma']} "
+        f"replaced={counters['corpora_freq_replaced']} "
+        f"kept_existing={counters['corpora_freq_kept_existing']} "
+        f"unmatched={counters['corpora_freq_unmatched']}"
     )
     return 0
 

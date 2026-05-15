@@ -61,6 +61,13 @@ be a string (single English gloss), a list of strings (English glosses),
 or `{en: [...], jp: [...]}`. The ingest step only fills empty `glosses_en`
 or `glosses_jp` fields — existing data is never overwritten.
 
+Per-entry `frequency` is overlaid from the larger ainu-corpora dataset
+(see `corpus/ainu_corpora/build_frequency.py` → `corpus/output/ainu_corpora/`).
+The overlay only ever raises the number: when the existing NINJAL count is
+larger (typical for bound affixes that the corpora tokeniser cannot split
+out), the NINJAL value is kept. Both sources are recorded in
+`entry.sources` whenever they contribute.
+
 The NINJAL ingest (`ingest_ninjal.py`) reads
 `corpus/output/ninjal/lexicon/ninjal_morpheme_lexicon.tsv` produced by
 `corpus/ninjal/extract_morpheme_lexicon.py` and emits ~1400 unverified
