@@ -14,6 +14,7 @@
 		unknown: () => m.kind_unknown(),
 		fused: () => m.kind_fused(),
 		compound: () => m.kind_compound(),
+		incorporation: () => m.kind_incorporation(),
 		lexeme: () => m.kind_lexeme()
 	};
 
@@ -103,6 +104,7 @@
 		unknown: 'border-rule bg-paper text-ink/60 border-dashed',
 		fused: 'border-accent/60 bg-accent-soft text-accent',
 		compound: 'border-rule bg-paper text-ink/85',
+		incorporation: 'border-rule bg-paper text-ink/85',
 		lexeme: 'border-rule bg-paper text-ink/85'
 	};
 

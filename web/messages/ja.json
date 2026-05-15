@@ -128,6 +128,7 @@
 	"composition_source_segmented": "既知の形態素集合からの自動推定（未検証）",
 	"kind_fused": "縮約",
 	"kind_compound": "複合",
+	"kind_incorporation": "抱合",
 	"kind_lexeme": "見出し語",
 	"kind_etymology": "語源",
 	"reduced_form_badge": "縮約形",

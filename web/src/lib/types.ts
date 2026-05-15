@@ -88,6 +88,7 @@ export type CompositionKind =
 	| 'unknown'
 	| 'fused'
 	| 'compound'
+	| 'incorporation'
 	| 'lexeme';
 
 export interface CompositionNode {
