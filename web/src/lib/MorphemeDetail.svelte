@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
-	import { valencyDelta } from './composition';
+	import { inferredValencyDelta, valencyDelta } from './composition';
 	import { categoryLabel, morphTypeLabel } from './labels';
 	import { sourceLabel, sourceUrl } from './sources';
 	import type { Entry } from './types';
@@ -83,6 +83,19 @@
 					</div>
 				{/if}
 			</section>
+		{:else}
+			{@const inferred = inferredValencyDelta(entry)}
+			{#if inferred !== null}
+				<section class="flex flex-col gap-1">
+					<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
+						{m.detail_valency()}
+						<span class="font-mono text-[10px] normal-case italic text-ink/55" title={m.morphemes_arity_inferred()}>
+							{inferred > 0 ? `+${inferred}` : inferred}
+						</span>
+					</h3>
+					<p class="text-xs italic text-ink/55">{m.detail_valency_inferred()}</p>
+				</section>
+			{/if}
 		{/if}
 
 		{#if entry.allomorphs.length}

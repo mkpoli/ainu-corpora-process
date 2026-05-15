@@ -177,7 +177,17 @@
 						<td class="px-3 py-2 text-[12px] text-ink/70">{morphTypeLabel(row.morph_type)}</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_en || '—'}</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_jp || '—'}</td>
-						<td class="px-3 py-2 text-right font-mono text-[12px]">{row.arity ?? '—'}</td>
+						<td class="px-3 py-2 text-right font-mono text-[12px]">
+							{#if row.arity !== null}
+								{row.arity}
+							{:else if row.delta !== null}
+								<span class="italic text-ink/55" title={m.morphemes_arity_inferred()}>
+									{row.delta > 0 ? `+${row.delta}` : row.delta}
+								</span>
+							{:else}
+								—
+							{/if}
+						</td>
 						<td class="px-3 py-2 text-right font-mono text-[12px]">{row.composition_length || '—'}</td>
 						<td class="px-3 py-2 text-right font-mono text-[12px]">{row.frequency || '—'}</td>
 						<td class="px-3 py-2 text-[11px]">
