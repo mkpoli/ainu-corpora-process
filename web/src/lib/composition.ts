@@ -532,6 +532,7 @@ function wrapAffix(
 		frame: nextFrame,
 		affix: affixLeaf,
 		body,
+		side,
 		isLeaf: false
 	};
 }
@@ -598,16 +599,17 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 		fusedRoot = directMatch;
 		source = 'composition';
 	} else if (directMatch && !looksCompound) {
-		const seg = segmentBest(directMatch.lemma.replace(/^[-=]+|[-=]+$/g, ''), index.segmentationKeys, index.byKey);
-		if (seg.segments.length >= 2 && seg.unresolved.length === 0) {
-			tokens = seg.segments;
-			matched = tokens.map((t) => ({ token: t, entry: resolveToken(t, index.byKey) }));
-			source = 'segmented';
-		} else {
-			tokens = [directMatch.lemma];
-			matched = [{ token: directMatch.lemma, entry: directMatch }];
-			source = 'direct';
-		}
+		// Trust the dictionary entry. A stable lexeme like ``kasuy`` 'help'
+		// shouldn't be auto-segmented into ``ka + suy`` just because both
+		// substrings happen to be in the morpheme inventory — the fact that
+		// kasuy is in NINJAL / Tommy 1949 / Wiktionary as a single attested
+		// form is the evidence we trust. Decomposition only happens when the
+		// entry itself records a ``composition`` or ``etymology``; the
+		// segmentation fallback is reserved for unknown inputs in the
+		// ``else`` branch below.
+		tokens = [directMatch.lemma];
+		matched = [{ token: directMatch.lemma, entry: directMatch }];
+		source = 'direct';
 	} else {
 		tokens = splitInput(raw);
 		if (tokens.length === 1 && !directMatch) {

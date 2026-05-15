@@ -110,7 +110,9 @@
 
 	const isLeaf = $derived(node.entry !== null || node.isLeaf);
 	const isSelected = $derived(node.entry !== null && node.entry.id === selectedId);
-	const sideIsPrefix = $derived(node.kind === 'prefix');
+	// Prefer the explicit `side` field (records which side of the host the
+	// affix sits on); fall back to the structural kind for legacy nodes.
+	const sideIsPrefix = $derived(node.side ? node.side === 'prefix' : node.kind === 'prefix');
 
 	function handleClick() {
 		if (node.entry) onSelect(node.entry.id);

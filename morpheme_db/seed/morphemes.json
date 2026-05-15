@@ -669,21 +669,66 @@
     "notes": "Verbal plural suffix. Marks plural agreement on its host but does not change the argument structure, so it carries no valency rule."
   },
   {
+    "id": "-e-infl",
+    "lemma": "-e",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["root"],
+    "glosses_en": ["INFL.SG"],
+    "glosses_jp": ["単数（屈折）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川2024アイヌ語広文典"],
+    "verified": true,
+    "notes": "Singular inflectional marker on certain bound stems (suy → suye, paye → ?). Carries no valency rule — distinct from the productive causative -e / -re / -te. The valency of this marker is treated as 0 here; the host stem's lexicalised arity is what surfaces."
+  },
+  {
+    "id": "-pa-infl",
+    "lemma": "-pa",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["root"],
+    "glosses_en": ["INFL.PL"],
+    "glosses_jp": ["複数（屈折）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川2024アイヌ語広文典"],
+    "verified": true,
+    "notes": "Plural inflectional counterpart of -e-infl on stem-internal positions (suy → suypa). Distinct from the verbal-plural -pa applied to whole verbs; carries no valency rule."
+  },
+  {
     "id": "suye",
     "lemma": "suye",
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["suy", "-e"],
-    "composition_note": "Transitive finite form: bound stem suy「揺れる」 + causative -e → '〜を揺らす'.",
+    "composition": ["suy", "-e-infl"],
+    "composition_note": "Transitive singular form: bound stem suy + inflectional -e. The -e here is not the productive causative; it's the singular-action inflection paired with -pa (cf. suypa). Valency contribution of suy vs -e is not crisply assigned in the literature — the database treats suy as +1 (intransitive) and the inflection as 0, but treating suy as 0 and -e as +1 would be equally defensible.",
     "base_frame": {
       "slots": [
         {"role": "agent", "realization": "external", "label_jp": "揺らす人"},
         {"role": "patient", "realization": "external", "label_jp": "揺らされるもの"}
       ]
     },
-    "glosses_en": ["sway", "shake (transitive)"],
-    "glosses_jp": ["～を揺らす"],
+    "glosses_en": ["sway", "shake (transitive, singular action)"],
+    "glosses_jp": ["～を揺らす（単）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "suypa",
+    "lemma": "suypa",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["suy", "-pa-infl"],
+    "composition_note": "Plural counterpart of suye: bound stem suy + inflectional -pa. The -pa here pairs with the singular -e inside the same stem; distinct from the verbal-plural -pa attached to whole verbs.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "揺らす人々"},
+        {"role": "patient", "realization": "external", "label_jp": "揺らされるもの"}
+      ]
+    },
+    "glosses_en": ["sway", "shake (transitive, plural action)"],
+    "glosses_jp": ["～を揺らす（複）"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
     "verified": true
   },

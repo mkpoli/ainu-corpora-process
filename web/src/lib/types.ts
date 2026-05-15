@@ -107,6 +107,12 @@ export interface CompositionNode {
 	// subtree it wraps.
 	affix?: CompositionNode;
 	body?: CompositionNode;
+	// Which side of the host the `affix` sits on. Decoupled from `kind`
+	// because category-derived labels like 'incorporation' and 'compound'
+	// can occur on either side (ram is incorporated *before* suy on the
+	// prefix side; kur is suffixed *after* cep-koyki on the suffix side).
+	// Internal nodes only.
+	side?: 'prefix' | 'suffix';
 	// Set to true for the originally-resolved token at the deepest layer.
 	// Helps the UI render a different chip style.
 	isLeaf: boolean;
