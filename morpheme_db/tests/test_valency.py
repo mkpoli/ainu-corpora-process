@@ -26,8 +26,23 @@ SEED_PATH = Path(__file__).resolve().parents[1] / "seed" / "morphemes.json"
 
 @pytest.fixture(scope="module")
 def index() -> dict[str, Entry]:
+    """Indexed by entry ID, so test cases can disambiguate homographs.
+
+    Several lemmas now collide because productive vs. inflectional variants
+    coexist in the seed (e.g. ``-e`` causative ``id=-e`` vs. inflectional
+    singular-action ``id=-e-infl``). A lemma-keyed index loses one of the
+    two; an ID-keyed index keeps both. For convenience we also accept the
+    plain lemma when it's unambiguous.
+    """
     entries = load_entries(SEED_PATH)
-    return {entry.lemma: entry for entry in entries}
+    by_id: dict[str, Entry] = {entry.id: entry for entry in entries}
+    # Layer bare lemmas on top so the lemma-only lookups still resolve, but
+    # only for lemmas that aren't already taken as an ID — IDs win on
+    # collision.
+    for entry in entries:
+        if entry.lemma not in by_id:
+            by_id[entry.lemma] = entry
+    return by_id
 
 
 def _arity_of(*lemmas: str, index: dict[str, Entry]) -> int:

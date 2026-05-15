@@ -102,15 +102,19 @@
 	</a>
 {/snippet}
 
-{#snippet partColumn(part: EtymologyPart)}
+{#snippet partColumn(part: EtymologyPart, skipChip = false)}
 	<div class="flex flex-col items-center gap-1">
-		{@render partChip(part)}
+		{#if !skipChip}
+			{@render partChip(part)}
+		{/if}
 		{#if part.derived_from}
 			<!-- Vertical derivation connector + label inside the part column.
 			     The label names the process only — the underlying chip already
 			     carries the +N valency badge, so we don't duplicate the delta
 			     here. Details are on /processes. -->
-			<span class="h-3 w-px bg-rule"></span>
+			{#if !skipChip}
+				<span class="h-3 w-px bg-rule"></span>
+			{/if}
 			{@const href = processHref(part.process)}
 			{@const label = processLabel(part.process)}
 			{#if href}
@@ -156,7 +160,7 @@
 		{#if etymology.parts && etymology.parts.length}
 			<div class="flex flex-wrap items-start justify-center gap-4">
 				{#each etymology.parts as part}
-					{@render partColumn(part)}
+					{@render partColumn(part, part.derived_from != null && part.lemma === entry.lemma)}
 				{/each}
 			</div>
 		{/if}

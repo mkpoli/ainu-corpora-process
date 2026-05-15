@@ -1247,13 +1247,39 @@
     "verified": true
   },
   {
+    "id": "rampok",
+    "lemma": "rampok",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["ram", "ninjal:pok"],
+    "composition_note": "ram (heart) + pok (under) — 'the area beneath one's heart', idiomatic locus of inward feeling. Curated as an intermediate noun-like unit so rampokwen-class compounds bracket as ((ram-pok)-wen) rather than ram-(pok-wen).",
+    "glosses_en": ["beneath the heart", "inner feeling"],
+    "glosses_jp": ["心の下", "心の中"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "pokta",
+    "lemma": "pokta",
+    "category": "advp",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["ninjal:pok", "ninjal:ta"],
+    "composition_note": "pok (under) + ta (locative postp) — 'underneath', 'down below'. Curated as an intermediate locative phrase so pokta-cis brackets as ((pok-ta)-cis) rather than pok-(ta-cis).",
+    "glosses_en": ["underneath", "down below"],
+    "glosses_jp": ["下に", "足元に"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "eyayrampokwen",
     "lemma": "eyayrampokwen",
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ram", "ninjal:pok", "ninjal:wen"],
-    "composition_note": "e- (APPL) + yay- (REFL) + ram (heart) + pok (under) + wen (be bad). Literally 'one's heart is bad under (oneself) about something'.",
+    "composition": ["e-", "yay-", "rampok", "ninjal:wen"],
+    "composition_note": "e- (APPL) + yay- (REFL) + rampok (beneath-one's-heart) + wen (be bad). Bracketing: e-(yay-(rampok-wen)). Literally 'one's inner feeling is bad about ~'.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "不満の対象"},
@@ -1271,8 +1297,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ninjal:pok", "ninjal:ta", "ninjal:cis"],
-    "composition_note": "e- (APPL) + yay- (REFL) + pok-ta (under-LOC, 'beneath oneself') + cis (cry). 'To grieve / be sad by oneself over something'.",
+    "composition": ["e-", "yay-", "pokta", "ninjal:cis"],
+    "composition_note": "e- (APPL) + yay- (REFL) + pokta (underneath-LOC) + cis (cry). Bracketing: e-(yay-(pokta-cis)). 'To weep at one's own feet over ~' → 'grieve over ~ by oneself'.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "悲しむ対象"},
@@ -1285,13 +1311,45 @@
     "verified": true
   },
   {
+    "id": "rikikur",
+    "lemma": "rikikur",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["ninjal:riki", "kur"],
+    "composition_note": "riki (high) + kur (body / shadow / figure) — 'high body', a yukar-register expression for one's lofty self or soul.",
+    "glosses_en": ["lofty self", "high body"],
+    "glosses_jp": ["高い体", "高く伸びた姿"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kosnepuni",
+    "lemma": "kosnepuni",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:kosne", "puni"],
+    "composition_note": "kosne (be light) + puni (lift) — 'lift lightly', a yukar-register manner-incorporated compound verb.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "持ち上げる人"},
+        {"role": "patient", "realization": "external", "label_jp": "持ち上げられるもの"}
+      ]
+    },
+    "glosses_en": ["lift lightly"],
+    "glosses_jp": ["軽やかに持ち上げる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "eyayrikikurkosnepuni",
     "lemma": "eyayrikikurkosnepuni",
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ninjal:riki", "kur", "ninjal:kosne", "puni"],
-    "composition_note": "e- + yay- + riki (high) + kur (body/shadow) + kosne (light) + puni (lift). Used in yukar (epic poetry): 'one lifts oneself, body light, up high'.",
+    "composition": ["e-", "yay-", "rikikur", "kosnepuni"],
+    "composition_note": "e- (APPL) + yay- (REFL) + rikikur (lofty self) + kosnepuni (lift lightly). Bracketing: e-(yay-(rikikur-kosnepuni)). Yukar-register: 'one lifts one's lofty self into the air'.",
     "base_frame": {
       "slots": [
         {"role": "agent", "realization": "external", "label_jp": "舞い上がる人"}
@@ -1304,13 +1362,52 @@
     "notes": "Yukar / epic-poetry register. Multiple incorporated nouns + adverbial roots."
   },
   {
+    "id": "kosanniyo",
+    "lemma": "kosanniyo",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ko-", "ninjal:sanniyo"],
+    "composition_note": "ko- (APPL) + sanniyo (think). 'Think about ~' with an applied object.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "考える人"},
+        {"role": "theme", "realization": "external", "label_jp": "考える対象"}
+      ]
+    },
+    "glosses_en": ["think about ~"],
+    "glosses_jp": ["～について考える"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ekosanniyo",
+    "lemma": "ekosanniyo",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "kosanniyo"],
+    "composition_note": "e- (APPL) + kosanniyo. Stacked applicative: adds a second oblique-promoted theme on top of ko-sanniyo.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "考える人"},
+        {"role": "theme", "realization": "external", "label_jp": "考える対象"},
+        {"role": "applied", "realization": "external", "label_jp": "考えの相手"}
+      ]
+    },
+    "glosses_en": ["think about ~ in relation to ~"],
+    "glosses_jp": ["～について（…のことを）考える"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "eyaykewtumekosanniyo",
     "lemma": "eyaykewtumekosanniyo",
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ninjal:kewtum", "e-", "ko-", "ninjal:sanniyo"],
-    "composition_note": "e- (APPL) + yay- (REFL) + kewtum (heart) + e- (APPL) + ko- (APPL) + sanniyo (think). 'To deeply think about something by oneself in one's heart'.",
+    "composition": ["e-", "yay-", "ninjal:kewtum", "ekosanniyo"],
+    "composition_note": "e- (APPL) + yay- (REFL) + kewtum (heart, incorporated) + ekosanniyo (e-(ko-sanniyo), 'think about'). Bracketing: e-(yay-(kewtum-ekosanniyo)). 'To deeply ponder ~ in one's heart'.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "考える対象"},
@@ -1328,8 +1425,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["ninjal:a=", "e-", "yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
-    "composition_note": "Anna Bugaeva's signature extreme example. a= (4.A / 1pl-incl) + the full eyaykotuymasiramsuypa stem. Literal: 'We keep swaying our hearts afar and toward ourselves over [various things]' → 'we wonder about ~'.",
+    "composition": ["ninjal:a=", "e-", "yay-", "ko-", "tuyma", "siram", "suypa"],
+    "composition_note": "Anna Bugaeva's signature extreme example. a= (4.A / 1pl-incl, lowest-priority personal clitic, applied outermost) + e-(yay-(ko-(tuyma-(siram-suypa)))). Literal: 'We keep swaying our hearts afar and toward ourselves over [various things]' → 'we wonder about ~'.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "思い巡らす対象"},
@@ -1360,13 +1457,26 @@
     "notes": "Adjective-like intransitive verb. Incorporated as a manner modifier in yaykotuymasiramsuypa '思い巡らす' (far-shake-one's-heart)."
   },
   {
+    "id": "siram",
+    "lemma": "siram",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["si-", "ram"],
+    "composition_note": "si- (REFL.INDIR) attached to ram (heart) — 'one's own heart'. Curated as an intermediate noun-like unit so larger compounds (yaykosiramsuypa, …) can bracket as tuyma-((si-ram)-suypa) instead of having si- climb outside the noun incorporation.",
+    "glosses_en": ["one's own heart"],
+    "glosses_jp": ["（自分の）心"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "yaykosiramsuypa",
     "lemma": "yaykosiramsuypa",
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["yay-", "ko-", "si-", "ram", "suy", "-pa"],
-    "composition_note": "yay-「自分」+ ko-「と共に」+ si-「自分で」+ ram「心」+ suy「揺れる」+ -pa「複数」. Literally 'one's own heart shakes (along) with itself' → idiomatic 'to think deeply'.",
+    "composition": ["yay-", "ko-", "siram", "suypa"],
+    "composition_note": "yay-「自分」+ ko-「と共に」+ siram「自分の心」+ suypa「（複数で）揺れる」. Bracketing: yay-(ko-(siram-suypa)). The si- + ram pair is bundled as the intermediate noun siram so it stays inside the lexical incorporation, and -pa is treated as the inflectional plural inside suypa, paired with -e in suye.",
     "base_frame": {
       "slots": [
         {"role": "agent", "realization": "external", "label_jp": "考える人"}
@@ -1383,8 +1493,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ko-", "si-", "ram", "suy", "-pa"],
-    "composition_note": "Transitive variant of yaykosiramsuypa: e-「について」 adds an external object slot — 'to think deeply about ~'.",
+    "composition": ["e-", "yay-", "ko-", "siram", "suypa"],
+    "composition_note": "Transitive variant of yaykosiramsuypa: e-「について」 adds an external object slot. Bracketing: e-(yay-(ko-(siram-suypa))).",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "考える対象"},
@@ -1402,8 +1512,8 @@
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
-    "composition_note": "Like yaykosiramsuypa but with tuyma「遠い」 incorporated as a manner modifier — 'one's heart shakes far (within oneself)' → 'to mull over / let the mind wander'.",
+    "composition": ["yay-", "ko-", "tuyma", "siram", "suypa"],
+    "composition_note": "Like yaykosiramsuypa but with tuyma「遠い」 incorporated as a manner modifier. Bracketing: yay-(ko-(tuyma-(siram-suypa))).",
     "base_frame": {
       "slots": [
         {"role": "agent", "realization": "external", "label_jp": "思い巡らす人"}
@@ -1420,8 +1530,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
-    "composition_note": "Transitive variant — the paper's signature polysynthetic compound. Morphemic gloss: APPL.DAT-REFL-INS-far-ACAUS-heart-shake-PL → 'to ponder about ~'.",
+    "composition": ["e-", "yay-", "ko-", "tuyma", "siram", "suypa"],
+    "composition_note": "Transitive variant — the paper's signature polysynthetic compound. Bracketing: e-(yay-(ko-(tuyma-(siram-suypa)))). Morphemic gloss: APPL.DAT-REFL-INS-far-(REFL.INDIR-heart)-shake.PL.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "思い巡らす対象"},
