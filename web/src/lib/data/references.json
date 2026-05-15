@@ -260,6 +260,14 @@
     "url": "https://ainu.ninjal.ac.jp/folklore/",
     "language": "ja"
   },
+  "AinuCorpora": {
+    "key": "AinuCorpora",
+    "type": "web",
+    "title": "Ainu Corpora",
+    "author": "mkpoli, aynumosir",
+    "url": "https://huggingface.co/datasets/aynumosir/ainu-corpora",
+    "language": "ain"
+  },
   "NAMCorpus": {
     "key": "NAMCorpus",
     "type": "web",
