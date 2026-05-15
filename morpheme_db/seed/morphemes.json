@@ -519,6 +519,25 @@
     "notes": "Verbal plural suffix. Marks plural agreement on its host but does not change the argument structure, so it carries no valency rule."
   },
   {
+    "id": "suye",
+    "lemma": "suye",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["suy", "-e"],
+    "composition_note": "Transitive finite form: bound stem suy「揺れる」 + causative -e → '〜を揺らす'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "揺らす人"},
+        {"role": "patient", "realization": "external", "label_jp": "揺らされるもの"}
+      ]
+    },
+    "glosses_en": ["sway", "shake (transitive)"],
+    "glosses_jp": ["～を揺らす"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
     "id": "tuyma",
     "lemma": "tuyma",
     "category": "vi",
