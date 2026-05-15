@@ -141,23 +141,25 @@ You can verify the bundle without uploading via `bunx wrangler deploy
 
 ### Deploying from GitHub Actions
 
-`.github/workflows/deploy.yml` is a `workflow_dispatch` job (manual
-trigger from the Actions tab) that:
+`.github/workflows/deploy.yml` runs on two triggers:
 
-1. Installs Bun + repo dependencies.
-2. Optionally re-publishes the morpheme database to D1
-   (`publish_d1: true` input), which mints a fresh
-   `ainu-mdb-<UTC-timestamp>` database and rewrites `wrangler.jsonc`.
-   When omitted, the deployed Worker still reads from whichever D1 db
-   is currently bound (or falls back to the bundled JSON).
-3. Syncs the bundled JSON fallback, type-checks, builds with
-   `adapter-cloudflare`, and runs `wrangler deploy`.
+1. **Push to `main`** — auto-deploys whenever changes land under
+   `web/`, `morpheme_db/`, or the workflow itself. Other paths are
+   ignored. The D1 re-publish step is skipped on push events, so the
+   live database stays untouched and the Worker just gets a fresh
+   build of the bundled JSON fallback.
+2. **`workflow_dispatch`** (manual from the Actions tab) — same job,
+   plus an optional `publish_d1: true` input that mints a fresh
+   `ainu-mdb-<UTC-timestamp>` D1 database, imports the SQL dump,
+   rewrites `wrangler.jsonc`, then deploys.
+
+Both triggers share a concurrency group so overlapping deploys are
+cancelled.
 
 Required repository secrets:
 
 - `CLOUDFLARE_API_TOKEN` — token with `Workers Scripts:Edit`,
-  `User Details:Read`, and (for D1 re-publish)
-  `D1:Edit`.
+  `User Details:Read`, and (for D1 re-publish) `D1:Edit`.
 - `CLOUDFLARE_ACCOUNT_ID` — your account UUID.
 
 ## Stack
