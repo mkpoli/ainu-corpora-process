@@ -105,17 +105,17 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 		{
 			key: 'nukar',
 			// Worked example from system.typ §2.1 + the curated inkar reduction.
-			examples: ['inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar']
+			examples: ['nukar', 'inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar']
 		},
 		{
 			key: 'koyki',
 			// Noun-incorporation family — all curated from田村1996/中川1995.
-			examples: ['cepkoyki', 'aynukoyki', 'cikapkoyki', 'ukoyki', 'cepkoykikur']
+			examples: ['koyki', 'cepkoyki', 'aynukoyki', 'cikapkoyki', 'ukoyki', 'cepkoykikur']
 		},
 		{
-			key: 'iku',
-			// Curated phonological reduction (i- + ku).
-			examples: ['iku']
+			key: 'ku',
+			// 'drink' family — bare root plus the lexicalised i-ku reduction.
+			examples: ['ku', 'iku']
 		},
 		{
 			key: 'suypa',
@@ -123,6 +123,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			// eyaykotuymasiramsuypa is the paper's headline polysynthetic
 			// example (introduction.typ §1).
 			examples: [
+				'suye',
 				'yaykosiramsuypa',
 				'eyaykosiramsuypa',
 				'yaykotuymasiramsuypa',
