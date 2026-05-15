@@ -16,19 +16,48 @@
 		return v > 0 ? `+${v}` : String(v);
 	}
 
-	// Mirror the kind styles used in CompositionTree so etymology chips read
-	// as the same kind of card as the composition leaves.
-	const KIND_STYLE: Record<string, string> = {
-		head: 'border-accent/60 bg-accent-soft text-accent',
-		prefix: 'border-affix/60 bg-affix-soft text-affix',
-		suffix: 'border-affix/60 bg-affix-soft text-affix',
-		standalone: 'border-leaf/60 bg-leaf-soft text-leaf'
-	};
+	/** Infer a default valency from a part's category when the seed didn't
+	 * give one explicitly: verb roots contribute +N for arity N (vi=+1,
+	 * vt=+2, vd=+3); noun roots are canonically incorporable and contribute
+	 * −1; everything else is silent. */
+	function partValency(part: EtymologyPart): number | undefined {
+		if (part.valency !== undefined) return part.valency;
+		switch (part.category) {
+			case 'vi':
+				return 1;
+			case 'vt':
+				return 2;
+			case 'vd':
+				return 3;
+			case 'vc':
+				return 0;
+			case 'n':
+			case 'nl':
+			case 'nmlz':
+			case 'propn':
+				return -1;
+		}
+		return undefined;
+	}
 
-	function chipKind(part: EtymologyPart): string {
-		if (part.morph_type === 'prefix') return 'prefix';
-		if (part.morph_type === 'suffix') return 'suffix';
-		return 'standalone';
+	// Colour etymology chips by morpheme category, matching the
+	// CompositionTree leaves so blue = affix, red = verb root, green =
+	// noun root, etc.
+	function chipCategoryClass(part: EtymologyPart): string {
+		const cat = part.category ?? '';
+		if (cat === 'vt' || cat === 'vi' || cat === 'vd' || cat === 'vc' || cat === 'v') {
+			return 'border-accent/60 bg-accent-soft text-accent';
+		}
+		if (cat === 'n' || cat === 'nl' || cat === 'nmlz' || cat === 'propn') {
+			return 'border-leaf/60 bg-leaf-soft text-leaf';
+		}
+		if (cat === 'pfx' || part.morph_type === 'prefix') {
+			return 'border-affix/60 bg-affix-soft text-affix';
+		}
+		if (cat === 'sfx' || part.morph_type === 'suffix') {
+			return 'border-affix/60 bg-affix-soft text-affix';
+		}
+		return 'border-rule bg-paper';
 	}
 
 	// Localised, short labels for derivational processes — the explainer
@@ -56,7 +85,7 @@
 	<a
 		href={`/?q=${encodeURIComponent(part.lemma)}`}
 		class="group flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
-			{KIND_STYLE[chipKind(part)] ?? 'border-rule bg-paper'}"
+			{chipCategoryClass(part)}"
 	>
 		<span class="font-mono text-base leading-tight">{part.lemma}</span>
 		{#if part.gloss_en}
@@ -67,8 +96,8 @@
 		{#if part.morph_type}
 			<span class="text-[10px] uppercase tracking-wider opacity-70">{part.morph_type}</span>
 		{/if}
-		{#if formatValency(part.valency)}
-			<span class="font-mono text-[10px] font-semibold opacity-75">{formatValency(part.valency)}</span>
+		{#if formatValency(partValency(part))}
+			<span class="font-mono text-[10px] font-semibold opacity-75">{formatValency(partValency(part))}</span>
 		{/if}
 	</a>
 {/snippet}

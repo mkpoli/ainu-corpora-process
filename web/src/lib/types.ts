@@ -80,7 +80,15 @@ export interface Etymology {
 }
 
 // One node in the bracketed composition tree.
-export type CompositionKind = 'head' | 'prefix' | 'suffix' | 'standalone' | 'unknown' | 'fused';
+export type CompositionKind =
+	| 'head'
+	| 'prefix'
+	| 'suffix'
+	| 'standalone'
+	| 'unknown'
+	| 'fused'
+	| 'compound'
+	| 'lexeme';
 
 export interface CompositionNode {
 	// Surface form for this constituent — for a leaf, the morpheme; for an
