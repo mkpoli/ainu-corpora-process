@@ -47,6 +47,35 @@ def _classify(lemma: str, gloss_en: str) -> tuple[bool, str]:
     return (bound, "root")
 
 
+_DOUBLED_MARKERS = re.compile(r"(=+)|(-+)")
+
+
+def _normalise_attachment_markers(lemma: str) -> str:
+    """Collapse accidental runs of attachment markers.
+
+    NINJAL contains stray transcription typos like ``a==`` (one occurrence of
+    a doubled clitic boundary, semantically identical to ``a=``). Single ``=``
+    and ``-`` are the only meaningful markers, so we squash any run down to
+    one character.
+    """
+    return _DOUBLED_MARKERS.sub(lambda m: "=" if m.group(1) else "-", lemma)
+
+
+_GLOSS_COLON_WRAPPER = re.compile(r"::([^:]*?)::")
+
+
+def _clean_gloss(text: str) -> str:
+    """Strip NINJAL's ``::xxx::`` wrappers from a gloss.
+
+    The corpus extractor emits function-word translations wrapped in ``::``
+    (e.g. ``::〜に::``, ``::〜の::``, ``::か::``, or mid-string variants like
+    ``するべき/予定/はず::.こと::``). The markers are an artefact of the
+    upstream parser and not meaningful here, so we unwrap them wherever they
+    appear.
+    """
+    return _GLOSS_COLON_WRAPPER.sub(lambda m: m.group(1), text).strip()
+
+
 def _split_variants(field: str) -> list[str]:
     """Split a ``foo (1234) || bar (3)``-style cell into the variant forms."""
     if not field:
@@ -66,38 +95,60 @@ def _split_variants(field: str) -> list[str]:
 
 
 def ingest_ninjal_lexicon(path: Path) -> list[Entry]:
-    """Parse the NINJAL lexicon TSV into a list of unverified ``Entry`` objects."""
-    entries: list[Entry] = []
+    """Parse the NINJAL lexicon TSV into a list of unverified ``Entry`` objects.
+
+    Lemmas with runs of attachment markers (e.g. ``a==``) are normalised to a
+    single marker, with the raw form preserved as an allomorph. Multiple rows
+    that collapse onto the same canonical lemma are merged in-place
+    (frequencies summed, glosses unioned).
+    """
+    by_lemma: dict[str, Entry] = {}
+    order: list[str] = []
     with path.open(encoding="utf-8") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         for row in reader:
-            lemma = (row.get("morpheme") or "").strip()
-            if not lemma:
+            raw_lemma = (row.get("morpheme") or "").strip()
+            if not raw_lemma:
                 continue
-            gloss_en = (row.get("primary_gloss_en") or "").strip()
-            gloss_jp = (row.get("primary_gloss_jp") or "").strip()
+            gloss_en = _clean_gloss(row.get("primary_gloss_en") or "")
+            gloss_jp = _clean_gloss(row.get("primary_gloss_jp") or "")
             if not gloss_en and not gloss_jp:
                 continue
+            lemma = _normalise_attachment_markers(raw_lemma)
+            variants = _split_variants(row.get("raw_morpheme_variants") or "")
+            if raw_lemma != lemma and raw_lemma not in variants:
+                variants.append(raw_lemma)
             bound, morph_type = _classify(lemma, gloss_en)
-            entries.append(
-                Entry(
-                    id=f"ninjal:{lemma}",
-                    lemma=lemma,
-                    allomorphs=_split_variants(row.get("raw_morpheme_variants") or ""),
-                    category="",
-                    bound=bound,
-                    morph_type=morph_type,
-                    base_frame=None,
-                    rules=[],
-                    glosses_en=[gloss_en] if gloss_en else [],
-                    glosses_jp=[gloss_jp] if gloss_jp else [],
-                    sources=["NINJALCorpus"],
-                    frequency=int(row.get("occurrence_count") or 0),
-                    verified=False,
-                    notes=row.get("normalization_notes", ""),
-                )
+            freq = int(row.get("occurrence_count") or 0)
+            existing = by_lemma.get(lemma)
+            if existing is not None:
+                existing.frequency += freq
+                for variant in variants:
+                    if variant and variant not in existing.allomorphs:
+                        existing.allomorphs.append(variant)
+                if gloss_en and gloss_en not in existing.glosses_en:
+                    existing.glosses_en.append(gloss_en)
+                if gloss_jp and gloss_jp not in existing.glosses_jp:
+                    existing.glosses_jp.append(gloss_jp)
+                continue
+            by_lemma[lemma] = Entry(
+                id=f"ninjal:{lemma}",
+                lemma=lemma,
+                allomorphs=variants,
+                category="",
+                bound=bound,
+                morph_type=morph_type,
+                base_frame=None,
+                rules=[],
+                glosses_en=[gloss_en] if gloss_en else [],
+                glosses_jp=[gloss_jp] if gloss_jp else [],
+                sources=["NINJALCorpus"],
+                frequency=freq,
+                verified=False,
+                notes=row.get("normalization_notes", ""),
             )
-    return entries
+            order.append(lemma)
+    return [by_lemma[key] for key in order]
 
 
 def _lemma_keys(lemma: str) -> list[str]:
