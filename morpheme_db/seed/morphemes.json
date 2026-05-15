@@ -14,7 +14,15 @@
     "glosses_en": ["see", "look at"],
     "glosses_jp": ["～を見る"],
     "sources": ["佐藤2023アイヌ語の動詞の結合価と3項動詞"],
-    "verified": true
+    "verified": true,
+    "etymology": {
+      "parts": [
+        {"lemma": "nu", "gloss_en": "eye (zero-derived from the verb 'sense/hear')", "gloss_jp": "目（動詞「聞く・感じる」からのゼロ派生）"},
+        {"lemma": "kar", "gloss_en": "act on", "gloss_jp": "〜に作用する"}
+      ],
+      "note": "Synchronically atomic, but historically analysable as nu-kar (Nakagawa 1995). The first element is the verbal root nu 'hear/sense' zero-derived into a noun 'eye' — the same noun-root surfaces in nupe (nu + pe 'eye + water' = 'tear'). Synchronically nukar is no longer transparent to native speakers.",
+      "source": "中川1995アイヌ語千歳方言辞典"
+    }
   },
   {
     "id": "koyki",
@@ -534,6 +542,112 @@
     },
     "glosses_en": ["sway", "shake (transitive)"],
     "glosses_jp": ["～を揺らす"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "nu",
+    "lemma": "nu",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "聞く・感じる人"},
+        {"role": "patient", "realization": "external", "label_jp": "聞かれる・感じられる対象"}
+      ]
+    },
+    "glosses_en": [
+      "hear",
+      "listen",
+      "sense",
+      "smell",
+      "feel",
+      "be effective"
+    ],
+    "glosses_jp": ["～を聞く", "～を感じる", "～を嗅ぐ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Highly polysemous sensory verb covering hear / listen / smell / sense / feel and an extended 'be effective' reading. The semantic range closely parallels Japanese 聞く (kiku) and Korean 듣다 (deutda) — likely areal calque rather than borrowing. Zero-derives to a noun 'eye' in compounds (nu-kar 'see', nu-pe 'tear'); the noun sense is no longer productive in isolation, but Nakagawa 1995 records ヌ nu² as a bound noun root."
+  },
+  {
+    "id": "pe",
+    "lemma": "pe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["water", "liquid", "juice"],
+    "glosses_jp": ["水", "液体", "汁"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Free noun 'water/liquid'. Distinct from the homophonous nominaliser suffix -pe / -p that is widespread in compounds (e.g. ek-pe 'one who comes')."
+  },
+  {
+    "id": "nupe",
+    "lemma": "nupe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["nu", "pe"],
+    "composition_note": "nu (eye, zero-derived from the sensory verb 'hear / sense') + pe (water/liquid) → 'tear'. The zero-derivation step turns the verb root into a noun root that can stand as the first member of an N-N compound.",
+    "glosses_en": ["tear", "tears"],
+    "glosses_jp": ["涙"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "yaynu",
+    "lemma": "yaynu",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "nu"],
+    "composition_note": "yay- (REFL.DIR) + nu (sense / hear) — literally 'sense oneself' → 'think'. Parallels si-ram-suy 'one's heart shakes (within oneself)' which is also a sensory-reflexive idiom for thinking.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "考える人"},
+        {"role": "theme", "realization": "external", "label_jp": "考える対象"}
+      ]
+    },
+    "glosses_en": ["think", "ponder"],
+    "glosses_jp": ["～を思う", "～を考える"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "inu",
+    "lemma": "inu",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "nu"],
+    "composition_note": "i- (INDEF.OBJ) + nu (hear) — literally 'hear something' → 'listen, hear (intransitive)'. The patient slot is saturated by the indefinite-object prefix, leaving a one-argument verb.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "聞く人"}
+      ]
+    },
+    "glosses_en": ["listen", "hear (something)"],
+    "glosses_jp": ["（何かを）聞く", "耳を傾ける"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "enukor",
+    "lemma": "enukor",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "nu", "kor"],
+    "composition_note": "e- (APPL 'about/with') + nu (sense / hear) + kor (have / hold). Literally 'have one's senses about ~' → 'watch over ~'. Used especially of gods watching over places or people.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "見守られるもの"},
+        {"role": "agent", "realization": "external", "label_jp": "見守る人・神"}
+      ]
+    },
+    "glosses_en": ["watch over", "keep an eye on"],
+    "glosses_jp": ["（神が）見守る"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
     "verified": true
   },

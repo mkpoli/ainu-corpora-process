@@ -91,7 +91,10 @@ def ingest_tommy1949(
         existing = by_lemma.get(lemma)
         if existing is not None:
             updated = False
-            if not existing.composition:
+            # Curated entries own their composition (the lexicographer's
+            # call about synchronic vs etymological structure). Tommy can
+            # still contribute Japanese glosses to them, though.
+            if not existing.composition and not existing.verified:
                 existing.composition = resolved_ids
                 if not existing.composition_note:
                     existing.composition_note = (

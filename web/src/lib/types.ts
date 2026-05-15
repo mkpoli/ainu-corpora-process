@@ -48,6 +48,20 @@ export interface Entry {
 	verified: boolean;
 	composition: string[];
 	composition_note: string;
+	etymology?: Etymology | null;
+}
+
+export interface EtymologyPart {
+	lemma: string;
+	id?: string;
+	gloss_en?: string;
+	gloss_jp?: string;
+}
+
+export interface Etymology {
+	parts: EtymologyPart[];
+	note?: string;
+	source?: string;
 }
 
 // One node in the bracketed composition tree.

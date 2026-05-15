@@ -89,10 +89,15 @@ def ingest_wiktionary_compositions(
 
         existing = by_lemma.get(lemma)
         if existing is not None:
-            # Don't overwrite a curated composition. Don't touch entries that
-            # already have a composition either; the field is meant to be
-            # stable per entry.
+            # Don't overwrite a curated composition, and don't add an
+            # automatic synchronic composition to a curated entry — that
+            # decision belongs to the lexicographer (e.g. nukar is
+            # synchronically atomic; its nu-kar analysis is etymological,
+            # not synchronic). Also don't touch entries that already have a
+            # composition.
             if existing.composition:
+                continue
+            if existing.verified:
                 continue
             existing.composition = resolved_ids
             if not existing.composition_note:

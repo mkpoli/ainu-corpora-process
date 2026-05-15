@@ -27,6 +27,8 @@
 	"detail_also": "Also",
 	"detail_notes": "Notes",
 	"detail_sources": "Sources",
+	"detail_etymology": "Etymology",
+	"detail_etymology_note": "historical analysis — not synchronically decomposable",
 	"detail_appears_in_one": "Appears in {count} compound",
 	"detail_appears_in_other": "Appears in {count} compounds",
 	"detail_observed": "Observed {count} times in NINJAL corpus.",
