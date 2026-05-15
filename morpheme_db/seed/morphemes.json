@@ -22,17 +22,7 @@
           "category": "n",
           "morph_type": "root",
           "gloss_en": "eye",
-          "gloss_jp": "目",
-          "process": "zero_derivation",
-          "process_delta": -1,
-          "derived_from": {
-            "lemma": "nu",
-            "category": "vi",
-            "morph_type": "root",
-            "gloss_en": "sense, hear",
-            "gloss_jp": "聞く、感じる",
-            "valency": 1
-          }
+          "gloss_jp": "目"
         },
         {
           "lemma": "kar",
@@ -40,16 +30,7 @@
           "morph_type": "root",
           "gloss_en": "act on",
           "gloss_jp": "〜に作用する",
-          "valency": 2,
-          "process": "grammaticalization",
-          "derived_from": {
-            "lemma": "kar",
-            "category": "vt",
-            "morph_type": "root",
-            "gloss_en": "make",
-            "gloss_jp": "〜を作る",
-            "valency": 2
-          }
+          "valency": 2
         }
       ],
       "note": "cf. nupe = nu + pe 'eye-water = tear'.",
@@ -1359,6 +1340,30 @@
     ],
     "glosses_en": ["APPL.about"],
     "glosses_jp": ["～について"],
+    "sources": ["佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "wa.conjunctive",
+    "lemma": "wa",
+    "category": "sconj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["and", "and then"],
+    "glosses_jp": ["して", "～て"],
+    "notes": "Conjunctive particle (接続助詞): joins clauses sequentially ('having V-ed, …'). Listed first so the NINJAL corpus frequency for this dominant sense merges here rather than into the homographic ablative wa.",
+    "sources": ["佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "wa.ablative",
+    "lemma": "wa",
+    "category": "postp",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["from"],
+    "glosses_jp": ["～から"],
+    "notes": "Ablative case particle (格助詞). Distinct from the homographic conjunctive wa 'and' (して), which is the dominant NINJAL sense and is kept as a separate, curated entry under the same lemma.",
     "sources": ["佐藤2008アイヌ文法の基礎"],
     "verified": true
   }
