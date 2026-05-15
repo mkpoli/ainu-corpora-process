@@ -538,6 +538,372 @@
     "verified": true
   },
   {
+    "id": "ruska",
+    "lemma": "ruska",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "external", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["be angry at", "be angry with"],
+    "glosses_jp": ["～に怒る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "puntek",
+    "lemma": "puntek",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "喜ぶ人"}
+      ]
+    },
+    "glosses_en": ["rejoice", "be glad"],
+    "glosses_jp": ["喜ぶ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "puni",
+    "lemma": "puni",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "持ち上げる人"},
+        {"role": "patient", "realization": "external", "label_jp": "持ち上げられるもの"}
+      ]
+    },
+    "glosses_en": ["lift", "raise"],
+    "glosses_jp": ["～を持ち上げる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "koiruska",
+    "lemma": "koiruska",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ko-", "i-", "ruska"],
+    "composition_note": "ko-（〜に対して applicative）+ i-（不定目的語 INDEF.OBJ）+ ruska（怒る）. The indefinite-object prefix saturates ruska's patient, then ko- adds an external goal — 'to be angry at something towards someone'.",
+    "base_frame": {
+      "slots": [
+        {"role": "goal", "realization": "external", "label_jp": "怒りを向けられる人"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["be angry at something towards someone"],
+    "glosses_jp": ["誰かに対して何かに怒る"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "sikoiruska",
+    "lemma": "sikoiruska",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["si-", "ko-", "i-", "ruska"],
+    "composition_note": "si- (indirect reflexive) coreferences the ko-added goal with the subject — 'to be angry at something towards oneself'.",
+    "base_frame": {
+      "slots": [
+        {"role": "goal", "realization": "internal_refl", "label_jp": "自分自身"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["be angry at something towards oneself"],
+    "glosses_jp": ["自分に対して何かに怒る"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "iruskare",
+    "lemma": "iruskare",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "ruska", "-e"],
+    "composition_note": "i-ruska is intransitive 'be angry (at indef)'; -re/-e adds a causer → 'make someone angry at something'.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["make someone angry at something"],
+    "glosses_jp": ["誰かを何かに怒らせる"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "koiruskare",
+    "lemma": "koiruskare",
+    "category": "vd",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ko-", "i-", "ruska", "-e"],
+    "composition_note": "Ditransitive: ko- adds goal, -re/-e adds causer over the i-ruska base.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
+        {"role": "goal", "realization": "external", "label_jp": "怒りを向けられる人"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["make someone angry at something towards someone"],
+    "glosses_jp": ["誰かに対して誰かを何かに怒らせる"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "sikoiruskare",
+    "lemma": "sikoiruskare",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["si-", "ko-", "i-", "ruska", "-e"],
+    "composition_note": "si- coreferences the ko-added goal with one of the higher arguments — 'make someone angry at something towards oneself'.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
+        {"role": "goal", "realization": "internal_refl", "label_jp": "自分自身"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["make someone angry at something towards oneself"],
+    "glosses_jp": ["自分に対して誰かを何かに怒らせる"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "ukoiruskare",
+    "lemma": "ukoiruskare",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["u-", "ko-", "i-", "ruska", "-e"],
+    "composition_note": "u- coreferences the ko-added goal with another argument (reciprocal) — 'make several people angry at something at each other'.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
+        {"role": "goal", "realization": "internal_refl", "label_jp": "互い"},
+        {"role": "agent", "realization": "external", "label_jp": "怒る人々"},
+        {"role": "patient", "realization": "internal_indef", "label_jp": "怒りの対象"}
+      ]
+    },
+    "glosses_en": ["make people angry at something at each other"],
+    "glosses_jp": ["互いに何かに怒らせる"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
+    "id": "eyaykopuntek",
+    "lemma": "eyaykopuntek",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ko-", "puntek"],
+    "composition_note": "e-（〜について appl）+ yay-（自分 refl）+ ko-（〜に appl）+ puntek（喜ぶ）— 'to rejoice over something for oneself'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "喜ぶ対象"},
+        {"role": "agent", "realization": "external", "label_jp": "喜ぶ人"}
+      ]
+    },
+    "glosses_en": ["rejoice about", "be glad about ~"],
+    "glosses_jp": ["～を喜ぶ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ewkoysoytak",
+    "lemma": "ewkoysoytak",
+    "allomorphs": ["e-u-ko-isoytak"],
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "u-", "ko-", "ninjal:isoytak"],
+    "composition_note": "Lexicalised surface form ewkoysoytak ← e- + u- (reciprocal) + ko- + isoytak (chat). 'To chat with each other about something'. Phonological metathesis collapses the prefix cluster.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "話す話題"},
+        {"role": "agent", "realization": "external", "label_jp": "話す人々"},
+        {"role": "goal", "realization": "internal_refl", "label_jp": "互い"}
+      ]
+    },
+    "glosses_en": ["chat with each other about", "talk together about ~"],
+    "glosses_jp": ["～について互いに話す"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "iyayraykere",
+    "lemma": "iyayraykere",
+    "allomorphs": ["iyairaykere"],
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "yay-", "tommy1949:rayke", "-e"],
+    "composition_note": "Lexicalised politeness expression — literally i-(INDEF.OBJ) + yay-(REFL) + rayke (kill/thank) + -re (CAUS) 'make oneself thank for something'. Used as the standard polite 'thank you'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "感謝する人"}
+      ]
+    },
+    "glosses_en": ["thank you", "(I) thank (you)"],
+    "glosses_jp": ["ありがとう"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Conventionalised greeting. Synchronically opaque to most speakers; the polysynthetic structure is etymological."
+  },
+  {
+    "id": "uminare",
+    "lemma": "uminare",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["u-", "ninjal:mina", "-e"],
+    "composition_note": "u- (reciprocal) + mina (laugh) + -re (causative) — 'to laugh together'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "笑い合う人々"}
+      ]
+    },
+    "glosses_en": ["laugh together"],
+    "glosses_jp": ["共に笑う", "笑い合う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sikasuyre",
+    "lemma": "sikasuyre",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["si-", "ninjal:kasuy", "-e"],
+    "composition_note": "si- (indirect reflexive) + kasuy (help) + -re (causative) — 'to make someone help oneself' → 'to get help'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "助けを得る人"},
+        {"role": "causer", "realization": "external", "label_jp": "助ける人"}
+      ]
+    },
+    "glosses_en": ["get help", "make someone help oneself"],
+    "glosses_jp": ["助けてもらう"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eyayrampokwen",
+    "lemma": "eyayrampokwen",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ram", "ninjal:pok", "ninjal:wen"],
+    "composition_note": "e- (APPL) + yay- (REFL) + ram (heart) + pok (under) + wen (be bad). Literally 'one's heart is bad under (oneself) about something'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "不満の対象"},
+        {"role": "agent", "realization": "external", "label_jp": "不満を感じる人"}
+      ]
+    },
+    "glosses_en": ["feel dissatisfied about", "be unhappy about ~"],
+    "glosses_jp": ["～について不満を感じる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eyaypoktacis",
+    "lemma": "eyaypoktacis",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ninjal:pok", "ninjal:ta", "ninjal:cis"],
+    "composition_note": "e- (APPL) + yay- (REFL) + pok-ta (under-LOC, 'beneath oneself') + cis (cry). 'To grieve / be sad by oneself over something'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "悲しむ対象"},
+        {"role": "agent", "realization": "external", "label_jp": "悲しむ人"}
+      ]
+    },
+    "glosses_en": ["grieve over", "be sad about ~ by oneself"],
+    "glosses_jp": ["～を独りで悲しむ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eyayrikikurkosnepuni",
+    "lemma": "eyayrikikurkosnepuni",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ninjal:riki", "kur", "ninjal:kosne", "puni"],
+    "composition_note": "e- + yay- + riki (high) + kur (body/shadow) + kosne (light) + puni (lift). Used in yukar (epic poetry): 'one lifts oneself, body light, up high'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "舞い上がる人"}
+      ]
+    },
+    "glosses_en": ["float lightly up into the air"],
+    "glosses_jp": ["軽やかに舞い上がる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Yukar / epic-poetry register. Multiple incorporated nouns + adverbial roots."
+  },
+  {
+    "id": "eyaykewtumekosanniyo",
+    "lemma": "eyaykewtumekosanniyo",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "yay-", "ninjal:kewtum", "e-", "ko-", "ninjal:sanniyo"],
+    "composition_note": "e- (APPL) + yay- (REFL) + kewtum (heart) + e- (APPL) + ko- (APPL) + sanniyo (think). 'To deeply think about something by oneself in one's heart'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "考える対象"},
+        {"role": "agent", "realization": "external", "label_jp": "考える人"}
+      ]
+    },
+    "glosses_en": ["deeply think about ~", "ponder ~ in one's heart"],
+    "glosses_jp": ["～を心の中で深く考える"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "aeyaykotuymasiramsuypa",
+    "lemma": "aeyaykotuymasiramsuypa",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:a=", "e-", "yay-", "ko-", "tuyma", "si-", "ram", "suy", "-pa"],
+    "composition_note": "Anna Bugaeva's signature extreme example. a= (4.A / 1pl-incl) + the full eyaykotuymasiramsuypa stem. Literal: 'We keep swaying our hearts afar and toward ourselves over [various things]' → 'we wonder about ~'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "思い巡らす対象"},
+        {"role": "agent", "realization": "external", "label_jp": "私たち（包括）"}
+      ]
+    },
+    "glosses_en": ["we wonder about ~"],
+    "glosses_jp": ["我々は～について思い巡らす"],
+    "sources": ["ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true,
+    "notes": "Cited by Bugaeva (2014) as among the most extreme polysynthetic forms in Ainu."
+  },
+  {
     "id": "tuyma",
     "lemma": "tuyma",
     "category": "vi",
