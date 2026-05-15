@@ -78,6 +78,12 @@
 			<div class="flex flex-col items-end gap-2">
 				<div class="flex items-center gap-3 text-xs">
 					<a
+						href="/morphemes"
+						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
+					>
+						{m.morphemes_link()}
+					</a>
+					<a
 						href="/references"
 						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
 					>
