@@ -190,6 +190,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			// applicatives / reflexives / reciprocals / causatives.
 			examples: [
 				'ruska',
+				'iruska',
 				'koiruska',
 				'sikoiruska',
 				'iruskare',

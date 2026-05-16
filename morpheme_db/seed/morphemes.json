@@ -1110,8 +1110,8 @@
     "category": "vd",
     "bound": false,
     "morph_type": "root",
-    "composition": ["ko-", "i-", "ruska", "-re"],
-    "composition_note": "Ditransitive: ko- adds goal, -re/-e adds causer over the i-ruska base.",
+    "composition": ["ko-", "iruskare"],
+    "composition_note": "Ditransitive: ko- (APPL) adds an external goal slot on top of the iruskare base. Bracketing: ko-((i-ruska)-re).",
     "base_frame": {
       "slots": [
         {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
@@ -1131,8 +1131,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["si-", "ko-", "i-", "ruska", "-re"],
-    "composition_note": "si- coreferences the ko-added goal with one of the higher arguments — 'make someone angry at something towards oneself'.",
+    "composition": ["si-", "koiruskare"],
+    "composition_note": "si- coreferences the ko-added goal with one of the higher arguments — 'make someone angry at something towards oneself'. Bracketing: si-(ko-((i-ruska)-re)).",
     "base_frame": {
       "slots": [
         {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
