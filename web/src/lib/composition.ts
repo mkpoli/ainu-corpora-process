@@ -554,8 +554,13 @@ function wrapAffix(
 			};
 	const nextFrame = entry && body.frame ? applyRules(body.frame, entry, warnings) : cloneFrame(body.frame);
 	const affixBare = (entry?.lemma ?? child.token).replace(/^[-=]+|[-=]+$/g, '');
-	const bodyBare = body.surface.replace(/^[-=]+|[-=]+$/g, '');
-	const surface = side === 'prefix' ? `${affixBare}-${bodyBare}` : `${bodyBare}-${affixBare}`;
+	// Strip every directional marker AND internal hyphens from the body so
+	// the wrap header reads like the concatenated lemma — e.g. the body of
+	// eyaykewtumekosanniyo shows as "yaykewtumekosanniyo", not
+	// "yay-kewtum-ekosanniyo", so the e- affix doesn't look detached from
+	// an oddly-hyphenated rest.
+	const bodyBare = body.surface.replace(/[-=]+/g, '');
+	const surface = side === 'prefix' ? `${affixBare}${bodyBare}` : `${bodyBare}${affixBare}`;
 
 	// Pick a bracket kind: productive affixes (morph_type prefix/suffix) and
 	// personal-affix clitics keep the structural prefix/suffix label; other
@@ -755,6 +760,21 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	const matchedAnyEntry = matched.some((m) => m.entry !== null);
 	const unseen =
 		!directMatch && !matchedAnyEntry; // nothing recognised at all
+
+	// Attach the matched whole-word entry to the root of the tree so the
+	// internal-node header can be rendered as a clickable chip in the UI.
+	// Leaves already carry their own entry; fused-root wraps already contain
+	// an inner head leaf that points to the matched entry (clicking that
+	// chip selects the whole word). We only fill the root when it's a wrap
+	// that would otherwise have no clickable representation of the
+	// whole-word entry.
+	if (matchedEntry && !tree.isLeaf && tree.entry === null) {
+		const inner = (n: CompositionNode | undefined): boolean =>
+			!!n && (n.entry?.id === matchedEntry.id || inner(n.affix) || inner(n.body));
+		if (!inner(tree.affix) && !inner(tree.body)) {
+			tree.entry = matchedEntry;
+		}
+	}
 
 	return {
 		input,
