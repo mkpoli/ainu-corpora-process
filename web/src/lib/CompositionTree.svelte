@@ -126,6 +126,25 @@
 		event.stopPropagation();
 		if (node.entry && onToggleExpand) onToggleExpand(node.entry.id);
 	}
+
+	/**
+	 * Pick a short label to render under the lemma. The seed marks most
+	 * free-standing words as ``morph_type=root`` which is misleading on a
+	 * chip — "root" reads as "this isn't a word, just a bound morpheme",
+	 * whereas these chips often represent the whole word being inspected.
+	 *
+	 * Rule:
+	 *   - For affixes / clitics, show the structural role (prefix / suffix /
+	 *     clitic) — that's the informative bit.
+	 *   - For everything else (incl. ``root``, ``stem``, ``particle``), show
+	 *     the grammatical category instead (vt, vi, n, pron, advp, …).
+	 */
+	function chipRoleLabel(entry: Entry | null | undefined): string | null {
+		if (!entry) return null;
+		const mt = entry.morph_type;
+		if (mt === 'prefix' || mt === 'suffix' || mt === 'clitic') return mt;
+		return entry.category || mt || null;
+	}
 </script>
 
 <div class="flex flex-col items-center gap-3">
@@ -144,10 +163,11 @@
 			{:else if node.kind === 'unknown'}
 				<span class="text-xs italic opacity-80">{m.kind_unknown()}</span>
 			{/if}
-			{#if node.entry?.morph_type}
-				<span class="text-[10px] uppercase tracking-wider opacity-70">{node.entry.morph_type}</span>
-			{/if}
 			{#if node.entry}
+				{@const role = chipRoleLabel(node.entry)}
+				{#if role}
+					<span class="text-[10px] uppercase tracking-wider opacity-70">{role}</span>
+				{/if}
 				{@const delta = effectiveValencyDelta(node.entry)}
 				{#if delta !== null && delta !== 0}
 					<span
@@ -226,10 +246,11 @@
 				{#if node.entry.glosses_en?.length}
 					<span class="text-xs italic opacity-80">{node.entry.glosses_en[0]}</span>
 				{/if}
-				{#if node.entry.morph_type}
-					<span class="text-[10px] uppercase tracking-wider opacity-70">{node.entry.morph_type}</span>
-				{/if}
 				{#if node.entry}
+					{@const role = chipRoleLabel(node.entry)}
+					{#if role}
+						<span class="text-[10px] uppercase tracking-wider opacity-70">{role}</span>
+					{/if}
 					{@const delta = effectiveValencyDelta(node.entry)}
 					{#if delta !== null && delta !== 0}
 						<span
