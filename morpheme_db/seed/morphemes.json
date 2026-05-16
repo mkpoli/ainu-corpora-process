@@ -1228,13 +1228,32 @@
     "notes": "Conventionalised greeting. Synchronically opaque to most speakers; the polysynthetic structure is etymological."
   },
   {
+    "id": "minare",
+    "lemma": "minare",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:mina", "-re"],
+    "composition_note": "mina (laugh, vi) + -re (causative) — 'make (someone) laugh', 'amuse'. -re surfaces after the vowel-final stem mina; cf. the seed -e/-re allomorph entries.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "笑わせる人"},
+        {"role": "agent", "realization": "external", "label_jp": "笑う人"}
+      ]
+    },
+    "glosses_en": ["make laugh", "amuse"],
+    "glosses_jp": ["笑わす", "笑わせる"],
+    "sources": ["Tommy 1949", "田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "uminare",
     "lemma": "uminare",
     "category": "vi",
     "bound": false,
     "morph_type": "root",
-    "composition": ["u-", "ninjal:mina", "-re"],
-    "composition_note": "u- (reciprocal) + mina (laugh) + -re (causative) — 'to laugh together'.",
+    "composition": ["u-", "minare"],
+    "composition_note": "u- (reciprocal) + minare (make laugh, vt) → 'cause each other to laugh' → 'laugh together'. Bracketing: u-(mina-re).",
     "base_frame": {
       "slots": [
         {"role": "agent", "realization": "external", "label_jp": "笑い合う人々"}
