@@ -221,6 +221,20 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			]
 		},
 		{
+			key: 'nominalization-pe',
+			// -pe / -p suffix: "the thing that …". A productive nominaliser
+			// the dictionary records across many lexicalised compounds.
+			// Compositions sourced from Wiktionary's ingested word-composition
+			// data and verified against our morpheme inventory.
+			examples: ['einkarpe', 'sapanpe', 'anpe', 'rikop']
+		},
+		{
+			key: 'yay-causative',
+			// Reflexive yay- stacked with a verb root + causative -e/-re,
+			// producing "make oneself …" derivations attested in Wiktionary.
+			examples: ['yaykirare', 'yaypekare', 'yaymonsak', 'yaymonniska']
+		},
+		{
 			key: 'suypa',
 			// The "ponder" family. Single-word lemmas are the attested forms;
 			// eyaykotuymasiramsuypa is the paper's headline polysynthetic
