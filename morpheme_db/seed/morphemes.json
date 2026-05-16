@@ -1067,13 +1067,31 @@
     "verified": true
   },
   {
+    "id": "iruska",
+    "lemma": "iruska",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "ruska"],
+    "composition_note": "i- (INDEF.OBJ) + ruska (be angry at) — the patient is saturated by the indefinite-object prefix, leaving an intransitive 'be angry (at something)'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "怒る人"}
+      ]
+    },
+    "glosses_en": ["be angry"],
+    "glosses_jp": ["怒る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true
+  },
+  {
     "id": "iruskare",
     "lemma": "iruskare",
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["i-", "ruska", "-re"],
-    "composition_note": "i-ruska is intransitive 'be angry (at indef)'; -re/-e adds a causer → 'make someone angry at something'.",
+    "composition": ["iruska", "-re"],
+    "composition_note": "iruska is intransitive 'be angry (at indef)'; -re adds a causer → 'make someone angry at something'. Bracketing: (i-ruska)-re — ruskare is not an attested independent stem, so we curate iruska as the inner unit.",
     "base_frame": {
       "slots": [
         {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},
