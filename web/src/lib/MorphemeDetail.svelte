@@ -26,10 +26,21 @@
 </script>
 
 {#if entry}
+	{@const lemmaSize =
+		entry.lemma.length <= 8
+			? 'text-3xl'
+			: entry.lemma.length <= 14
+				? 'text-2xl'
+				: 'text-xl'}
 	<article class="flex flex-col gap-5">
-		<header class="flex flex-col gap-1 border-b border-rule pb-3">
-			<div class="flex items-baseline gap-3">
-				<h2 class="font-mono text-3xl text-ink">{entry.lemma}</h2>
+		<header class="flex flex-col gap-2 border-b border-rule pb-3">
+			<!-- Lemma takes its own line and is allowed to wrap; the meta
+			     chips below it never get pushed into a stretched single-line
+			     row by extreme polysynthetic forms like
+			     eyaykotuymasiramsuypa. Font scales down on long lemmas so the
+			     sidebar width stays predictable. -->
+			<h2 class="font-mono {lemmaSize} break-words text-ink">{entry.lemma}</h2>
+			<div class="flex flex-wrap items-center gap-2">
 				<span class="text-xs uppercase tracking-widest text-ink/60">
 					{morphTypeLabel(entry.morph_type)}{entry.category ? ` · ${categoryLabel(entry.category)}` : ''}
 				</span>
