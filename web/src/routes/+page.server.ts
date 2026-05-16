@@ -207,6 +207,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			// example (introduction.typ §1).
 			examples: [
 				'suye',
+				'suypa',
 				'yaykosiramsuypa',
 				'eyaykosiramsuypa',
 				'yaykotuymasiramsuypa',
