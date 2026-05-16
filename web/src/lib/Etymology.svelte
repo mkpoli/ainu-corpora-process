@@ -1,9 +1,34 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import { sourceLabel, sourceUrl } from './sources';
+	import { effectiveValencyDelta } from './composition';
 	import type { Entry, EtymologyPart } from './types';
 
-	let { entry }: { entry: Entry | null } = $props();
+	function localisedPartGloss(part: EtymologyPart): string | null {
+		const locale = getLocale();
+		if (locale === 'ja') return part.gloss_jp ?? part.gloss_en ?? null;
+		return part.gloss_en ?? part.gloss_jp ?? null;
+	}
+
+	let {
+		entry,
+		entryById = {}
+	}: { entry: Entry | null; entryById?: Record<string, Entry> } = $props();
+
+	// Look up the full Entry for a part by its `id` if curated, otherwise
+	// by lemma. We use this so the chip's valency badge stays in sync with
+	// what the same morpheme shows on its own page (e.g. ko- = +1 because
+	// of its add_slot rule, even if the etymology JSON doesn't restate
+	// `valency: 1`).
+	function partEntry(part: EtymologyPart): Entry | null {
+		if (part.id && entryById[part.id]) return entryById[part.id];
+		// Fall back to a lemma lookup across the index.
+		for (const e of Object.values(entryById)) {
+			if (e.lemma === part.lemma) return e;
+		}
+		return null;
+	}
 
 	const etymology = $derived(entry?.etymology ?? null);
 	const sourceHref = $derived.by(() => {
@@ -19,9 +44,20 @@
 	/** Infer a default valency from a part's category when the seed didn't
 	 * give one explicitly: verb roots contribute +N for arity N (vi=+1,
 	 * vt=+2, vd=+3); noun roots are canonically incorporable and contribute
-	 * −1; everything else is silent. */
+	 * −1; applicative prefixes contribute +1; everything else is silent.
+	 *
+	 * Prefers (a) an explicit `valency` on the etymology part, (b) the
+	 * effective valency delta of the matched Entry (so ko-/e-/o- pick up
+	 * their +1 from the add_slot rule), and only then falls back to the
+	 * category-based heuristic.
+	 */
 	function partValency(part: EtymologyPart): number | undefined {
 		if (part.valency !== undefined) return part.valency;
+		const e = partEntry(part);
+		if (e) {
+			const delta = effectiveValencyDelta(e);
+			if (delta !== null) return delta;
+		}
 		switch (part.category) {
 			case 'vi':
 				return 1;
@@ -94,10 +130,8 @@
 			{chipCategoryClass(part)}"
 	>
 		<span class="font-mono text-base leading-tight">{part.lemma}</span>
-		{#if part.gloss_en}
-			<span class="text-xs italic opacity-80">{part.gloss_en}</span>
-		{:else if part.gloss_jp}
-			<span class="text-xs italic opacity-80">{part.gloss_jp}</span>
+		{#if localisedPartGloss(part)}
+			<span class="text-xs italic opacity-80">{localisedPartGloss(part)}</span>
 		{/if}
 		{#if partRoleLabel(part)}
 			<span class="text-[10px] uppercase tracking-wider opacity-70">{partRoleLabel(part)}</span>
