@@ -165,7 +165,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 		{
 			key: 'nukar',
 			// Worked example from system.typ §2.1 + the curated inkar reduction.
-			examples: ['nukar', 'inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar']
+			examples: ['nukar', 'inkar', 'nukar-e', 'si-nukar-e', 'yay-nukar', 'einkarpe']
 		},
 		{
 			key: 'nu-family',
@@ -226,7 +226,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			// the dictionary records across many lexicalised compounds.
 			// Compositions sourced from Wiktionary's ingested word-composition
 			// data and verified against our morpheme inventory.
-			examples: ['einkarpe', 'sapanpe', 'anpe', 'rikop']
+			examples: ['sapanpe', 'anpe', 'rikop']
 		},
 		{
 			key: 'yay-causative',
