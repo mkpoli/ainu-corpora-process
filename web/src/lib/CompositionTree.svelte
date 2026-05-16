@@ -108,7 +108,11 @@
 		lexeme: 'border-rule bg-paper text-ink/85'
 	};
 
-	const isLeaf = $derived(node.entry !== null || node.isLeaf);
+	// Pure leaf-vs-internal decision: internal wraps now also carry an
+	// optional `entry` (set on the tree root so the whole-word chip is
+	// clickable), but they must still render as wraps with children, not as
+	// flat leaf buttons.
+	const isLeaf = $derived(node.isLeaf);
 	const isSelected = $derived(node.entry !== null && node.entry.id === selectedId);
 	// Prefer the explicit `side` field (records which side of the host the
 	// affix sits on); fall back to the structural kind for legacy nodes.
@@ -205,16 +209,49 @@
 		{/if}
 	{:else}
 		<!-- Internal node: surface header with the effective valency, then the
-		     two-child bracket below. -->
-		<div
-			class="flex flex-col items-center gap-1 rounded-2xl border border-rule bg-paper/70 px-3 py-1.5"
-			title={`${node.kind} composition`}
-		>
-			<span class="font-mono text-sm text-ink/80">{node.surface}</span>
-			{#if node.frame}
-				<ValencyFrame frame={node.frame} compact />
-			{/if}
-		</div>
+		     two-child bracket below. When the wrap carries an `entry`
+		     (notably the tree root — the whole-word entry), the header is
+		     rendered as a clickable chip so the side panel can show its
+		     details, mirroring the way leaf chips behave. -->
+		{#if node.entry}
+			<button
+				type="button"
+				onclick={handleClick}
+				class="flex flex-col items-center gap-1 rounded-2xl border px-3 py-1.5 shadow-sm transition
+					{chipCategoryClass(node.entry)}
+					{isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'hover:-translate-y-0.5 hover:shadow-md'}"
+				title={`${node.kind} composition — click to inspect`}
+			>
+				<span class="font-mono text-base leading-tight">{node.entry.lemma}</span>
+				{#if node.entry.glosses_en?.length}
+					<span class="text-xs italic opacity-80">{node.entry.glosses_en[0]}</span>
+				{/if}
+				{#if node.entry.morph_type}
+					<span class="text-[10px] uppercase tracking-wider opacity-70">{node.entry.morph_type}</span>
+				{/if}
+				{#if node.entry}
+					{@const delta = effectiveValencyDelta(node.entry)}
+					{#if delta !== null && delta !== 0}
+						<span
+							class="font-mono text-[10px] font-semibold opacity-75"
+							title="arity change applied by this morpheme"
+						>
+							{delta > 0 ? `+${delta}` : delta}
+						</span>
+					{/if}
+				{/if}
+			</button>
+		{:else}
+			<div
+				class="flex flex-col items-center gap-1 rounded-2xl border border-rule bg-paper/70 px-3 py-1.5"
+				title={`${node.kind} composition`}
+			>
+				<span class="font-mono text-sm text-ink/80">{node.surface}</span>
+				{#if node.frame}
+					<ValencyFrame frame={node.frame} compact />
+				{/if}
+			</div>
+		{/if}
 
 		<!-- Connector + bracket label -->
 		<div class="flex flex-col items-center">

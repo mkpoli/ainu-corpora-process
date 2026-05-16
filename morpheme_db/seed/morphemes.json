@@ -1273,13 +1273,26 @@
     "verified": true
   },
   {
+    "id": "yayrampok",
+    "lemma": "yayrampok",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["yay-", "rampok"],
+    "composition_note": "yay- (REFL.DIR) attached to rampok (beneath the heart) — 'one's own inner being'. Curated as an intermediate unit so eyayrampokwen brackets as e-((yay-rampok)-wen) rather than e-(yay-(rampok-wen)): yay- belongs inside the noun-incorporation host, with wen ('be bad') applying to the whole self-inner-feeling unit.",
+    "glosses_en": ["one's own inner being", "one's own inward feeling"],
+    "glosses_jp": ["（自分の）心の内", "自分の内面"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "eyayrampokwen",
     "lemma": "eyayrampokwen",
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["e-", "yay-", "rampok", "ninjal:wen"],
-    "composition_note": "e- (APPL) + yay- (REFL) + rampok (beneath-one's-heart) + wen (be bad). Bracketing: e-(yay-(rampok-wen)). Literally 'one's inner feeling is bad about ~'.",
+    "composition": ["e-", "yayrampok", "ninjal:wen"],
+    "composition_note": "e- (APPL) + yayrampok (one's own inner being) + wen (be bad). Bracketing: e-((yay-(ram-pok))-wen). yay- attaches inside the incorporated noun ('self-inner-being') so wen applies to the whole reflexive-possessed noun, then e- adds the applied theme.",
     "base_frame": {
       "slots": [
         {"role": "theme", "realization": "external", "label_jp": "不満の対象"},
