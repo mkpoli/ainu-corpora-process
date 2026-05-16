@@ -714,19 +714,18 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 				: null;
 
 		if (isReduced) {
-			const headLeaf: CompositionNode = {
-				surface: fusedRoot.lemma,
-				kind: 'head',
-				entry: fusedRoot,
-				frame,
-				isLeaf: true
-			};
+			// Wrap the decomposition under a single 'fused' top node. The
+			// wrap itself carries the fused entry (so the top chip is the
+			// clickable handle for the whole word) — we deliberately do NOT
+			// add a separate inner head leaf chip, which would just
+			// duplicate the same entry at the bottom of the tree and make
+			// the click target position inconsistent with non-fused words
+			// where the root is at the top.
 			tree = {
 				surface: fusedRoot.lemma,
 				kind: 'fused',
-				entry: null,
+				entry: fusedRoot,
 				frame,
-				affix: headLeaf,
 				body: tree,
 				isLeaf: false
 			};
