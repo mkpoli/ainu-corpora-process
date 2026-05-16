@@ -804,6 +804,302 @@
     "notes": "Free noun 'water/liquid'. Distinct from the homophonous nominaliser suffix -pe / -p that is widespread in compounds (e.g. ek-pe 'one who comes')."
   },
   {
+    "id": "-pe-nmlz",
+    "lemma": "-pe",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi"],
+    "rules": [
+      {
+        "operation": "remove_slot",
+        "role": "agent",
+        "description": "Nominaliser: turns an intransitive verb into the agent / participant noun, saturating the verb's external slot."
+      }
+    ],
+    "glosses_en": ["NMLZ", "the one that ~"],
+    "glosses_jp": ["NMLZ（〜するもの／者）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Productive agent / participant nominaliser used after consonant-final stems. Homophonous with the noun pe 'water'; cf. sapan-pe 'crown' = sapa-un + -pe, ek-pe 'one who comes' = ek + -pe. The vowel-final allomorph is the separate -p entry (rik-o-p 'star')."
+  },
+  {
+    "id": "-p-nmlz",
+    "lemma": "-p",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "attaches_to": ["vi"],
+    "rules": [
+      {
+        "operation": "remove_slot",
+        "role": "agent",
+        "description": "Nominaliser: turns an intransitive verb into the agent / participant noun. Vowel-final-stem allomorph of -pe."
+      }
+    ],
+    "glosses_en": ["NMLZ", "the one that ~"],
+    "glosses_jp": ["NMLZ（〜するもの／者）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Synchronically distinct surface form: -p, used after vowel-final stems (rik-o-p 'star', a-e-p 'food'). Same nominalising function as -pe; we list them as separate seed entries so the displayed surface in the composition tree matches the actual word (rikop = rik-o-p, not rik-o-pe → rikop)."
+  },
+  {
+    "id": "un-verb",
+    "lemma": "un",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "存在するもの"},
+        {"role": "location", "realization": "external", "label_jp": "存在する場所"}
+      ]
+    },
+    "glosses_en": ["be located at", "be at"],
+    "glosses_jp": ["～に在る", "～にいる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Locative existential verb 'X is at Y' / 'be located at'. Distinct from the homophonous case-particle (allative postposition) un. Surfaces as the inner head of incorporation compounds like sapa-un 'be at the head', pa-un 'be on top', ror-un 'be at the place of honour'."
+  },
+  {
+    "id": "sapaun",
+    "lemma": "sapaun",
+    "category": "vi",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["ninjal:sapa", "un-verb"],
+    "composition_note": "sapa (head) incorporated into the locative verb un — 'be at the head' / 'sit on top of one's head'. The noun incorporation saturates un's location slot, leaving a one-place predicate suitable for nominalisation with -pe.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "頭にあるもの"}
+      ]
+    },
+    "glosses_en": ["be on the head"],
+    "glosses_jp": ["頭にある"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sapanpe",
+    "lemma": "sapanpe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["sapaun", "-pe-nmlz"],
+    "composition_note": "(sapa-un)-pe — 'the thing that is on the head' → ceremonial crown worn by men. The -pe here is the agent-nominaliser, not the homophonous noun pe 'water'. Surface fuses sapaun-pe → sapanpe by dropping the medial u.",
+    "glosses_en": ["ceremonial crown (worn by men)"],
+    "glosses_jp": ["（男性が被る）冠"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "pa-head",
+    "lemma": "pa",
+    "category": "n",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["head"],
+    "glosses_jp": ["頭"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Possessed-noun stem 'head', incorporated into pa-un 'be on top' and surfacing in compounds like paunpe (ceremonial crown). Distinct from the plural suffix -pa and the year-counter -pa (cf. tan-pa 'this year')."
+  },
+  {
+    "id": "paun",
+    "lemma": "paun",
+    "category": "vi",
+    "bound": true,
+    "morph_type": "root",
+    "composition": ["pa-head", "un-verb"],
+    "composition_note": "pa (head) incorporated into the locative verb un — 'be on the head'.",
+    "base_frame": {
+      "slots": [
+        {"role": "theme", "realization": "external", "label_jp": "頭にあるもの"}
+      ]
+    },
+    "glosses_en": ["be on the head"],
+    "glosses_jp": ["頭にある"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "paunpe",
+    "lemma": "paunpe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["paun", "-pe-nmlz"],
+    "composition_note": "(pa-un)-pe — 'the thing that is on the head'. Synonym of sapanpe.",
+    "glosses_en": ["ceremonial crown (worn by men)"],
+    "glosses_jp": ["（男性が被る）冠"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "anpe",
+    "lemma": "anpe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["an", "-pe-nmlz"],
+    "composition_note": "an (exist, vi) + -pe (NMLZ): 'the thing that exists' → 'the truth'. The -pe here is the agent-nominaliser, not the noun pe 'water'.",
+    "glosses_en": ["the truth", "what is real"],
+    "glosses_jp": ["真実", "本当のこと"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "einkarpe",
+    "lemma": "einkarpe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "inkar", "-pe-nmlz"],
+    "composition_note": "e- (APPL.about) + inkar (look at) + -pe (NMLZ): 'the thing one looks at / sees with' → 'eye'. The -pe here is the agent-nominaliser. Note the inner inkar already encapsulates i- + nukar, so the full historical etymology is e-(i-nukar)-pe.",
+    "glosses_en": ["eye"],
+    "glosses_jp": ["目"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "rikop",
+    "lemma": "rikop",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:rik", "ninjal:o", "-p-nmlz"],
+    "composition_note": "rik (high) + o (be located) + -p (NMLZ, vowel-final allomorph): 'the thing that is up high' → 'star'.",
+    "glosses_en": ["star"],
+    "glosses_jp": ["星"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "yaykirare",
+    "lemma": "yaykirare",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "ninjal:kira", "-re"],
+    "composition_note": "yay- (REFL) + kira (escape) + -re (CAUS, the allomorph used after vowel-final stems): 'make oneself escape' → 'flee at full speed'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "全速力で逃げる人"}
+      ]
+    },
+    "glosses_en": ["flee at full speed"],
+    "glosses_jp": ["全速力で逃げる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "e-eat",
+    "lemma": "e",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "食べる人"},
+        {"role": "patient", "realization": "external", "label_jp": "食べられるもの"}
+      ]
+    },
+    "glosses_en": ["eat"],
+    "glosses_jp": ["～を食べる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "Transitive verb 'eat (X)'. Distinct from the applicative prefix e- and the homophonous possessor pronoun e. The intransitive form ipe (i- + e 'eat something') is its indefinite-object derivation."
+  },
+  {
+    "id": "ipe",
+    "lemma": "ipe",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "e-eat"],
+    "composition_note": "i- (INDEF.OBJ) + e (eat, vt): 'eat something' → intransitive 'eat (a meal)'. Also surfaces as a noun 'a meal / food'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "食事をする人"}
+      ]
+    },
+    "glosses_en": ["eat (a meal)", "have a meal"],
+    "glosses_jp": ["食事をする", "食事"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ep",
+    "lemma": "ep",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-eat", "-p-nmlz"],
+    "composition_note": "e (eat) + -p (NMLZ, vowel-final allomorph): 'the thing eaten' → 'food'.",
+    "glosses_en": ["food"],
+    "glosses_jp": ["食べ物"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Tommy 1949", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "aep",
+    "lemma": "aep",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:a=", "e-eat", "-p-nmlz"],
+    "composition_note": "a= (4.A / 1pl-incl agent clitic, used impersonally) + e (eat) + -p (NMLZ, vowel-final allomorph): 'the thing one eats' → 'food'. The a= clitic gives an impersonal-agent reading common to traditional Ainu nominalisations.",
+    "glosses_en": ["food"],
+    "glosses_jp": ["食べ物"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Tommy 1949", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "aeypep",
+    "lemma": "aeypep",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:a=", "e-", "ipe", "-p-nmlz"],
+    "composition_note": "a= (4.A) + e- (APPL.with) + ipe (eat-a-meal) + -p (NMLZ, vowel-final allomorph): 'the thing one eats a meal with' → eating utensil (a chopstick / spoon / serving stick).",
+    "glosses_en": ["eating utensil"],
+    "glosses_jp": ["食事の道具"],
+    "sources": ["Tommy 1949", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "aeynup",
+    "lemma": "aeynup",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:a=", "e-", "inu", "-p-nmlz"],
+    "composition_note": "a= (4.A) + e- (APPL.about) + inu (listen) + -p (NMLZ, vowel-final allomorph): 'the thing one listens to' → traditional lore / heard tradition.",
+    "glosses_en": ["lore", "what one hears"],
+    "glosses_jp": ["伝承", "聞き伝え"],
+    "sources": ["Tommy 1949", "Wiktionary JA"],
+    "verified": true
+  },
+  {
+    "id": "yaypekare",
+    "lemma": "yaypekare",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "ninjal:peka", "-re"],
+    "composition_note": "yay- (REFL) + peka (towards / along) + -re (CAUS, allomorph after vowel-final stem): 'direct oneself along ~' → 'head toward'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "向かう人"},
+        {"role": "goal", "realization": "external", "label_jp": "向かう先"}
+      ]
+    },
+    "glosses_en": ["head toward"],
+    "glosses_jp": ["～に向かう"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "Wiktionary JA"],
+    "verified": true
+  },
+  {
     "id": "nupe",
     "lemma": "nupe",
     "category": "n",

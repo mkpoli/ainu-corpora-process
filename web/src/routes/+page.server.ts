@@ -223,10 +223,10 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 		{
 			key: 'nominalization-pe',
 			// -pe / -p suffix: "the thing that …". A productive nominaliser
-			// the dictionary records across many lexicalised compounds.
-			// Compositions sourced from Wiktionary's ingested word-composition
-			// data and verified against our morpheme inventory.
-			examples: ['sapanpe', 'anpe', 'rikop']
+			// (NMLZ) the dictionary records across many lexicalised
+			// compounds. The -pe / -p here is the agent nominaliser, NOT
+			// the homophonous noun pe 'water'.
+			examples: ['ep', 'aep', 'anpe', 'sapanpe', 'paunpe', 'rikop', 'aeynup', 'aeypep']
 		},
 		{
 			key: 'yay-causative',
