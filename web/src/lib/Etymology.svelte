@@ -79,6 +79,12 @@
 		if (PROCESS_LABEL[key]) return `/processes#${encodeURIComponent(key)}`;
 		return null;
 	}
+
+	function partRoleLabel(part: EtymologyPart): string {
+		const mt = part.morph_type;
+		if (mt === 'prefix' || mt === 'suffix' || mt === 'clitic') return mt;
+		return part.category || mt || '';
+	}
 </script>
 
 {#snippet partChip(part: EtymologyPart)}
@@ -93,8 +99,8 @@
 		{:else if part.gloss_jp}
 			<span class="text-xs italic opacity-80">{part.gloss_jp}</span>
 		{/if}
-		{#if part.morph_type}
-			<span class="text-[10px] uppercase tracking-wider opacity-70">{part.morph_type}</span>
+		{#if partRoleLabel(part)}
+			<span class="text-[10px] uppercase tracking-wider opacity-70">{partRoleLabel(part)}</span>
 		{/if}
 		{#if formatValency(partValency(part))}
 			<span class="font-mono text-[10px] font-semibold opacity-75">{formatValency(partValency(part))}</span>

@@ -276,13 +276,31 @@ function segmentBest(
 	const best: (Parse | null)[] = new Array(n + 1).fill(null);
 	best[0] = { segments: [], unresolved: [], hasHead: false, recognised: 0, score: 0 };
 
+	// Phonotactically, only `p` and `n` (the nominaliser / definitiser) are
+	// plausible as a 1-character Ainu morpheme. Any other 1-character match
+	// (a, e, i, k, t, …) is almost certainly a segmentation artefact, so we
+	// penalise such segments heavily — heavier than leaving the character
+	// unresolved — to push the search toward longer, real-morpheme matches
+	// (askepet → aske + pet, not aske + ke + t).
+	const SINGLE_CHAR_PLAUSIBLE = new Set(['p', 'n']);
 	const scoreOf = (p: Parse): number => {
 		// Big bonus for a head with a base_frame — pins the analysis onto a
 		// real verb root. Then reward recognised characters, then penalise
 		// leftover characters.
 		const headBonus = p.hasHead ? 1000 : 0;
 		const unresolvedChars = p.unresolved.reduce((sum, u) => sum + u.length, 0);
-		return headBonus + p.recognised * 10 - unresolvedChars * 5 - p.segments.length;
+		let dubiousSingles = 0;
+		for (const seg of p.segments) {
+			const bare = seg.replace(/^[-=]+|[-=]+$/g, '');
+			if (bare.length === 1 && !SINGLE_CHAR_PLAUSIBLE.has(bare)) dubiousSingles += 1;
+		}
+		return (
+			headBonus +
+			p.recognised * 10 -
+			unresolvedChars * 5 -
+			p.segments.length -
+			dubiousSingles * 100
+		);
 	};
 
 	const extend = (prev: Parse, atEnd: number, addSegment: string | null, addChar: string | null): Parse => {
@@ -760,20 +778,27 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	const unseen =
 		!directMatch && !matchedAnyEntry; // nothing recognised at all
 
-	// Attach the matched whole-word entry to the root of the tree so the
-	// internal-node header can be rendered as a clickable chip in the UI.
-	// Leaves already carry their own entry; fused-root wraps already contain
-	// an inner head leaf that points to the matched entry (clicking that
-	// chip selects the whole word). We only fill the root when it's a wrap
-	// that would otherwise have no clickable representation of the
-	// whole-word entry.
-	if (matchedEntry && !tree.isLeaf && tree.entry === null) {
-		const inner = (n: CompositionNode | undefined): boolean =>
-			!!n && (n.entry?.id === matchedEntry.id || inner(n.affix) || inner(n.body));
-		if (!inner(tree.affix) && !inner(tree.body)) {
-			tree.entry = matchedEntry;
+	// Walk the tree and attach a matching entry to every internal wrap whose
+	// surface corresponds to a known lemma. That way intermediate units like
+	// `eyaykotuymasiramsuypa` inside `aeyaykotuymasiramsuypa`, or `nukare`
+	// inside `sinukare`, render as clickable chips parallel to leaf chips —
+	// not as flat non-interactive headers. The top-level matched entry is
+	// attached unconditionally (its lemma may differ from the surface for
+	// fused forms), then we resolve every deeper wrap by surface lookup.
+	const resolveWrap = (n: CompositionNode | undefined): void => {
+		if (!n || n.isLeaf) return;
+		if (!n.entry) {
+			const found = index.byKey.get(n.surface);
+			if (found) n.entry = found;
 		}
+		resolveWrap(n.affix);
+		resolveWrap(n.body);
+	};
+	if (matchedEntry && !tree.isLeaf && tree.entry === null) {
+		tree.entry = matchedEntry;
 	}
+	resolveWrap(tree.affix);
+	resolveWrap(tree.body);
 
 	return {
 		input,
