@@ -79,17 +79,16 @@
 		selectedId ? (data.otherUses[selectedId] ?? []) : []
 	);
 
-	// The lexicalised head of the current composition, used to decide
+	// The whole-word entry behind the current composition, used to decide
 	// whether the Composition region should show an etymology frame for the
-	// looked-up word. For fused trees this is the wrapping lemma (inkar,
-	// nukar, payoka, …); for atomic queries it's the directly-matched
-	// entry.
+	// looked-up word. The tree root now carries the matched entry directly
+	// (the wrap-clickable change), so we read it from there; we fall back
+	// to the inner head leaf only for legacy trees that didn't get an entry
+	// attached to the wrap.
 	const compositionHead = $derived.by(() => {
 		const tree = data.composition?.tree;
 		if (!tree) return null;
-		const isWrapper =
-			tree.kind === 'fused' || tree.kind === 'compound' || tree.kind === 'lexeme';
-		const headId = (isWrapper ? tree.affix?.entry?.id : null) ?? tree.entry?.id ?? null;
+		const headId = tree.entry?.id ?? tree.affix?.entry?.id ?? null;
 		if (!headId) return null;
 		return data.detailEntries.find((e) => e.id === headId) ?? null;
 	});
@@ -263,7 +262,7 @@
 					     leaf chip in the tree hasn't been expanded yet. Once the
 					     user clicks "…" on the head, the leaf-level Etymology
 					     takes over so we don't render it twice. -->
-					<Etymology entry={compositionHead} />
+					<Etymology entry={compositionHead} {entryById} />
 				{/if}
 
 				{#if data.composition.warnings.length}

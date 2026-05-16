@@ -1,10 +1,24 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import type { CompositionNode } from './types';
 	import { effectiveValencyDelta } from './composition';
 	import Etymology from './Etymology.svelte';
 	import ValencyFrame from './ValencyFrame.svelte';
 	import CompositionTree from './CompositionTree.svelte';
+
+	/**
+	 * Locale-aware gloss for chips. In `ja` we prefer the Japanese gloss
+	 * (笑う) and fall back to English only when no JP gloss exists; in any
+	 * other locale we prefer English. Returns ``null`` so callers can skip
+	 * the gloss row entirely when there's nothing to show.
+	 */
+	function localisedGloss(entry: import('./types').Entry | null | undefined): string | null {
+		if (!entry) return null;
+		const locale = getLocale();
+		if (locale === 'ja') return entry.glosses_jp?.[0] ?? entry.glosses_en?.[0] ?? null;
+		return entry.glosses_en?.[0] ?? entry.glosses_jp?.[0] ?? null;
+	}
 
 	const KIND_LABEL: Record<string, () => string> = {
 		head: () => m.kind_head(),
@@ -158,8 +172,8 @@
 				{isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'hover:-translate-y-0.5 hover:shadow-md'}"
 		>
 			<span class="font-mono text-base leading-tight">{node.entry?.lemma ?? node.surface}</span>
-			{#if node.entry?.glosses_en?.length}
-				<span class="text-xs italic opacity-80">{node.entry.glosses_en[0]}</span>
+			{#if localisedGloss(node.entry)}
+				<span class="text-xs italic opacity-80">{localisedGloss(node.entry)}</span>
 			{:else if node.kind === 'unknown'}
 				<span class="text-xs italic opacity-80">{m.kind_unknown()}</span>
 			{/if}
@@ -212,7 +226,7 @@
 						/>
 					{/if}
 					{#if subEntry?.etymology}
-						<Etymology entry={subEntry} />
+						<Etymology entry={subEntry} {entryById} />
 					{/if}
 				</div>
 			{:else}
@@ -243,8 +257,8 @@
 				title={`${node.kind} composition — click to inspect`}
 			>
 				<span class="font-mono text-base leading-tight">{node.entry.lemma}</span>
-				{#if node.entry.glosses_en?.length}
-					<span class="text-xs italic opacity-80">{node.entry.glosses_en[0]}</span>
+				{#if localisedGloss(node.entry)}
+					<span class="text-xs italic opacity-80">{localisedGloss(node.entry)}</span>
 				{/if}
 				{#if node.entry}
 					{@const role = chipRoleLabel(node.entry)}

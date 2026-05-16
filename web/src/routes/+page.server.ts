@@ -49,6 +49,24 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		subtreeQueue.push({ entry, depth });
 	};
 
+	// Collect every entry referenced by an etymology chain so the Etymology
+	// chips can look up rule-based valency (ko- = +1, e- = +1, …) instead
+	// of falling back to the silent category-heuristic when the part itself
+	// has no explicit `valency`.
+	const collectEtymologyEntries = (entry: Entry | null | undefined) => {
+		if (!entry?.etymology) return;
+		const visit = (parts: typeof entry.etymology.parts | undefined) => {
+			if (!parts) return;
+			for (const part of parts) {
+				const partEntry = part.id ? db.byId.get(part.id) : db.byKey.get(part.lemma);
+				if (partEntry) collectEntry(partEntry);
+				if (part.derived_from)
+					visit([part.derived_from] as typeof entry.etymology.parts);
+			}
+		};
+		visit(entry.etymology.parts);
+	};
+
 	const walkTree = (
 		node: CompositionNode | undefined,
 		depth: number,
@@ -57,6 +75,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		if (!node || seen.has(node)) return;
 		seen.add(node);
 		collectEntry(node.entry);
+		collectEtymologyEntries(node.entry);
 		queueForSubtree(node.entry, depth);
 		walkTree(node.affix as CompositionNode | undefined, depth, seen);
 		walkTree(node.body as CompositionNode | undefined, depth, seen);
