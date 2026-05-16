@@ -206,7 +206,32 @@
 		<section class="flex flex-col gap-4 rounded-3xl bg-white/70 p-6 ring-1 ring-rule backdrop-blur">
 			{#if data.composition}
 				<div class="flex flex-wrap items-baseline justify-between gap-2">
-					<h2 class="text-lg font-semibold">{m.composition_heading()}</h2>
+					<div class="flex items-baseline gap-2">
+						<h2 class="text-lg font-semibold">{m.composition_heading()}</h2>
+						{#if data.composition.source && data.composition.source !== 'unknown'}
+							{@const sourceTags = {
+								direct: m.source_tag_direct(),
+								composition: m.source_tag_composition(),
+								split: m.source_tag_split(),
+								segmented: m.source_tag_segmented()
+							}}
+							{@const tag = sourceTags[data.composition.source as keyof typeof sourceTags]}
+							{@const verbose = {
+								direct: m.composition_source_direct(),
+								composition: m.composition_source_composition(),
+								split: m.composition_source_split(),
+								segmented: m.composition_source_segmented()
+							}}
+							{#if tag}
+								<span
+									class="rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-ink/60 ring-1 ring-rule"
+									title={verbose[data.composition.source as keyof typeof verbose]}
+								>
+									{tag}
+								</span>
+							{/if}
+						{/if}
+					</div>
 					<div class="flex flex-wrap items-center gap-3 text-xs text-ink/60">
 						<span>
 							{m.composition_input()}: <span class="font-mono">{data.composition.input}</span>
@@ -225,17 +250,6 @@
 				{:else if data.composition.unresolved.length}
 					<p class="rounded-xl bg-accent-soft px-3 py-2 text-xs text-accent">
 						{m.unresolved_segments()}: <span class="font-mono">{data.composition.unresolved.join(', ')}</span>
-					</p>
-				{/if}
-
-				{#if data.composition.source && data.composition.source !== 'unknown' && data.composition.source !== 'direct'}
-					{@const sourceLabels = {
-						composition: m.composition_source_composition(),
-						split: m.composition_source_split(),
-						segmented: m.composition_source_segmented()
-					}}
-					<p class="text-[11px] italic text-ink/55">
-						{sourceLabels[data.composition.source as keyof typeof sourceLabels] ?? ''}
 					</p>
 				{/if}
 
