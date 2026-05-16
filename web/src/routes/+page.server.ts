@@ -226,7 +226,7 @@ function pickFamilies(entries: Entry[]): WordFamily[] {
 			// (NMLZ) the dictionary records across many lexicalised
 			// compounds. The -pe / -p here is the agent nominaliser, NOT
 			// the homophonous noun pe 'water'.
-			examples: ['ep', 'aep', 'anpe', 'sapanpe', 'paunpe', 'rikop', 'aeynup', 'aeypep']
+			examples: ['cep', 'aep', 'anpe', 'sapanpe', 'paunpe', 'rikop', 'aeynup', 'aeypep']
 		},
 		{
 			key: 'yay-causative',

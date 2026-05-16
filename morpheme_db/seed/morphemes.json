@@ -118,9 +118,11 @@
     "category": "n",
     "bound": false,
     "morph_type": "root",
+    "composition": ["ninjal:ci=", "e-eat", "-p-nmlz"],
+    "composition_note": "Fused: ci= (1PL.EXC.A clitic 'we') + e (eat, vt) + -p (NMLZ, vowel-final allomorph) → 'what we eat' → 'fish'. Surface ci+e+p contracts to cep (the medial *cie reduces by glide-formation / vowel-loss). Standard etymology in Tamura 1996 and Sato 2020.",
     "glosses_en": ["fish"],
     "glosses_jp": ["魚"],
-    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2020アイヌ語における文法的カテゴリーの転換について"],
     "verified": true
   },
   {
@@ -1110,6 +1112,24 @@
     "glosses_en": ["tear", "tears"],
     "glosses_jp": ["涙"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "yaynukar",
+    "lemma": "yaynukar",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yay-", "nukar"],
+    "composition_note": "yay- (REFL.DIR) + nukar (see) — 'see oneself' → look at oneself in a mirror / reflect upon oneself.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "自分を見る人"}
+      ]
+    },
+    "glosses_en": ["look at oneself", "watch oneself"],
+    "glosses_jp": ["自分を見る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
     "verified": true
   },
   {
