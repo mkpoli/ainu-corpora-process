@@ -67,7 +67,8 @@
 		onToggleExpand,
 		entryById = {},
 		ancestors = new Set<string>(),
-		matchedEntryId = null
+		matchedEntryId = null,
+		skipRootChip = false
 	}: {
 		node: CompositionNode;
 		selectedId: string | null;
@@ -82,6 +83,10 @@
 		 *  the "..." expand affordance — the top-level Etymology block under
 		 *  the tree already covers the head's derivation. */
 		matchedEntryId?: string | null;
+		/** When this sub-tree is rendered directly under a leaf's "…" expand,
+		 *  the leaf chip already shows the wrap's matched entry — skip the
+		 *  redundant root chip/header and start with the bracket label. */
+		skipRootChip?: boolean;
 	} = $props();
 
 	const expandable = $derived.by(() => {
@@ -223,6 +228,7 @@
 							{entryById}
 							ancestors={childAncestors}
 							{matchedEntryId}
+							skipRootChip={!sub.isLeaf && sub.entry?.id === node.entry.id}
 						/>
 					{/if}
 					{#if subEntry?.etymology}
@@ -247,7 +253,10 @@
 		     (notably the tree root — the whole-word entry), the header is
 		     rendered as a clickable chip so the side panel can show its
 		     details, mirroring the way leaf chips behave. -->
-		{#if node.entry}
+		{#if skipRootChip}
+			<!-- The parent already shows the chip for this wrap; just drop
+			     straight into the bracket label + children. -->
+		{:else if node.entry}
 			<button
 				type="button"
 				onclick={handleClick}

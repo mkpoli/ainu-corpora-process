@@ -653,8 +653,19 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	//       and the input doesn't already look hyphen-segmented — we expose
 	//       that internal structure.
 	//   1c. Otherwise we keep the direct match as a standalone leaf.
-	const directMatch = index.byKey.get(raw) ?? index.byKey.get(raw.toLowerCase());
+	let directMatch = index.byKey.get(raw) ?? index.byKey.get(raw.toLowerCase());
 	const looksCompound = raw.includes('-') || /\s/.test(raw);
+	// Hyphen-tolerant lookup: if the user types ``nukar-e`` and we don't have
+	// that exact lemma, but ``nukare`` (no hyphen) is in the inventory, treat
+	// it as if they typed ``nukare`` — they're just being explicit about the
+	// internal boundary. The direct/composition branch below then runs as
+	// normal, so the curated structure (and the clickable root chip) appear
+	// just like for the bare input.
+	if (!directMatch && looksCompound) {
+		const dehyphenated = raw.toLowerCase().replace(/[-=\s]+/g, '');
+		const found = index.byKey.get(dehyphenated);
+		if (found) directMatch = found;
+	}
 
 	let tokens: string[];
 	let unresolved: string[] = [];
@@ -662,7 +673,7 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	let source: CompositionSource = 'unknown';
 	let fusedRoot: Entry | null = null;
 
-	if (directMatch && directMatch.composition.length && !looksCompound) {
+	if (directMatch && directMatch.composition.length) {
 		const resolved = directMatch.composition.map((id) => {
 			const entry = resolveById(id, index);
 			if (!entry) {
@@ -675,7 +686,7 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 		matched = resolved;
 		fusedRoot = directMatch;
 		source = 'composition';
-	} else if (directMatch && !looksCompound) {
+	} else if (directMatch) {
 		// Trust the dictionary entry. A stable lexeme like ``kasuy`` 'help'
 		// shouldn't be auto-segmented into ``ka + suy`` just because both
 		// substrings happen to be in the morpheme inventory — the fact that
