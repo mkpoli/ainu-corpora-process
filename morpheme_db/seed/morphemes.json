@@ -330,6 +330,7 @@
     "category": "sfx",
     "bound": true,
     "morph_type": "suffix",
+    "slot": ["V", "VI"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {
@@ -356,6 +357,7 @@
     "category": "sfx",
     "bound": true,
     "morph_type": "suffix",
+    "slot": ["V", "VI"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {
@@ -383,6 +385,7 @@
     "category": "sfx",
     "bound": true,
     "morph_type": "suffix",
+    "slot": ["VI"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {
@@ -412,6 +415,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["II"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {
@@ -433,6 +437,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["II"],
     "attaches_to": ["vt"],
     "rules": [
       {
@@ -454,6 +459,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["II"],
     "attaches_to": ["vt"],
     "rules": [
       {
@@ -475,6 +481,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["I", "III"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {
@@ -497,6 +504,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["II"],
     "attaches_to": ["vt"],
     "rules": [
       {
@@ -518,6 +526,7 @@
     "category": "sfx",
     "bound": true,
     "morph_type": "suffix",
+    "slot": ["V"],
     "attaches_to": ["vi"],
     "rules": [
       {
@@ -663,6 +672,7 @@
     "category": "sfx",
     "bound": true,
     "morph_type": "suffix",
+    "slot": ["IV"],
     "attaches_to": ["vi", "vt"],
     "glosses_en": ["PL"],
     "glosses_jp": ["複数"],
@@ -1932,6 +1942,7 @@
     "category": "pfx",
     "bound": true,
     "morph_type": "prefix",
+    "slot": ["I", "III"],
     "attaches_to": ["vi", "vt"],
     "rules": [
       {

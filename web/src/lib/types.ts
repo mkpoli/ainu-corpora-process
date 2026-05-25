@@ -35,6 +35,12 @@ export interface Entry {
 	category_alt: string[];
 	bound: boolean;
 	morph_type: 'root' | 'prefix' | 'suffix' | 'clitic' | 'stem' | 'particle';
+	/** Morphotactic slot(s) per Bugaeva 2014's revision of Tamura 1955 —
+	 * Roman numerals "I"–"VI". Empty for non-template morphemes. Affixes
+	 * that can sit in multiple slots (applicatives I/III, productive -re
+	 * V/VI) list each. Used for display only — does not constrain
+	 * segmentation. */
+	slot: string[];
 	base_frame: ValencyFrame | null;
 	rules: Rule[];
 	attaches_to: string[];

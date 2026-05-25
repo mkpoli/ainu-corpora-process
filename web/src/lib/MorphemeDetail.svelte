@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { inferredValencyDelta, valencyDelta } from './composition';
-	import { categoryLabel, morphTypeLabel } from './labels';
+	import { categoryLabel, morphTypeLabel, slotLabel } from './labels';
 	import { sourceLabel, sourceUrl } from './sources';
 	import type { Entry } from './types';
 	import ValencyFrame from './ValencyFrame.svelte';
@@ -48,6 +48,14 @@
 					<span class="rounded-full bg-leaf/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-leaf">{m.detail_curated()}</span>
 				{:else}
 					<span class="rounded-full bg-rule/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink/60">{m.detail_unverified()}</span>
+				{/if}
+				{#if entry.slot?.length}
+					<span
+						class="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-accent ring-1 ring-accent/30"
+						title={`${entry.slot.map(slotLabel).join(' / ')}\n\n${m.detail_slot_tooltip()}`}
+					>
+						{m.detail_slot_value({ slots: entry.slot.join('/') })}
+					</span>
 				{/if}
 			</div>
 			{#if entry.glosses_en.length}

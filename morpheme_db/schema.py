@@ -184,6 +184,24 @@ class Entry:
     morph_type: str = "root"
     """``root`` | ``prefix`` | ``suffix`` | ``clitic`` | ``particle`` | ``stem``."""
 
+    slot: list[str] = field(default_factory=list)
+    """Morphotactic slot(s) this affix occupies in the Ainu verbal template,
+    as Roman numerals ``"I"``–``"VI"`` (Bugaeva 2014, after Tamura 1955):
+
+    - **I**   inner applicative (``e-``, ``ko-``, ``o-``)
+    - **II**  reciprocal / reflexive / indefinite-object (``u-``, ``yay-``,
+      ``si-``, ``i-``)
+    - **III** outer applicative (same forms as I, layered further out)
+    - **IV**  number suffix (verbal plural ``-pa``)
+    - **V**   transitivising / direct causative (``-ka``, ``-V``, ``-ke``,
+      ``-re``/``-e``/``-te`` direct)
+    - **VI**  indirect causative (``-re``/``-e``/``-te`` indirect, ``-yar``)
+
+    Forms that occupy more than one slot list each (e.g. the applicatives
+    are ``["I", "III"]``; productive ``-re``/``-e``/``-te`` is
+    ``["V", "VI"]``). Empty for entries that aren't part of this template
+    (roots, clitics, nominalisers)."""
+
     base_frame: ValencyFrame | None = None
     """Base argument structure when the morpheme heads a unit. Free roots and
     independent verbs/nouns set this; pure affixes typically leave it ``None``
@@ -252,6 +270,7 @@ class Entry:
             "category_alt": list(self.category_alt),
             "bound": self.bound,
             "morph_type": self.morph_type,
+            "slot": list(self.slot),
             "base_frame": self.base_frame.to_dict() if self.base_frame is not None else None,
             "rules": [r.to_dict() for r in self.rules],
             "attaches_to": list(self.attaches_to),
@@ -279,6 +298,7 @@ class Entry:
             category_alt=list(data.get("category_alt", [])),
             bound=bool(data.get("bound", False)),
             morph_type=data.get("morph_type", "root"),
+            slot=list(data.get("slot", [])),
             base_frame=ValencyFrame.from_dict(data.get("base_frame")),
             rules=[Rule.from_dict(r) for r in data.get("rules", [])],
             attaches_to=list(data.get("attaches_to", [])),
