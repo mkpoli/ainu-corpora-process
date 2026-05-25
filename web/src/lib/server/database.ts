@@ -63,7 +63,8 @@ const ARRAY_FIELDS = [
 	'glosses_jp',
 	'dialects',
 	'sources',
-	'composition'
+	'composition',
+	'slot'
 ] as const;
 
 function rowToEntry(row: Record<string, unknown>): Entry {

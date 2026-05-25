@@ -44,6 +44,19 @@ const MORPH_TYPE_LABELS: Record<string, () => string> = {
 	suffix: m.morph_type_suffix
 };
 
+const SLOT_LABELS: Record<string, () => string> = {
+	I: m.slot_label_I,
+	II: m.slot_label_II,
+	III: m.slot_label_III,
+	IV: m.slot_label_IV,
+	V: m.slot_label_V,
+	VI: m.slot_label_VI
+};
+
+export function slotLabel(code: string): string {
+	return SLOT_LABELS[code]?.() ?? code;
+}
+
 export function categoryLabel(code: string | null | undefined): string {
 	if (!code) return '';
 	return CATEGORY_LABELS[code]?.() ?? code;
