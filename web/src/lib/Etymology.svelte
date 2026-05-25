@@ -121,6 +121,25 @@
 		if (mt === 'prefix' || mt === 'suffix' || mt === 'clitic') return mt;
 		return part.category || mt || '';
 	}
+
+	/** A chip in the etymology chain duplicates the leaf chip rendered above the
+	 *  etymology frame when both its lemma and category match the entry. We
+	 *  skip such chips (and any orphan process arrow that would lead to them)
+	 *  so the user doesn't see the same morpheme twice in a row. Soft match on
+	 *  category: if the part doesn't carry one, we still dedup on lemma alone.
+	 */
+	function chipMatchesEntry(part: EtymologyPart | undefined, e: Entry | null): boolean {
+		if (!part || !e) return false;
+		if (part.lemma !== e.lemma) return false;
+		if (part.category && part.category !== e.category) return false;
+		return true;
+	}
+
+	function chainHasContent(part: EtymologyPart | undefined, e: Entry | null): boolean {
+		if (!part) return false;
+		if (!chipMatchesEntry(part, e)) return true;
+		return chainHasContent(part.derived_from, e);
+	}
 </script>
 
 {#snippet partChip(part: EtymologyPart)}
@@ -147,7 +166,8 @@
 		{#if !skipChip}
 			{@render partChip(part)}
 		{/if}
-		{#if part.derived_from}
+		{#if part.derived_from && chainHasContent(part.derived_from, entry)}
+			{@const skipDF = chipMatchesEntry(part.derived_from, entry)}
 			<!-- Vertical derivation connector + label inside the part column.
 			     The label names the process only — the underlying chip already
 			     carries the +N valency badge, so we don't duplicate the delta
@@ -173,7 +193,7 @@
 				</span>
 			{/if}
 			<span class="h-3 w-px bg-rule"></span>
-			{@render partColumn(part.derived_from)}
+			{@render partColumn(part.derived_from, skipDF)}
 		{/if}
 	</div>
 {/snippet}
@@ -200,7 +220,9 @@
 		{#if etymology.parts && etymology.parts.length}
 			<div class="flex flex-wrap items-start justify-center gap-4">
 				{#each etymology.parts as part}
-					{@render partColumn(part, part.derived_from != null && part.lemma === entry.lemma)}
+					{#if chainHasContent(part, entry)}
+						{@render partColumn(part, chipMatchesEntry(part, entry))}
+					{/if}
 				{/each}
 			</div>
 		{/if}

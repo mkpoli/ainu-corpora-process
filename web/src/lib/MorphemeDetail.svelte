@@ -16,6 +16,15 @@
 		onSelectLemma: (lemma: string) => void;
 	} = $props();
 
+	// Strip allomorphs that are the same string as the lemma (or the lemma's
+	// bound-marker-stripped bare form) — those entries duplicate the title
+	// header chip and add no information.
+	const variantAllomorphs = $derived.by(() => {
+		if (!entry) return [];
+		const bareLemma = entry.lemma.replace(/^[-=]+|[-=]+$/g, '');
+		return entry.allomorphs.filter((v) => v !== entry.lemma && v !== bareLemma);
+	});
+
 	const REALIZATION_LABEL: Record<string, () => string> = {
 		external: () => m.realization_external(),
 		internal_incorp: () => m.realization_internal_incorp(),
@@ -117,11 +126,11 @@
 			{/if}
 		{/if}
 
-		{#if entry.allomorphs.length}
+		{#if variantAllomorphs.length}
 			<section class="flex flex-col gap-2">
 				<h3 class="text-xs font-semibold uppercase tracking-widest text-ink/60">{m.detail_allomorphs()}</h3>
 				<div class="flex flex-wrap gap-1.5">
-					{#each entry.allomorphs as variant}
+					{#each variantAllomorphs as variant}
 						<span class="rounded-full bg-paper px-2 py-0.5 font-mono text-xs ring-1 ring-rule">{variant}</span>
 					{/each}
 				</div>
