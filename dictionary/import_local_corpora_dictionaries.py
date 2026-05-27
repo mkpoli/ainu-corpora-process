@@ -134,14 +134,17 @@ title_en: Mukawa Dialect Japanese-Ainu Dictionary
 author:
   en: Chiba, Nobue
   ja: 千葉, 伸恵
-year: unknown
+year: 2002
+recorded_at: 1996-11-22/2002-02-21
 dialect:
   name: 鵡川
   path: 北海道/南西/鵡川
 source: |
   Rows copied from the local ainu-corpora aggregate (collection_lv1 =
   アイヌ語鵡川方言日本語‐アイヌ語辞典). The corpus rows identify the source speaker
-  document as either 新井田セイノ氏の言葉 or 吉村冬子氏の言葉.
+  document as either 新井田セイノ氏の言葉 or 吉村冬子氏の言葉. The ainu-corpora
+  source manifest gives the recording span as 1996-11-22 to 2002-02-21; year
+  uses the endpoint of that range.
 columns:
   id: source row id in ainu-corpora
   lemma: Ainu entry / phrase
