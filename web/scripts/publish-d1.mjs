@@ -95,16 +95,18 @@ function updateWranglerConfig(name, id) {
 	const liveBlock = /\t"d1_databases":\s*\[[\s\S]*?\],?/;
 
 	let updated;
+	let anchorFound = true;
 	if (liveBlock.test(raw)) {
 		updated = raw.replace(liveBlock, bindingBlock);
 	} else if (commentedBlock.test(raw)) {
 		updated = raw.replace(commentedBlock, bindingBlock);
 	} else {
-		// Insert after the "assets" block.
-		updated = raw.replace(/(\t"assets":\s*\{[\s\S]*?\}\s*,)/, `$1\n${bindingBlock}`);
+		const assetsBlock = /(\t"assets":\s*\{[\s\S]*?\}\s*,)/;
+		anchorFound = assetsBlock.test(raw);
+		updated = raw.replace(assetsBlock, `$1\n${bindingBlock}`);
 	}
 
-	if (updated === raw) {
+	if (!anchorFound) {
 		throw new Error(
 			'failed to update wrangler.jsonc — no d1_databases anchor found and no assets block to insert after',
 		);

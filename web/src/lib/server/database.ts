@@ -82,6 +82,7 @@ function rowToEntry(row: Record<string, unknown>): Entry {
 		entry[field] = parseJson(row[field], []);
 	}
 	entry.base_frame = parseJson(row.base_frame, null);
+	entry.etymology = parseJson(row.etymology, null);
 	entry.bound = !!row.bound;
 	entry.verified = !!row.verified;
 	entry.frequency = Number(row.frequency ?? 0);
