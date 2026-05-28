@@ -206,11 +206,17 @@ def main() -> None:
     rows = [parse_entry(block) for block in entries_blocks if block]
     rows = [r for r in rows if r["lemma"]]
 
+    # Ainu has no /l/; replace `l → i` in lemmas as a best-effort OCR fix
+    # (e.g. Kamul → Kamui). Original lemma stays for traceability.
+    for row in rows:
+        lemma = row["lemma"]
+        row["lemma_normalized"] = lemma.replace("l", "i").replace("L", "I")
+
     out_path = FOLDER / "original.tsv"
     with out_path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(
             fh,
-            fieldnames=["lemma", "kana", "body"],
+            fieldnames=["lemma", "lemma_normalized", "kana", "body"],
             delimiter="\t",
             lineterminator="\n",
         )
@@ -236,14 +242,23 @@ source: |
   source.pdf and bbox.xml are .gitignored due to size (100 MB and 50 MB); the
   importer regenerates bbox.xml from source.pdf and re-derives raw.txt /
   original.tsv on demand.
+complements: |
+  This 4th edition (Yokohama 1938) is the most complete Batchelor.
+  Use 1905_Batchelor_Ainu-English-Japanese-Dictionary in parallel for the
+  English→Ainu reverse vocabulary that the 1938 parse omits (an extraction
+  of the 1938 back-matter lives in 1938_Batchelor_English-Ainu-Vocabulary-4ed).
 caveats: |
   Roughly 14.5k entries parsed; Batchelor 1938 has ~14k headwords. The body
   text occasionally contains the trailing words of an adjacent entry where
   the OCR fused two visual lines together, and the running page header
   ("DICTIONARY") on each PDF page is filtered out by a y > 380 pt cutoff
   but the first few intro pages may still contain title-page artifacts.
+  Ainu has no /l/ phoneme, so any lemma containing `l` is an upstream OCR
+  error. `lemma_normalized` carries `l → i` substitution; the original
+  `lemma` is preserved for traceability (e.g. `Kamul` → `Kamui`).
 columns:
-  lemma: head Ainu word (Latin transliteration)
+  lemma: head Ainu word as printed (may contain OCR-derived `l` typos)
+  lemma_normalized: lemma with `l → i` substitution applied (Ainu has no /l/)
   kana: katakana transcription as printed
   body: remainder of the entry — Japanese gloss, part-of-speech tag, English
         definition, cross-references (Syn:, Same as ...), and example phrases.
