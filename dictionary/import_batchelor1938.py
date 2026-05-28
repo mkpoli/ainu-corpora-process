@@ -233,36 +233,37 @@ author:
 year: 1938
 source: |
   User-supplied scan / Chrome-OCR PDF of the 4th edition of John Batchelor's
-  Ainu-English-Japanese Dictionary (1938). 681 PDF pages with a two-column
-  layout. The text layer is good enough that we can recover entry boundaries
-  by clustering pdftotext -bbox-layout word coordinates per column (split at
-  xMin = 905 pt on a 1748-pt page width), then joining Y-adjacent words into
-  lines and splitting each line on inline `Capital, カナ` headword starts.
-  Public domain (author died 1944; first edition 1889).
-  source.pdf and bbox.xml are .gitignored due to size (100 MB and 50 MB); the
-  importer regenerates bbox.xml from source.pdf and re-derives raw.txt /
-  original.tsv on demand.
+  Ainu-English-Japanese Dictionary (1938). 681 PDF pages, two-column layout.
+  Public domain (author died 1944).
+
+  The current `original.tsv` is the **Gemini 3 Flash re-OCR** of every page
+  (23,196 entries from $2.85 of OpenRouter API calls; pipeline in
+  `dictionary/batchelor1938_reocr_full.py` and `batchelor1938_reocr_merge.py`).
+  The earlier bbox-layout pdftotext parse (14,524 entries with column-fusion
+  noise) is preserved as `original.bbox.tsv` for reference.
+  source.pdf and bbox.xml live in Git LFS.
 complements: |
-  This 4th edition (Yokohama 1938) is the most complete Batchelor.
   Use 1905_Batchelor_Ainu-English-Japanese-Dictionary in parallel for the
-  English→Ainu reverse vocabulary that the 1938 parse omits (an extraction
-  of the 1938 back-matter lives in 1938_Batchelor_English-Ainu-Vocabulary-4ed).
+  English→Ainu reverse vocabulary that came from the back matter of the
+  1905 edition. A separate extraction of 1938's own back-matter lives in
+  1938_Batchelor_English-Ainu-Vocabulary-4ed.
+
+  `modern_correspondence.tsv` maps each Batchelor entry to a candidate
+  modern-dictionary entry (Kayano 1996 / Nakagawa 1995) by applying
+  Batchelor → academic orthography rules and looking the result up in
+  modern lemma indices. ~21% of entries got a modern hit; the rest are
+  words that have fallen out of use or are not in the 3 reference
+  dictionaries used.
 caveats: |
-  Roughly 14.5k entries parsed; Batchelor 1938 has ~14k headwords. The body
-  text occasionally contains the trailing words of an adjacent entry where
-  the OCR fused two visual lines together, and the running page header
-  ("DICTIONARY") on each PDF page is filtered out by a y > 380 pt cutoff
-  but the first few intro pages may still contain title-page artifacts.
-  Ainu has no /l/ phoneme, so any lemma containing `l` is an upstream OCR
-  error. `lemma_normalized` carries `l → i` substitution; the original
-  `lemma` is preserved for traceability (e.g. `Kamul` → `Kamui`).
+  Ainu has no /l/ phoneme; `lemma_normalized` applies `l → i` so e.g.
+  `Kamul` (OCR error) → `Kamui` (god) is recoverable.
 columns:
   lemma: head Ainu word as printed (may contain OCR-derived `l` typos)
-  lemma_normalized: lemma with `l → i` substitution applied (Ainu has no /l/)
+  lemma_normalized: lemma with `l → i` substitution applied
   kana: katakana transcription as printed
-  body: remainder of the entry — Japanese gloss, part-of-speech tag, English
-        definition, cross-references (Syn:, Same as ...), and example phrases.
-        Joined onto a single line with whitespace collapsed.
+  body: remainder of the entry — Japanese gloss, part-of-speech tag,
+        English definition, cross-references, example phrases.
+  page: 1-based PDF page number where the entry appears.
 """,
         encoding="utf-8",
     )
