@@ -102,11 +102,23 @@ def tokenize_en(text: str) -> set[str]:
     } - EN_STOP
 
 
+_JA_RUN_RE = re.compile(r"[一-鿿ぁ-ゖァ-ヺ]+")
+# Kanji-only single-character words worth indexing (frequent, semantically
+# specific). Whitelisted to keep noise low.
+_JA_SINGLE_KANJI_OK = set("槍鱒髑髏蛹蓋蛇蛙蛤蛸蟹魚鳥犬猫熊鹿馬牛豚羊鶏蚊蝶蝉蛞蛭蝙蝠蝦蛾蛇蝙蝠蜻蛉蝸蜂蝙蜘蛛酒水火土木金山川海湖池沼森林田畑家屋戸窓門壁柱床屋根床瓦煉瓦石砂土泥灰塵塵頭手足目耳口鼻歯舌髪毛肌爪指肘膝腰腹胸背肩首腕掌指爪皮膚肉骨血脈気心霊魂神霊鬼神仏祖祠祭神社寺院本堂門柱床天井屋根壁窓戸瓦煉瓦石砂土泥砂利父母兄弟姉妹子供祖父祖母叔父叔母伯父伯母甥姪夫妻夫婦男女老若少壮幼児若者老人友人仲間仇敵味方主人下人僕従主下王宮城殿堂寺廟祠神堂塔楼台亭楼閣館庵庇柱梁桁壁屋根床天井土塀堀井戸祈祷誓い願い祭日休日祭礼礼拝祈り嘆き喜び怒り悲しみ憎しみ憎悪愛着親愛友愛敬意尊敬軽蔑侮蔑")
+
+
 def tokenize_ja(text: str) -> set[str]:
-    # 2-gram CJK + standalone runs of 2+ kanji/kana.
+    """Tokenize Japanese: prefer 2+ char runs, but allow whitelisted
+    single kanji that often appear standalone as full words. Apply
+    kyūjitai → shinjitai conversion so Batchelor's pre-1946 kanji
+    (譯, 學, 國) match modern dictionary forms (訳, 学, 国)."""
     out: set[str] = set()
-    for run in re.findall(r"[一-鿿ぁ-ゖァ-ヺ]{2,}", text or ""):
-        if run not in JA_STOP and len(run) >= 2:
+    text = kyu_to_shin(text or "")
+    for run in _JA_RUN_RE.findall(text):
+        if len(run) >= 2 and run not in JA_STOP:
+            out.add(run)
+        elif len(run) == 1 and run in _JA_SINGLE_KANJI_OK:
             out.add(run)
     return out
 
@@ -175,16 +187,235 @@ def stem_variants(latn: str) -> list[str]:
     return out
 
 
+def split_alt_lemmas(lemma: str) -> list[str]:
+    """A Batchelor headword like 'Siyuk, Siwk, Siyu' or 'Mempiro, Mempiru'
+    enumerates alternate spellings. Split on commas / 'or' / semicolons."""
+    parts = re.split(r"\s*(?:,|;| or | atau | ou )\s*", lemma)
+    return [p.strip() for p in parts if p.strip()]
+
+
 def all_lookup_keys(lemma: str) -> list[str]:
     out: list[str] = []
     seen: set[str] = set()
-    for v in variants(lemma):
-        k = norm_latn(v)
-        for sv in stem_variants(k):
-            if sv and sv not in seen:
-                seen.add(sv)
-                out.append(sv)
+    for chunk in split_alt_lemmas(lemma):
+        for v in variants(chunk):
+            k = norm_latn(v)
+            for sv in stem_variants(k):
+                if sv and sv not in seen:
+                    seen.add(sv)
+                    out.append(sv)
     return out
+
+
+_KANA_AFTER_RE = re.compile(r"^[ァ-ヴーㇰ-ㇿ・]+[、,，\s]*(.*)$", re.DOTALL)
+
+
+def extract_kana_gloss(kana_field: str) -> tuple[str, str]:
+    """Many Batchelor entries have a 'kana' column that is actually
+    `カタカナ、日本語訳` because Gemini OCR merged the kana headword with
+    its Japanese gloss. Return (pure_kana, japanese_gloss)."""
+    if not kana_field:
+        return "", ""
+    s = kana_field.strip()
+    m = _KANA_AFTER_RE.match(s)
+    if not m:
+        return s, ""
+    rest = m.group(1).strip(" 、,，.。;:\t")
+    # Pure kana is whatever the leading kana run was.
+    pure_m = _KANA_HEAD_RE.match(s)
+    pure = pure_m.group(0) if pure_m else ""
+    return pure, rest
+
+
+_FIRST_JA_RUN_RE = re.compile(r"([一-鿿ぁ-ゖ][一-鿿ぁ-ゖァ-ヺ・]*)")
+
+
+def extract_primary_ja_gloss(text: str) -> str:
+    """Take the first kanji/hiragana run in the text — typically the
+    primary Japanese gloss for the Batchelor headword. Kyūjitai is
+    converted to shinjitai so 譯→訳, 學→学, etc."""
+    if not text:
+        return ""
+    text = kyu_to_shin(text)
+    m = _FIRST_JA_RUN_RE.search(text)
+    if not m:
+        return ""
+    run = m.group(1)
+    return run.strip("・、,，.。 ")
+
+
+_JA_TRAIL_RE = re.compile(r"(?:する|スル|した|シタ|な|ナ|の|ノ|い|イ|ル)+$")
+_KANJI_RE = re.compile(r"[一-鿿]+")
+
+# Kyūjitai (旧字体) → Shinjitai (新字体). Sourced from the official 1949
+# Tōyō-kanji simplification list, restricted to characters Batchelor uses.
+_KYU_TO_SHIN = {
+    "惡": "悪", "壓": "圧", "圍": "囲", "醫": "医", "壹": "壱", "稻": "稲",
+    "飮": "飲", "隱": "隠", "營": "営", "榮": "栄", "衞": "衛", "驛": "駅",
+    "謁": "謁", "圓": "円", "鹽": "塩", "緣": "縁", "豫": "予", "餘": "余",
+    "與": "与", "譽": "誉", "應": "応", "歐": "欧", "穩": "穏", "假": "仮",
+    "價": "価", "畫": "画", "會": "会", "壞": "壊", "懷": "懐", "繪": "絵",
+    "槪": "概", "擴": "拡", "覺": "覚", "學": "学", "嶽": "岳", "樂": "楽",
+    "勸": "勧", "卷": "巻", "寬": "寛", "歡": "歓", "罐": "缶", "觀": "観",
+    "關": "関", "陷": "陥", "顏": "顔", "氣": "気", "歸": "帰", "祈": "祈",
+    "龜": "亀", "僞": "偽", "戲": "戯", "犧": "犠", "舊": "旧", "據": "拠",
+    "擧": "挙", "虛": "虚", "峽": "峡", "狹": "狭", "卿": "卿", "曉": "暁",
+    "敎": "教", "鄕": "郷", "響": "響", "驚": "驚", "勤": "勤", "謹": "謹",
+    "區": "区", "驅": "駆", "勳": "勲", "薰": "薫", "徑": "径", "經": "経",
+    "繼": "継", "莖": "茎", "螢": "蛍", "輕": "軽", "藝": "芸", "擊": "撃",
+    "缺": "欠", "硏": "研", "縣": "県", "險": "険", "儉": "倹", "劍": "剣",
+    "顯": "顕", "驗": "験", "嚴": "厳", "效": "効", "廣": "広", "拘": "拘",
+    "鑛": "鉱", "號": "号", "國": "国", "穀": "穀", "黑": "黒", "濟": "済",
+    "齋": "斎", "雜": "雑", "册": "冊", "殺": "殺", "雜": "雑", "參": "参",
+    "慘": "惨", "棧": "桟", "蠶": "蚕", "贊": "賛", "殘": "残", "絲": "糸",
+    "辭": "辞", "齒": "歯", "兒": "児", "濕": "湿", "實": "実", "釋": "釈",
+    "寫": "写", "舍": "舎", "煮": "煮", "壽": "寿", "獸": "獣", "從": "従",
+    "澁": "渋", "獸": "獣", "縱": "縦", "肅": "粛", "處": "処", "暑": "暑",
+    "緖": "緒", "敍": "叙", "將": "将", "祥": "祥", "稱": "称", "證": "証",
+    "獎": "奨", "條": "条", "狀": "状", "乘": "乗", "繩": "縄", "壤": "壌",
+    "孃": "嬢", "讓": "譲", "釀": "醸", "觸": "触", "囑": "嘱", "寢": "寝",
+    "愼": "慎", "盡": "尽", "眞": "真", "圖": "図", "粹": "粋", "醉": "酔",
+    "隨": "随", "髓": "髄", "數": "数", "樞": "枢", "瀨": "瀬", "聲": "声",
+    "靜": "静", "齊": "斉", "稅": "税", "蹟": "跡", "說": "説", "攝": "摂",
+    "竊": "窃", "節": "節", "絕": "絶", "戰": "戦", "纖": "繊", "禪": "禅",
+    "祖": "祖", "雙": "双", "莊": "荘", "搜": "捜", "插": "挿", "巢": "巣",
+    "爭": "争", "瘦": "痩", "騷": "騒", "增": "増", "藏": "蔵", "贈": "贈",
+    "臟": "臓", "卽": "即", "屬": "属", "續": "続", "墮": "堕", "體": "体",
+    "對": "対", "帶": "帯", "滯": "滞", "瀧": "滝", "擇": "択", "澤": "沢",
+    "單": "単", "擔": "担", "膽": "胆", "團": "団", "斷": "断", "彈": "弾",
+    "癡": "痴", "遲": "遅", "晝": "昼", "鑄": "鋳", "著": "著", "廳": "庁",
+    "徵": "徴", "聽": "聴", "敕": "勅", "鎭": "鎮", "塚": "塚", "遞": "逓",
+    "鐵": "鉄", "點": "点", "傳": "伝", "都": "都", "黨": "党", "盜": "盗",
+    "燈": "灯", "當": "当", "燒": "焼", "獨": "独", "讀": "読", "突": "突",
+    "屆": "届", "繩": "縄", "難": "難", "貳": "弐", "惱": "悩", "腦": "脳",
+    "霸": "覇", "拜": "拝", "盃": "杯", "賣": "売", "麥": "麦", "發": "発",
+    "髮": "髪", "拔": "抜", "繁": "繁", "晚": "晩", "卑": "卑", "祕": "秘",
+    "碑": "碑", "彥": "彦", "拂": "払", "佛": "仏", "倂": "併", "竝": "並",
+    "塀": "塀", "餠": "餅", "邊": "辺", "變": "変", "辨": "弁", "辯": "弁",
+    "瓣": "弁", "辮": "弁", "舖": "舗", "步": "歩", "穗": "穂", "寶": "宝",
+    "豐": "豊", "墨": "墨", "沒": "没", "飜": "翻", "每": "毎", "萬": "万",
+    "滿": "満", "麵": "麺", "默": "黙", "彌": "弥", "藥": "薬", "譯": "訳",
+    "豫": "予", "餘": "余", "與": "与", "搖": "揺", "樣": "様", "謠": "謡",
+    "來": "来", "賴": "頼", "亂": "乱", "覽": "覧", "畧": "略", "兩": "両",
+    "獵": "猟", "戀": "恋", "勞": "労", "婁": "婁", "樓": "楼", "錄": "録",
+    "灣": "湾", "鬪": "闘", "齡": "齢", "齋": "斎", "靑": "青", "詠": "詠",
+    "稟": "稟", "嘆": "嘆", "醬": "醤", "盡": "尽", "蛍": "蛍", "驅": "駆",
+    "鬱": "鬱", "藪": "薮", "鶯": "鶯", "聾": "聾", "繭": "繭", "鎌": "鎌",
+    "撫": "撫", "蓮": "蓮", "蘇": "蘇", "蘭": "蘭", "螽": "螽", "閤": "閤",
+    "辰": "辰", "鬲": "鬲", "馘": "馘", "鮭": "鮭", "鱒": "鱒", "魘": "魘",
+    "髯": "髯", "驟": "驟", "閃": "閃", "繡": "繍", "盧": "盧", "蠻": "蛮",
+    "兎": "兎", "毅": "毅", "蓆": "蓆", "禰": "祢", "繪": "絵", "燄": "焔",
+    "灌": "灌", "鬬": "闘", "卻": "却", "禀": "稟", "釁": "釁", "竊": "窃",
+    "幾": "幾", "壯": "壮", "鬪": "闘", "歎": "嘆", "屆": "届", "瀨": "瀬",
+    "蓆": "蓆", "薈": "薈", "簒": "簒", "齪": "齪", "顯": "顕", "屬": "属",
+    "屍": "屍", "彈": "弾", "戰": "戦", "壹": "壱", "聲": "声", "雙": "双",
+    "獻": "献", "嬢": "嬢", "鐘": "鐘", "鑛": "鉱", "鼈": "鼈", "閒": "間",
+    "桾": "桾", "醒": "醒", "蘆": "葦", "扁": "扁", "禮": "礼", "卿": "卿",
+    "壇": "壇", "孫": "孫", "罷": "罷", "幹": "幹", "貝": "貝", "藏": "蔵",
+    "雜": "雑", "卷": "巻", "瀧": "滝", "麴": "麹", "鎭": "鎮", "驟": "驟",
+    "魚": "魚", "懷": "懐", "鼎": "鼎", "彫": "彫", "舊": "旧", "蠻": "蛮",
+    "陷": "陥", "嘆": "嘆", "鮨": "鮨", "尨": "尨", "黨": "党", "晝": "昼",
+    "戯": "戯", "鬪": "闘", "繭": "繭",
+}
+
+
+def kyu_to_shin(text: str) -> str:
+    """Translate kyūjitai characters to shinjitai."""
+    if not text:
+        return text
+    out_chars = []
+    for c in text:
+        out_chars.append(_KYU_TO_SHIN.get(c, c))
+    return "".join(out_chars)
+
+
+def ja_lookup_variants(primary_ja: str) -> list[str]:
+    """Generate sensible JP lookup keys: the original phrase, the
+    kanji-only run, and the phrase with trailing verb endings stripped."""
+    out: list[str] = []
+    seen: set[str] = set()
+    def add(s: str) -> None:
+        if s and s not in seen:
+            seen.add(s)
+            out.append(s)
+    add(primary_ja)
+    add(_JA_TRAIL_RE.sub("", primary_ja))
+    for k in _KANJI_RE.findall(primary_ja):
+        add(k)
+    return out
+
+
+def primary_ja_lookup(
+    primary_ja: str,
+    keys: list[str],
+    sources: list[Source],
+) -> dict | None:
+    """Look up the primary Japanese gloss across modern-dict ja_index.
+    Tries the original phrase, the kanji-only run, and a trailing-verb
+    stripped variant (満足スル → 満足). Confidence capped at 0.72."""
+    if not primary_ja or len(primary_ja) < 1 or len(primary_ja) > 8:
+        return None
+    best_rec = None
+    best_score = -1.0
+    seen_lemmas: set[str] = set()
+    for query in ja_lookup_variants(primary_ja):
+        if not query:
+            continue
+        for src in sources:
+            if src.name in _REVERSE_GLOSS_BLOCKED_SOURCES:
+                continue
+            hits = src.ja_index.get(query, [])
+            for rec in hits:
+                lem = rec.get("lemma") or rec.get("lemma_kana") or ""
+                if not lem or lem in seen_lemmas:
+                    continue
+                seen_lemmas.add(lem)
+                defn = rec.get("definition", "")
+                length_bonus = 0.0 if len(defn) > 80 else 0.05
+                # Shorter query = more precise; reward exact-phrase hits.
+                exact_bonus = 0.04 if query == primary_ja else 0.0
+                score = src.base_conf - 0.20 + length_bonus + exact_bonus
+                score = min(0.72, score)
+                if score > best_score:
+                    best_score = score
+                    best_rec = {**rec, "match_kind": "primary_ja", "score": score}
+    return best_rec
+
+
+def substring_lookup(
+    keys: list[str],
+    gloss_tokens: set[str],
+    sources: list[Source],
+) -> dict | None:
+    """For unmatched compound lemmas, try every 4+ char substring against
+    modern Latin indices. Gated by ≥0.15 gloss overlap to keep noise low,
+    capped at 0.70 confidence."""
+    best_rec = None
+    best_score = -1.0
+    tried: set[str] = set()
+    for k in keys:
+        if len(k) < 6:
+            continue
+        for length in (4, 5, 6, 7):
+            for i in range(len(k) - length + 1):
+                sub = k[i:i + length]
+                if sub in tried:
+                    continue
+                tried.add(sub)
+                for src in sources:
+                    hits = src.latn.get(sub)
+                    if not hits:
+                        continue
+                    for hit in hits:
+                        overlap = jaccard(gloss_tokens, tokenize(hit.get("definition", "")))
+                        if overlap < 0.15:
+                            continue
+                        score = (src.base_conf - 0.25) + 0.25 * overlap
+                        score = min(0.70, score)
+                        if score > best_score:
+                            best_score = score
+                            best_rec = {**hit, "match_kind": "substring", "score": score}
+    return best_rec
 
 
 # ---------- per-dictionary loaders ----------
@@ -219,15 +450,26 @@ class Source:
             self.lemma_set.add(k)
         if lemma_kana:
             self.kana[norm_kana(lemma_kana)].append(rec)
-        # Reverse-gloss index: only attach if there's a Latin lemma to point at,
-        # otherwise kana lemma. Bound by 6 tokens to avoid noise.
-        en_tokens = list(tokenize_en(definition))[:6]
+        # Reverse-gloss index. 8 tokens per side: enough to capture
+        # short JP/EN translation glosses without flooding the index.
+        en_tokens = list(tokenize_en(definition))[:8]
         for tok in en_tokens:
             if 3 <= len(tok) <= 20:
                 self.en_index[tok].append(rec)
-        ja_tokens = list(tokenize_ja(definition))[:6]
+        ja_tokens = list(tokenize_ja(definition))[:8]
         for tok in ja_tokens:
             self.ja_index[tok].append(rec)
+        # Primary-JP-gloss index: the FIRST short kanji/hira run in the
+        # definition, plus its kanji-only variant. Lets us look up
+        # Batchelor's primary JP gloss directly (満足する → 満足).
+        primary_ja = extract_primary_ja_gloss(definition)
+        if primary_ja and 1 <= len(primary_ja) <= 8:
+            for key in ja_lookup_variants(primary_ja):
+                if not key or len(key) > 8:
+                    continue
+                lst = self.ja_index.setdefault(key, [])
+                if rec not in lst:
+                    lst.append(rec)
 
 
 def load_sources() -> list[Source]:
@@ -663,21 +905,31 @@ def reverse_gloss_lookup(
                 candidates[key] += 2
                 candidate_recs.setdefault(key, rec)
 
+    bat_tokens = en_tokens | ja_tokens
     for key, weight in candidates.items():
         if weight < 3:
             continue
         rec = candidate_recs[key]
-        # Filter out trivially short / placeholder definitions.
         defn = rec.get("definition", "") or ""
         if len(defn.strip()) < 3:
             continue
         defn_tokens = tokenize(defn)
-        overlap = jaccard(en_tokens | ja_tokens, defn_tokens)
-        if overlap < 0.20:
+        if not defn_tokens:
+            continue
+        # Score = max(recall against the candidate def, soft-jaccard).
+        # Recall handles the case where Batchelor's body is long and
+        # contains many extra tokens that would otherwise dilute Jaccard.
+        inter = len(defn_tokens & bat_tokens)
+        if inter < 1:
+            continue
+        recall = inter / max(1, len(defn_tokens))
+        soft_jacc = inter / max(1, len(defn_tokens | bat_tokens))
+        overlap = max(recall, soft_jacc)
+        if overlap < 0.18:
             continue
         src_conf = 0.50
         score = src_conf + 0.25 * overlap
-        score = min(0.75, score)
+        score = min(0.78, score)
         if score > best_score:
             best_score = score
             best_rec = {**rec, "match_kind": "reverse_gloss", "score": score}
@@ -779,8 +1031,12 @@ def main() -> None:
             norm = normalize_lemma(lemma)
             keys = all_lookup_keys(lemma)
             brief = extract_brief_gloss(body)
-            gloss_tokens = tokenize(body) | tokenize(brief)
-            hit = best_match(keys, kana, gloss_tokens, sources, ota)
+            # Pure kana for kana lookups; trailing JP gloss for reverse-gloss.
+            pure_kana, kana_jp_gloss = extract_kana_gloss(kana)
+            gloss_tokens = (
+                tokenize(body) | tokenize(brief) | tokenize(kana_jp_gloss)
+            )
+            hit = best_match(keys, pure_kana or kana, gloss_tokens, sources, ota)
 
             # Fallback 1: edit-distance-1 against modern lemmas.
             if not hit:
@@ -789,8 +1045,25 @@ def main() -> None:
             # Fallback 2: reverse gloss lookup (EN+JA token overlap).
             if not hit:
                 en_tokens = tokenize_en(body) | tokenize_en(brief)
-                ja_tokens = tokenize_ja(body) | tokenize_ja(brief)
+                ja_tokens = (
+                    tokenize_ja(body) | tokenize_ja(brief) | tokenize_ja(kana_jp_gloss)
+                )
                 hit = reverse_gloss_lookup(en_tokens, ja_tokens, sources)
+
+            # Fallback 3: primary Japanese gloss lookup (Batchelor's body
+            # usually has the JP meaning as the first kanji/hira run after
+            # the kana, e.g. "イヨマ、槍" → primary_ja="槍").
+            if not hit:
+                primary_ja = (
+                    extract_primary_ja_gloss(kana_jp_gloss)
+                    or extract_primary_ja_gloss(body)
+                )
+                if primary_ja:
+                    hit = primary_ja_lookup(primary_ja, keys, sources)
+
+            # Fallback 4: substring lookup (compound decomposition).
+            if not hit:
+                hit = substring_lookup(keys, gloss_tokens, sources)
 
             if hit:
                 matched += 1
