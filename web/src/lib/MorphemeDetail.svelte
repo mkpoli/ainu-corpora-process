@@ -9,10 +9,12 @@
 	let {
 		entry,
 		otherUses,
+		computedArities = {},
 		onSelectLemma
 	}: {
 		entry: Entry | null;
 		otherUses: Entry[];
+		computedArities?: Record<string, number>;
 		onSelectLemma: (lemma: string) => void;
 	} = $props();
 
@@ -70,6 +72,11 @@
 				{:else}
 					<span class="rounded-full bg-rule/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink/60">{m.detail_unverified()}</span>
 				{/if}
+				{#if entry.bound}
+					<span class="rounded-full bg-affix-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-affix" title="Bound morpheme — does not occur as a standalone word.">bound</span>
+				{:else}
+					<span class="rounded-full bg-paper px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink/55 ring-1 ring-rule" title="Free morpheme — can occur as a standalone word.">free</span>
+				{/if}
 				{#if entry.slot?.length}
 					<span
 						class="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-accent ring-1 ring-accent/30"
@@ -124,8 +131,19 @@
 				{/if}
 			</section>
 		{:else}
+			{@const computed = computedArities[entry.id] ?? null}
 			{@const inferred = inferredValencyDelta(entry)}
-			{#if inferred !== null}
+			{#if computed !== null}
+				<section class="flex flex-col gap-1">
+					<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
+						{m.detail_valency()}
+						<span class="font-mono text-[10px] normal-case italic text-ink/55" title="Derived by summing the valency deltas of this entry's composition.">
+							arity {computed}
+						</span>
+					</h3>
+					<p class="text-xs italic text-ink/55">Derived from the composition chain.</p>
+				</section>
+			{:else if inferred !== null}
 				<section class="flex flex-col gap-1">
 					<h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/60">
 						{m.detail_valency()}

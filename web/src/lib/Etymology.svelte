@@ -141,10 +141,12 @@
 		return chainHasContent(part.derived_from, e);
 	}
 
-	// Cap recursive nested-etymology rendering. Most ainu derivations are
-	// shallow; the cap prevents accidental infinite descent if the data has
-	// a cycle (e.g. circular lemma references between two entries).
-	const NESTED_ETYM_DEPTH = 3;
+	// Cap recursive nested-etymology rendering. Most Ainu derivations are
+	// 2-3 morphemes deep; capping at 2 keeps multi-step chains
+	// (koyki → ko- + (i- + ki)) readable as a tree without ballooning into
+	// a tall vertical column for long polysynthetic words like
+	// yaykosiramsuypa or ewkoysoytak.
+	const NESTED_ETYM_DEPTH = 2;
 
 	/** Return the matched Entry's own etymology when (a) the matched Entry
 	 *  isn't the page's own entry (we don't want to render an entry's
