@@ -22,7 +22,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from morpheme_db.ingest_tommy1949 import _surface_with_marker
+from morpheme_db.ingest_tommy1949 import _resolve_in_context, _surface_with_marker
 from morpheme_db.schema import Entry
 
 
@@ -79,8 +79,8 @@ def ingest_wiktionary_compositions(
         resolved_ids: list[str] = []
         surfaces: list[str] = []
         all_resolved = True
-        for key in morpheme_keys:
-            entry = index.get(key) or index.get(key.strip("-="))
+        for position, key in enumerate(morpheme_keys):
+            entry = _resolve_in_context(key, position, len(morpheme_keys), index)
             if entry is None:
                 all_resolved = False
                 break
