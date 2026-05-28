@@ -56,6 +56,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 			lemma: entry.lemma,
 			morph_type: entry.morph_type,
 			category: entry.category,
+			bound: entry.bound,
 			verified: entry.verified,
 			frequency: entry.frequency,
 			composition_length: entry.composition.length,

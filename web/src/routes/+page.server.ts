@@ -1,5 +1,5 @@
 import { loadDatabase } from '$lib/server/database';
-import { compose, findOtherUses } from '$lib/composition';
+import { compose, computeArityFromComposition, findOtherUses } from '$lib/composition';
 import type { CompositionNode, CompositionResult, Entry } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
@@ -85,6 +85,12 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		walkTree(composition.tree, 1, new Set());
 	}
 
+	// Computed arity for unverified entries with composition (e.g. yaykopuntek
+	// = yay- + kopuntek = −1 + 2 = +1). Filled lazily for each detail entry
+	// after they've all been collected; the result is keyed by entry id and
+	// consumed by MorphemeDetail.
+	const computedArities: Record<string, number> = {};
+
 	while (subtreeQueue.length) {
 		const { entry, depth } = subtreeQueue.shift()!;
 		if (subtrees[entry.id]) continue;
@@ -103,6 +109,13 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		// Walk the new sub-tree so its own leaves become candidates for
 		// further expansion (until SUBTREE_DEPTH).
 		walkTree(sub.tree, depth + 1, new Set());
+	}
+
+	for (const e of detailEntries) {
+		if (!e.base_frame && e.composition.length > 0) {
+			const a = computeArityFromComposition(e, db.byId);
+			if (a !== null) computedArities[e.id] = a;
+		}
 	}
 
 	const families = pickFamilies(db.entries);
@@ -125,6 +138,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		detailEntries,
 		otherUses,
 		subtrees,
+		computedArities,
 		suggestions,
 		families,
 		stats: {

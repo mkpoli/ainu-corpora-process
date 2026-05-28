@@ -313,6 +313,7 @@
 			<MorphemeDetail
 				entry={selectedEntry}
 				otherUses={selectedUses}
+				computedArities={data.computedArities}
 				onSelectLemma={pickDemo}
 			/>
 		</aside>

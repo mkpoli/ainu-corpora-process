@@ -141,6 +141,7 @@
 							{m.morphemes_col_type()} {sortIndicator('morph_type')}
 						</button>
 					</th>
+					<th class="px-3 py-2">Bound</th>
 					<th class="px-3 py-2">{m.morphemes_col_gloss_en()}</th>
 					<th class="px-3 py-2">{m.morphemes_col_gloss_jp()}</th>
 					<th class="px-3 py-2 text-right">
@@ -175,6 +176,13 @@
 						</td>
 						<td class="px-3 py-2 text-[12px] text-ink/70">{row.category ? categoryLabel(row.category) : '—'}</td>
 						<td class="px-3 py-2 text-[12px] text-ink/70">{morphTypeLabel(row.morph_type)}</td>
+						<td class="px-3 py-2 text-[11px]">
+							{#if row.bound}
+								<span class="rounded-full bg-affix-soft px-2 py-0.5 font-semibold uppercase tracking-wider text-affix">bound</span>
+							{:else}
+								<span class="text-ink/45">free</span>
+							{/if}
+						</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_en || '—'}</td>
 						<td class="px-3 py-2 text-[12px]">{row.gloss_jp || '—'}</td>
 						<td class="px-3 py-2 text-right font-mono text-[12px]">

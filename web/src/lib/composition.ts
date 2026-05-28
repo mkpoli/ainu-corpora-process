@@ -232,6 +232,58 @@ export function effectiveValencyDelta(entry: Entry): number | null {
 	return inferredValencyDelta(entry);
 }
 
+/**
+ * Sum-of-deltas arity for an entry that lacks a `base_frame` but has a
+ * `composition`. Walks the composition recursively, summing
+ * `effectiveValencyDelta` of each part (so e.g. yaykopuntek = yay- + kopuntek
+ * = −1 + 2 = +1, where kopuntek's own +2 is itself derived from ko- + puntek).
+ *
+ * Heuristic, with known limitations:
+ * - Reduplication overcounts (ekarkar = e- + kar + kar would naively read as
+ *   +1 + 2 + 2 = +5). We return null in that case so the caller can fall
+ *   back to category inference instead.
+ * - Treats every composition slot as additive; correct for the common
+ *   prefix/suffix chain but not for true incorporation that already
+ *   absorbs an argument (those should be handled by the curated
+ *   base_frame, which short-circuits this function).
+ *
+ * Returns null when the chain can't be fully resolved or when reduplication
+ * is detected; the caller should then fall back to `inferredValencyDelta`.
+ */
+export function computeArityFromComposition(
+	entry: Entry,
+	byId: Map<string, Entry>,
+	depth = 0,
+): number | null {
+	if (entry.base_frame) {
+		return arity(entry.base_frame);
+	}
+	if (depth > 5 || entry.composition.length === 0) return null;
+
+	// Reduplication detector: bail when two consecutive composition slots
+	// share the same id — the naive delta-sum doesn't model that case.
+	for (let i = 1; i < entry.composition.length; i += 1) {
+		if (entry.composition[i] === entry.composition[i - 1]) return null;
+	}
+
+	let sum = 0;
+	for (const id of entry.composition) {
+		const part = byId.get(id);
+		if (!part) return null;
+		let delta: number | null;
+		if (part.base_frame) {
+			delta = arity(part.base_frame);
+		} else if (part.composition.length > 0) {
+			delta = computeArityFromComposition(part, byId, depth + 1);
+		} else {
+			delta = effectiveValencyDelta(part);
+		}
+		if (delta === null) return null;
+		sum += delta;
+	}
+	return Math.max(0, sum);
+}
+
 // --- Token resolution ----------------------------------------------------
 
 function resolveToken(token: string, byKey: Map<string, Entry>): Entry | null {
