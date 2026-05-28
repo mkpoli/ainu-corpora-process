@@ -17,12 +17,24 @@
 	} = $props();
 
 	// Strip allomorphs that are the same string as the lemma (or the lemma's
-	// bound-marker-stripped bare form) — those entries duplicate the title
-	// header chip and add no information.
+	// bound-marker-stripped bare form) — those duplicate the title chip.
+	// Also strip bare attachment-marker-less variants when a dashed sibling
+	// is present in the same list: ``te`` is kept in the data so the
+	// segmenter can resolve ``pakte`` → ``pak + te``, but the morpheme
+	// detail view only needs to show the canonical ``-te``.
 	const variantAllomorphs = $derived.by(() => {
 		if (!entry) return [];
-		const bareLemma = entry.lemma.replace(/^[-=]+|[-=]+$/g, '');
-		return entry.allomorphs.filter((v) => v !== entry.lemma && v !== bareLemma);
+		const stripMarkers = (s: string) => s.replace(/^[-=]+|[-=]+$/g, '');
+		const bareLemma = stripMarkers(entry.lemma);
+		const dashedBares = new Set(
+			entry.allomorphs.filter((v) => /^[-=]|[-=]$/.test(v)).map(stripMarkers),
+		);
+		return entry.allomorphs.filter((v) => {
+			if (v === entry.lemma || v === bareLemma) return false;
+			const isBare = !/^[-=]|[-=]$/.test(v);
+			if (isBare && dashedBares.has(v)) return false;
+			return true;
+		});
 	});
 
 	const REALIZATION_LABEL: Record<string, () => string> = {
@@ -132,6 +144,19 @@
 				<div class="flex flex-wrap gap-1.5">
 					{#each variantAllomorphs as variant}
 						<span class="rounded-full bg-paper px-2 py-0.5 font-mono text-xs ring-1 ring-rule">{variant}</span>
+					{/each}
+				</div>
+			</section>
+		{/if}
+
+		{#if entry.reconstructed && Object.keys(entry.reconstructed).length}
+			<section class="flex flex-col gap-2">
+				<h3 class="text-xs font-semibold uppercase tracking-widest text-ink/60">Reconstructed</h3>
+				<div class="flex flex-wrap gap-1.5">
+					{#each Object.entries(entry.reconstructed) as [source, form]}
+						<span class="rounded-full bg-paper px-2 py-0.5 font-mono text-xs ring-1 ring-rule" title={source}>
+							{form} <span class="text-[10px] text-ink/55">({source})</span>
+						</span>
 					{/each}
 				</div>
 			</section>

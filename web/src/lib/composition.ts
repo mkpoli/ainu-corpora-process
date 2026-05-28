@@ -674,15 +674,23 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 	let fusedRoot: Entry | null = null;
 
 	if (directMatch && directMatch.composition.length) {
-		const resolved = directMatch.composition.map((id) => {
+		// Prefer composition_surface[i] when the ingest recorded the actual
+		// source-text form (e.g. ``-te`` for the upakte decomposition even
+		// though it resolves to the canonical ``-e`` entry). Falls back to
+		// the resolved entry's lemma when the surface array is empty or
+		// shorter than composition.
+		const surfaces = directMatch.composition_surface ?? [];
+		const resolved = directMatch.composition.map((id, i) => {
 			const entry = resolveById(id, index);
 			if (!entry) {
 				warnings.push(`composition references unknown entry id ${id}`);
 				unresolved.push(id);
 			}
-			return { token: entry?.lemma ?? id, entry };
+			const surface = surfaces[i];
+			const token = surface || entry?.lemma || id;
+			return { token, entry };
 		});
-		tokens = resolved.map((r) => r.entry?.lemma ?? r.token);
+		tokens = resolved.map((r) => r.token);
 		matched = resolved;
 		fusedRoot = directMatch;
 		source = 'composition';

@@ -20,6 +20,31 @@ from pathlib import Path
 from morpheme_db.schema import Entry
 
 
+def _surface_with_marker(key: str, entry: Entry) -> str:
+    """Reattach the attachment marker to a bare-form decomposition key.
+
+    Tommy 1949 records affixes with the marker stripped (``pak + te`` for
+    ``pakte``). For graph rendering we want the marker back (``pak + -te``)
+    so the surface form is unambiguous. The resolved entry's ``morph_type``
+    tells us where the marker goes.
+    """
+    if not key or "-" in key or "=" in key:
+        return key
+    if entry.morph_type == "suffix":
+        return "-" + key
+    if entry.morph_type == "prefix":
+        return key + "-"
+    if entry.morph_type == "clitic":
+        # Clitics in this DB use ``=`` and can attach on either side. The
+        # entry's own lemma encodes the direction (``a=`` vs ``=an``), so
+        # mirror that.
+        if entry.lemma.startswith("="):
+            return "=" + key
+        if entry.lemma.endswith("="):
+            return key + "="
+    return key
+
+
 def load_decomposed(path: Path) -> dict[str, list[str]]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -76,6 +101,7 @@ def ingest_tommy1949(
             continue
 
         resolved_ids: list[str] = []
+        surfaces: list[str] = []
         all_resolved = True
         for key in morph_keys:
             entry = index.get(key) or index.get(key.strip("-="))
@@ -83,6 +109,7 @@ def ingest_tommy1949(
                 all_resolved = False
                 break
             resolved_ids.append(entry.id)
+            surfaces.append(_surface_with_marker(key, entry))
         if not all_resolved:
             counters["compositions_skipped"] += 1
             continue
@@ -96,6 +123,7 @@ def ingest_tommy1949(
             # still contribute Japanese glosses to them, though.
             if not existing.composition and not existing.verified:
                 existing.composition = resolved_ids
+                existing.composition_surface = surfaces
                 if not existing.composition_note:
                     existing.composition_note = (
                         f"Decomposition from Tommy 1949: {' + '.join(morph_keys)}."
@@ -113,6 +141,7 @@ def ingest_tommy1949(
                 id=f"tommy1949:{lemma}",
                 lemma=lemma,
                 composition=resolved_ids,
+                composition_surface=surfaces,
                 composition_note=f"Decomposition from Tommy 1949: {' + '.join(morph_keys)}.",
                 glosses_jp=gloss_list,
                 sources=["Tommy 1949"],

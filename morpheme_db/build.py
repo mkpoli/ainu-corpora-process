@@ -134,6 +134,53 @@ def _build_form_index_for_accents(entries: list[Entry]) -> dict[str, Entry]:
     return index
 
 
+# Characters that flag an allomorph as a transcription artefact rather
+# than a real morpheme variant — curly quotes / typographic marks and
+# the uncertainty annotator ``?`` used in NINJAL's raw_morpheme_variants
+# field. Comma and stray whitespace are similarly excluded.
+_ALLOMORPH_NOISE_CHARS: frozenset[str] = frozenset('“”„"\'?!,;()[]{}<> \t\n')
+
+
+def _is_noise_allomorph(form: str) -> bool:
+    if not form:
+        return True
+    return any(ch in _ALLOMORPH_NOISE_CHARS for ch in form)
+
+
+def _clean_allomorphs(entries: list[Entry]) -> int:
+    """Drop transcription-noise and self-reference allomorphs.
+
+    Two cleanups:
+
+    1. Self-reference: an entry's own lemma should never appear in its
+       ``allomorphs`` list — the lemma is already the canonical form, so
+       repeating it adds nothing and clutters the UI display.
+    2. Transcription noise: forms containing curly quotes, ``?``, commas,
+       or other non-Ainu punctuation are NINJAL's ``raw_morpheme_variants``
+       artefacts (e.g. ``re?``, ``"te``) and not real allomorphs.
+
+    Bare attachment-marker-less forms (``te`` alongside ``-te``) are
+    *kept* because the web's segmentation lookup relies on them — the UI
+    layer hides them at display time.
+    """
+    dropped = 0
+    for entry in entries:
+        cleaned: list[str] = []
+        for variant in entry.allomorphs:
+            if variant == entry.lemma:
+                dropped += 1
+                continue
+            if _is_noise_allomorph(variant):
+                dropped += 1
+                continue
+            if variant in cleaned:
+                dropped += 1
+                continue
+            cleaned.append(variant)
+        entry.allomorphs = cleaned
+    return dropped
+
+
 # Categories whose presence implies the morpheme is bound. ``adn``
 # (連体) is included per the convention that adnominal forms in Ainu only
 # appear modifying a head noun and never as independent words.
@@ -497,6 +544,11 @@ def build(
         counters["tamura_accent_pairs"] = tamura_counters["tamura_accent_pairs"]
         counters["tamura_allomorphs_added"] = tamura_counters["tamura_allomorphs_added"]
 
+    # Final cleanup pass: drop transcription noise and self-references from
+    # every entry's allomorph list. Done last so it covers everything every
+    # ingest may have added.
+    counters["allomorphs_dropped_noise"] = _clean_allomorphs(entries)
+
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
     return entries, counters
@@ -622,7 +674,8 @@ def main(argv: list[str] | None = None) -> int:
         f"  Accents: pairs_found={counters.get('accent_pairs_found', 0)} "
         f"allomorphs_added={counters.get('accent_allomorphs_added', 0)} "
         f"tamura_pairs={counters.get('tamura_accent_pairs', 0)} "
-        f"tamura_allomorphs_added={counters.get('tamura_allomorphs_added', 0)}"
+        f"tamura_allomorphs_added={counters.get('tamura_allomorphs_added', 0)}\n"
+        f"  Allomorph cleanup: dropped={counters.get('allomorphs_dropped_noise', 0)}"
     )
     return 0
 
