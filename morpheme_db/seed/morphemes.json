@@ -2056,5 +2056,140 @@
     "notes": "Ablative case particle (格助詞). Distinct from the homographic conjunctive wa 'and' (して), which is the dominant NINJAL sense and is kept as a separate, curated entry under the same lemma.",
     "sources": ["佐藤2008アイヌ文法の基礎"],
     "verified": true
+  },
+  {
+    "id": "ari",
+    "lemma": "ari",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "置く人々"},
+        {"role": "patient", "realization": "external", "label_jp": "置かれるもの"}
+      ]
+    },
+    "glosses_en": ["put.PL", "place.PL"],
+    "glosses_jp": ["～を置く（複数）", "（複数のものを）置く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive plural counterpart of an 'put.SG'. Tommy 1949 mis-decomposed this as a= + -re (1.A clitic + causative) because of a surface-string accident; ari is a single root."
+  },
+  {
+    "id": "ramu",
+    "lemma": "ramu",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "思う人"},
+        {"role": "patient", "realization": "external", "label_jp": "思う対象"}
+      ]
+    },
+    "glosses_en": ["think", "think of"],
+    "glosses_jp": ["～を思う", "～を考える"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Etymologically related to ram 'heart, mind' (cf. yaynu, yaykosiramsuypa) but synchronically a single root. The auto-ingest decomposition ram + u- was wrong: u- is a prefix, not a suffix, so it can't appear after the stem."
+  },
+  {
+    "id": "sekor",
+    "lemma": "sekor",
+    "category": "rel",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["QUOT", "saying that", "as"],
+    "glosses_jp": ["と", "～と（言って）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Quotative / similative complementiser. Synchronically opaque — the surface-similar se 'carry' + kor 'have' analysis isn't productive."
+  },
+  {
+    "id": "ene",
+    "lemma": "ene",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["like this", "thus", "this way"],
+    "glosses_jp": ["このように", "こう"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Manner deictic. Tommy 1949's e + ne decomposition resolves the bare e to the verb e- 'eat', which is wrong. Plausibly contains the applicative e- + ne 'be', but the analysis is debatable and the form is synchronically opaque."
+  },
+  {
+    "id": "nea",
+    "lemma": "nea",
+    "category": "adn",
+    "bound": true,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["that"],
+    "glosses_jp": ["その"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Distal adnominal demonstrative. The auto-decomposition ne + a= (copula + 1.A clitic) is implausible — a clitic can't appear word-finally in this position. Synchronically a single adnominal."
+  },
+  {
+    "id": "tan",
+    "lemma": "tan",
+    "category": "adn",
+    "bound": true,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["this"],
+    "glosses_jp": ["この"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Proximal adnominal demonstrative. May historically derive from ta + an 'at-which-exists' but synchronically a single adnominal. The auto-decomposition surfaces the etymology, not the synchronic structure."
+  },
+  {
+    "id": "easkay",
+    "lemma": "easkay",
+    "category": "auxv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "askay"],
+    "composition_note": "Applicative e- + askay 'be skilled at' → 'be able to (do something)'. Functions as an auxiliary in modal constructions.",
+    "glosses_en": ["be able to", "can"],
+    "glosses_jp": ["～できる", "上手にする"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Earlier Wiktionary-JA ingest pulled in a Japanese-language joke as the gloss; this seed entry overrides it with the standard analysis."
+  },
+  {
+    "id": "askay",
+    "lemma": "askay",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "上手な人"},
+        {"role": "patient", "realization": "external", "label_jp": "～が上手なこと"}
+      ]
+    },
+    "glosses_en": ["be skilled at", "be good at"],
+    "glosses_jp": ["～が上手だ", "～が得意だ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for easkay 'be able to'."
+  },
+  {
+    "id": "nen",
+    "lemma": "nen",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["who", "someone"],
+    "glosses_jp": ["誰", "誰か"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Indefinite/interrogative human pronoun. Auto-decomposition ne + n is opaque; treated as a single root."
   }
 ]

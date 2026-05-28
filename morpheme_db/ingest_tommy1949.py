@@ -20,6 +20,42 @@ from pathlib import Path
 from morpheme_db.schema import Entry
 
 
+def _resolve_in_context(key: str, position: int, total: int, index: dict[str, Entry]) -> Entry | None:
+    """Position-aware resolve for a Tommy decomposition key.
+
+    Tommy 1949 records decompositions with bare-form keys (``e``, ``ko``,
+    ``te``) regardless of whether they're affixes or roots. The default
+    ``index.get(key)`` then prefers whichever entry registered under the
+    bare form first — which is typically the higher-frequency *lexical*
+    homophone (e.g. ``e`` 'eat' wins over the applicative prefix ``e-``).
+
+    This helper consults the position of the key in the decomposition:
+    a bare key at index 0 of a multi-part decomposition is much more
+    likely to be a prefix, and a bare key at the last index is much
+    more likely to be a suffix. We try the appropriate dashed form
+    first, then fall back to the original bare lookup.
+
+    Keys that already carry an attachment marker (``-``/``=``) are
+    looked up verbatim — the source already disambiguated direction.
+    """
+    explicit = index.get(key)
+    if "-" in key or "=" in key:
+        return explicit
+
+    if total > 1 and position == 0:
+        cand = index.get(key + "-")
+        if cand is not None and cand.morph_type == "prefix":
+            return cand
+    if total > 1 and position == total - 1:
+        cand = index.get("-" + key)
+        if cand is not None and cand.morph_type == "suffix":
+            return cand
+
+    if explicit is not None:
+        return explicit
+    return index.get(key.strip("-="))
+
+
 def _surface_with_marker(key: str, entry: Entry) -> str:
     """Reattach the attachment marker to a bare-form decomposition key.
 
@@ -103,8 +139,8 @@ def ingest_tommy1949(
         resolved_ids: list[str] = []
         surfaces: list[str] = []
         all_resolved = True
-        for key in morph_keys:
-            entry = index.get(key) or index.get(key.strip("-="))
+        for position, key in enumerate(morph_keys):
+            entry = _resolve_in_context(key, position, len(morph_keys), index)
             if entry is None:
                 all_resolved = False
                 break
