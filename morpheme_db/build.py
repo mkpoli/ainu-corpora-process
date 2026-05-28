@@ -14,11 +14,17 @@ from __future__ import annotations
 
 import argparse
 import csv
+from collections import defaultdict
 from pathlib import Path
 
 from morpheme_db.ingest_ff_ainu import enrich_with_ff_ainu, load_ff_ainu_pos
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
-from morpheme_db.ingest_wiktionary import enrich_with_wiktionary, load_json_dict
+from morpheme_db.ingest_wiktionary import (
+    enrich_with_wiktionary,
+    harvest_wiktionary_accents,
+    load_json_dict,
+    promote_wiktionary_bound_lemmas,
+)
 from morpheme_db.ingest_tommy1949 import (
     ingest_tommy1949,
     load_decomposed as load_tommy_decomposed,
@@ -43,6 +49,8 @@ NINJAL_LEXICON_PATH = (
 WIKT_JA_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses.json"
 WIKT_EN_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_glosses_en.json"
 WIKT_JA_POS_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_part_of_speech.json"
+WIKT_JA_ENTRIES_PATH = REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_entries.json"
+TAMURA_ENTRIES_PATH = REPO_ROOT / "dictionary" / "output" / "ainu-archive" / "tamura-entries.txt"
 FF_AINU_SARU_PATH = REPO_ROOT / "dictionary" / "output" / "ff-ainu-saru-terms.json"
 WIKT_COMPOSITIONS_PATH = (
     REPO_ROOT / "dictionary" / "output" / "wiktionary_ainu_word_compositions.json"
@@ -57,6 +65,231 @@ CORPORA_LEMMA_FREQ_PATH = (
 TOMMY_DECOMP_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_decomposed_words.json"
 TOMMY_GLOSS_PATH = REPO_ROOT / "dictionary" / "output" / "tommy1949_aynudictionary_glosses.json"
 OUTPUT_DIR = REPO_ROOT / "morpheme_db" / "output"
+
+
+_TAMURA_ACCENT_TABLE = str.maketrans("áéíóúÁÉÍÓÚ", "aeiouAEIOU")
+
+
+def _tamura_deaccent(text: str) -> str:
+    return text.translate(_TAMURA_ACCENT_TABLE)
+
+
+def _harvest_tamura_accents(entries: list[Entry], tamura_path: Path) -> dict[str, int]:
+    """Read Tamura's TSV and register accent-marked lemmas as allomorphs.
+
+    Tamura 1996 prints stress on Ainu citation forms — the lemma column of
+    ``tamura-entries.txt`` carries forms like ``aenínuype`` for the bare
+    ``aeninuype``. We treat each accented Tamura headword as an allomorph
+    of the deaccented lemma when that lemma is already in the database.
+    No new entries are created from this source — coverage gaps belong to
+    the upstream ingests.
+    """
+    counters = {"tamura_accent_pairs": 0, "tamura_allomorphs_added": 0}
+    if not tamura_path.exists():
+        return counters
+
+    index = _build_form_index_for_accents(entries)
+
+    with tamura_path.open(encoding="utf-8") as handle:
+        next(handle, None)  # header
+        for raw in handle:
+            lemma = raw.split("\t", 1)[0].strip()
+            if not lemma or not any(ch in "áéíóúÁÉÍÓÚ" for ch in lemma):
+                continue
+            deaccented = _tamura_deaccent(lemma)
+            counters["tamura_accent_pairs"] += 1
+            # When the Tamura form carries an attachment marker (e.g.
+            # ``tú-``), require an exact-match target — falling back to the
+            # bare lemma would wrongly attach a bound prefix to a free
+            # noun (``tu`` vs ``tú-``). Bare Tamura forms can still match
+            # bare *or* dashed targets via the bare-strip fallback.
+            has_marker = deaccented.startswith(("-", "=")) or deaccented.endswith(("-", "="))
+            if has_marker:
+                target = index.get(deaccented)
+            else:
+                target = index.get(deaccented) or index.get(deaccented.strip("-="))
+            if target is None:
+                continue
+            if lemma == target.lemma or lemma in target.allomorphs:
+                continue
+            target.allomorphs.append(lemma)
+            counters["tamura_allomorphs_added"] += 1
+            if "田村1996アイヌ語沙流方言辞典" not in target.sources:
+                target.sources.append("田村1996アイヌ語沙流方言辞典")
+
+    return counters
+
+
+def _build_form_index_for_accents(entries: list[Entry]) -> dict[str, Entry]:
+    """Form index used by accent harvesters (mirrors the Wiktionary one)."""
+    index: dict[str, Entry] = {}
+    for entry in entries:
+        forms = {entry.lemma, *entry.allomorphs}
+        bare = entry.lemma.strip("-=")
+        if bare:
+            forms.add(bare)
+        for form in forms:
+            if form:
+                index.setdefault(form, entry)
+    return index
+
+
+# Categories whose presence implies the morpheme is bound. ``adn``
+# (連体) is included per the convention that adnominal forms in Ainu only
+# appear modifying a head noun and never as independent words.
+_BOUND_CATEGORIES: frozenset[str] = frozenset({"pfx", "sfx", "adn"})
+
+_CATEGORY_TO_MORPH_TYPE: dict[str, str] = {
+    "pfx": "prefix",
+    "sfx": "suffix",
+}
+
+
+def _apply_bound_flag(entries: list[Entry]) -> dict[str, int]:
+    """Centralised bound/morph_type promotion.
+
+    Runs once after every ingest+enrichment step has finished. The rule is:
+
+    - Category in {pfx, sfx, adn} → ``bound=True``; pfx/sfx also set
+      ``morph_type`` to prefix/suffix when it is still the default ``root``.
+    - ``root`` appearing in ``category_alt`` is Wiktionary/FF-Ainu's way of
+      saying "this lemma is attested as a bound nominal root" (e.g. ``mon``
+      is tagged both ``noun`` and ``root``). Treat it as a boundness signal
+      and flip ``bound=True``. We keep ``morph_type='root'`` because the
+      slot it fills in the verbal template is a nominal root, not an affix.
+    - Curated entries (``verified=True``) are left alone; the lexicographer
+      has already made the call. Same for entries whose lemma carries an
+      explicit attachment marker — the NINJAL ingest already classified
+      those.
+    """
+    counters = {"bound_flipped": 0, "morph_type_upgraded": 0}
+    for entry in entries:
+        if entry.verified:
+            continue
+        wants_bound = entry.category in _BOUND_CATEGORIES or "root" in entry.category_alt
+        if wants_bound and not entry.bound:
+            entry.bound = True
+            counters["bound_flipped"] += 1
+        target_morph = _CATEGORY_TO_MORPH_TYPE.get(entry.category)
+        if target_morph and entry.morph_type == "root":
+            entry.morph_type = target_morph
+            counters["morph_type_upgraded"] += 1
+    return counters
+
+
+_BOUND_MARKER_CHARS = ("-", "=")
+
+
+def _is_dashed(lemma: str) -> bool:
+    return lemma.startswith(_BOUND_MARKER_CHARS) or lemma.endswith(_BOUND_MARKER_CHARS)
+
+
+def _norm_gloss(text: str) -> str:
+    return text.strip().lower().rstrip("?")
+
+
+def _gloss_overlap(a: Entry, b: Entry) -> bool:
+    a_set = {_norm_gloss(g) for g in (*a.glosses_en, *a.glosses_jp) if g}
+    b_set = {_norm_gloss(g) for g in (*b.glosses_en, *b.glosses_jp) if g}
+    if not a_set or not b_set:
+        # If one side has no glosses we can't disprove identity; be permissive.
+        return True
+    return bool(a_set & b_set)
+
+
+def _can_merge_pair(canonical: Entry, candidate: Entry) -> bool:
+    """Decide whether a bare entry should fold into a dashed canonical.
+
+    Same logic as :func:`ingest_ninjal.merge_with_seed`'s fuzzy step: agreed
+    category counts as a strong signal, and otherwise we require gloss
+    overlap so distinct homographs (``ka`` particle vs ``-ka`` causative)
+    stay separate.
+
+    An uncategorised bare candidate is trusted whenever the canonical
+    carries a structural bound category (pfx/sfx/clitic/adn) — these
+    canonicals only exist when an upstream source has explicitly marked
+    the form as bound, so the bare form is almost always the same morpheme
+    written without its attachment marker.
+    """
+    if canonical.category and candidate.category and canonical.category == candidate.category:
+        return True
+    if not candidate.category:
+        if canonical.category in _BOUND_CATEGORIES or canonical.morph_type == "clitic":
+            return True
+        return _gloss_overlap(canonical, candidate)
+    return False
+
+
+def _absorb(canonical: Entry, victim: Entry) -> None:
+    if victim.lemma and victim.lemma not in canonical.allomorphs:
+        canonical.allomorphs.append(victim.lemma)
+    for variant in victim.allomorphs:
+        if variant and variant not in canonical.allomorphs:
+            canonical.allomorphs.append(variant)
+    if victim.frequency > canonical.frequency:
+        canonical.frequency = victim.frequency
+    for source in victim.sources:
+        if source not in canonical.sources:
+            canonical.sources.append(source)
+    for gloss in victim.glosses_en:
+        if gloss not in canonical.glosses_en:
+            canonical.glosses_en.append(gloss)
+    for gloss in victim.glosses_jp:
+        if gloss not in canonical.glosses_jp:
+            canonical.glosses_jp.append(gloss)
+    for alt in victim.category_alt:
+        if alt != canonical.category and alt not in canonical.category_alt:
+            canonical.category_alt.append(alt)
+    for dialect in victim.dialects:
+        if dialect not in canonical.dialects:
+            canonical.dialects.append(dialect)
+
+
+def _canonicalise_bound_pairs(entries: list[Entry]) -> tuple[list[Entry], int]:
+    """Collapse ``X`` + ``X-`` / ``-X`` / ``X=`` / ``=X`` duplicates.
+
+    NINJAL writes bound morphemes bare while Wiktionary writes them with the
+    attachment marker, so we end up with two entries for the same morpheme
+    (e.g. ``oar`` from NINJAL, ``oar-`` from the Wiktionary-compositions
+    ingest). After all ingests have finished we run this pass to merge any
+    such pair into the dashed canonical form, preserving the bare form as
+    an allomorph.
+
+    Returns the deduplicated entry list and the number of entries removed.
+    """
+    by_bare: dict[str, list[Entry]] = defaultdict(list)
+    for entry in entries:
+        bare = entry.lemma.strip("-=")
+        if bare:
+            by_bare[bare].append(entry)
+
+    to_remove: set[int] = set()
+    for group in by_bare.values():
+        if len(group) < 2:
+            continue
+        dashed = [e for e in group if _is_dashed(e.lemma)]
+        bare_entries = [e for e in group if not _is_dashed(e.lemma)]
+        if not dashed or not bare_entries:
+            continue
+        # Choose canonical: prefer the dashed entry that is already marked
+        # bound, then highest frequency, then verified status.
+        canonical = max(
+            dashed,
+            key=lambda e: (int(e.verified), int(e.bound), e.frequency),
+        )
+        for cand in bare_entries:
+            if cand is canonical or id(cand) in to_remove:
+                continue
+            if cand.verified and not canonical.verified:
+                # Don't absorb a curated entry into an automated one.
+                continue
+            if _can_merge_pair(canonical, cand):
+                _absorb(canonical, cand)
+                to_remove.add(id(cand))
+
+    if not to_remove:
+        return entries, 0
+    return [e for e in entries if id(e) not in to_remove], len(to_remove)
 
 
 def _format_frame(entry: Entry) -> str:
@@ -149,6 +382,10 @@ def build(
     if ja_glosses or en_glosses or ja_pos:
         enrich_with_wiktionary(entries, ja_glosses, en_glosses, ja_pos)
 
+    promoted_bound = 0
+    if ja_glosses:
+        promoted_bound = promote_wiktionary_bound_lemmas(entries, ja_glosses, en_glosses)
+
     ff_ainu_pos = (
         load_ff_ainu_pos(ff_ainu_saru_path)
         if ff_ainu_saru_path and ff_ainu_saru_path.exists()
@@ -177,6 +414,7 @@ def build(
         "ff_ainu_categories_set": ff_counters["categories_set"],
         "ff_ainu_categories_upgraded": ff_counters["categories_upgraded"],
         "ff_ainu_alts_added": ff_counters["alts_added"],
+        "wikt_bound_promoted": promoted_bound,
     }
     if wikt_compositions_path and wikt_compositions_path.exists():
         comps = load_compositions(wikt_compositions_path)
@@ -231,6 +469,33 @@ def build(
         counters["corpora_freq_unmatched"] = fcounters["unmatched"]
         counters["corpora_freq_replaced"] = fcounters["replaced"]
         counters["corpora_freq_kept_existing"] = fcounters["kept_existing"]
+
+    bound_counters = _apply_bound_flag(entries)
+    counters["bound_flag_applied"] = bound_counters["bound_flipped"]
+    counters["morph_type_upgraded"] = bound_counters["morph_type_upgraded"]
+
+    entries, dedup_removed = _canonicalise_bound_pairs(entries)
+    counters["bound_pairs_merged"] = dedup_removed
+
+    # Re-apply the bound flag after the dedupe pass: when a bare/dashed pair
+    # gets collapsed, the surviving canonical may have inherited category
+    # information from the absorbed entry that warrants a fresh flip.
+    bound_counters_2 = _apply_bound_flag(entries)
+    counters["bound_flag_applied"] += bound_counters_2["bound_flipped"]
+    counters["morph_type_upgraded"] += bound_counters_2["morph_type_upgraded"]
+
+    # Accented allomorphs: harvest after dedupe so they attach to the
+    # canonical post-merge entry (e.g. ``símon-`` lands on ``simon-`` even
+    # if a bare ``simon`` was just absorbed).
+    if WIKT_JA_ENTRIES_PATH.exists():
+        accent_counters = harvest_wiktionary_accents(entries, WIKT_JA_ENTRIES_PATH)
+        counters["accent_pairs_found"] = accent_counters["accent_pairs_found"]
+        counters["accent_allomorphs_added"] = accent_counters["allomorphs_added"]
+
+    if TAMURA_ENTRIES_PATH.exists():
+        tamura_counters = _harvest_tamura_accents(entries, TAMURA_ENTRIES_PATH)
+        counters["tamura_accent_pairs"] = tamura_counters["tamura_accent_pairs"]
+        counters["tamura_allomorphs_added"] = tamura_counters["tamura_allomorphs_added"]
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
@@ -349,7 +614,15 @@ def main(argv: list[str] | None = None) -> int:
         f"unmatched={counters['corpora_freq_unmatched']}\n"
         f"  FF Ainu Saru POS: categories_set={counters['ff_ainu_categories_set']} "
         f"transitivity_upgraded={counters['ff_ainu_categories_upgraded']} "
-        f"alts_added={counters['ff_ainu_alts_added']}"
+        f"alts_added={counters['ff_ainu_alts_added']}\n"
+        f"  Boundness: bound_flipped={counters.get('bound_flag_applied', 0)} "
+        f"morph_type_upgraded={counters.get('morph_type_upgraded', 0)} "
+        f"bound_pairs_merged={counters.get('bound_pairs_merged', 0)} "
+        f"wikt_bound_promoted={counters.get('wikt_bound_promoted', 0)}\n"
+        f"  Accents: pairs_found={counters.get('accent_pairs_found', 0)} "
+        f"allomorphs_added={counters.get('accent_allomorphs_added', 0)} "
+        f"tamura_pairs={counters.get('tamura_accent_pairs', 0)} "
+        f"tamura_allomorphs_added={counters.get('tamura_allomorphs_added', 0)}"
     )
     return 0
 

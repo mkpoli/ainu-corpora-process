@@ -18,10 +18,34 @@ only empty fields are filled in.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 from morpheme_db.schema import Entry
+
+# Maps accented Latin vowels (used in Tamura / Wiktionary to mark stress
+# or pitch on Ainu transcriptions) back to plain ASCII. This lets us check
+# whether two strings differ *only* in accent marks: ``deaccent(símon-)``
+# returns ``simon-``.
+_ACCENT_TABLE = str.maketrans("áéíóúÁÉÍÓÚ", "aeiouAEIOU")
+
+
+def _deaccent(text: str) -> str:
+    return text.translate(_ACCENT_TABLE)
+
+
+def _has_accent(text: str) -> bool:
+    return any(ch in "áéíóúÁÉÍÓÚ" for ch in text)
+
+
+# Matches ``{{l|ain|TARGET|DISPLAY|...}}``, ``{{l/ain|TARGET|DISPLAY|...}}``,
+# and ``{{m|ain|TARGET|DISPLAY|...}}`` link/mention templates. We extract
+# the (TARGET, DISPLAY) pair and later filter to pairs where DISPLAY
+# differs from TARGET only by accents.
+_ACCENT_LINK_RE = re.compile(
+    r"\{\{(?:l(?:/ain)?|m)\|ain\|([^|}=]+)\|([^|}=]+)(?=[|}])"
+)
 
 # Maps the raw Wiktionary POS labels to the XPOS inventory used elsewhere
 # in this repository (see ``dictionary/XPOS.md``).
@@ -168,16 +192,187 @@ def enrich_with_wiktionary(
                     if xpos not in entry.category_alt:
                         entry.category_alt.append(xpos)
 
-        # Upgrade morph_type when category is unambiguously a structural tag.
-        if entry.morph_type == "root":
-            if entry.category == "pfx":
-                entry.morph_type = "prefix"
-                entry.bound = True
-            elif entry.category == "sfx":
-                entry.morph_type = "suffix"
-                entry.bound = True
+    # Note: the bound/morph_type flip used to live here but is now applied
+    # globally by ``morpheme_db.build._apply_bound_flag`` after every ingest
+    # has finished, so this function only enriches and never structurally
+    # rewrites entries.
 
     return entries
 
 
-__all__ = ["WIKTIONARY_XPOS_MAP", "enrich_with_wiktionary", "load_json_dict"]
+# Wiktionary POS labels that imply a bound morpheme worth promoting to a
+# first-class entry. ``root`` is intentionally excluded — bare roots run a
+# high risk of collision with unrelated NINJAL homographs (e.g. body-part
+# ``mon`` vs the borrowed ``mon`` 門), so they're enriched in place by
+# ``enrich_with_wiktionary`` and (when appropriate) flipped to ``bound`` by
+# the central post-pass, but never used to mint new entries here.
+_BOUND_POS_PROMOTION: dict[str, tuple[str, str]] = {
+    "prefix": ("pfx", "prefix"),
+    "suffix": ("sfx", "suffix"),
+    "adnom": ("adn", "root"),
+}
+
+
+def _canonicalise_affix_lemma(wikt_lemma: str, pos: str) -> str:
+    """Add the appropriate attachment marker for an affix lemma.
+
+    Wiktionary keys are *usually* dashed correctly (``simon-``, ``-te``),
+    but a handful of bare forms slip through (``te`` tagged as suffix,
+    ``i`` tagged as prefix). Normalise to the dashed canonical form so the
+    new entry slots into the morpheme database the same way the seed and
+    Tamura-style sources do.
+    """
+    if pos == "prefix" and not wikt_lemma.endswith("-"):
+        return wikt_lemma + "-"
+    if pos == "suffix" and not wikt_lemma.startswith("-"):
+        return "-" + wikt_lemma
+    return wikt_lemma
+
+
+def _build_form_index(entries: list[Entry]) -> dict[str, Entry]:
+    index: dict[str, Entry] = {}
+    for entry in entries:
+        forms = {entry.lemma, *entry.allomorphs}
+        bare = entry.lemma.strip("-=")
+        if bare:
+            forms.add(bare)
+        for form in forms:
+            if form:
+                index.setdefault(form, entry)
+    return index
+
+
+def promote_wiktionary_bound_lemmas(
+    entries: list[Entry],
+    ja_glosses: dict[str, Any],
+    en_glosses: dict[str, Any],
+) -> int:
+    """Mint entries for Wiktionary-only prefix/suffix/adnominal lemmas.
+
+    The standard enrichment path only modifies existing entries — so a
+    Wiktionary lemma with no NINJAL or seed counterpart (e.g. ``simon-``)
+    never makes it into the morpheme database. This function fills that
+    gap. It only ever creates entries; existing ones are skipped (the
+    regular enrich pass handles them).
+    """
+    index = _build_form_index(entries)
+    created = 0
+    for wikt_lemma, record in ja_glosses.items():
+        if not isinstance(record, dict):
+            continue
+        pos = record.get("pos")
+        promotion = _BOUND_POS_PROMOTION.get(pos)
+        if promotion is None:
+            continue
+        canon = _canonicalise_affix_lemma(wikt_lemma, pos)
+        bare = canon.strip("-=")
+        # Skip only when the canonical (dashed) form is already present —
+        # if just the bare form exists, mint the dashed entry and let the
+        # build-level dedupe pass collapse the pair into the canonical.
+        if canon in index:
+            continue
+        # ...but if a non-canonical existing entry already carries a
+        # structural bound category that contradicts ours (e.g. ``ka``
+        # tagged ``sfx`` for the causative seed), defer to it.
+        bare_entry = index.get(bare) if bare else None
+        if bare_entry is not None and bare_entry.bound and bare_entry.category and bare_entry.category != promotion[0]:
+            continue
+
+        category, morph_type = promotion
+        ja_list = list(record.get("glosses", []))
+        en_record = en_glosses.get(wikt_lemma) or (en_glosses.get(bare) if bare else None)
+        en_list = (
+            list(en_record.get("glosses", [])) if isinstance(en_record, dict) else []
+        )
+        allomorphs: list[str] = []
+        if wikt_lemma != canon:
+            allomorphs.append(wikt_lemma)
+
+        new_entry = Entry(
+            id=f"wiktja:{canon}",
+            lemma=canon,
+            allomorphs=allomorphs,
+            category=category,
+            bound=True,
+            morph_type=morph_type,
+            glosses_jp=ja_list,
+            glosses_en=en_list,
+            sources=["Wiktionary JA"],
+            verified=False,
+        )
+        entries.append(new_entry)
+        index[canon] = new_entry
+        if bare:
+            index[bare] = new_entry
+        for variant in allomorphs:
+            index.setdefault(variant, new_entry)
+        created += 1
+    return created
+
+
+def harvest_wiktionary_accents(
+    entries: list[Entry],
+    wikt_entries_path: Path,
+) -> dict[str, int]:
+    """Collect accent-marked allomorphs from Wiktionary entries.
+
+    Wiktionary JA stores stress/pitch-marked display forms via the
+    ``{{l|ain|TARGET|DISPLAY|...}}`` template — for instance
+    ``{{l|ain|simon-|símon-|t=右}}`` says the bare lemma is ``simon-`` and
+    the accented citation form is ``símon-``. The accent isn't stored on
+    the page title, so without parsing the wikitext we'd lose the only
+    record of where the stress lives.
+
+    This function scans the dumped Wiktionary entries, extracts every
+    ``(target, display)`` pair where the display differs from the target
+    *only* in accents, and registers ``display`` as an allomorph on the
+    matching entry. Existing allomorphs are not duplicated.
+
+    Returns counters describing what was added.
+    """
+    counters = {"accent_pairs_found": 0, "allomorphs_added": 0}
+    if not wikt_entries_path.exists():
+        return counters
+
+    data = json.loads(wikt_entries_path.read_text(encoding="utf-8"))
+    index = _build_form_index(entries)
+
+    seen_pairs: set[tuple[str, str]] = set()
+    for page in data:
+        if not isinstance(page, dict):
+            continue
+        text = page.get("text") or ""
+        for target, display in _ACCENT_LINK_RE.findall(text):
+            if not _has_accent(display):
+                continue
+            if _deaccent(display) != target:
+                continue
+            key = (target, display)
+            if key in seen_pairs:
+                continue
+            seen_pairs.add(key)
+            counters["accent_pairs_found"] += 1
+
+            entry = (
+                index.get(target)
+                or index.get(target.strip("-="))
+                or index.get(_deaccent(target).strip("-="))
+            )
+            if entry is None:
+                continue
+            if display not in entry.allomorphs and display != entry.lemma:
+                entry.allomorphs.append(display)
+                counters["allomorphs_added"] += 1
+                if "Wiktionary JA" not in entry.sources:
+                    entry.sources.append("Wiktionary JA")
+
+    return counters
+
+
+__all__ = [
+    "WIKTIONARY_XPOS_MAP",
+    "enrich_with_wiktionary",
+    "harvest_wiktionary_accents",
+    "load_json_dict",
+    "promote_wiktionary_bound_lemmas",
+]
