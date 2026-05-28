@@ -253,11 +253,12 @@
 					</p>
 				{/if}
 
-				<!-- Wrapper has overflow-x:auto (forces overflow-y:auto in browsers),
-				     so we pad py-3/px-3 to keep the 2px selection ring + offset
-				     from being clipped by the scroll container. -->
-				<div class="flex justify-center overflow-x-auto py-3 px-3">
-					<div class="mx-auto flex justify-center">
+				<!-- Wrapper has overflow-x:auto so the horizontal cascade can
+				     scroll for deeply nested polysynthetic words. py-3/px-3
+				     keeps the 2px selection ring + offset from being clipped
+				     by the scroll container. -->
+				<div class="overflow-x-auto py-3 px-3">
+					<div class="inline-flex">
 						<CompositionTree
 							node={data.composition.tree}
 							{selectedId}
