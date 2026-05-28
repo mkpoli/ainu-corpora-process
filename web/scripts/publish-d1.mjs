@@ -87,13 +87,29 @@ function updateWranglerConfig(name, id) {
 		}
 	],`;
 
+	// The stub starts commented out (``// "d1_databases": [ … ],``) and
+	// gets uncommented on first publish. Subsequent publishes need to
+	// rewrite the active block. Match both shapes — the inactive form
+	// (every line prefixed with ``// ``) and the live block.
+	const commentedBlock = /\t(?:\/\/\s*)?"d1_databases":\s*\[(?:[\s\S]*?(?:\/\/\s*)?)*?\],?/;
+	const liveBlock = /\t"d1_databases":\s*\[[\s\S]*?\],?/;
+
 	let updated;
-	if (/"d1_databases":\s*\[/.test(raw)) {
-		updated = raw.replace(/\t"d1_databases":\s*\[[\s\S]*?\],?/, bindingBlock);
+	if (liveBlock.test(raw)) {
+		updated = raw.replace(liveBlock, bindingBlock);
+	} else if (commentedBlock.test(raw)) {
+		updated = raw.replace(commentedBlock, bindingBlock);
 	} else {
 		// Insert after the "assets" block.
 		updated = raw.replace(/(\t"assets":\s*\{[\s\S]*?\}\s*,)/, `$1\n${bindingBlock}`);
 	}
+
+	if (updated === raw) {
+		throw new Error(
+			'failed to update wrangler.jsonc — no d1_databases anchor found and no assets block to insert after',
+		);
+	}
+
 	writeFileSync(WRANGLER_CONFIG, updated);
 	console.log(`▸ Updated ${path.basename(WRANGLER_CONFIG)} → binding 'DB' → ${name}`);
 }

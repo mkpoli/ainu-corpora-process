@@ -15,13 +15,13 @@
 	// and `database_id` fields are rewritten by `bun run publish:d1`, which
 	// mints a new datetime-suffixed database on each publish and imports the
 	// SQL dump produced by `python -m morpheme_db.export_sqlite`.
-	// "d1_databases": [
-	// 	{
-	// 		"binding": "DB",
-	// 		"database_name": "ainu-mdb-PENDING",
-	// 		"database_id": "PENDING"
-	// 	}
-	// ],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "ainu-mdb-20260528-1836",
+			"database_id": "2876cc92-daa3-4add-86a5-7f155c080a57"
+		}
+	],
 	"routes": [
 		{
 			"pattern": "mdb.aynu.org",
