@@ -71,7 +71,7 @@
           "valency": 1
         }
       ],
-      "note": "Click iki to expand further: iki itself etymologises as i- + ki.",
+      "note": "iki itself etymologises further as i- + ki, expanded inline.",
       "source": "田村1996アイヌ語沙流方言辞典"
     }
   },
@@ -321,6 +321,63 @@
     "glosses_en": ["walk around (plural)"],
     "glosses_jp": ["（複数で）歩き回る"],
     "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kar",
+    "lemma": "kar",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "作る人"},
+        {"role": "patient", "realization": "external", "label_jp": "作られるもの"}
+      ]
+    },
+    "glosses_en": ["make", "act on", "do"],
+    "glosses_jp": ["～を作る", "～に作用する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Anchors a productive derivation family: i-kar (INDEF.OBJ + make), e-kar (APPL + make), ko-kar (APPL.DAT + make), yay-kar (REFL + make), ekarkar (lexicalised reduplication 'do/decorate'), koykar (lexicalised 'imitate'). Also a frequent etymological component (nukar = nu 'eye' + kar; cf. 中川1995)."
+  },
+  {
+    "id": "ikar",
+    "lemma": "ikar",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "kar"],
+    "composition_note": "Lexicalised i-kar (INDEF.OBJ + make), synchronically a one-argument verb 'make (something)'. Parallel to inkar = i-nukar 'look'.",
+    "glosses_en": ["make (something)"],
+    "glosses_jp": ["ものを作る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ekarkar",
+    "lemma": "ekarkar",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "kar", "kar"],
+    "composition_note": "Lexicalised reduplicated e-kar; productive verb 'do (something)' / 'decorate' depending on context. The applicative e- preserves a patient slot; reduplication adds intensifying/iterative force without changing arity.",
+    "glosses_en": ["do", "decorate"],
+    "glosses_jp": ["～をする", "～を飾る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "koykar",
+    "lemma": "koykar",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ko-", "i-", "kar"],
+    "composition_note": "Lexicalised ko-i-kar (APPL.DAT + INDEF.OBJ + make), surface koy-kar with the regular y-epenthesis between ko- and a following i-initial morpheme. Synchronically a two-argument verb 'imitate / model on'.",
+    "glosses_en": ["imitate", "mimic", "model on"],
+    "glosses_jp": ["真似る", "似せる", "模する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
     "verified": true
   },
   {
@@ -1414,6 +1471,20 @@
     "verified": true
   },
   {
+    "id": "ruskare",
+    "lemma": "ruskare",
+    "category": "",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "composition_note": "Not an independently attested standalone morpheme in modern Ainu — surfaces only inside iruskare / koiruskare / ukoiruskare etc. Listed by Batchelor 1938 (hence the Tommy 1949 ingest pulled it in), but the synchronic head is iruska 'be angry at (something)', so causative ruska + -re is bracketed (i-ruska)-re rather than i + ruskare. Kept as a stub so the auto-ingest doesn't overwrite this judgement; see iruskare for the real lemma.",
+    "glosses_en": [],
+    "glosses_jp": [],
+    "sources": ["Tommy 1949"],
+    "verified": true,
+    "notes": "Substring artefact; not a standalone morpheme. See iruskare."
+  },
+  {
     "id": "iruskare",
     "lemma": "iruskare",
     "category": "vt",
@@ -1481,8 +1552,8 @@
     "category": "vt",
     "bound": false,
     "morph_type": "root",
-    "composition": ["u-", "ko-", "i-", "ruska", "-re"],
-    "composition_note": "u- coreferences the ko-added goal with another argument (reciprocal) — 'make several people angry at something at each other'.",
+    "composition": ["u-", "koiruskare"],
+    "composition_note": "Hierarchical: u- (RECIP) over koiruskare. koiruskare itself decomposes as ko-(iruska-re), and iruska as i-ruska — so the inline etymology view expands the full structure. Avoids treating ``ruskare`` as a standalone morpheme, which it isn't synchronically.",
     "base_frame": {
       "slots": [
         {"role": "causer", "realization": "external", "label_jp": "怒らせる人"},

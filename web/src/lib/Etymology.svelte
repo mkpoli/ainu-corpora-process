@@ -140,6 +140,23 @@
 		if (!chipMatchesEntry(part, e)) return true;
 		return chainHasContent(part.derived_from, e);
 	}
+
+	// Cap recursive nested-etymology rendering. Most ainu derivations are
+	// shallow; the cap prevents accidental infinite descent if the data has
+	// a cycle (e.g. circular lemma references between two entries).
+	const NESTED_ETYM_DEPTH = 3;
+
+	/** Return the matched Entry's own etymology when (a) the matched Entry
+	 *  isn't the page's own entry (we don't want to render an entry's
+	 *  etymology inside itself) and (b) the etymology actually has parts
+	 *  to display. Otherwise returns null. */
+	function nestedEtymologyFor(part: EtymologyPart): { parts: EtymologyPart[]; note?: string } | null {
+		const e = partEntry(part);
+		if (!e || e === entry) return null;
+		const etym = e.etymology;
+		if (!etym?.parts?.length) return null;
+		return etym;
+	}
 </script>
 
 {#snippet partChip(part: EtymologyPart)}
@@ -161,7 +178,7 @@
 	</a>
 {/snippet}
 
-{#snippet partColumn(part: EtymologyPart, skipChip = false)}
+{#snippet partColumn(part: EtymologyPart, skipChip = false, depth = NESTED_ETYM_DEPTH)}
 	<div class="flex flex-col items-center gap-1">
 		{#if !skipChip}
 			{@render partChip(part)}
@@ -193,7 +210,31 @@
 				</span>
 			{/if}
 			<span class="h-3 w-px bg-rule"></span>
-			{@render partColumn(part.derived_from, skipDF)}
+			{@render partColumn(part.derived_from, skipDF, depth)}
+		{:else if depth > 0 && !skipChip}
+			{@const nested = nestedEtymologyFor(part)}
+			{#if nested}
+				<!-- The matched morpheme has its own etymology. Expand it
+				     inline as a small nested frame so multi-step chains
+				     (koyki ← ko- + iki ← ko- + i- + ki) read in one view.
+				     Depth-limited to avoid runaway descent on data cycles. -->
+				<span class="mt-1 h-3 w-px bg-rule"></span>
+				<div class="rounded-xl border border-dashed border-ink/25 bg-white/40 px-3 pt-1 pb-2">
+					<div class="mb-1 flex flex-col items-center">
+						<span class="rounded bg-paper px-1 py-[1px] font-mono text-[9px] uppercase tracking-widest text-ink/55 ring-1 ring-rule">
+							{m.kind_etymology()}
+						</span>
+					</div>
+					<div class="flex flex-wrap items-start justify-center gap-3">
+						{#each nested.parts as subPart}
+							{@render partColumn(subPart, false, depth - 1)}
+						{/each}
+					</div>
+					{#if nested.note}
+						<p class="mt-2 text-center text-[10px] italic text-ink/55">{nested.note}</p>
+					{/if}
+				</div>
+			{/if}
 		{/if}
 	</div>
 {/snippet}
