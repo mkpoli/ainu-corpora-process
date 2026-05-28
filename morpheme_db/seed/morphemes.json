@@ -349,7 +349,10 @@
       "中川2024アイヌ語広文典"
     ],
     "verified": true,
-    "notes": "Allomorph distribution: -re after vowel-final stems, -te in restricted contexts, -e elsewhere. Treated as a single morpheme for valency purposes."
+    "reconstructed": {
+      "SRPA": "*-de"
+    },
+    "notes": "Allomorph distribution: -re after vowel-final stems, -te in restricted contexts, -e elsewhere. Treated as a single morpheme for valency purposes. SRPA = Shiratori's Proto-Ainu Reconstruction."
   },
   {
     "id": "-re",

@@ -233,9 +233,28 @@ class Entry:
     valency engine and UI tree use this list as the structural truth, and
     the surface ``lemma`` is shown as the lexicalised head."""
 
+    composition_surface: list[str] = field(default_factory=list)
+    """Source-text surface form for each entry in :attr:`composition`.
+
+    Resolves the allomorph-vs-lemma display mismatch: ``upakte`` decomposes
+    as ``u + pak + te``, but the ``te`` slot resolves to the ``-e`` entry
+    (since ``-e/-re/-te`` are stored as one allomorph cluster). Without a
+    parallel surface array the graph would render ``u-pak-e`` — phono-
+    logically impossible. When this field is empty the renderer falls
+    back to the resolved entry's lemma. Indices align 1:1 with
+    :attr:`composition`."""
+
     composition_note: str = ""
     """Short note explaining the reduction (e.g. ``phonological fusion of
     i-nukar with loss of medial vowel``). Shown in the UI."""
+
+    reconstructed: dict[str, str] = field(default_factory=dict)
+    """Reconstructed proto-forms, keyed by reconstruction-source short name.
+
+    Example: ``{"SRPA": "*-de"}`` for the ``-e/-re/-te`` causative cluster,
+    where ``SRPA`` denotes Shiratori's Proto-Ainu Reconstruction. Values
+    are conventionally prefixed with ``*`` to mark them as reconstructed.
+    Empty when no reconstruction has been recorded."""
 
     etymology: dict[str, Any] | None = None
     """Optional historical / etymological decomposition.
@@ -283,7 +302,9 @@ class Entry:
             "frequency": self.frequency,
             "verified": self.verified,
             "composition": list(self.composition),
+            "composition_surface": list(self.composition_surface),
             "composition_note": self.composition_note,
+            "reconstructed": dict(self.reconstructed),
             "etymology": self.etymology,
         }
         return out
@@ -311,7 +332,9 @@ class Entry:
             frequency=int(data.get("frequency", 0)),
             verified=bool(data.get("verified", False)),
             composition=list(data.get("composition", [])),
+            composition_surface=list(data.get("composition_surface", [])),
             composition_note=data.get("composition_note", ""),
+            reconstructed=dict(data.get("reconstructed", {})),
             etymology=data.get("etymology"),
         )
 

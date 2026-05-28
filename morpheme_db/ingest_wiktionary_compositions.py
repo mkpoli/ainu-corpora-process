@@ -22,6 +22,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from morpheme_db.ingest_tommy1949 import _surface_with_marker
 from morpheme_db.schema import Entry
 
 
@@ -76,6 +77,7 @@ def ingest_wiktionary_compositions(
             continue
 
         resolved_ids: list[str] = []
+        surfaces: list[str] = []
         all_resolved = True
         for key in morpheme_keys:
             entry = index.get(key) or index.get(key.strip("-="))
@@ -83,6 +85,7 @@ def ingest_wiktionary_compositions(
                 all_resolved = False
                 break
             resolved_ids.append(entry.id)
+            surfaces.append(_surface_with_marker(key, entry))
         if not all_resolved:
             skipped += 1
             continue
@@ -100,6 +103,7 @@ def ingest_wiktionary_compositions(
             if existing.verified:
                 continue
             existing.composition = resolved_ids
+            existing.composition_surface = surfaces
             if not existing.composition_note:
                 gloss_pairs = ", ".join(
                     f"{p[0]} '{p[1]}'" for p in raw_parts if isinstance(p, list) and len(p) >= 2
@@ -115,6 +119,7 @@ def ingest_wiktionary_compositions(
                 id=f"wiktja-compound:{lemma}",
                 lemma=lemma,
                 composition=resolved_ids,
+                composition_surface=surfaces,
                 composition_note=(
                     "Composition recorded by Japanese Wiktionary: "
                     + ", ".join(

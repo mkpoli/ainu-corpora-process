@@ -53,7 +53,20 @@ export interface Entry {
 	frequency: number;
 	verified: boolean;
 	composition: string[];
+	/** Source-text surface form for each slot in `composition` — present
+	 * when the upstream ingest (Tommy 1949, Wiktionary) recorded the
+	 * actual form used, which can differ from the resolved entry's lemma
+	 * when allomorphs are clustered (`-te` → entry `-e`). Renderers should
+	 * prefer this over `entry.lemma` for the composition graph so `upakte`
+	 * displays as `u-pak-te` rather than the phonologically impossible
+	 * `u-pak-e`. Empty array (or shorter than `composition`) means fall
+	 * back to the resolved entry's lemma. */
+	composition_surface: string[];
 	composition_note: string;
+	/** Reconstructed proto-forms, keyed by reconstruction-source short
+	 * name (e.g. `SRPA` for Shiratori's Proto-Ainu Reconstruction).
+	 * Values are conventionally prefixed with `*`. */
+	reconstructed: Record<string, string>;
 	etymology?: Etymology | null;
 }
 

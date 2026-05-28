@@ -64,6 +64,7 @@ const ARRAY_FIELDS = [
 	'dialects',
 	'sources',
 	'composition',
+	'composition_surface',
 	'slot'
 ] as const;
 
@@ -83,6 +84,7 @@ function rowToEntry(row: Record<string, unknown>): Entry {
 	}
 	entry.base_frame = parseJson(row.base_frame, null);
 	entry.etymology = parseJson(row.etymology, null);
+	entry.reconstructed = parseJson(row.reconstructed, {});
 	entry.bound = !!row.bound;
 	entry.verified = !!row.verified;
 	entry.frequency = Number(row.frequency ?? 0);
