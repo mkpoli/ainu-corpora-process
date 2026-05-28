@@ -112,8 +112,11 @@ def _entry_to_row(entry: Entry) -> str:
 
 
 def export(entries: list[Entry], schema_version: str, built_at: str) -> str:
+    # D1's remote import (wrangler ≥4.91) rejects explicit ``BEGIN
+    # TRANSACTION`` / ``SAVEPOINT`` statements — the import API batches the
+    # statements itself and runs them in a managed transaction. We emit a
+    # plain sequence of DDL + INSERTs and let wrangler handle atomicity.
     lines: list[str] = [SCHEMA]
-    lines.append("BEGIN TRANSACTION;")
     lines.append(
         f"INSERT OR REPLACE INTO db_meta(key, value) VALUES "
         f"({_quote('schema_version')}, {_quote(schema_version)}),"
@@ -122,7 +125,6 @@ def export(entries: list[Entry], schema_version: str, built_at: str) -> str:
     )
     for entry in entries:
         lines.append(_entry_to_row(entry))
-    lines.append("COMMIT;")
     return "\n".join(lines) + "\n"
 
 
