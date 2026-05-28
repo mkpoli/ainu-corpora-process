@@ -41,6 +41,39 @@ def clean_field(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
 
 
+# Fallback: some Gemini outputs emit `Lemma, カナ, body` on one line without
+# tabs. Recover three columns from that. Body is optional (terse entries
+# may stop after the kana).
+_LEMMA_PART_RE = re.compile(r"^(?P<lemma>[A-Z][A-Za-z0-9'’\-]+(?:\s+[a-zA-Z'’\-]+){0,3})\s*,\s*")
+_KANA_PART_RE = re.compile(r"^(?P<kana>[ァ-ヴーㇰ-ㇿ・、][^,]*?)\s*(?:[,.]|$)")
+
+
+def maybe_resplit(lemma: str, kana: str, body: str) -> tuple[str, str, str]:
+    """If the lemma column still contains an embedded `Lemma, カナ[, body]`
+    pattern (Gemini emitted it without tabs), split into proper fields.
+    Runs both when the body/kana are empty AND when they're populated but
+    the lemma still has trailing text."""
+    text = lemma
+    m1 = _LEMMA_PART_RE.match(text)
+    if not m1:
+        return lemma, kana, body
+    rest = text[m1.end():]
+    m2 = _KANA_PART_RE.match(rest)
+    if not m2:
+        return lemma, kana, body
+    new_lemma = clean_field(m1["lemma"])
+    new_kana = clean_field(m2["kana"])
+    # If a body was already supplied via the tab, prefer it; otherwise pull
+    # the rest from the lemma string.
+    extra = clean_field(rest[m2.end():])
+    if body and extra and body != extra:
+        # Concatenate — sometimes Gemini emitted both halves.
+        new_body = clean_field(body + " " + extra)
+    else:
+        new_body = body or extra
+    return new_lemma, kana or new_kana, new_body
+
+
 def main() -> None:
     # Back up existing original.tsv as the bbox-layout reference.
     if TSV_OUT.exists() and not TSV_BACKUP.exists():
@@ -85,6 +118,7 @@ def main() -> None:
             lemma = clean_field(parts[0])
             kana = clean_field(parts[1])
             body = clean_field("\t".join(parts[2:]))
+            lemma, kana, body = maybe_resplit(lemma, kana, body)
             if not lemma:
                 continue
             rows.append(
