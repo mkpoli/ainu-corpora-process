@@ -130,7 +130,7 @@
 	onpointerup={onPointerUp}
 	onpointercancel={onPointerUp}
 	onclickcapture={onClickCapture}
-	class="relative overflow-hidden rounded-2xl bg-paper/30 ring-1 ring-rule"
+	class="relative overflow-hidden rounded-2xl bg-paper/30 ring-1 ring-rule select-none"
 	style:height
 	style:touch-action="none"
 	style:cursor={panning ? 'grabbing' : 'grab'}
