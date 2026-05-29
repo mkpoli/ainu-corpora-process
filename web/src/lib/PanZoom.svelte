@@ -30,8 +30,11 @@
 
 	function onWheel(e: WheelEvent) {
 		// ctrl/cmd + wheel → zoom toward cursor (standard convention).
-		// Plain wheel / trackpad scroll → pan in two axes (matches how
-		// graph editors like Figma / Lucidchart behave).
+		// shift + wheel → horizontal scroll (treats the vertical wheel
+		//   delta as horizontal pan; matches the OS convention for
+		//   scrolling the secondary axis with a one-axis mouse wheel).
+		// Plain wheel / trackpad scroll → pan in both axes (matches how
+		//   graph editors like Figma / Lucidchart behave).
 		if (!container) return;
 		e.preventDefault();
 		const rect = container.getBoundingClientRect();
@@ -43,6 +46,9 @@
 			tx = cx - (cx - tx) * k;
 			ty = cy - (cy - ty) * k;
 			scale = next;
+		} else if (e.shiftKey) {
+			// Pure horizontal pan; use whichever delta the device provided.
+			tx -= e.deltaY || e.deltaX;
 		} else {
 			tx -= e.deltaX;
 			ty -= e.deltaY;
@@ -182,6 +188,6 @@
 	<!-- Tiny hint at the bottom-left so first-time users know the area is
 	     interactive. -->
 	<p class="pointer-events-none absolute bottom-2 left-3 text-[10px] italic text-ink/45">
-		drag to pan · scroll / ⌘-wheel to zoom
+		drag to pan · scroll to move · shift-scroll = horizontal · ⌘-scroll to zoom
 	</p>
 </div>
