@@ -164,6 +164,49 @@
 		if (mt === 'prefix' || mt === 'suffix' || mt === 'clitic') return mt;
 		return entry.category || mt || null;
 	}
+
+	function sideOf(n: CompositionNode): 'prefix' | 'suffix' | null {
+		if (n.side) return n.side;
+		if (n.kind === 'prefix' || n.kind === 'suffix') return n.kind;
+		return null;
+	}
+
+	/**
+	 * Walk down the wrap chain, collecting consecutive same-direction
+	 * affixes whose affix slot is itself a leaf chip. Stops at any wrap
+	 * whose affix is non-leaf (incorporation / internal subtree) or at a
+	 * pure leaf. Returns null when the chain only has one level — those
+	 * use the existing binary rendering.
+	 *
+	 * Effect: polysynthetic words like aeyaykotuymasiramsuypa render their
+	 * a= / e- / yay- / ko- chain as a *single* horizontal row instead of
+	 * the previous N-deep vertical staircase, while keeping the binary
+	 * layout for incorporation / lexical subtrees where the structural
+	 * bracket genuinely matters.
+	 */
+	function flattenAffixChain(n: CompositionNode): {
+		prefixes: CompositionNode[];
+		suffixes: CompositionNode[];
+		core: CompositionNode;
+	} | null {
+		const prefixes: CompositionNode[] = [];
+		const suffixes: CompositionNode[] = [];
+		let current: CompositionNode = n;
+		while (true) {
+			if (current.isLeaf) break;
+			if (!current.affix || !current.body) break;
+			if (!current.affix.isLeaf) break;
+			const side = sideOf(current);
+			if (!side) break;
+			if (side === 'prefix') prefixes.push(current.affix);
+			else suffixes.unshift(current.affix); // outermost suffix is rightmost
+			current = current.body;
+		}
+		if (prefixes.length + suffixes.length < 2) return null;
+		return { prefixes, suffixes, core: current };
+	}
+
+	const flattenedChain = $derived(isLeaf ? null : flattenAffixChain(node));
 </script>
 
 <div class="flex flex-col items-center gap-3">
@@ -307,7 +350,48 @@
 		</div>
 
 		<div class="flex flex-wrap items-start justify-center gap-6">
-			{#if sideIsPrefix}
+			{#if flattenedChain}
+				{#each flattenedChain.prefixes as pfx (pfx)}
+					<CompositionTree
+						node={pfx}
+						{selectedId}
+						depth={depth + 1}
+						{onSelect}
+						{subtrees}
+						{expanded}
+						{onToggleExpand}
+						{entryById}
+						ancestors={childAncestors}
+						{matchedEntryId}
+					/>
+				{/each}
+				<CompositionTree
+					node={flattenedChain.core}
+					{selectedId}
+					depth={depth + 1}
+					{onSelect}
+					{subtrees}
+					{expanded}
+					{onToggleExpand}
+					{entryById}
+					ancestors={childAncestors}
+					{matchedEntryId}
+				/>
+				{#each flattenedChain.suffixes as sfx (sfx)}
+					<CompositionTree
+						node={sfx}
+						{selectedId}
+						depth={depth + 1}
+						{onSelect}
+						{subtrees}
+						{expanded}
+						{onToggleExpand}
+						{entryById}
+						ancestors={childAncestors}
+						{matchedEntryId}
+					/>
+				{/each}
+			{:else if sideIsPrefix}
 				{#if node.affix}
 					<CompositionTree
 					node={node.affix}
