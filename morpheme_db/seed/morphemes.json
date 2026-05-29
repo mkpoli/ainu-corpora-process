@@ -2180,6 +2180,560 @@
     "notes": "Base for easkay 'be able to'."
   },
   {
+    "id": "ney",
+    "lemma": "ney",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["where"],
+    "glosses_jp": ["どこ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Interrogative locative. Auto-decomposition ne + hi is a surface-string artefact — synchronically a single pronoun."
+  },
+  {
+    "id": "sino",
+    "lemma": "sino",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["really", "truly", "very"],
+    "glosses_jp": ["本当に", "真に"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Intensifying adverb. Synchronically opaque; auto-decomp si- + -no mixes the reflexive prefix and the adverbialiser, which is implausible."
+  },
+  {
+    "id": "sisam",
+    "lemma": "sisam",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["Japanese person", "Wajin", "non-Ainu"],
+    "glosses_jp": ["和人", "シサム", "日本人"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Ethnonym for ethnic Japanese. The surface si + sam substrings are coincidental — not derivable from si- 'reflexive' + sam 'side'."
+  },
+  {
+    "id": "asinuma",
+    "lemma": "asinuma",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["I", "1SG (formal/narrative)"],
+    "glosses_jp": ["私（不定人称単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Indefinite-person singular pronoun, used as a formal/narrative 1SG (the speaker in yukar epics). The auto-decomp a= + sinuma fails because sinuma is not an independent root."
+  },
+  {
+    "id": "sake",
+    "lemma": "sake",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["sake", "rice wine", "alcoholic drink"],
+    "glosses_jp": ["酒", "サケ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Loan from Japanese 酒. The auto-decomp sa + -ke is a coincidence with the productive -ke transitivising suffix."
+  },
+  {
+    "id": "ran",
+    "lemma": "ran",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "降りる人"}
+      ]
+    },
+    "composition": [],
+    "glosses_en": ["descend.SG", "come down.SG", "fall.SG"],
+    "glosses_jp": ["降りる（単数）", "下りる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Singular counterpart of rap 'descend.PL'. Auto-decomp ra + -n is wrong — ran is a single root."
+  },
+  {
+    "id": "neun",
+    "lemma": "neun",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["how", "in what way"],
+    "glosses_jp": ["どのように", "なんとか"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Manner interrogative. Possibly historically ne + un but synchronically a single adverb."
+  },
+  {
+    "id": "ek",
+    "lemma": "ek",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "来る人"}
+      ]
+    },
+    "glosses_en": ["come.SG"],
+    "glosses_jp": ["来る（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive singular counterpart of arki 'come.PL'."
+  },
+  {
+    "id": "arki",
+    "lemma": "arki",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "来る人々"}
+      ]
+    },
+    "glosses_en": ["come.PL"],
+    "glosses_jp": ["来る（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive plural counterpart of ek 'come.SG'."
+  },
+  {
+    "id": "oman",
+    "lemma": "oman",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "行く人"}
+      ]
+    },
+    "glosses_en": ["go.SG"],
+    "glosses_jp": ["行く（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Singular counterpart of paye 'go.PL'."
+  },
+  {
+    "id": "poro",
+    "lemma": "poro",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "大きいもの"}
+      ]
+    },
+    "glosses_en": ["be big", "be old"],
+    "glosses_jp": ["大きい", "古い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Stative intransitive verb (formal class 'adjective' in some traditions). Pairs with pon 'be small'."
+  },
+  {
+    "id": "pon",
+    "lemma": "pon",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "小さいもの"}
+      ]
+    },
+    "glosses_en": ["be small", "be young"],
+    "glosses_jp": ["小さい", "若い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "wen",
+    "lemma": "wen",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "悪い人/もの"}
+      ]
+    },
+    "glosses_en": ["be bad", "be evil"],
+    "glosses_jp": ["悪い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "cis",
+    "lemma": "cis",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "泣く人"}
+      ]
+    },
+    "glosses_en": ["cry", "weep"],
+    "glosses_jp": ["泣く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ahun",
+    "lemma": "ahun",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "入る人"}
+      ]
+    },
+    "glosses_en": ["enter.SG"],
+    "glosses_jp": ["入る（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Singular counterpart of ahup 'enter.PL'."
+  },
+  {
+    "id": "ahup",
+    "lemma": "ahup",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "入る人々"}
+      ]
+    },
+    "glosses_en": ["enter.PL"],
+    "glosses_jp": ["入る（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of ahun 'enter.SG'."
+  },
+  {
+    "id": "hosipi",
+    "lemma": "hosipi",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "帰る人"}
+      ]
+    },
+    "glosses_en": ["return", "go home"],
+    "glosses_jp": ["帰る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "hotke",
+    "lemma": "hotke",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "横になる人"}
+      ]
+    },
+    "glosses_en": ["lie down", "go to bed"],
+    "glosses_jp": ["横になる", "寝る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "mokor",
+    "lemma": "mokor",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "眠る人"}
+      ]
+    },
+    "glosses_en": ["sleep"],
+    "glosses_jp": ["眠る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "apkas",
+    "lemma": "apkas",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "歩く人"}
+      ]
+    },
+    "glosses_en": ["walk"],
+    "glosses_jp": ["歩く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kira",
+    "lemma": "kira",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "逃げる人"}
+      ]
+    },
+    "glosses_en": ["flee", "run away"],
+    "glosses_jp": ["逃げる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "rewsi",
+    "lemma": "rewsi",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "泊まる人"}
+      ]
+    },
+    "glosses_en": ["stay overnight", "lodge"],
+    "glosses_jp": ["泊まる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "pase",
+    "lemma": "pase",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "重いもの"}
+      ]
+    },
+    "glosses_en": ["be heavy", "be weighty"],
+    "glosses_jp": ["重い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "onkami",
+    "lemma": "onkami",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "拝礼する人"}
+      ]
+    },
+    "glosses_en": ["worship", "bow", "pray"],
+    "glosses_jp": ["拝礼する", "拝む"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "okere",
+    "lemma": "okere",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "終える人"},
+        {"role": "patient", "realization": "external", "label_jp": "終えられること"}
+      ]
+    },
+    "glosses_en": ["finish", "complete"],
+    "glosses_jp": ["～を終える", "～を完了する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "uk",
+    "lemma": "uk",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "取る人"},
+        {"role": "patient", "realization": "external", "label_jp": "取られるもの"}
+      ]
+    },
+    "glosses_en": ["take.SG", "pick up.SG"],
+    "glosses_jp": ["～を取る（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "nuye",
+    "lemma": "nuye",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "彫る人"},
+        {"role": "patient", "realization": "external", "label_jp": "彫られるもの"}
+      ]
+    },
+    "glosses_en": ["carve", "engrave", "write"],
+    "glosses_jp": ["～を彫る", "～を書く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "epunkine",
+    "lemma": "epunkine",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "守る人"},
+        {"role": "patient", "realization": "external", "label_jp": "守られるもの"}
+      ]
+    },
+    "glosses_en": ["protect", "guard", "watch over"],
+    "glosses_jp": ["～を守る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "anu",
+    "lemma": "anu",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "置く人"},
+        {"role": "patient", "realization": "external", "label_jp": "置かれるもの"}
+      ]
+    },
+    "glosses_en": ["put.SG", "place.SG"],
+    "glosses_jp": ["～を置く（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive singular counterpart of ari 'put.PL'."
+  },
+  {
+    "id": "sitoma",
+    "lemma": "sitoma",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "恐れる人"},
+        {"role": "patient", "realization": "external", "label_jp": "恐れの対象"}
+      ]
+    },
+    "glosses_en": ["fear", "be afraid of"],
+    "glosses_jp": ["～を恐れる", "～を怖がる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "nomi",
+    "lemma": "nomi",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "祭る人"},
+        {"role": "patient", "realization": "external", "label_jp": "祭られる神/霊"}
+      ]
+    },
+    "glosses_en": ["worship", "make ritual offering to"],
+    "glosses_jp": ["～を祭る", "～に祈る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Typically used of ritual offerings to kamuy (deities/spirits)."
+  },
+  {
+    "id": "soytak",
+    "lemma": "soytak",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "語る人"},
+        {"role": "patient", "realization": "external", "label_jp": "語られる事柄"}
+      ]
+    },
+    "glosses_en": ["tell", "narrate", "speak about"],
+    "glosses_jp": ["～を語る", "～について話す"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for isoytak (i-soytak 'tell a story'), koisoytak (ko-isoytak 'tell to someone'), ukoisoytak / ewkoysoytak (reciprocal/applicative chains)."
+  },
+  {
+    "id": "isoytak",
+    "lemma": "isoytak",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "soytak"],
+    "composition_note": "i- (INDEF.OBJ) + soytak 'tell' → 'tell a story / speak about something'. Overrides the NINJAL auto-decomposition iso + itak, which is a surface-substring artefact: iso 'game animal' + itak 'word' doesn't compose to 'tell a story'.",
+    "glosses_en": ["tell a story", "narrate", "speak"],
+    "glosses_jp": ["物語る", "話す"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true
+  },
+  {
+    "id": "koisoytak",
+    "lemma": "koisoytak",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ko-", "isoytak"],
+    "composition_note": "ko- (APPL.DAT) + isoytak 'tell a story' → 'tell a story to someone'. Surface form koysoytak (with y-epenthesis between ko- and i-) is the same morpheme.",
+    "glosses_en": ["tell (someone) a story", "narrate to"],
+    "glosses_jp": ["～に物語る", "話して聞かせる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "allomorphs": ["koysoytak"]
+  },
+  {
+    "id": "ukoisoytak",
+    "lemma": "ukoisoytak",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["u-", "koisoytak"],
+    "composition_note": "u- (RECIP) over koisoytak → 'tell stories to each other / converse'. The reciprocal saturates the ko-introduced goal slot. Surface ukoysoytak with the same phonology as koysoytak.",
+    "glosses_en": ["converse", "tell each other stories", "chat"],
+    "glosses_jp": ["互いに語り合う", "話し合う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "ブガエワ2014アイヌ語使役構文に関する再考察"],
+    "verified": true,
+    "allomorphs": ["ukoysoytak"]
+  },
+  {
     "id": "nen",
     "lemma": "nen",
     "category": "pron",

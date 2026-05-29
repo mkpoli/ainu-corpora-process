@@ -18,6 +18,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from morpheme_db.ingest_ff_ainu import enrich_with_ff_ainu, load_ff_ainu_pos
+from morpheme_db.ingest_tamura import enrich_with_tamura, parse_tamura_entries
 from morpheme_db.ingest_ninjal import ingest_ninjal_lexicon, merge_with_seed
 from morpheme_db.ingest_wiktionary import (
     enrich_with_wiktionary,
@@ -443,6 +444,18 @@ def build(
     else:
         ff_counters = {"categories_set": 0, "categories_upgraded": 0, "alts_added": 0}
 
+    tamura_pos_counters = {
+        "categories_set": 0,
+        "categories_alt": 0,
+        "bound_flipped": 0,
+        "morph_type_upgraded": 0,
+        "new_entries": 0,
+        "glosses_added": 0,
+    }
+    if TAMURA_ENTRIES_PATH.exists():
+        tamura_rows = parse_tamura_entries(TAMURA_ENTRIES_PATH)
+        tamura_pos_counters = enrich_with_tamura(entries, tamura_rows)
+
     counters = {
         "wikt_compositions_attached": 0,
         "wikt_compositions_skipped": 0,
@@ -462,6 +475,12 @@ def build(
         "ff_ainu_categories_upgraded": ff_counters["categories_upgraded"],
         "ff_ainu_alts_added": ff_counters["alts_added"],
         "wikt_bound_promoted": promoted_bound,
+        "tamura_pos_categories_set": tamura_pos_counters["categories_set"],
+        "tamura_pos_categories_alt": tamura_pos_counters["categories_alt"],
+        "tamura_pos_bound_flipped": tamura_pos_counters["bound_flipped"],
+        "tamura_pos_morph_type_upgraded": tamura_pos_counters["morph_type_upgraded"],
+        "tamura_pos_new_entries": tamura_pos_counters["new_entries"],
+        "tamura_pos_glosses_added": tamura_pos_counters["glosses_added"],
     }
     if wikt_compositions_path and wikt_compositions_path.exists():
         comps = load_compositions(wikt_compositions_path)
@@ -675,7 +694,12 @@ def main(argv: list[str] | None = None) -> int:
         f"allomorphs_added={counters.get('accent_allomorphs_added', 0)} "
         f"tamura_pairs={counters.get('tamura_accent_pairs', 0)} "
         f"tamura_allomorphs_added={counters.get('tamura_allomorphs_added', 0)}\n"
-        f"  Allomorph cleanup: dropped={counters.get('allomorphs_dropped_noise', 0)}"
+        f"  Allomorph cleanup: dropped={counters.get('allomorphs_dropped_noise', 0)}\n"
+        f"  Tamura POS: cat_set={counters.get('tamura_pos_categories_set', 0)} "
+        f"cat_alt={counters.get('tamura_pos_categories_alt', 0)} "
+        f"bound_flipped={counters.get('tamura_pos_bound_flipped', 0)} "
+        f"new_entries={counters.get('tamura_pos_new_entries', 0)} "
+        f"glosses_added={counters.get('tamura_pos_glosses_added', 0)}"
     )
     return 0
 
