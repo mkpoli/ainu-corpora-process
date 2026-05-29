@@ -42,6 +42,19 @@ curated seed:
 | `nukar-yar`   | 2     | `-yar` adds causer, demotes original subject   |
 | `i-nukar`     | 1     | `i-` saturates the patient with INDEF          |
 
+A parallel example group is anchored at `kar` (make / act on), to show
+the same productive affixes operating on a second base verb:
+
+| input         | arity | what changed                                          |
+|---------------|-------|-------------------------------------------------------|
+| `kar`         | 2     | maker + thing-made (base)                             |
+| `i-kar`       | 1     | `i-` saturates the patient → `ikar` 'make something'  |
+| `yay-kar`     | 1     | `yay-` internalises the patient → 'make oneself'      |
+| `ko-kar`      | 3     | applicative `ko-` adds a goal slot                    |
+| `kar-e`       | 3     | causative `-e` adds an external causer                |
+| `e-kar-kar`   | 2     | lexicalised `ekarkar` 'do / decorate' (reduplication) |
+| `ko-i-kar`    | 2     | lexicalised `koykar` 'imitate' (with y-epenthesis)    |
+
 Noun incorporation is supported on the engine side via a one-shot
 `internalize` rule (see the `test_noun_incorporation_absorbs_patient` test).
 The seed leaves `cep`, `kamuy`, etc. without that rule because whether a
