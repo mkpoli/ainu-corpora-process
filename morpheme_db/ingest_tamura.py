@@ -74,19 +74,54 @@ _TAG_RE = re.compile(r"【([^】]+)】")
 _GLOSS_TRIM_RE = re.compile(r"[｡。｟☆☞]|(?:\s[a-zA-Z][a-zA-Z\-=]+\s)")
 
 
+# Cross-reference / pointer fragments that Tamura uses to direct readers
+# to a related entry (e.g. "(複は…", "(単は…", "(概は…", "(=…", "→…").
+# When the gloss starts with one of these it's not a real definition;
+# we strip the fragment and continue, or fall through to empty if nothing
+# else remains.
+_GLOSS_POINTER_RE = re.compile(
+    r"^[\s　]*(?:[\[（(]\s*(?:複|単|概|所|=|＝|→|☞|cf\.?|参照)[^\)\]）]*[\)\]）][\s　]*)+",
+    re.IGNORECASE,
+)
+
+
 def _parse_gloss(definition: str, tag_end_index: int) -> str:
     tail = definition[tag_end_index:]
-    # Many Tamura entries open with a parenthesised meta-note before the
-    # gloss; skip the first parenthesised group only when it isn't itself
-    # the gloss.
-    paren_match = re.match(r"^[\[\(（][^\]\)）]*[\]\)）]", tail)
-    if paren_match:
-        tail = tail[paren_match.end():]
-    # Cut at the first sentence terminator / example marker.
+
+    # Iteratively peel off the noise prefixes Tamura puts in front of
+    # the actual gloss. Run BEFORE cutting at the sentence terminator
+    # because pointer fragments like ``(複は respa レㇱパ)`` contain
+    # Latin words that would otherwise look like an example marker
+    # mid-paren and end the cut too early.
+    for _ in range(8):
+        original = tail
+        # Strip leading whitespace / orphan punctuation including the
+        # close-brackets left by a previous paren match.
+        tail = re.sub(
+            r"^[\s　、,;:\]\)）①②③④⑤⑥⑦⑧⑨⑩]+",
+            "",
+            tail,
+        )
+        # Drop leading pointer / cross-reference fragments.
+        tail = _GLOSS_POINTER_RE.sub("", tail)
+        # Drop a single leading parenthesised meta-note, allowing one
+        # level of nested parens inside (e.g. ``(複は respa(レㇱパ))``).
+        paren_match = re.match(
+            r"^[\[\(（](?:[^\[\(（\]\)）]|[\[\(（][^\]\)）]*[\]\)）])*[\]\)）]",
+            tail,
+        )
+        if paren_match:
+            tail = tail[paren_match.end():]
+        if tail == original:
+            break
+
+    # Now cut at the first sentence terminator / example marker.
     m = _GLOSS_TRIM_RE.search(tail)
     if m:
         tail = tail[: m.start()]
-    return tail.strip().strip("、,;")
+
+    # Final trim of trailing punctuation residue.
+    return tail.strip().rstrip("、,;:")
 
 
 def parse_tamura_entries(path: Path) -> list[dict[str, str]]:
