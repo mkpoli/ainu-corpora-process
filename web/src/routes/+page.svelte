@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import CompositionTree from '$lib/CompositionTree.svelte';
 	import Etymology from '$lib/Etymology.svelte';
+	import PanZoom from '$lib/PanZoom.svelte';
 	import LocaleSwitcher from '$lib/LocaleSwitcher.svelte';
 	import MorphemeDetail from '$lib/MorphemeDetail.svelte';
 	import * as m from '$lib/paraglide/messages.js';
@@ -253,12 +254,13 @@
 					</p>
 				{/if}
 
-				<!-- Wrapper has overflow-x:auto so the horizontal cascade can
-				     scroll for deeply nested polysynthetic words. py-3/px-3
-				     keeps the 2px selection ring + offset from being clipped
-				     by the scroll container. -->
-				<div class="overflow-x-auto py-3 px-3">
-					<div class="inline-flex">
+				<!-- PanZoom wrapper: long polysynthetic words like
+				     eyaykotuymasiramsuypa overflow the page when drawn at
+				     1:1, so the canvas lets the user drag-to-pan and
+				     scroll/⌘-wheel to zoom while keeping the original
+				     top-down tree layout. -->
+				<PanZoom>
+					<div class="flex justify-center py-3 px-3">
 						<CompositionTree
 							node={data.composition.tree}
 							{selectedId}
@@ -270,7 +272,7 @@
 							matchedEntryId={data.composition.matchedEntry?.id ?? null}
 						/>
 					</div>
-				</div>
+				</PanZoom>
 
 				{#if compositionHead?.etymology && !expanded.has(compositionHead.id)}
 					<!-- Top-level etymology summary, shown only while the head's

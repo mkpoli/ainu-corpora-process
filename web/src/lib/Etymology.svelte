@@ -141,10 +141,12 @@
 		return chainHasContent(part.derived_from, e);
 	}
 
-	// Horizontal cascade absorbs deep chains via horizontal scroll, so we
-	// can lift the depth cap entirely. The number stays as a guard against
-	// runaway recursion from cycles in the data.
-	const NESTED_ETYM_DEPTH = 12;
+	// Cap recursive nested-etymology rendering. Most Ainu derivations are
+	// 2-3 morphemes deep; capping at 2 keeps multi-step chains
+	// (koyki → ko- + (i- + ki)) readable as a tree without ballooning into
+	// a tall vertical column for long polysynthetic words like
+	// yaykosiramsuypa or ewkoysoytak.
+	const NESTED_ETYM_DEPTH = 2;
 
 	/** Return the matched Entry's own etymology when (a) the matched Entry
 	 *  isn't the page's own entry (we don't want to render an entry's
@@ -179,17 +181,18 @@
 {/snippet}
 
 {#snippet partColumn(part: EtymologyPart, skipChip = false, depth = NESTED_ETYM_DEPTH)}
-	<!-- Horizontal cascade: chip on the left, any further derivation /
-	     nested etymology grows to the right. Siblings at any one level
-	     stack vertically inside the next-right container. -->
-	<div class="flex flex-row items-center gap-2">
+	<div class="flex flex-col items-center gap-1">
 		{#if !skipChip}
 			{@render partChip(part)}
 		{/if}
 		{#if part.derived_from && chainHasContent(part.derived_from, entry)}
 			{@const skipDF = chipMatchesEntry(part.derived_from, entry)}
+			<!-- Vertical derivation connector + label inside the part column.
+			     The label names the process only — the underlying chip already
+			     carries the +N valency badge, so we don't duplicate the delta
+			     here. Details are on /processes. -->
 			{#if !skipChip}
-				<span class="h-px w-2 bg-rule"></span>
+				<span class="h-3 w-px bg-rule"></span>
 			{/if}
 			{@const href = processHref(part.process)}
 			{@const label = processLabel(part.process)}
@@ -208,23 +211,29 @@
 					{label}
 				</span>
 			{/if}
-			<span class="h-px w-2 bg-rule"></span>
+			<span class="h-3 w-px bg-rule"></span>
 			{@render partColumn(part.derived_from, skipDF, depth)}
 		{:else if depth > 0 && !skipChip}
 			{@const nested = nestedEtymologyFor(part)}
 			{#if nested}
-				<span class="h-px w-2 bg-rule"></span>
-				<div class="flex flex-row items-center gap-2 rounded-xl border border-dashed border-ink/25 bg-white/40 px-2 py-1">
-					<span class="rounded bg-paper px-1 py-[1px] font-mono text-[9px] uppercase tracking-widest text-ink/55 ring-1 ring-rule">
-						{m.kind_etymology()}
-					</span>
-					<div class="flex flex-col items-start gap-2">
+				<!-- The matched morpheme has its own etymology. Expand it
+				     inline as a small nested frame so multi-step chains
+				     (koyki ← ko- + iki ← ko- + i- + ki) read in one view.
+				     Depth-limited to avoid runaway descent on data cycles. -->
+				<span class="mt-1 h-3 w-px bg-rule"></span>
+				<div class="rounded-xl border border-dashed border-ink/25 bg-white/40 px-3 pt-1 pb-2">
+					<div class="mb-1 flex flex-col items-center">
+						<span class="rounded bg-paper px-1 py-[1px] font-mono text-[9px] uppercase tracking-widest text-ink/55 ring-1 ring-rule">
+							{m.kind_etymology()}
+						</span>
+					</div>
+					<div class="flex flex-wrap items-start justify-center gap-3">
 						{#each nested.parts as subPart}
 							{@render partColumn(subPart, false, depth - 1)}
 						{/each}
 					</div>
 					{#if nested.note}
-						<span class="ml-1 text-[10px] italic text-ink/55">{nested.note}</span>
+						<p class="mt-2 text-center text-[10px] italic text-ink/55">{nested.note}</p>
 					{/if}
 				</div>
 			{/if}
@@ -239,7 +248,7 @@
 	<div class="-mb-3 flex flex-col items-center">
 		<span class="h-3 w-px bg-rule"></span>
 	</div>
-	<section class="overflow-x-auto rounded-2xl border-2 border-dashed border-ink/40 bg-white/70 p-4 pt-2">
+	<section class="rounded-2xl border-2 border-dashed border-ink/40 bg-white/70 p-4 pt-2">
 		<!-- The "etymology" bracket label sits at the top, immediately under
 		     the inbound connector. -->
 		<div class="flex flex-col items-center">
@@ -252,9 +261,7 @@
 		</div>
 
 		{#if etymology.parts && etymology.parts.length}
-			<!-- Top-level parts stack vertically; each part's own derivation
-			     grows to the right via the partColumn cascade. -->
-			<div class="flex flex-col items-start gap-3">
+			<div class="flex flex-wrap items-start justify-center gap-4">
 				{#each etymology.parts as part}
 					{#if chainHasContent(part, entry)}
 						{@render partColumn(part, chipMatchesEntry(part, entry))}

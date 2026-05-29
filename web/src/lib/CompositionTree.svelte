@@ -166,7 +166,7 @@
 	}
 </script>
 
-<div class="flex flex-row items-center gap-2">
+<div class="flex flex-col items-center gap-3">
 	{#if isLeaf}
 		<button
 			type="button"
@@ -203,8 +203,8 @@
 			{#if isExpanded}
 				{@const subEntry = entryById[node.entry.id] ?? node.entry}
 				{@const sub = subtrees[node.entry.id]}
-				<div class="flex flex-row items-center">
-					<span class="h-px w-2 bg-rule"></span>
+				<div class="flex flex-col items-center">
+					<span class="h-2 w-px bg-rule"></span>
 					<button
 						type="button"
 						onclick={handleToggle}
@@ -213,9 +213,9 @@
 					>
 						−
 					</button>
-					<span class="h-px w-2 bg-rule"></span>
+					<span class="h-2 w-px bg-rule"></span>
 				</div>
-				<div class="flex flex-col items-start gap-2">
+				<div class="flex flex-col items-center gap-2">
 					{#if sub}
 						<CompositionTree
 							node={sub}
@@ -241,7 +241,7 @@
 					onclick={handleToggle}
 					aria-label="expand further derivations"
 					title="expand further derivations"
-					class="ml-1 rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/55 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+					class="mt-1 rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/55 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
 				>
 					…
 				</button>
@@ -297,16 +297,16 @@
 			</div>
 		{/if}
 
-		<!-- Connector + bracket label (horizontal cascade) -->
-		<div class="flex flex-row items-center">
-			<span class="h-px w-3 bg-rule"></span>
+		<!-- Connector + bracket label -->
+		<div class="flex flex-col items-center">
+			<span class="h-3 w-px bg-rule"></span>
 			<span class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/60 ring-1 ring-rule">
 				{KIND_LABEL[node.kind]?.() ?? node.kind}
 			</span>
-			<span class="h-px w-3 bg-rule"></span>
+			<span class="h-3 w-px bg-rule"></span>
 		</div>
 
-		<div class="flex flex-col items-start justify-center gap-3">
+		<div class="flex flex-wrap items-start justify-center gap-6">
 			{#if sideIsPrefix}
 				{#if node.affix}
 					<CompositionTree
