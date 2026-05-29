@@ -2437,6 +2437,372 @@
     "notes": "Positional noun. Base of soyne 'go outside' (soy + ne), soyenpa 'go out.PL', etc."
   },
   {
+    "id": "hetak",
+    "lemma": "hetak",
+    "category": "intj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["come on!", "let's go!", "alright"],
+    "glosses_jp": ["さあ", "ほら", "頼むよ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Hortative interjection; equivalent of English 'come on!' or Japanese さあ. Common in narratives addressing companions."
+  },
+  {
+    "id": "tane",
+    "lemma": "tane",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["now", "already", "at this point"],
+    "glosses_jp": ["もう", "今", "今度は"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Temporal deictic. Often pairs with anakne for topic-marking 'now as for X…'."
+  },
+  {
+    "id": "hemanta",
+    "lemma": "hemanta",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["what", "what thing"],
+    "glosses_jp": ["何", "なに"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Interrogative pronoun for 'what'. Equivalent to nep, used in more formal / explicit contexts."
+  },
+  {
+    "id": "hunna",
+    "lemma": "hunna",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["who"],
+    "glosses_jp": ["誰", "だれ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Interrogative for human referents. Complements hemanta 'what'."
+  },
+  {
+    "id": "hempak",
+    "lemma": "hempak",
+    "category": "adn",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["how many", "several"],
+    "glosses_jp": ["いくつ", "いくつかの"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Quantitative interrogative / indefinite. Used both in questions ('how many?') and statements ('some')."
+  },
+  {
+    "id": "yakka",
+    "lemma": "yakka",
+    "category": "sconj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["even though", "even if"],
+    "glosses_jp": ["～しても", "～であっても"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Concessive conjunction. Pairs with conditional yak 'if'."
+  },
+  {
+    "id": "yak",
+    "lemma": "yak",
+    "category": "sconj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["if", "when"],
+    "glosses_jp": ["～ならば", "～したら"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Conditional subordinator. Base for yakun 'if' (yak + un), yakka 'even if' (yak + ka)."
+  },
+  {
+    "id": "anakne",
+    "lemma": "anakne",
+    "category": "parti",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["TOP (topic marker)", "as for", "speaking of"],
+    "glosses_jp": ["～は", "～について言えば"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Topic-marking particle, parallel to Japanese ～は. Often abbreviated anak in faster speech."
+  },
+  {
+    "id": "anak",
+    "lemma": "anak",
+    "category": "parti",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["TOP (topic marker, short)", "as for"],
+    "glosses_jp": ["～は（縮約形）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Short variant of anakne. Same topic-marking function."
+  },
+  {
+    "id": "pirka",
+    "lemma": "pirka",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "良いもの"}
+      ]
+    },
+    "glosses_en": ["be good", "be beautiful", "be fine"],
+    "glosses_jp": ["良い", "美しい"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Stative intransitive 'be good' — one of the most productive modifiers (pirka mosir 'beautiful land', pirka aynu 'good person'). Pairs with wen 'be bad'."
+  },
+  {
+    "id": "peker",
+    "lemma": "peker",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "明るいもの"}
+      ]
+    },
+    "glosses_en": ["be light", "be bright", "be white"],
+    "glosses_jp": ["明るい", "白い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for sirpeker 'be daytime' and the bird name pekercirinnay 'snipe'. Counterpart of kunne 'be dark'."
+  },
+  {
+    "id": "kunne-dark",
+    "lemma": "kunne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "暗いもの"}
+      ]
+    },
+    "glosses_en": ["be dark", "be black"],
+    "glosses_jp": ["暗い", "黒い", "夜である"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Stative 'be dark / be night'. Base for sirkunne 'be night'. Distinct from the homonymic kunne 'be in time / fit'."
+  },
+  {
+    "id": "hure",
+    "lemma": "hure",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["húre"],
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "赤いもの"}
+      ]
+    },
+    "glosses_en": ["be red"],
+    "glosses_jp": ["赤い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for huresisam 'red-clothed Westerner' = European, and many ethnonyms / color compounds."
+  },
+  {
+    "id": "siwnin",
+    "lemma": "siwnin",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "緑/青いもの"}
+      ]
+    },
+    "glosses_en": ["be green", "be blue (yellow-green range)"],
+    "glosses_jp": ["緑である", "青緑である"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Green / blue stative. Ainu has the typical East-Asian green-blue collapse: siwnin covers both."
+  },
+  {
+    "id": "tanne",
+    "lemma": "tanne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "長いもの"}
+      ]
+    },
+    "glosses_en": ["be long"],
+    "glosses_jp": ["長い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Pairs with takne 'be short'."
+  },
+  {
+    "id": "takne",
+    "lemma": "takne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "短いもの"}
+      ]
+    },
+    "glosses_en": ["be short"],
+    "glosses_jp": ["短い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "rupne-big",
+    "lemma": "rupne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "大きいもの"}
+      ]
+    },
+    "glosses_en": ["be big", "be large", "be substantial"],
+    "glosses_jp": ["大きい", "立派である"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Alternative to poro 'be big'. Often emphasises substance / stature rather than physical bulk."
+  },
+  {
+    "id": "cikap",
+    "lemma": "cikap",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["bird"],
+    "glosses_jp": ["鳥"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic bird noun. Base of kamuycikap 'divine bird = owl'."
+  },
+  {
+    "id": "yuk",
+    "lemma": "yuk",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["deer", "Ezo deer"],
+    "glosses_jp": ["シカ", "鹿"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "The Ezo (Hokkaido) sika deer, a major hunting target. Sometimes referred to euphemistically as yuk kamuy or hayokpe in ritual contexts."
+  },
+  {
+    "id": "sumari",
+    "lemma": "sumari",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["fox"],
+    "glosses_jp": ["キツネ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic fox noun. Cultural figure as a trickster in oral literature."
+  },
+  {
+    "id": "isepo",
+    "lemma": "isepo",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["rabbit", "hare"],
+    "glosses_jp": ["ウサギ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "seta",
+    "lemma": "seta",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["dog"],
+    "glosses_jp": ["犬"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Domestic dog. Sled dogs and hunting dogs were essential to Ainu life."
+  },
+  {
+    "id": "humpe",
+    "lemma": "humpe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["whale"],
+    "glosses_jp": ["クジラ", "鯨"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Whale; in some dialects extended to large sea mammals."
+  },
+  {
+    "id": "kucan",
+    "lemma": "kucan",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["female bear", "she-bear"],
+    "glosses_jp": ["雌熊", "母熊"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Specifically a female bear; the male bear is hemkur in some dialects, simply kamuy or kim-un-kamuy in ritual register."
+  },
+  {
+    "id": "kim-un-kamuy",
+    "lemma": "kim-un-kamuy",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["kim", "un-postp", "kamuy"],
+    "composition_note": "kim 'mountain' + un 'in' + kamuy 'god' → 'the mountain-dwelling kamuy' = the brown bear in respectful register. Used in iyomante (the bear ceremony) and other ritual contexts as a euphemism for the bear, considered too sacred to name directly.",
+    "glosses_en": ["brown bear (respectful register)", "the mountain god"],
+    "glosses_jp": ["山の神", "ヒグマ（敬称）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "rep-un-kamuy",
+    "lemma": "rep-un-kamuy",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:rep", "un-postp", "kamuy"],
+    "composition_note": "rep 'open sea / offshore' + un 'in' + kamuy 'god' → 'the offshore kamuy' = the orca (killer whale). Counterpart of kim-un-kamuy on the maritime side. Both terms model the kamuy's home (mountain vs sea) as a parallel structure.",
+    "glosses_en": ["orca", "killer whale", "the sea god"],
+    "glosses_jp": ["シャチ", "海の神"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "cikoykip",
+    "lemma": "cikoykip",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ci-", "ko-", "koyki", "-p-nmlz"],
+    "composition_note": "ci- (passive) + ko- (APPL.DAT) + koyki 'catch' + -p (NMLZ) → 'that which one catches with regard to (it)' = game animal. Used in hunting talk and ritual.",
+    "glosses_en": ["game animal", "hunted creature"],
+    "glosses_jp": ["獲物", "狩猟の獲物"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "ape",
     "lemma": "ape",
     "category": "n",
