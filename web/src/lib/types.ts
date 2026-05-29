@@ -52,7 +52,11 @@ export interface Entry {
 	notes: string;
 	frequency: number;
 	verified: boolean;
-	composition: string[];
+	/** Ordered morpheme ids — or, where bracketing matters (e.g. fossilised
+	 * (ci= e)-p in cep), a list with nested string-arrays for sub-groups.
+	 * The rendering engine builds inner groups first and treats the result
+	 * as a single constituent at the outer level. */
+	composition: (string | string[])[];
 	/** Source-text surface form for each slot in `composition` — present
 	 * when the upstream ingest (Tommy 1949, Wiktionary) recorded the
 	 * actual form used, which can differ from the resolved entry's lemma
