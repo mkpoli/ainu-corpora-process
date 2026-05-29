@@ -2180,6 +2180,287 @@
     "notes": "Base for easkay 'be able to'."
   },
   {
+    "id": "kata",
+    "lemma": "kata",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["on top of", "above"],
+    "glosses_jp": ["～の上で", "～の上に"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "poutari",
+    "lemma": "poutari",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["children", "the children"],
+    "glosses_jp": ["子供たち"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural of pon hi / po. Often appears as a vocative for the speaker's offspring."
+  },
+  {
+    "id": "kuskeraypo",
+    "lemma": "kuskeraypo",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["thanks to", "by virtue of"],
+    "glosses_jp": ["～のおかげで"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "neyke",
+    "lemma": "neyke",
+    "category": "sconj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["if so", "if that's the case", "when"],
+    "glosses_jp": ["～ならば", "～した時"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "hikeka",
+    "lemma": "hikeka",
+    "category": "sconj",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["though", "even though", "however"],
+    "glosses_jp": ["けれども"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ese",
+    "lemma": "ese",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "返事をする人"}
+      ]
+    },
+    "glosses_en": ["answer yes", "agree", "assent"],
+    "glosses_jp": ["承諾の返事をする", "答える", "納得する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "soyene",
+    "lemma": "soyene",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["soy", "ene"],
+    "composition_note": "soy 'outside' + ene 'go.toward' → 'go outside'. Lexicalised motion verb.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "外に出る人"}
+      ]
+    },
+    "glosses_en": ["go outside", "leave the house"],
+    "glosses_jp": ["外に出る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "enon",
+    "lemma": "enon",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["to where (poetic)", "whither"],
+    "glosses_jp": ["どこへ（雅語）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Poetic / archaic interrogative directional, used in yukar and other oral literature."
+  },
+  {
+    "id": "Otasut",
+    "lemma": "Otasut",
+    "category": "propn",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["Otasut (placename)"],
+    "glosses_jp": ["オタスッ（地名）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Place name appearing in yukar (epic poetry); often the seat of a kamuy or hero."
+  },
+  {
+    "id": "pokor",
+    "lemma": "pokor",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["po", "kor"],
+    "composition_note": "po 'child' + kor 'have' → 'have a child / give birth'. Synchronically a single intransitive verb.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "親"}
+      ]
+    },
+    "glosses_en": ["have a child", "give birth"],
+    "glosses_jp": ["子を持つ", "子を産む"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sorekus",
+    "lemma": "sorekus",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["exactly", "precisely", "indeed"],
+    "glosses_jp": ["それこそ", "まさに"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "newaanpe",
+    "lemma": "newaanpe",
+    "category": "pron",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["that one", "that thing"],
+    "glosses_jp": ["それ", "そのもの"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Demonstrative pronoun, distal."
+  },
+  {
+    "id": "onon",
+    "lemma": "onon",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["from where"],
+    "glosses_jp": ["どこから"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kan",
+    "lemma": "kan",
+    "category": "nl",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["up", "above", "upper part"],
+    "glosses_jp": ["上", "上方"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Positional noun; appears in compounds like kanna (above) and as the prefix part of motion verbs."
+  },
+  {
+    "id": "huciape",
+    "lemma": "huciape",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["huci", "ape"],
+    "composition_note": "huci 'grandmother' + ape 'fire' — title for the fire goddess (a hearth-deity addressed as 'Grandmother Fire'). Central figure in many kamuy yukar.",
+    "glosses_en": ["fire goddess", "Grandmother Fire"],
+    "glosses_jp": ["火の女神", "アペフチ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "hawki",
+    "lemma": "hawki",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["haw", "ki"],
+    "composition_note": "haw 'voice/sound' + ki 'do' → 'say something'. A common alternative to ye 'say' and itak 'speak'.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "言う人"},
+        {"role": "patient", "realization": "external", "label_jp": "言われる内容"}
+      ]
+    },
+    "glosses_en": ["say", "utter"],
+    "glosses_jp": ["～を言う", "言う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "haw",
+    "lemma": "haw",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["voice", "sound"],
+    "glosses_jp": ["声", "音"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for hawki 'say', hawean 'speak / there is a voice', and many discourse nouns."
+  },
+  {
+    "id": "hemhem",
+    "lemma": "hemhem",
+    "category": "intj",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["yes indeed", "that's right", "uh-huh"],
+    "glosses_jp": ["そうだそうだ", "うんうん"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Backchannel / agreement interjection. The auto-decomp hem + hem is a coincidence; this is a single reduplicated form."
+  },
+  {
+    "id": "samata",
+    "lemma": "samata",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["beside", "at the side of", "next to"],
+    "glosses_jp": ["～のそばに", "～の横に"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Postpositional locative. Etymologically sam 'side' + -a-ta but lexicalised."
+  },
+  {
+    "id": "kesto",
+    "lemma": "kesto",
+    "category": "adv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ninjal:kes", "ninjal:to"],
+    "composition_note": "kes 'end / every' + to 'day' → 'every day'.",
+    "glosses_en": ["every day", "daily"],
+    "glosses_jp": ["毎日"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "nure",
+    "lemma": "nure",
+    "category": "vd",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["nu", "-e"],
+    "composition_note": "nu 'hear' + -e CAUS → 'cause to hear' = 'tell, inform'. Ditransitive: addresser, addressee, content.",
+    "base_frame": {
+      "slots": [
+        {"role": "causer", "realization": "external", "label_jp": "知らせる人"},
+        {"role": "agent", "realization": "external", "label_jp": "聞く人"},
+        {"role": "patient", "realization": "external", "label_jp": "知らせられる内容"}
+      ]
+    },
+    "glosses_en": ["tell", "inform", "let hear"],
+    "glosses_jp": ["～に～を聞かせる", "～に～を知らせる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "ney",
     "lemma": "ney",
     "category": "pron",

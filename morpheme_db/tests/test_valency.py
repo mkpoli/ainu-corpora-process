@@ -90,6 +90,43 @@ def test_indefinite_causative_is_arity_neutral(index: dict[str, Entry]) -> None:
     assert "agent" not in roles
 
 
+# ---- kar family ----------------------------------------------------------
+# Mirrors the nukar tests but anchored at ``kar`` (make / act on), so the
+# productive affix rules get exercised against a second curated head with
+# the same vt 2-slot base frame.
+
+def test_kar_alone_is_two_args(index: dict[str, Entry]) -> None:
+    assert _arity_of("kar", index=index) == 2
+
+
+def test_kar_causative_adds_external_causer(index: dict[str, Entry]) -> None:
+    result = compute_valency([index["kar"], index["-e"]])
+    assert result.arity == 3
+    assert result.final_frame.slots[0].role == "causer"
+
+
+def test_i_prefix_saturates_kar_patient(index: dict[str, Entry]) -> None:
+    """i-kar (= ikar 'make something'): INDEF.OBJ saturates the patient."""
+    result = compute_valency([index["i-"], index["kar"]])
+    assert result.arity == 1
+    patient = next(s for s in result.final_frame.slots if s.role == "patient")
+    assert patient.realization == SlotRealization.INTERNAL_INDEF
+
+
+def test_yay_prefix_saturates_kar_patient(index: dict[str, Entry]) -> None:
+    """yay-kar (= 'make oneself'): direct reflexive internalises the patient."""
+    result = compute_valency([index["yay-"], index["kar"]])
+    assert result.arity == 1
+    patient = next(s for s in result.final_frame.slots if s.role == "patient")
+    assert patient.realization == SlotRealization.INTERNAL_REFL
+
+
+def test_ko_prefix_adds_slot_on_kar(index: dict[str, Entry]) -> None:
+    """ko-kar (applicative): adds an external goal/recipient slot."""
+    result = compute_valency([index["ko-"], index["kar"]])
+    assert result.arity == 3
+
+
 def test_noun_incorporation_absorbs_patient() -> None:
     """A 2-arg verb whose patient is filled by an incorporated noun has arity 1.
 
