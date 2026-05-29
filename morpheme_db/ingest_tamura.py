@@ -219,7 +219,16 @@ def enrich_with_tamura(entries: list[Entry], rows: list[dict[str, str]]) -> dict
         morph_type = row["morph_type"]
         gloss = row["gloss_jp"]
 
-        existing = index.get(lemma) or index.get(lemma.strip("-="))
+        # Bound forms (those carrying an attachment marker in Tamura's
+        # headword) must match exactly — falling back to the bare-form
+        # lookup would wrongly enrich the free-standing homophone (e.g.
+        # the bound suffix ``-a`` would end up enriching the free ``a``
+        # entry, and the bound entry would never be created).
+        is_bound_lemma = lemma.startswith(("-", "=")) or lemma.endswith(("-", "="))
+        if is_bound_lemma:
+            existing = index.get(lemma)
+        else:
+            existing = index.get(lemma) or index.get(lemma.strip("-="))
         if existing is not None:
             changed = False
             if not existing.verified:
