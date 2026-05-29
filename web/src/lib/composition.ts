@@ -267,7 +267,12 @@ export function computeArityFromComposition(
 	}
 
 	let sum = 0;
-	for (const id of entry.composition) {
+	for (const item of entry.composition) {
+		// Nested groups aren't supported by the heuristic delta-sum — they
+		// signal fossilised bracketings whose valency the caller should
+		// derive elsewhere. Bail out rather than guess.
+		if (Array.isArray(item)) return null;
+		const id = item;
 		const part = byId.get(id);
 		if (!part) return null;
 		let delta: number | null;
@@ -442,7 +447,7 @@ function classify(entry: Entry, isHead: boolean): CompositionKind {
 }
 
 function buildTree(
-	matched: { token: string; entry: Entry | null }[],
+	matched: { token: string; entry: Entry | null; prebuilt?: CompositionNode }[],
 	warnings: string[]
 ): CompositionNode {
 	// Locate the head: first entry that carries a base_frame. If none, fall
@@ -528,7 +533,11 @@ function buildTree(
 	// "nukar-", so the wrapped surface is "nukar-yar" rather than "nukar--yar".
 	const headSurface = headEntry.lemma.replace(/^[-=]+|[-=]+$/g, '');
 
-	let node: CompositionNode = {
+	// If the head slot is a prebuilt sub-tree (from a nested composition
+	// group like cep's ``[ci=, e]``), use it directly so the inner
+	// bracketing survives — the outer passes will wrap the whole sub-tree
+	// rather than creating a new chip for the inner head.
+	let node: CompositionNode = headMatch.prebuilt ?? {
 		surface: headSurface || headEntry.lemma,
 		kind: 'head',
 		entry: headEntry,
@@ -602,12 +611,15 @@ function buildTree(
 
 function wrapAffix(
 	body: CompositionNode,
-	child: { token: string; entry: Entry | null },
+	child: { token: string; entry: Entry | null; prebuilt?: CompositionNode },
 	side: 'prefix' | 'suffix',
 	warnings: string[]
 ): CompositionNode {
 	const entry = child.entry;
-	const affixLeaf: CompositionNode = entry
+	// If the child slot is a prebuilt sub-tree (nested composition group)
+	// use it as the affix verbatim, so its internal bracketing stays in
+	// the rendered tree.
+	const affixLeaf: CompositionNode = child.prebuilt ?? (entry
 		? {
 				surface: entry.lemma,
 				kind: classify(entry, false),
@@ -621,7 +633,7 @@ function wrapAffix(
 				entry: null,
 				frame: null,
 				isLeaf: true
-			};
+			});
 	const nextFrame = entry && body.frame ? applyRules(body.frame, entry, warnings) : cloneFrame(body.frame);
 	const affixBare = (entry?.lemma ?? child.token).replace(/^[-=]+|[-=]+$/g, '');
 	// Strip every directional marker AND internal hyphens from the body so
@@ -732,16 +744,41 @@ export function compose(input: string, index: EntryIndex): CompositionResult {
 		// the resolved entry's lemma when the surface array is empty or
 		// shorter than composition.
 		const surfaces = directMatch.composition_surface ?? [];
-		const resolved = directMatch.composition.map((id, i) => {
-			const entry = resolveById(id, index);
-			if (!entry) {
-				warnings.push(`composition references unknown entry id ${id}`);
-				unresolved.push(id);
-			}
-			const surface = surfaces[i];
-			const token = surface || entry?.lemma || id;
-			return { token, entry };
-		});
+		// composition items are usually plain morpheme ids, but a curated
+		// entry may use a nested string-array to express an inner sub-
+		// group that should bracket *before* the outer wraps see it
+		// (cep = ["ci=", "e"] + "-p" → (ci=e)-p). For each nested group
+		// we recursively build the sub-tree and treat the result as a
+		// single virtual leaf whose entry is the sub-tree's head; the
+		// outer buildTree then wraps it normally.
+		const resolved: { token: string; entry: Entry | null; prebuilt?: CompositionNode }[] =
+			directMatch.composition.map((item, i) => {
+				if (Array.isArray(item)) {
+					const subResolved: { token: string; entry: Entry | null }[] = [];
+					for (const subId of item) {
+						const subEntry = resolveById(subId, index);
+						if (!subEntry) {
+							warnings.push(`composition references unknown entry id ${subId}`);
+							unresolved.push(subId);
+						}
+						subResolved.push({ token: subEntry?.lemma ?? subId, entry: subEntry });
+					}
+					const subTree = buildTree(subResolved, warnings);
+					const surface = surfaces[i];
+					const fallbackToken =
+						surface || subTree.surface || subTree.entry?.lemma || item.join('+');
+					return { token: fallbackToken, entry: subTree.entry, prebuilt: subTree };
+				}
+				const id = item;
+				const entry = resolveById(id, index);
+				if (!entry) {
+					warnings.push(`composition references unknown entry id ${id}`);
+					unresolved.push(id);
+				}
+				const surface = surfaces[i];
+				const token = surface || entry?.lemma || id;
+				return { token, entry };
+			});
 		tokens = resolved.map((r) => r.token);
 		matched = resolved;
 		fusedRoot = directMatch;
@@ -908,12 +945,19 @@ export function findOtherUses(
 		if (candidate.id === entry.id) continue;
 		if (seen.has(candidate.id)) continue;
 
-		// Source 1: curated composition reference.
-		if (candidate.composition?.length && candidate.composition.includes(entry.id)) {
-			out.push(candidate);
-			seen.add(candidate.id);
-			if (out.length >= limit) break;
-			continue;
+		// Source 1: curated composition reference. Flatten one level of
+		// nesting so cep-style ``[[ci=, e], -p]`` compositions still find
+		// matches for any of their constituents.
+		if (candidate.composition?.length) {
+			const flat = candidate.composition.flatMap((item) =>
+				Array.isArray(item) ? item : [item],
+			);
+			if (flat.includes(entry.id)) {
+				out.push(candidate);
+				seen.add(candidate.id);
+				if (out.length >= limit) break;
+				continue;
+			}
 		}
 
 		// Source 2: lemma is an explicit hyphen/equals-marked compound and

@@ -224,14 +224,23 @@ class Entry:
     """True for hand-curated entries; False for entries auto-ingested from the
     NINJAL lexicon or other observational sources."""
 
-    composition: list[str] = field(default_factory=list)
+    composition: list[Any] = field(default_factory=list)
     """Underlying composition as an ordered list of morpheme ``id``s.
 
     Used for lexicalised reductions where the surface form has undergone
     phonological fusion and can no longer be recovered by simple text
     segmentation (e.g. ``inkar`` ← ``i-`` + ``nukar``). When present, the
     valency engine and UI tree use this list as the structural truth, and
-    the surface ``lemma`` is shown as the lexicalised head."""
+    the surface ``lemma`` is shown as the lexicalised head.
+
+    Items may be either strings (morpheme ids) or *nested lists* of
+    strings. A nested list marks a sub-group that is bound together
+    *before* the surrounding context wraps it — used for fossilised
+    bracketings like ``cep = (ci= e) -p`` (``composition: [["ninjal:ci=",
+    "e-eat"], "-p-nmlz"]``) where the standard head-finding heuristic
+    would otherwise give the wrong scope. One level of nesting is
+    supported; the rendering engine flattens deeper trees back to a
+    sequence."""
 
     composition_surface: list[str] = field(default_factory=list)
     """Source-text surface form for each entry in :attr:`composition`.
