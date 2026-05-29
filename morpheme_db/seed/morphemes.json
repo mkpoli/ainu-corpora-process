@@ -2180,6 +2180,311 @@
     "notes": "Base for easkay 'be able to'."
   },
   {
+    "id": "onne",
+    "lemma": "onne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "年を取る人"}
+      ]
+    },
+    "glosses_en": ["age", "grow old"],
+    "glosses_jp": ["年をとる", "老いる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "inne",
+    "lemma": "inne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "多くのもの"}
+      ]
+    },
+    "glosses_en": ["be many", "be numerous"],
+    "glosses_jp": ["多い", "大勢いる"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "se-carry",
+    "lemma": "se",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "背負う人"},
+        {"role": "patient", "realization": "external", "label_jp": "背負われる荷物"}
+      ]
+    },
+    "glosses_en": ["carry on the back", "shoulder"],
+    "glosses_jp": ["～を背負う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Distinct from the homophonous se 'sound' onomatopoeic root."
+  },
+  {
+    "id": "sap",
+    "lemma": "sap",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "降りる人々"}
+      ]
+    },
+    "glosses_en": ["descend.PL", "come down.PL", "go down.PL"],
+    "glosses_jp": ["降りる（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive plural counterpart of san 'descend.SG'."
+  },
+  {
+    "id": "resu",
+    "lemma": "resu",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "育てる人"},
+        {"role": "patient", "realization": "external", "label_jp": "育てられるもの"}
+      ]
+    },
+    "glosses_en": ["raise.SG", "bring up.SG", "rear"],
+    "glosses_jp": ["～を育てる（単数）", "～を飼う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive singular; plural counterpart respa."
+  },
+  {
+    "id": "omap",
+    "lemma": "omap",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "可愛がる人"},
+        {"role": "patient", "realization": "external", "label_jp": "可愛がられる対象"}
+      ]
+    },
+    "glosses_en": ["cherish", "love", "treat tenderly"],
+    "glosses_jp": ["～をかわいがる", "～を愛しむ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "hosippa",
+    "lemma": "hosippa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "帰る人々"}
+      ]
+    },
+    "glosses_en": ["return.PL", "go home.PL"],
+    "glosses_jp": ["帰る（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of hosipi 'return.SG'."
+  },
+  {
+    "id": "sini",
+    "lemma": "sini",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "休む人"}
+      ]
+    },
+    "glosses_en": ["rest", "take a break"],
+    "glosses_jp": ["休む", "休息する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "eramiskari",
+    "lemma": "eramiskari",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "知らない人"},
+        {"role": "patient", "realization": "external", "label_jp": "知らないこと"}
+      ]
+    },
+    "glosses_en": ["not know", "be ignorant of"],
+    "glosses_jp": ["～を知らない"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Compound: e- (APPL) + ram (mind) + iskari 'lack'. Synchronically lexicalised as a single negative cognition verb."
+  },
+  {
+    "id": "oma",
+    "lemma": "oma",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "入るもの"},
+        {"role": "patient", "realization": "external", "label_jp": "入る場所"}
+      ]
+    },
+    "glosses_en": ["be at", "be in", "enter"],
+    "glosses_jp": ["～にいる", "～に入る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for omare 'put into' (oma + -e CAUS), oman 'go', etc."
+  },
+  {
+    "id": "us-attach",
+    "lemma": "us",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "つくもの"},
+        {"role": "patient", "realization": "external", "label_jp": "つかれる場所"}
+      ]
+    },
+    "glosses_en": ["attach to", "stick to", "be located at"],
+    "glosses_jp": ["～につく", "～に位置する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Distinct from the homophonous us- 'wear' (clothing)."
+  },
+  {
+    "id": "iwak",
+    "lemma": "iwak",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "戻る人"}
+      ]
+    },
+    "glosses_en": ["return", "go back"],
+    "glosses_jp": ["戻る", "帰る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "mi-wear",
+    "lemma": "mi",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "着る人"},
+        {"role": "patient", "realization": "external", "label_jp": "着られる衣服"}
+      ]
+    },
+    "glosses_en": ["wear", "put on"],
+    "glosses_jp": ["～を着る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base of amip 'clothing' (a= + mi + -p 'thing we wear')."
+  },
+  {
+    "id": "terke",
+    "lemma": "terke",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "跳ねるもの"}
+      ]
+    },
+    "glosses_en": ["jump", "leap", "bounce"],
+    "glosses_jp": ["跳ねる", "跳ぶ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sinot",
+    "lemma": "sinot",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "遊ぶ人"}
+      ]
+    },
+    "glosses_en": ["play", "amuse oneself"],
+    "glosses_jp": ["遊ぶ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "mina",
+    "lemma": "mina",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "笑う人"}
+      ]
+    },
+    "glosses_en": ["laugh", "smile"],
+    "glosses_jp": ["笑う"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kasuy",
+    "lemma": "kasuy",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "手伝う人"},
+        {"role": "patient", "realization": "external", "label_jp": "手伝われる人/事"}
+      ]
+    },
+    "glosses_en": ["help", "assist"],
+    "glosses_jp": ["～を手伝う", "～を助ける"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for sikasuyre / sikasuy-re (REFL + CAUS) discussed in Sato 2007 / Bugaeva 2014."
+  },
+  {
+    "id": "arka",
+    "lemma": "arka",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "痛いもの"}
+      ]
+    },
+    "glosses_en": ["be painful", "hurt", "ache"],
+    "glosses_jp": ["痛い", "痛む"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
     "id": "sine",
     "lemma": "sine",
     "category": "num",

@@ -14,8 +14,10 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
 from morpheme_db.ingest_ff_ainu import enrich_with_ff_ainu, load_ff_ainu_pos
 from morpheme_db.ingest_tamura import enrich_with_tamura, parse_tamura_entries
@@ -223,6 +225,62 @@ def _apply_bound_flag(entries: list[Entry]) -> dict[str, int]:
             entry.morph_type = target_morph
             counters["morph_type_upgraded"] += 1
     return counters
+
+
+_SOURCE_ID_PREFIX_RE = re.compile(r"^[a-z0-9-]+:")
+
+
+def _normalise_ids(entries: list[Entry]) -> int:
+    """Strip ``source:`` prefixes from auto-ingest ids and update refs.
+
+    A morpheme is identified by its lemma + sense, not by which dictionary
+    first attested it. The auto-ingests minted ids like ``ninjal:kar``,
+    ``tommy1949:foo``, ``tamura1996:bar`` and ``wiktja:baz`` — useful as a
+    breadcrumb but misleading for the user: it suggests the morpheme
+    belongs to one source. After every ingest+merge has settled we rewrite
+    those ids to drop the prefix, and update every composition reference
+    (top-level + one level of nested groups) accordingly. Curated ids
+    (those without a ``:``) are untouched. Sources still live on
+    ``entry.sources``; only the id changes.
+
+    Collisions are a build error — if a curated id is the same as a
+    prefix-stripped auto id, the earlier merge step should already have
+    folded them.
+    """
+    rewrites: dict[str, str] = {}
+    for entry in entries:
+        if _SOURCE_ID_PREFIX_RE.match(entry.id):
+            new_id = _SOURCE_ID_PREFIX_RE.sub("", entry.id)
+            if new_id:
+                rewrites[entry.id] = new_id
+
+    if not rewrites:
+        return 0
+
+    # Detect any post-strip collision: two entries that would end up
+    # sharing an id. The merge layer is supposed to prevent this, but
+    # surface it explicitly if it ever happens.
+    seen: set[str] = set()
+    for entry in entries:
+        final = rewrites.get(entry.id, entry.id)
+        if final in seen:
+            raise RuntimeError(
+                f"id normalisation would collide on '{final}' — the merge "
+                f"step needs to handle this case before _normalise_ids runs."
+            )
+        seen.add(final)
+
+    def remap(token: Any) -> Any:
+        if isinstance(token, str):
+            return rewrites.get(token, token)
+        if isinstance(token, list):
+            return [remap(t) for t in token]
+        return token
+
+    for entry in entries:
+        entry.id = rewrites.get(entry.id, entry.id)
+        entry.composition = [remap(item) for item in entry.composition]
+    return len(rewrites)
 
 
 _BOUND_MARKER_CHARS = ("-", "=")
@@ -567,6 +625,11 @@ def build(
     # every entry's allomorph list. Done last so it covers everything every
     # ingest may have added.
     counters["allomorphs_dropped_noise"] = _clean_allomorphs(entries)
+
+    # Normalise auto-ingest ids — drop the ``source:`` prefix so morphemes
+    # are identified independently of which dictionary first attested them.
+    # Composition references are updated to point at the new ids.
+    counters["ids_normalised"] = _normalise_ids(entries)
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
