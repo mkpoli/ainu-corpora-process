@@ -170,6 +170,139 @@ def parse_ishikari(pdf: Path) -> list[dict[str, str]]:
     return rows
 
 
+# ---------- columnar crop parser (Shizunai / Tokachi) ----------
+# These two PDFs lay out three columns whose text layer pdftotext reads
+# row-by-row across columns, fusing entries. We instead crop each column
+# (page is 589.6 pt wide; column heads start at x≈70/226/382) and run a
+# reading-order pass per column, so each column is a clean single stream.
+# pdftotext crop units equal PDF points at the default 72-dpi resolution.
+_COL_CROPS = [(0, 222), (222, 156), (378, 212)]  # (x, width)
+_PAGE_H = 803
+
+# A single kana char immediately followed by a Latin letter with no space
+# (pdftotext glues e.g. "ア" + "a" → "アa"); re-insert the space so the
+# entry-head regex fires.
+_GLUED_HEAD_RE = re.compile(r"^([ァ-ヴーㇰ-ㇿ゠]+)([A-Za-z])")
+
+
+def _flush(current: list[str], page: int, rows: list[dict[str, str]]) -> None:
+    if current:
+        rec = _parse_entry(" ".join(current), page)
+        if rec:
+            rows.append(rec)
+
+
+# Column X-boundaries. Heads start at x≈70/226/382, but each column's
+# wrapped body text extends rightward (col0 reaches ~210), so the real
+# inter-column gaps sit at ~218 and ~374 — boundaries must fall there, not
+# at the head-start midpoints, or wrapped glosses bleed into the next column.
+_COL_X_BOUNDS = (218.0, 374.0)
+_BODY_Y_MIN, _BODY_Y_MAX = 90.0, 770.0
+_LINE_Y_TOL = 5.0
+
+
+def _build_column_lines(words: list[tuple[float, float, float, str]]) -> list[str]:
+    """words = (ymin, xmin, xmax, text). Sort by (ymin, xmin), cluster into
+    visual lines by ymin, then within each line glue adjacent kana fragments
+    using *real* xMax gaps (pdftotext splits long kana heads like アイヌイタク
+    into アイヌイタ + ク). Latin/other tokens are space-joined."""
+    if not words:
+        return []
+    words = sorted(words)
+    lines: list[list[tuple[float, float, float, str]]] = []
+    anchor_y: float | None = None
+    for w in words:
+        if anchor_y is None or w[0] - anchor_y > _LINE_Y_TOL:
+            lines.append([w])
+            anchor_y = w[0]
+        else:
+            lines[-1].append(w)
+    out: list[str] = []
+    for line in lines:
+        line.sort(key=lambda t: t[1])  # by xmin
+        pieces: list[str] = []
+        prev_xmax: float | None = None
+        for ymin, xmin, xmax, text in line:
+            glue = (
+                pieces and prev_xmax is not None
+                and _KANA_CHAR_RE.search(pieces[-1][-1])
+                and _KANA_CHAR_RE.search(text[0])
+                and xmin - prev_xmax < 4.0
+            )
+            if glue:
+                pieces[-1] = pieces[-1] + text
+            else:
+                pieces.append(text)
+            prev_xmax = xmax
+        out.append(" ".join(pieces))
+    return out
+
+
+def _is_junk(line: str) -> bool:
+    return (
+        line.startswith("■") or line.startswith("＊") or line.startswith("※")
+        or line.startswith("「") or line.startswith("単語")
+        or line.startswith("単") or "：" in line[:6]
+        or ".indd" in line
+    )
+
+
+def parse_columnar(pdf: Path, first_page: int = 2) -> list[dict[str, str]]:
+    """Assign every word to one of three columns by its xMin, then within
+    each column sort strictly by (yMin, xMin) and cluster into lines. This
+    avoids the reading-order instability of cropped pdftotext (where a head
+    and its gloss can come out in the wrong vertical order). Continuation
+    lines (anything not matching a `KANA latin …` head) attach to the
+    current entry."""
+    xml_path = pdf.with_suffix(".colbbox.xml")
+    if not xml_path.exists() or xml_path.stat().st_size < 50_000:
+        subprocess.run(
+            ["pdftotext", "-bbox-layout", str(pdf), str(xml_path)], check=True
+        )
+    xml = xml_path.read_text(encoding="utf-8", errors="replace")
+
+    rows: list[dict[str, str]] = []
+    page_re = re.compile(r"<page\b[^>]*>(.*?)</page>", re.DOTALL)
+    for page_idx, page_match in enumerate(page_re.finditer(xml), start=1):
+        if page_idx < first_page:
+            continue
+        body = page_match.group(1)
+        cols: list[list[tuple[float, float, float, str]]] = [[], [], []]
+        for m in _WORD_RE.finditer(body):
+            text = _html.unescape(m["text"])
+            if not text.strip():
+                continue
+            ymin = float(m["ymin"])
+            if not (_BODY_Y_MIN <= ymin <= _BODY_Y_MAX):
+                continue
+            xmin = float(m["xmin"])
+            col = 0 if xmin < _COL_X_BOUNDS[0] else (1 if xmin < _COL_X_BOUNDS[1] else 2)
+            cols[col].append((ymin, xmin, float(m["xmax"]), text))
+
+        for words in cols:
+            lines = _build_column_lines(words)
+            current: list[str] = []
+            for line in lines:
+                line = normalize_field(line)
+                if not line:
+                    continue
+                if _is_junk(line):
+                    _flush(current, page_idx, rows)
+                    current = []
+                    continue
+                line = _GLUED_HEAD_RE.sub(r"\1 \2", line)
+                for chunk in (c.strip() for c in _INLINE_HEAD_RE.split(line)):
+                    if not chunk:
+                        continue
+                    if _ENTRY_HEAD_RE.match(chunk):
+                        _flush(current, page_idx, rows)
+                        current = [chunk]
+                    elif current:
+                        current.append(chunk)
+            _flush(current, page_idx, rows)
+    return rows
+
+
 def _parse_ishikari_bbox_old(pdf: Path) -> list[dict[str, str]]:
     """Use pdftotext -bbox-layout to recover word coordinates, then
     split each page into three columns at X-boundaries derived empirically
@@ -388,8 +521,16 @@ def _parse_entry(text: str, page: int) -> dict[str, str] | None:
 
 
 # ---------- writer ----------
+_SIBLINGS = """  - XXXX_FRPAC_Saru-Ainu-Wordlist      (Saru 沙流 dialect)
+  - XXXX_FRPAC_Ishikari-Ainu-Wordlist  (Ishikari 石狩川 dialect)
+  - XXXX_FRPAC_Karafuto-Ainu-Wordlist  (Karafuto 樺太 / Sakhalin dialect)
+  - XXXX_FRPAC_Shizunai-Ainu-Wordlist  (Shizunai 静内 dialect)
+  - XXXX_FRPAC_Tokachi-Ainu-Wordlist   (Tokachi 十勝 dialect)"""
+
+
 def write_dict(folder_name: str, rows: list[dict[str, str]], dialect_ja: str,
-               dialect_en: str, source_pdf: Path) -> None:
+               dialect_en: str, source_pdf: Path,
+               source_url: str = "https://www.ff-ainu.or.jp/web/potal_site/files/") -> None:
     folder = DICT_ROOT / folder_name
     folder.mkdir(parents=True, exist_ok=True)
     out = folder / "original.tsv"
@@ -415,14 +556,12 @@ year_range:
   - 2005
   - 2007
 source: |
-  Downloaded from https://www.ff-ainu.or.jp/web/potal_site/files/
-  ({source_pdf.name}). Companion wordlist to the FRPAC introductory /
-  beginner / intermediate Ainu textbooks for the {dialect_en} dialect.
+  Downloaded from {source_url}{source_pdf.name}.
+  Companion wordlist to the FRPAC introductory / beginner / intermediate
+  Ainu textbooks for the {dialect_en} dialect.
   Source PDF preserved in source.pdf via Git LFS.
 sibling_dictionaries: |
-  - XXXX_FRPAC_Saru-Wordlist  (sibling, Saru dialect)
-  - XXXX_FRPAC_Ishikari-Wordlist (sibling, Ishikari dialect)
-  - XXXX_FRPAC_Karafuto-Wordlist (sibling, Karafuto / Sakhalin dialect)
+{_SIBLINGS}
 columns:
   kana: katakana headword as printed
   lemma: Latin (academic Hattori-1964) headword
@@ -464,6 +603,29 @@ def main() -> None:
         "石狩川",
         "Ishikari",
         SRC / "ishikari_tango.pdf",
+    )
+
+    # Shizunai and Tokachi were recovered from the Wayback Machine archive
+    # of ff-ainu.or.jp (the live site is gone); their text layer lays out
+    # three columns row-by-row, so they use the columnar bbox parser.
+    shizunai = parse_columnar(SRC / "shizunai_tango.pdf")
+    write_dict(
+        "XXXX_FRPAC_Shizunai-Ainu-Wordlist",
+        shizunai,
+        "静内",
+        "Shizunai",
+        SRC / "shizunai_tango.pdf",
+        source_url="https://www.ff-ainu.or.jp/teach/files/",
+    )
+
+    tokachi = parse_columnar(SRC / "tokachi_tango.pdf")
+    write_dict(
+        "XXXX_FRPAC_Tokachi-Ainu-Wordlist",
+        tokachi,
+        "十勝",
+        "Tokachi",
+        SRC / "tokachi_tango.pdf",
+        source_url="https://www.ff-ainu.or.jp/teach/files/",
     )
 
 
