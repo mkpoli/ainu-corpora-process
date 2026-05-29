@@ -2180,6 +2180,280 @@
     "notes": "Base for easkay 'be able to'."
   },
   {
+    "id": "kema",
+    "lemma": "kema",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["leg", "foot"],
+    "glosses_jp": ["足", "脚"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Body-part noun, freely incorporable (kemakoyki 'be hit on the leg', etc.). Possessed form kemaha."
+  },
+  {
+    "id": "netopa",
+    "lemma": "netopa",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["body", "torso"],
+    "glosses_jp": ["体", "胴体"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kotca",
+    "lemma": "kotca",
+    "category": "nl",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["front", "in front of", "presence"],
+    "glosses_jp": ["前", "正面"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Positional / relational noun. Often used as the body-front 'chest' in possessed form kotcaha."
+  },
+  {
+    "id": "notu",
+    "lemma": "notu",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["mouth", "chin", "jaw"],
+    "glosses_jp": ["口", "あご"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Body-part noun. Sometimes specialised to 'chin / jaw'."
+  },
+  {
+    "id": "par",
+    "lemma": "par",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["mouth (opening)", "doorway", "edge"],
+    "glosses_jp": ["口（開口部）", "戸口"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Anatomical / spatial 'mouth' — the opening sense as opposed to notu. Used metaphorically for any opening (par 'door mouth')."
+  },
+  {
+    "id": "honi",
+    "lemma": "honi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["belly", "abdomen"],
+    "glosses_jp": ["腹", "おなか"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Body-part noun, freely incorporable. Possessed honihi."
+  },
+  {
+    "id": "siki",
+    "lemma": "siki",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["eye"],
+    "glosses_jp": ["目", "眼"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Free-form 'eye' as opposed to the bound root nu inside nukar. Possessed form sikihi."
+  },
+  {
+    "id": "sar",
+    "lemma": "sar",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["tail"],
+    "glosses_jp": ["尾", "尻尾"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Body-part noun, possessed forms sara (short) and saraha (long). The Saru river is etymologically sar-pet 'tail-river'."
+  },
+  {
+    "id": "kotan",
+    "lemma": "kotan",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["village", "settlement", "town"],
+    "glosses_jp": ["村", "集落"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "中川1995アイヌ語千歳方言辞典"],
+    "verified": true,
+    "notes": "One of the most productive place-name suffixes in Ainu toponyms (-kotan in Japanese spellings of Ainu place names). Combines with adjectives (pirka-kotan 'good village') and locatives."
+  },
+  {
+    "id": "pet",
+    "lemma": "pet",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["river"],
+    "glosses_jp": ["川", "本流"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic 'river' as opposed to nay 'stream'. The Japanese place-name suffix ベツ / ベチ derives from pet (Sapporo-pet → Sapporo, ningi-pet, etc.)."
+  },
+  {
+    "id": "nay",
+    "lemma": "nay",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["stream", "creek", "valley with water"],
+    "glosses_jp": ["沢", "小川"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Smaller water course than pet. Sources the Japanese place-name suffix -ナイ (Wakkanai = wakka-nay 'water-stream', etc.)."
+  },
+  {
+    "id": "kim",
+    "lemma": "kim",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["mountain", "back-country", "interior"],
+    "glosses_jp": ["山", "奥地"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic mountain noun. Used as the directional base of ekimun 'toward the mountains'."
+  },
+  {
+    "id": "ekimun",
+    "lemma": "ekimun",
+    "category": "padv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "kim", "un-postp"],
+    "composition_note": "e- (APPL) + kim 'mountain' + un (ALLATIVE postposition) → 'toward the mountain'. Common in narratives about hunting trips inland.",
+    "glosses_en": ["toward the mountains", "upcountry"],
+    "glosses_jp": ["山へ", "奥地へ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "un-postp",
+    "lemma": "un",
+    "category": "postp",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["to", "toward", "into"],
+    "glosses_jp": ["～に", "～へ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Allative case particle. Distinct from the homophonous un- (an alternative form of an- '1.A' in some dialects) and from un-verb 'be located'."
+  },
+  {
+    "id": "wakka",
+    "lemma": "wakka",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["water", "drinking water"],
+    "glosses_jp": ["水", "飲料水"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic water noun. Source of Wakkanai (wakka + nay 'water-stream') and other hydronyms."
+  },
+  {
+    "id": "soy",
+    "lemma": "soy",
+    "category": "nl",
+    "bound": true,
+    "morph_type": "root",
+    "glosses_en": ["outside", "outdoors"],
+    "glosses_jp": ["外", "戸外"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Positional noun. Base of soyne 'go outside' (soy + ne), soyenpa 'go out.PL', etc."
+  },
+  {
+    "id": "imi",
+    "lemma": "imi",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["i-", "mi-wear"],
+    "composition_note": "Lexicalised i-mi (INDEF.OBJ + 'wear') → 'wear clothing / get dressed'. Parallel to iku 'drink (sake)', ipe 'eat (a meal)'.",
+    "glosses_en": ["get dressed", "wear clothing"],
+    "glosses_jp": ["衣服を着る", "服を着る"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "ikipa",
+    "lemma": "ikipa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["iki", "-pa-infl"],
+    "composition_note": "Plural counterpart of iki (= i- + ki 'do something'). The -pa suffix pluralises the agent without touching arity.",
+    "glosses_en": ["do something (PL)"],
+    "glosses_jp": ["（複数で）（何かを）する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "erayap",
+    "lemma": "erayap",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "rayap"],
+    "composition_note": "e- (APPL) + rayap 'admire' — the applicative adds the object of admiration as an external slot.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "感心する人"},
+        {"role": "patient", "realization": "external", "label_jp": "感心される対象"}
+      ]
+    },
+    "glosses_en": ["admire", "be impressed by"],
+    "glosses_jp": ["～に感心する", "～を感心する"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "etaye",
+    "lemma": "etaye",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["e-", "taye"],
+    "composition_note": "e- (APPL) + taye 'pull' → 'pull out / draw'. Used for extracting embedded things like nails, splinters, or strings.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "引く人"},
+        {"role": "patient", "realization": "external", "label_jp": "引かれるもの"}
+      ]
+    },
+    "glosses_en": ["pull", "draw", "pull out"],
+    "glosses_jp": ["～を引く", "～を引き抜く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "taye",
+    "lemma": "taye",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "引く人"},
+        {"role": "patient", "realization": "external", "label_jp": "引かれるもの"}
+      ]
+    },
+    "glosses_en": ["pull", "draw"],
+    "glosses_jp": ["～を引く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Base for etaye 'pull out' and related forms."
+  },
+  {
     "id": "onne",
     "lemma": "onne",
     "category": "vi",
