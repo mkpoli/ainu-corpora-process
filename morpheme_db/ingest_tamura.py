@@ -121,7 +121,24 @@ def _parse_gloss(definition: str, tag_end_index: int) -> str:
         tail = tail[: m.start()]
 
     # Final trim of trailing punctuation residue.
-    return tail.strip().rstrip("、,;:")
+    cleaned = tail.strip().rstrip("、,;:")
+
+    # Sanity: drop results that are obviously not a gloss. Patterns that
+    # the cleanup has trouble with cleanly:
+    #   - purely ASCII (left with just an example marker like ``usa``)
+    #   - the leading token is a Latin word followed by kana, which means
+    #     the parser cut at the Latin example before reaching the real
+    #     definition (e.g. ``-rototke``)
+    #   - the result is too short to carry meaning
+    if not cleaned:
+        return ""
+    if all(ord(c) < 128 for c in cleaned):
+        return ""
+    if len(cleaned) < 2:
+        return ""
+    if re.match(r"^[a-zA-Z]", cleaned):
+        return ""
+    return cleaned
 
 
 def parse_tamura_entries(path: Path) -> list[dict[str, str]]:

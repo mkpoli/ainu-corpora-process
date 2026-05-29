@@ -2180,6 +2180,71 @@
     "notes": "Base for easkay 'be able to'."
   },
   {
+    "id": "cikuni",
+    "lemma": "cikuni",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["tree", "wood"],
+    "glosses_jp": ["木", "立ち木"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic tree noun. Auto-decomp ci- + ku + ni is a substring artefact; synchronically opaque."
+  },
+  {
+    "id": "ay",
+    "lemma": "ay",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["arrow"],
+    "glosses_jp": ["矢"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Auto-decomp -ay = a= + hi is a substring artefact — ay is a single root noun for 'arrow'."
+  },
+  {
+    "id": "aan",
+    "lemma": "aan",
+    "category": "auxv",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["it has been so", "as it turned out"],
+    "glosses_jp": ["～であったのだ", "～だったのだ"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Past-realisation auxiliary. Fossilised from a= + an historically but synchronically a single auxiliary."
+  },
+  {
+    "id": "usi",
+    "lemma": "usi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["place", "time", "moment"],
+    "glosses_jp": ["場所", "とき"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Place / time deictic noun. The auto-decomp us + i- is wrong (i- is a prefix; can't appear after a stem)."
+  },
+  {
+    "id": "casi",
+    "lemma": "casi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": [],
+    "glosses_en": ["stockade", "fortress", "fortified site"],
+    "glosses_jp": ["砦", "城柵"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Defended/fortified site. Archaeological term for the elevated wooden stockades that crown many Hokkaido bluff sites. Single root, not derivable."
+  },
+  {
     "id": "kema",
     "lemma": "kema",
     "category": "n",
@@ -2370,6 +2435,364 @@
     "sources": ["田村1996アイヌ語沙流方言辞典"],
     "verified": true,
     "notes": "Positional noun. Base of soyne 'go outside' (soy + ne), soyenpa 'go out.PL', etc."
+  },
+  {
+    "id": "ape",
+    "lemma": "ape",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["fire", "flame"],
+    "glosses_jp": ["火", "炎"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Central element in domestic ritual: the hearth (the home of huciape, the fire-goddess) is the primary cultic site of the Ainu household."
+  },
+  {
+    "id": "cup",
+    "lemma": "cup",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["sun", "moon", "month"],
+    "glosses_jp": ["太陽", "月", "月（時間単位）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Polysemic celestial-body noun: disambiguated by tokap-cup 'day-sun = sun' vs cuk-cup 'autumn-month' etc. Distinct from the homophonous cup 'close.SG'."
+  },
+  {
+    "id": "sirpeker",
+    "lemma": "sirpeker",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["sir", "ninjal:peker"],
+    "composition_note": "sir 'scene/state' + peker 'be light' → 'it is daytime'. Stative verb describing the state of the visible world.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "昼"}
+      ]
+    },
+    "glosses_en": ["be daytime", "be light outside"],
+    "glosses_jp": ["昼である", "明るい"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sirkunne",
+    "lemma": "sirkunne",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["sir", "ninjal:kunne"],
+    "composition_note": "sir 'scene/state' + kunne 'be black/dark' → 'it is night'. Counterpart of sirpeker.",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "夜"}
+      ]
+    },
+    "glosses_en": ["be night", "be dark outside"],
+    "glosses_jp": ["夜である", "暗い"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "upas",
+    "lemma": "upas",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["snow"],
+    "glosses_jp": ["雪"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "sirar",
+    "lemma": "sirar",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["rocky reef", "exposed bedrock", "stone outcrop"],
+    "glosses_jp": ["岩礁", "岩", "露岩"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Specifically the offshore reefs / stones; pasuy is the inland rock."
+  },
+  {
+    "id": "repun",
+    "lemma": "repun",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "沖に出る人"}
+      ]
+    },
+    "glosses_en": ["go offshore", "head out to sea"],
+    "glosses_jp": ["沖に出る", "海を越えて行く"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Maritime motion verb. Related to rep 'open sea / offshore'."
+  },
+  {
+    "id": "toy",
+    "lemma": "toy",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["soil", "earth", "ground"],
+    "glosses_jp": ["土", "大地"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "mun",
+    "lemma": "mun",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["grass", "weeds"],
+    "glosses_jp": ["草"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "atuy",
+    "lemma": "atuy",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["sea", "ocean"],
+    "glosses_jp": ["海"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Generic sea noun; cf. rep 'offshore', wakka 'fresh water'."
+  },
+  {
+    "id": "mosir",
+    "lemma": "mosir",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["land", "country", "world"],
+    "glosses_jp": ["国", "大地", "世界"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Aynu mosir 'land of humans' = the Ainu homeland. Kamuy mosir is the kamuy realm. Central cosmological term."
+  },
+  {
+    "id": "ona",
+    "lemma": "ona",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["father"],
+    "glosses_jp": ["父"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Possessed form onaha 'his/her father'. Vocative michi (Saru) or aca (Karafuto)."
+  },
+  {
+    "id": "unu",
+    "lemma": "unu",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["mother"],
+    "glosses_jp": ["母"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Possessed form unuhu 'his/her mother'. Vocative habo or unu."
+  },
+  {
+    "id": "huci",
+    "lemma": "huci",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["húci"],
+    "glosses_en": ["grandmother", "elder female", "old woman"],
+    "glosses_jp": ["おばあさん", "祖母"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Used both as a kinship term and as a respectful title for elderly women. Apehuci 'fire grandmother' is the hearth-deity."
+  },
+  {
+    "id": "ekasi",
+    "lemma": "ekasi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["ekási"],
+    "glosses_en": ["grandfather", "elder", "ancestor"],
+    "glosses_jp": ["おじいさん", "祖父", "先祖"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Both a kinship term and a respectful title for elderly men. Paired with huci; together they're the cultural archetype of elders."
+  },
+  {
+    "id": "yup",
+    "lemma": "yup",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["yúp"],
+    "glosses_en": ["older brother"],
+    "glosses_jp": ["兄"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Possessed form yuphu 'his/her older brother'. Diminutive yupo / yupi for direct address."
+  },
+  {
+    "id": "sa-sister",
+    "lemma": "sa",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["older sister"],
+    "glosses_jp": ["姉"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Possessed form saha. Diminutive sapo for direct address. Distinct from the homophonous sa 'front'."
+  },
+  {
+    "id": "aca",
+    "lemma": "aca",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["áca"],
+    "glosses_en": ["uncle"],
+    "glosses_jp": ["おじ", "父の兄弟"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Father's brother; also a vocative for any older male relative in some dialects."
+  },
+  {
+    "id": "ak",
+    "lemma": "ak",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["younger brother"],
+    "glosses_jp": ["弟"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Possessed form akihi. Counterpart to yup."
+  },
+  {
+    "id": "matak",
+    "lemma": "matak",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "allomorphs": ["mátak"],
+    "glosses_en": ["younger sister (woman's)"],
+    "glosses_jp": ["妹（女性から見た）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Sibling term used by a female speaker for her younger sister. Male speakers use turesi for younger sister."
+  },
+  {
+    "id": "sinrit",
+    "lemma": "sinrit",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "glosses_en": ["ancestors", "lineage"],
+    "glosses_jp": ["先祖", "祖先"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Collective: the line of ancestors. Often invoked in icarpa (ancestor offering) rituals."
+  },
+  {
+    "id": "san",
+    "lemma": "san",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "降りる人"}
+      ]
+    },
+    "glosses_en": ["come down.SG", "descend.SG", "go down.SG"],
+    "glosses_jp": ["降りる（単数）", "下る（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive singular; plural counterpart sap. Distinct from the homophonous san 'side'."
+  },
+  {
+    "id": "rikin",
+    "lemma": "rikin",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "上る人"}
+      ]
+    },
+    "glosses_en": ["go up.SG", "ascend.SG"],
+    "glosses_jp": ["上る（単数）", "登る（単数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Suppletive singular; plural counterpart rikip."
+  },
+  {
+    "id": "rikip",
+    "lemma": "rikip",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "上る人々"}
+      ]
+    },
+    "glosses_en": ["go up.PL", "ascend.PL"],
+    "glosses_jp": ["上る（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of rikin."
+  },
+  {
+    "id": "soyenpa",
+    "lemma": "soyenpa",
+    "category": "vi",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["soy", "ene", "-pa-infl"],
+    "composition_note": "Plural counterpart of soyene 'go outside' — soy + ene + -pa (plural).",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "外に出る人々"}
+      ]
+    },
+    "glosses_en": ["go outside.PL", "leave the house.PL"],
+    "glosses_jp": ["外に出る（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "respa",
+    "lemma": "respa",
+    "category": "vt",
+    "bound": false,
+    "morph_type": "root",
+    "base_frame": {
+      "slots": [
+        {"role": "agent", "realization": "external", "label_jp": "育てる人"},
+        {"role": "patient", "realization": "external", "label_jp": "育てられる者たち"}
+      ]
+    },
+    "glosses_en": ["raise.PL", "bring up.PL"],
+    "glosses_jp": ["～を育てる（複数）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Plural counterpart of resu 'raise.SG'."
   },
   {
     "id": "imi",
