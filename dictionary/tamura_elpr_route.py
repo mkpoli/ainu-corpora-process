@@ -28,6 +28,7 @@ from dictionary.tamura_elpr_parse import (
     parse_corpus_page,
     parse_vocab_page,
 )
+from dictionary.tamura_elpr_kana import restore_small_kana
 
 ROOT = Path(__file__).resolve().parents[1]
 OCR_DIR = ROOT / "dictionary" / "output" / "tamura-elpr-ocr"
@@ -72,7 +73,8 @@ def build_interlinear_doc(pages: range, title: str) -> dict:
             if it.jpn.strip():
                 s["jpn"] = it.jpn.strip()
             if it.kana.strip():
-                s["ain-kana"] = it.kana.strip()
+                # Restore small kana that Gemini flattened, using the Latin.
+                s["ain-kana"] = restore_small_kana(it.latin.strip(), it.kana.strip())
             sentences.append(s)
     doc: dict = {"title": title, "sentences": sentences}
     return doc
