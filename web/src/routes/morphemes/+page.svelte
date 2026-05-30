@@ -63,6 +63,10 @@
 				<p class="text-sm text-ink/60 max-w-2xl">{m.morphemes_subtitle()}</p>
 			</div>
 			<div class="flex items-center gap-3 text-xs">
+				<nav class="flex items-center gap-1">
+					<a href="/morphemes" class="rounded-full bg-accent-soft px-3 py-1 font-medium text-accent ring-1 ring-accent/30">{m.stats_morphemes()}</a>
+					<a href="/lexemes" class="rounded-full px-3 py-1 text-ink/60 ring-1 ring-rule transition hover:text-accent hover:ring-accent/40">{m.stats_lexemes()}</a>
+				</nav>
 				<a href="/references" class="text-ink/70 underline-offset-2 hover:text-accent hover:underline">
 					{m.references_link()}
 				</a>
