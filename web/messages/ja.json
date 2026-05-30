@@ -3,6 +3,8 @@
 	"app_title": "アイヌ語形態素エクスプローラ",
 	"app_subtitle": "アイヌ語形態素データベースを閲覧——構成・結合価・形態素同士の結合関係を確認できます．",
 	"stats_entries": "エントリ数",
+	"stats_morphemes": "形態素",
+	"stats_lexemes": "語彙素",
 	"stats_curated": "整備済",
 	"stats_with_frame": "結合価あり",
 	"stats_with_category": "範疇あり",
