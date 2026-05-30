@@ -156,3 +156,53 @@ export interface CompositionResult {
 	 * seen this word" warning in that case. */
 	unseen: boolean;
 }
+
+// --- Lexeme bank (語彙素 layer) -------------------------------------------
+// Mirror of lexeme_db.schema (Python). The web consumes lexemes.json, which is
+// the lexeme bank joined with the dictionary crosswalk by sync-database.mjs:
+// each lexeme carries its attestations (one per source dictionary entry) plus
+// the derived `dialects` / `recordings`.
+
+export interface LexemeSense {
+	id: string;
+	gloss_jp: string[];
+	gloss_en: string[];
+	note: string;
+}
+
+export interface LexemeAttestation {
+	source: string;
+	dialect: string;
+	entry_ref: string;
+	surface_latn: string;
+	surface_kana: string;
+	pos_raw: string;
+	sense_id: string;
+	match_kind: string;
+	confidence: number;
+	/** Truncated definition preview from the source (full text lives in the
+	 * crosswalk TSV; the bundle keeps only a short preview). */
+	gloss: string;
+}
+
+export interface Lexeme {
+	id: string;
+	lemma: string;
+	kana: string;
+	pos: string;
+	gloss_jp: string[];
+	gloss_en: string[];
+	bound: boolean;
+	/** Dialect whose spelling was taken as the citation form. */
+	dialect_base: string;
+	/** Composition into the morpheme bank (morpheme ids). */
+	morphemes: string[];
+	senses: LexemeSense[];
+	sources: string[];
+	notes: string;
+	// Joined in by sync-database.mjs:
+	attestations: LexemeAttestation[];
+	/** Distinct dialects this lexeme is attested in (sorted). */
+	dialects: string[];
+	recordings: number;
+}
