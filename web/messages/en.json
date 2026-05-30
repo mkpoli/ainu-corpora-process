@@ -3,6 +3,8 @@
 	"app_title": "Ainu Morpheme Explorer",
 	"app_subtitle": "Browse the Ainu morpheme database — composition, valency, and how each morpheme combines.",
 	"stats_entries": "Entries",
+	"stats_morphemes": "Morphemes",
+	"stats_lexemes": "Lexemes",
 	"stats_curated": "Curated",
 	"stats_with_frame": "With frame",
 	"stats_with_category": "With category",
