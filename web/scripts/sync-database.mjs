@@ -94,10 +94,17 @@ function syncLexemes() {
 		console.warn('[sync-database] WARN: crosswalk.tsv not found; lexemes will have no recordings.');
 	}
 
+	const composition = buildCompositionResolver();
 	const out = lexemes.map((lx) => {
 		const attestations = byLexeme.get(lx.id) ?? [];
 		const dialects = [...new Set(attestations.map((a) => a.dialect).filter(Boolean))].sort();
-		return { ...lx, attestations, dialects, recordings: attestations.length };
+		return {
+			...lx,
+			attestations,
+			dialects,
+			recordings: attestations.length,
+			composition: composition(lx.morphemes ?? [])
+		};
 	});
 
 	writeFileSync(LEXEME_DEST, JSON.stringify(out), 'utf-8');
@@ -106,6 +113,25 @@ function syncLexemes() {
 		`[sync-database] built lexemes.json (${out.length} lexemes, ` +
 			`${out.reduce((n, l) => n + l.recordings, 0)} recordings, ${multiDialect} multi-dialect)`
 	);
+}
+
+// Resolve each lexeme's single morpheme link through to that morpheme's
+// `composition` — the real multi-morpheme breakdown (inkar -> i- + nukar) —
+// flatten nested bracketing, and map ids to display lemmas. Precomputed here
+// so the lexeme list view never has to load the morpheme DB at runtime.
+// Returns () => [] when the morpheme source isn't available.
+function buildCompositionResolver() {
+	if (!existsSync(MORPHEME_SRC)) return () => [];
+	const entries = JSON.parse(readFileSync(MORPHEME_SRC, 'utf-8'));
+	const byId = new Map(entries.map((e) => [e.id, e]));
+	const lemmaOf = (id) => byId.get(id)?.lemma ?? id;
+	const flatten = (comp) =>
+		comp.flatMap((item) => (Array.isArray(item) ? flatten(item) : [String(item)]));
+	return (morphemeIds) => {
+		const entry = morphemeIds[0] ? byId.get(morphemeIds[0]) : undefined;
+		const comp = entry?.composition ?? [];
+		return comp.length > 1 ? flatten(comp).map(lemmaOf) : [];
+	};
 }
 
 syncFile(MORPHEME_SRC, MORPHEME_DEST, 'morpheme_database.json');

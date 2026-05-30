@@ -205,4 +205,8 @@ export interface Lexeme {
 	/** Distinct dialects this lexeme is attested in (sorted). */
 	dialects: string[];
 	recordings: number;
+	/** Precomputed multi-morpheme composition resolved to display lemmas
+	 *  (e.g. ["i-","nukar"]); empty for monomorphemic / unlinked lexemes.
+	 *  Built offline so the list view needs no morpheme-DB lookup. */
+	composition?: string[];
 }

@@ -27,7 +27,8 @@ const ARRAY_FIELDS = [
 	'senses',
 	'sources',
 	'attestations',
-	'dialects'
+	'dialects',
+	'composition'
 ] as const;
 
 function rowToLexeme(row: Record<string, unknown>): Lexeme {

@@ -25,30 +25,22 @@ export interface LexemeRow {
 
 export const load: PageServerLoad = async ({ url, platform }) => {
 	const bank = await loadLexemes(platform);
-	const db = await loadDatabase(platform);
-	const lemmaOf = (mid: string) => db.byId.get(mid)?.lemma ?? mid;
 
-	// The lexeme's own `morphemes` field is just a single link into the
-	// morpheme bank — the real multi-morpheme breakdown lives on that
-	// morpheme's `composition` (e.g. inkar -> i- + nukar). Resolve through to
-	// it, flatten any nested bracketing, and map to display lemmas. Empty when
-	// the lexeme is monomorphemic / unlinked (nothing to combine).
-	const flatten = (comp: unknown[]): string[] =>
-		comp.flatMap((item) => (Array.isArray(item) ? flatten(item) : [String(item)]));
-	const combinationOf = (morphemeIds: string[]): string[] => {
-		const entry = morphemeIds[0] ? db.byId.get(morphemeIds[0]) : undefined;
-		const comp = entry?.composition ?? [];
-		return comp.length > 1 ? flatten(comp).map(lemmaOf) : [];
-	};
+	// The morpheme combination shown per lexeme is precomputed into
+	// `lx.composition` at build time (see scripts/sync-database.mjs and
+	// lexeme_db/export_sqlite.py) — resolving it at runtime would mean loading
+	// the whole morpheme DB on this list page and blew the Worker's limits.
 
 	// Reverse cross-link from the morpheme explorer: ?morph=<morpheme-id>
-	// narrows the list to lexemes that compose that morpheme.
+	// narrows the list to lexemes that compose that morpheme. Only here do we
+	// touch the morpheme bank (to resolve the id to a lemma for the banner).
 	const morphId = url.searchParams.get('morph')?.trim() ?? '';
 	let morphFilter: { id: string; lemma: string } | null = null;
 	let source = bank.lexemes;
 	if (morphId) {
 		source = bank.lexemes.filter((lx) => lx.morphemes.includes(morphId));
-		morphFilter = { id: morphId, lemma: lemmaOf(morphId) };
+		const db = await loadDatabase(platform);
+		morphFilter = { id: morphId, lemma: db.byId.get(morphId)?.lemma ?? morphId };
 	}
 
 	const rows: LexemeRow[] = source.map((lx) => ({
@@ -62,7 +54,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		dialects: lx.dialects,
 		recordings: lx.recordings,
 		sources: lx.sources.length,
-		morphemes: combinationOf(lx.morphemes),
+		morphemes: lx.composition ?? [],
 		morphemeLinked: lx.morphemes.length > 0,
 		senses: lx.senses.length
 	}));
