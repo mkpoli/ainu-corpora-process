@@ -148,18 +148,18 @@
 					<LocaleSwitcher />
 				</div>
 				<dl class="flex flex-wrap justify-end gap-3 text-xs text-ink/60">
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
+					<a href="/morphemes" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
 						<dt class="uppercase tracking-widest text-[10px]">{m.stats_morphemes()}</dt>
 						<dd class="font-mono text-base text-ink">{data.stats.total.toLocaleString()}</dd>
-					</div>
+					</a>
 					<a href="/lexemes" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
 						<dt class="uppercase tracking-widest text-[10px]">{m.stats_lexemes()}</dt>
 						<dd class="font-mono text-base text-ink">{data.stats.lexemes.toLocaleString()}</dd>
 					</a>
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
+					<a href="/morphemes?verified=1" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
 						<dt class="uppercase tracking-widest text-[10px]">{m.stats_curated()}</dt>
 						<dd class="font-mono text-base text-ink">{data.stats.verified.toLocaleString()}</dd>
-					</div>
+					</a>
 				</dl>
 			</div>
 		</div>
@@ -261,6 +261,10 @@
 				     1:1, so the canvas lets the user drag-to-pan and
 				     scroll/⌘-wheel to zoom while keeping the original
 				     top-down tree layout. -->
+				<!-- Re-key on the resolved word so a new query/example mounts a
+				     fresh PanZoom — otherwise the pan/zoom position carries over
+				     from the previous tree. -->
+				{#key data.resolvedQuery}
 				<PanZoom>
 					<div class="flex flex-col items-center py-3 px-3">
 						<CompositionTree
@@ -283,6 +287,7 @@
 						{/if}
 					</div>
 				</PanZoom>
+				{/key}
 
 				{#if data.composition.warnings.length}
 					<details class="text-xs text-ink/60">
