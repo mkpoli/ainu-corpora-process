@@ -109,8 +109,21 @@ export async function loadDatabase(platform?: AppPlatform): Promise<DatabaseSnap
 
 	let entries: Entry[];
 	if (db) {
-		const result = await db.prepare('SELECT * FROM entries').all<Record<string, unknown>>();
-		entries = result.results.map(rowToEntry);
+		try {
+			const result = await db.prepare('SELECT * FROM entries').all<Record<string, unknown>>();
+			entries = result.results.map(rowToEntry);
+		} catch (err) {
+			// In `vite dev` the Cloudflare platform proxy binds an *empty*
+			// ephemeral D1 (svelte.config.js: persist: false), so the `entries`
+			// table is absent until a publish. Fall back to the bundled snapshot
+			// (populated locally by the predev sync) instead of 500-ing. Mirrors
+			// the same guard in server/lexemes.ts.
+			console.warn(
+				'[database] D1 query failed, falling back to bundled JSON:',
+				(err as Error)?.message ?? err
+			);
+			entries = bundled as Entry[];
+		}
 	} else {
 		entries = bundled as Entry[];
 	}
