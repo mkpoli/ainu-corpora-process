@@ -26,7 +26,8 @@
 					r.lemma.toLowerCase().includes(f) ||
 					r.kana.includes(filter.trim()) ||
 					r.gloss_jp.includes(filter.trim()) ||
-					r.gloss_en.toLowerCase().includes(f)
+					r.gloss_en.toLowerCase().includes(f) ||
+					r.morphemes.some((mo) => mo.toLowerCase().includes(f))
 			);
 		}
 		if (onlyMultiDialect) result = result.filter((r) => r.dialects.length > 1);
@@ -109,6 +110,7 @@
 					<th class="px-3 py-2">{m.lexemes_col_kana()}</th>
 					<th class="px-3 py-2">{m.lexemes_col_pos()}</th>
 					<th class="px-3 py-2">{m.lexemes_col_gloss()}</th>
+					<th class="px-3 py-2">{m.lexemes_col_morphemes()}</th>
 					<th class="px-3 py-2">{m.lexemes_col_dialects()}</th>
 					<th class="px-3 py-2 text-right">{m.lexemes_col_recordings()}</th>
 				</tr>
@@ -125,6 +127,9 @@
 						<td class="px-3 py-2 text-[12px] text-ink/70">{r.kana || '—'}</td>
 						<td class="px-3 py-2 text-[12px] text-ink/70">{r.pos ? categoryLabel(r.pos) : '—'}</td>
 						<td class="px-3 py-2 text-[12px]">{r.gloss_jp || r.gloss_en || '—'}</td>
+						<td class="px-3 py-2 font-mono text-[11px] text-ink/65">
+							{#if r.morphemes.length}{r.morphemes.join(' + ')}{:else}—{/if}
+						</td>
 						<td class="px-3 py-2">
 							{#each r.dialects as d}
 								<span class="mr-1 inline-block rounded-full bg-leaf/10 px-2 py-0.5 text-[11px] text-leaf">{d}</span>

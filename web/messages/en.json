@@ -77,6 +77,7 @@
 	"lexemes_col_gloss": "gloss",
 	"lexemes_col_dialects": "dialects",
 	"lexemes_col_recordings": "recordings",
+	"lexemes_col_morphemes": "morphemes",
 	"lexemes_detail_senses": "Senses",
 	"lexemes_detail_morphemes": "Morphemes",
 	"lexemes_detail_morphemes_hint": "This lexeme's composition — open one in the morpheme explorer.",
