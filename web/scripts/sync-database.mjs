@@ -29,9 +29,18 @@ const GLOSS_PREVIEW_CHARS = 160;
 
 if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 
-function syncFile(src, dest, label) {
+function syncFile(src, dest, label, placeholder = '[]\n') {
 	if (!existsSync(src)) {
-		console.warn(`[sync-database] WARN: ${label} not found at ${src}; leaving existing copy.`);
+		if (existsSync(dest)) {
+			console.warn(`[sync-database] WARN: ${label} source missing; keeping existing copy.`);
+		} else {
+			// Fresh CI checkout: the Python outputs are gitignored under
+			// **/output/, so the source isn't there. Drop an empty placeholder
+			// so `import … from '$lib/data/…'` resolves at type-check/build time.
+			// Never clobbers a real copy; runtime prefers D1 (server/database.ts).
+			writeFileSync(dest, placeholder, 'utf-8');
+			console.warn(`[sync-database] WARN: ${label} source missing; wrote empty placeholder.`);
+		}
 		return;
 	}
 	copyFileSync(src, dest);
@@ -70,9 +79,10 @@ function parseCrosswalk(tsv) {
 
 function syncLexemes() {
 	if (!existsSync(LEXEME_SRC)) {
+		if (!existsSync(LEXEME_DEST)) writeFileSync(LEXEME_DEST, '[]\n', 'utf-8');
 		console.warn(
 			`[sync-database] WARN: lexeme_bank.json not found at ${LEXEME_SRC}; ` +
-				`skipping lexemes.json (run: uv run python -m lexeme_db.cli build).`
+				`wrote/kept lexemes.json placeholder (run: uv run python -m lexeme_db.cli build).`
 		);
 		return;
 	}
