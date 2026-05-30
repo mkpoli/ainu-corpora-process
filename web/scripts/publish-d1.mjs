@@ -29,6 +29,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WEB_ROOT = path.resolve(__dirname, '..');
 const REPO_ROOT = path.resolve(WEB_ROOT, '..');
 const SQL_FILE = path.resolve(REPO_ROOT, 'morpheme_db/output/morpheme_database.sql');
+const LEXEME_SQL_FILE = path.resolve(REPO_ROOT, 'lexeme_db/output/lexemes.sql');
 const WRANGLER_CONFIG = path.resolve(WEB_ROOT, 'wrangler.jsonc');
 
 function utcTimestamp() {
@@ -57,8 +58,10 @@ function captured(cmd, args) {
 }
 
 function rebuildSqlDump() {
-	console.log('▸ Rebuilding SQL dump via morpheme_db.export_sqlite …');
+	console.log('▸ Rebuilding morpheme SQL dump via morpheme_db.export_sqlite …');
 	run('uv', ['run', 'python', '-m', 'morpheme_db.export_sqlite'], { cwd: REPO_ROOT });
+	console.log('▸ Rebuilding lexeme SQL dump via lexeme_db.export_sqlite …');
+	run('uv', ['run', 'python', '-m', 'lexeme_db.export_sqlite'], { cwd: REPO_ROOT });
 }
 
 function createD1(name) {
@@ -73,8 +76,13 @@ function createD1(name) {
 }
 
 function importSql(name) {
-	console.log(`▸ Importing SQL into '${name}' (remote) …`);
+	// Both dumps import into the *same* database — morphemes own the `entries`
+	// table, lexemes own `lexemes`; neither drops the other's table. Morphemes
+	// first (they also create the shared `db_meta`), then lexemes.
+	console.log(`▸ Importing morpheme SQL into '${name}' (remote) …`);
 	run('bunx', ['wrangler', 'd1', 'execute', name, '--remote', `--file=${SQL_FILE}`]);
+	console.log(`▸ Importing lexeme SQL into '${name}' (remote) …`);
+	run('bunx', ['wrangler', 'd1', 'execute', name, '--remote', `--file=${LEXEME_SQL_FILE}`]);
 }
 
 function updateWranglerConfig(name, id) {

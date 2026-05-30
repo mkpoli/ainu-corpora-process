@@ -255,6 +255,15 @@
 			</section>
 		{/if}
 
+		<section>
+			<a
+				href="/lexemes?morph={encodeURIComponent(entry.id)}"
+				class="inline-flex items-center gap-1 text-xs text-ink/60 underline-offset-2 transition hover:text-accent hover:underline"
+			>
+				{m.detail_lexemes_link()} →
+			</a>
+		</section>
+
 		{#if entry.frequency > 0}
 			<footer class="text-[11px] text-ink/50">
 				{m.detail_observed({ count: entry.frequency.toLocaleString() })}
