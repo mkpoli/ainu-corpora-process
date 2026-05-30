@@ -8,3 +8,5 @@ dictionary/input/nakagawa/*.pdf
 __pycache__/
 *.py[cod]
 *$py.class
+
+dictionary/input/tamura_elpr/*.pdf
