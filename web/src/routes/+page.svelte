@@ -148,22 +148,18 @@
 					<LocaleSwitcher />
 				</div>
 				<dl class="flex flex-wrap justify-end gap-3 text-xs text-ink/60">
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
-						<dt class="uppercase tracking-widest text-[10px]">{m.stats_entries()}</dt>
+					<a href="/morphemes" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
+						<dt class="uppercase tracking-widest text-[10px]">{m.stats_morphemes()}</dt>
 						<dd class="font-mono text-base text-ink">{data.stats.total.toLocaleString()}</dd>
-					</div>
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
+					</a>
+					<a href="/lexemes" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
+						<dt class="uppercase tracking-widest text-[10px]">{m.stats_lexemes()}</dt>
+						<dd class="font-mono text-base text-ink">{data.stats.lexemes.toLocaleString()}</dd>
+					</a>
+					<a href="/morphemes?verified=1" class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule transition hover:ring-accent/40">
 						<dt class="uppercase tracking-widest text-[10px]">{m.stats_curated()}</dt>
-						<dd class="font-mono text-base text-ink">{data.stats.verified}</dd>
-					</div>
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
-						<dt class="uppercase tracking-widest text-[10px]">{m.stats_with_frame()}</dt>
-						<dd class="font-mono text-base text-ink">{data.stats.withFrame}</dd>
-					</div>
-					<div class="rounded-lg bg-paper px-3 py-1.5 ring-1 ring-rule">
-						<dt class="uppercase tracking-widest text-[10px]">{m.stats_with_category()}</dt>
-						<dd class="font-mono text-base text-ink">{data.stats.withCategory}</dd>
-					</div>
+						<dd class="font-mono text-base text-ink">{data.stats.verified.toLocaleString()}</dd>
+					</a>
 				</dl>
 			</div>
 		</div>
@@ -265,8 +261,12 @@
 				     1:1, so the canvas lets the user drag-to-pan and
 				     scroll/⌘-wheel to zoom while keeping the original
 				     top-down tree layout. -->
+				<!-- Re-key on the resolved word so a new query/example mounts a
+				     fresh PanZoom — otherwise the pan/zoom position carries over
+				     from the previous tree. -->
+				{#key data.resolvedQuery}
 				<PanZoom>
-					<div class="flex justify-center py-3 px-3">
+					<div class="flex flex-col items-center py-3 px-3">
 						<CompositionTree
 							node={data.composition.tree}
 							{selectedId}
@@ -277,16 +277,17 @@
 							{entryById}
 							matchedEntryId={data.composition.matchedEntry?.id ?? null}
 						/>
+						{#if compositionHead?.etymology && !expanded.has(compositionHead.id)}
+							<!-- Head's etymology rendered as a continuation of the tree
+							     INSIDE the canvas, so it pans/zooms with the graph and
+							     its inbound connector meets the tree instead of floating
+							     outside it. Shown only until the head's "…" is expanded
+							     (the leaf-level Etymology then takes over). -->
+							<Etymology entry={compositionHead} {entryById} onSelect={(id) => (userSelectedId = id)} {selectedId} />
+						{/if}
 					</div>
 				</PanZoom>
-
-				{#if compositionHead?.etymology && !expanded.has(compositionHead.id)}
-					<!-- Top-level etymology summary, shown only while the head's
-					     leaf chip in the tree hasn't been expanded yet. Once the
-					     user clicks "…" on the head, the leaf-level Etymology
-					     takes over so we don't render it twice. -->
-					<Etymology entry={compositionHead} {entryById} />
-				{/if}
+				{/key}
 
 				{#if data.composition.warnings.length}
 					<details class="text-xs text-ink/60">

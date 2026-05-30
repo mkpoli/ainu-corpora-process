@@ -172,13 +172,16 @@
 	// strictly binary so each level shows exactly one wrap.
 </script>
 
-<div class="flex flex-col items-center gap-3">
+<!-- No vertical gap on the column: each connector element (the kind-label
+     block, the expand affordances, the branch bar) carries its own line so
+     the segments join continuously instead of floating across a flex gap. -->
+<div class="flex flex-col items-center">
 	{#if isLeaf}
 		<button
 			type="button"
 			onclick={handleClick}
 			disabled={!node.entry}
-			class="group flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition disabled:cursor-default disabled:opacity-70
+			class="group relative z-10 flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition disabled:cursor-default disabled:opacity-70
 				{node.entry ? chipCategoryClass(node.entry) : KIND_STYLE[node.kind] ?? 'border-rule bg-paper'}
 				{isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'hover:-translate-y-0.5 hover:shadow-md'}"
 		>
@@ -221,7 +224,7 @@
 					</button>
 					<span class="h-2 w-px bg-rule"></span>
 				</div>
-				<div class="flex flex-col items-center gap-2">
+				<div class="flex flex-col items-center">
 					{#if sub}
 						<CompositionTree
 							node={sub}
@@ -238,19 +241,22 @@
 						/>
 					{/if}
 					{#if subEntry?.etymology}
-						<Etymology entry={subEntry} {entryById} />
+						<Etymology entry={subEntry} {entryById} {onSelect} {selectedId} />
 					{/if}
 				</div>
 			{:else}
-				<button
-					type="button"
-					onclick={handleToggle}
-					aria-label="expand further derivations"
-					title="expand further derivations"
-					class="mt-1 rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/55 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
-				>
-					…
-				</button>
+				<div class="flex flex-col items-center">
+					<span class="h-3 w-px bg-rule"></span>
+					<button
+						type="button"
+						onclick={handleToggle}
+						aria-label="expand further derivations"
+						title="expand further derivations"
+						class="rounded-full bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/55 ring-1 ring-rule transition hover:bg-accent-soft hover:text-accent hover:ring-accent/40"
+					>
+						…
+					</button>
+				</div>
 			{/if}
 		{/if}
 	{:else}
@@ -266,7 +272,7 @@
 			<button
 				type="button"
 				onclick={handleClick}
-				class="flex flex-col items-center gap-1 rounded-2xl border px-3 py-1.5 shadow-sm transition
+				class="relative z-10 flex flex-col items-center gap-1 rounded-2xl border px-3 py-1.5 shadow-sm transition
 					{chipCategoryClass(node.entry)}
 					{isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'hover:-translate-y-0.5 hover:shadow-md'}"
 				title={`${node.kind} composition — click to inspect`}
@@ -293,7 +299,7 @@
 			</button>
 		{:else}
 			<div
-				class="flex flex-col items-center gap-1 rounded-2xl border border-rule bg-paper/70 px-3 py-1.5"
+				class="relative z-10 flex flex-col items-center gap-1 rounded-2xl border border-rule bg-paper/70 px-3 py-1.5"
 				title={`${node.kind} composition`}
 			>
 				<span class="font-mono text-sm text-ink/80">{node.surface}</span>
@@ -404,6 +410,10 @@
 		position: absolute;
 		top: 0;
 		left: 50%;
+		/* Centre the 1px stub on the child's midline; without the translate
+		   `left: 50%` puts its left edge at centre (~0.5px right), which reads
+		   as a 1px shift and a stub that misses the bar / child. */
+		transform: translateX(-50%);
 		width: 1px;
 		height: 1.25rem;
 		background: var(--color-rule);
