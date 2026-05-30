@@ -27,6 +27,7 @@ from dictionary.tamura_elpr_parse import (
     extract_ainu_latin,
     parse_corpus_page,
     parse_vocab_page,
+    strip_footnote_markers,
 )
 from dictionary.tamura_elpr_kana import restore_small_kana
 
@@ -69,12 +70,13 @@ def build_interlinear_doc(pages: range, title: str) -> dict:
             if not (it.latin or it.jpn):
                 continue
             s: dict = {}
-            s["ain"] = it.latin.strip()
+            s["ain"] = strip_footnote_markers(it.latin.strip())
             if it.jpn.strip():
                 s["jpn"] = it.jpn.strip()
             if it.kana.strip():
                 # Restore small kana that Gemini flattened, using the Latin.
-                s["ain-kana"] = restore_small_kana(it.latin.strip(), it.kana.strip())
+                kana = restore_small_kana(it.latin.strip(), it.kana.strip())
+                s["ain-kana"] = strip_footnote_markers(kana)
             sentences.append(s)
     doc: dict = {"title": title, "sentences": sentences}
     return doc
@@ -116,7 +118,7 @@ def _clean_utterance(s: str) -> str:
     s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"\s+([、。，？！」』）)])", r"\1", s)
     s = re.sub(r"([「『（(])\s+", r"\1", s)
-    return s.strip(" 、。")
+    return strip_footnote_markers(s.strip(" 、。"))
 
 
 def build_kitakaze_doc(pages: range, title: str) -> dict:
@@ -191,7 +193,7 @@ def build_yamada_oral_doc(pages: range, title: str) -> dict:
                 m = YAMADA_CORE_RE.match(line)
                 jpn = m.group(2).strip() if m else line
                 inline_ain = extract_ainu_latin(m.group(1)) if m else ""
-                ain = inline_ain or pending
+                ain = strip_footnote_markers(inline_ain or pending)
                 if ain:
                     sentences.append({"ain": ain, "jpn": jpn})
                 pending = ""
@@ -226,9 +228,9 @@ def build_vocab_tsv(pages: range, *, bare_num: bool = False) -> list[list[str]]:
                     str(r.num),
                     r.src_page,
                     r.category,
-                    r.gloss_ja,
-                    r.lemma,
-                    r.notes,
+                    strip_footnote_markers(r.gloss_ja),
+                    strip_footnote_markers(r.lemma),
+                    strip_footnote_markers(r.notes),
                 ]
             )
     return rows

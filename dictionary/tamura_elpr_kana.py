@@ -69,26 +69,56 @@ def _clean_latin(ain: str) -> str:
 
 
 def restore_small_kana(ain: str, ocr_kana: str) -> str:
-    """Return ocr_kana with small kana restored per the Latin `ain`."""
+    """Return ocr_kana with (1) small kana restored and (2) word spacing taken
+    from the Latin, both derived from the Latin `ain` via ainconv.latn2kana.
+
+    Content (kana, long-vowel ー) comes from the OCR; only the small/large
+    distinction and the word boundaries are imported from the Latin reference."""
     if not ocr_kana or not ain:
         return ocr_kana
     ref = latn2kana(_clean_latin(ain))
-    ref_u = _units(ref)
-    ocr_u = _units(ocr_kana)
-    sm = SequenceMatcher(a=[u[1] for u in ref_u], b=[u[1] for u in ocr_u], autojunk=False)
-    out: list[str] = []
+
+    # Reference units without spaces, plus the set of indices that begin a word.
+    ref_ns: list[tuple[str, str, str | None]] = []
+    word_start: set[int] = set()
+    prev_space = False
+    for u in _units(ref):
+        if u[0] == " ":
+            prev_space = True
+            continue
+        if prev_space and ref_ns:
+            word_start.add(len(ref_ns))
+        ref_ns.append(u)
+        prev_space = False
+
+    # OCR units with existing spaces dropped — we re-derive spacing from the Latin.
+    ocr_ns = [u for u in _units(ocr_kana) if u[0] != " "]
+
+    sm = SequenceMatcher(a=[u[1] for u in ref_ns], b=[u[1] for u in ocr_ns], autojunk=False)
+    small_at: dict[int, str] = {}   # ocr index -> small kana to use
+    space_before: set[int] = set()  # ocr index that should get a preceding space
     for tag, i1, i2, j1, j2 in sm.get_opcodes():
         if tag == "equal":
-            for k in range(j2 - j1):
-                ref_unit = ref_u[i1 + k]
-                ocr_unit = ocr_u[j1 + k]
-                # Downsize only when the reference says this kana is small.
-                out.append(ref_unit[2] if ref_unit[2] is not None else ocr_unit[0])
-        else:
-            # genuine divergence (ー vs アア, OCR noise): keep the OCR verbatim
-            for k in range(j1, j2):
-                out.append(ocr_u[k][0])
-    return "".join(out)
+            for k in range(i2 - i1):
+                if ref_ns[i1 + k][2] is not None:        # ref says this kana is small
+                    small_at[j1 + k] = ref_ns[i1 + k][2]
+                if (i1 + k) in word_start:
+                    space_before.add(j1 + k)
+        elif tag == "replace":
+            if any((r in word_start) for r in range(i1, i2)):
+                space_before.add(j1)
+        elif tag == "delete":
+            if any((r in word_start) for r in range(i1, i2)):
+                space_before.add(j1)  # boundary falls before the next OCR unit
+
+    out: list[str] = []
+    for idx, u in enumerate(ocr_ns):
+        if idx in space_before and out and out[-1] != " ":
+            out.append(" ")
+        out.append(small_at.get(idx, u[0]))
+    result = "".join(out)
+    result = re.sub(r"\s+([、。，])", r"\1", result)  # no space before JP punctuation
+    return re.sub(r"\s+", " ", result).strip()
 
 
 if __name__ == "__main__":
@@ -98,6 +128,7 @@ if __name__ == "__main__":
         ("nohkiri eyohtekara ranke an manu.", "ノホキリ エヨホテカラ ランケ アン マヌ。"),
         ("ranma, tah oro suy eruy,", "ランマ、タハ オロ シエルイ、"),
         ("sapane kamuy, kamuy anihi nee", "サパネ カムイ、カムイ アニヒ ネー"),
+        ("konkaani maareh sineh kara,", "コンカーニマーレㇳシネㇷカラ、"),  # OCR dropped spaces
     ]
     for ain, kana in tests:
         print(f"AIN : {ain}")
