@@ -115,6 +115,17 @@ _CJK_RE = re.compile(
 )
 
 
+_FOOTNOTE_MARK_RE = re.compile(r"\^\d+|[⁰¹²³⁴⁵⁶⁷⁸⁹]+")
+
+
+def strip_footnote_markers(s: str) -> str:
+    """Remove inline footnote markers (^24, or superscript digits ²⁴) from output
+    text. The footnote bodies are already dropped during parsing."""
+    s = _FOOTNOTE_MARK_RE.sub("", s)
+    # collapse any double space the removal left between words
+    return re.sub(r"  +", " ", s).strip()
+
+
 def extract_ainu_latin(s: str) -> str:
     """Keep only the romanized-Ainu portion of a line: drop CJK text and
     Japanese punctuation (the speaker's spoken-Japanese commentary), normalize
