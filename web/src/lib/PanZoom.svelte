@@ -14,19 +14,49 @@
 	} = $props();
 
 	let container: HTMLDivElement | null = $state(null);
+	let content: HTMLDivElement | null = $state(null);
 	let scale = $state(1);
 	let tx = $state(0);
 	let ty = $state(0);
 	let panning = $state(false);
 	let panMoved = $state(false);
+	let hasFit = false;
 	let lastX = 0;
 	let lastY = 0;
 
 	const PAN_THRESHOLD = 4; // px before we treat pointerdrag as a real pan
+	const FIT_PAD = 24; // breathing room around the tree when fitting
 
 	function clampScale(s: number): number {
 		return Math.min(maxScale, Math.max(minScale, s));
 	}
+
+	/**
+	 * Scale + position the content so the whole tree fits the viewport: wide
+	 * polysynthetic trees zoom out instead of overflowing off-canvas. We never
+	 * zoom *in* past 100% (a small tree stays crisp, just centred). The tree is
+	 * top-aligned (it reads top-down) and horizontally centred. `scrollWidth`/
+	 * `scrollHeight` give the natural layout size, unaffected by the transform.
+	 */
+	function fitToView() {
+		if (!container || !content) return;
+		const cw = container.clientWidth;
+		const ch = container.clientHeight;
+		const ww = content.scrollWidth;
+		const wh = content.scrollHeight;
+		if (!ww || !wh) return;
+		scale = clampScale(Math.min(1, (cw - FIT_PAD * 2) / ww, (ch - FIT_PAD * 2) / wh));
+		tx = Math.max(FIT_PAD, (cw - ww * scale) / 2);
+		ty = FIT_PAD;
+	}
+
+	// Fit once on mount (each new query re-keys this component, so a fresh
+	// instance re-fits). rAF lets layout settle before we measure.
+	$effect(() => {
+		if (hasFit || !container || !content) return;
+		hasFit = true;
+		requestAnimationFrame(fitToView);
+	});
 
 	function onWheel(e: WheelEvent) {
 		// ctrl/cmd + wheel → zoom toward cursor (standard convention).
@@ -108,9 +138,9 @@
 	}
 
 	function reset() {
-		scale = 1;
-		tx = 0;
-		ty = 0;
+		// "Reset" = fit the tree back into view (more useful than 100% for the
+		// wide trees this canvas exists for).
+		fitToView();
 	}
 
 	function zoomBy(factor: number) {
@@ -142,6 +172,7 @@
 	style:cursor={panning ? 'grabbing' : 'grab'}
 >
 	<div
+		bind:this={content}
 		class="origin-top-left"
 		style:transform="translate({tx}px, {ty}px) scale({scale})"
 		style:will-change="transform"
