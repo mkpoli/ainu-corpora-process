@@ -15,23 +15,40 @@ export interface LexemeRow {
 	dialects: string[];
 	recordings: number;
 	sources: number;
-	morphemes: number;
+	/** The lexeme's multi-morpheme composition, resolved to display lemmas
+	 *  (e.g. ["i-","nukar"]). Empty for monomorphemic / unlinked lexemes. */
+	morphemes: string[];
+	/** Whether the lexeme links into the morpheme bank at all (for the stat). */
+	morphemeLinked: boolean;
 	senses: number;
 }
 
 export const load: PageServerLoad = async ({ url, platform }) => {
 	const bank = await loadLexemes(platform);
+	const db = await loadDatabase(platform);
+	const lemmaOf = (mid: string) => db.byId.get(mid)?.lemma ?? mid;
+
+	// The lexeme's own `morphemes` field is just a single link into the
+	// morpheme bank — the real multi-morpheme breakdown lives on that
+	// morpheme's `composition` (e.g. inkar -> i- + nukar). Resolve through to
+	// it, flatten any nested bracketing, and map to display lemmas. Empty when
+	// the lexeme is monomorphemic / unlinked (nothing to combine).
+	const flatten = (comp: unknown[]): string[] =>
+		comp.flatMap((item) => (Array.isArray(item) ? flatten(item) : [String(item)]));
+	const combinationOf = (morphemeIds: string[]): string[] => {
+		const entry = morphemeIds[0] ? db.byId.get(morphemeIds[0]) : undefined;
+		const comp = entry?.composition ?? [];
+		return comp.length > 1 ? flatten(comp).map(lemmaOf) : [];
+	};
 
 	// Reverse cross-link from the morpheme explorer: ?morph=<morpheme-id>
-	// narrows the list to lexemes that compose that morpheme. We resolve the
-	// id to its lemma (for the banner) from the morpheme bank.
+	// narrows the list to lexemes that compose that morpheme.
 	const morphId = url.searchParams.get('morph')?.trim() ?? '';
 	let morphFilter: { id: string; lemma: string } | null = null;
 	let source = bank.lexemes;
 	if (morphId) {
 		source = bank.lexemes.filter((lx) => lx.morphemes.includes(morphId));
-		const db = await loadDatabase(platform);
-		morphFilter = { id: morphId, lemma: db.byId.get(morphId)?.lemma ?? morphId };
+		morphFilter = { id: morphId, lemma: lemmaOf(morphId) };
 	}
 
 	const rows: LexemeRow[] = source.map((lx) => ({
@@ -45,7 +62,8 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		dialects: lx.dialects,
 		recordings: lx.recordings,
 		sources: lx.sources.length,
-		morphemes: lx.morphemes.length,
+		morphemes: combinationOf(lx.morphemes),
+		morphemeLinked: lx.morphemes.length > 0,
 		senses: lx.senses.length
 	}));
 	// Multi-dialect first (the interesting ones for cross-dialect comparison),
@@ -63,7 +81,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 			total: rows.length,
 			multiDialect: rows.filter((r) => r.dialects.length > 1).length,
 			senseSplit: rows.filter((r) => r.senses > 0).length,
-			morphemeLinked: rows.filter((r) => r.morphemes > 0).length
+			morphemeLinked: rows.filter((r) => r.morphemeLinked).length
 		}
 	};
 };
