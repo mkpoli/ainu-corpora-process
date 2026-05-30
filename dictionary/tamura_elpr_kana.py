@@ -107,6 +107,12 @@ def restore_small_kana(ain: str, ocr_kana: str) -> str:
         elif tag == "replace":
             if any((r in word_start) for r in range(i1, i2)):
                 space_before.add(j1)
+            # The Latin authoritatively determines syllable codas, so where the
+            # reference has a small (coda) kana but the OCR read a different base
+            # (e.g. Gemini misreading ㇸ as ㇳ/ㇷ), trust the Latin and override.
+            for k in range(min(i2 - i1, j2 - j1)):
+                if ref_ns[i1 + k][2] is not None:
+                    small_at[j1 + k] = ref_ns[i1 + k][2]
         elif tag == "delete":
             if any((r in word_start) for r in range(i1, i2)):
                 space_before.add(j1)  # boundary falls before the next OCR unit
