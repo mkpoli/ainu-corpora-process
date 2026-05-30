@@ -7,9 +7,10 @@ For each PDF page it shows, side by side:
     with restored ain-kana, or dictionary rows) — so you verify what actually
     lands in the PRs.
 
-Run:
-  uv run --with pyyaml --with more-itertools \
-      python -m dictionary.tamura_elpr_review        # then open http://localhost:8765
+Run (prints the chosen URL; picks a free port automatically):
+  uv run --with pyyaml --with more-itertools python -m dictionary.tamura_elpr_review
+  uv run ... python -m dictionary.tamura_elpr_review 9000   # or force a port
+  TAMURA_REVIEW_PORT=9000 uv run ... python -m dictionary.tamura_elpr_review
 
 No build step, no JS framework — stdlib http.server only.
 """
@@ -17,7 +18,8 @@ No build step, no JS framework — stdlib http.server only.
 from __future__ import annotations
 
 import html
-import io
+import os
+import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -27,7 +29,10 @@ from dictionary.tamura_elpr_parse import parse_vocab_page
 
 OCR_DIR = R.OCR_DIR
 MODEL_FILE = R.MODEL_FILE
-PORT = 8791
+# Port resolution order: CLI arg → $TAMURA_REVIEW_PORT → DEFAULT_PORT, and if that
+# is busy we fall back to an OS-assigned free port. Default is a fresh, uncommon
+# port so it won't clash with other local services (e.g. ainu-tts on 8765).
+DEFAULT_PORT = 8723
 
 # Map each PDF page to (kind, label). kind drives which parser the viewer runs.
 # Ranges mirror tamura_elpr_route.
@@ -188,10 +193,23 @@ class Handler(BaseHTTPRequestHandler):
             self._send(f"<pre>{html.escape(repr(exc))}</pre>".encode(), "text/html; charset=utf-8")
 
 
+def _resolve_port() -> int:
+    if len(sys.argv) > 1:
+        return int(sys.argv[1])
+    env = os.environ.get("TAMURA_REVIEW_PORT")
+    return int(env) if env else DEFAULT_PORT
+
+
 def main() -> None:
-    srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
-    print(f"Tamura ELPR review UI → http://localhost:{PORT}  ({len(CONTENT_PAGES)} content pages)")
-    print("Ctrl-C to stop.")
+    want = _resolve_port()
+    try:
+        srv = ThreadingHTTPServer(("127.0.0.1", want), Handler)
+    except OSError:
+        # requested port busy — fall back to an OS-assigned free port
+        srv = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    port = srv.server_address[1]
+    print(f"Tamura ELPR review UI → http://localhost:{port}  ({len(CONTENT_PAGES)} content pages)", flush=True)
+    print("Ctrl-C to stop.", flush=True)
     srv.serve_forever()
 
 
