@@ -128,6 +128,12 @@
 						{m.morphemes_link()}
 					</a>
 					<a
+						href="/lexemes"
+						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
+					>
+						Lexemes 語彙素
+					</a>
+					<a
 						href="/processes"
 						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
 					>
