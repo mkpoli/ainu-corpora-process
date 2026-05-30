@@ -1,4 +1,5 @@
 import { loadDatabase } from '$lib/server/database';
+import { countLexemes } from '$lib/server/lexemes';
 import { compose, computeArityFromComposition, findOtherUses } from '$lib/composition';
 import type { CompositionNode, CompositionResult, Entry } from '$lib/types';
 import type { PageServerLoad } from './$types';
@@ -14,6 +15,7 @@ const DEFAULT_EXAMPLE = 'eyaykotuymasiramsuypa';
 
 export const load: PageServerLoad = async ({ url, platform }) => {
 	const db = await loadDatabase(platform);
+	const lexemeCount = await countLexemes(platform);
 	// If no explicit query is supplied, fall back to the paper's signature
 	// polysynthetic example so the empty state actually showcases the tree.
 	const explicitQ = url.searchParams.get('q')?.trim() ?? '';
@@ -143,6 +145,7 @@ export const load: PageServerLoad = async ({ url, platform }) => {
 		families,
 		stats: {
 			total: db.entries.length,
+			lexemes: lexemeCount,
 			verified: db.entries.filter((e) => e.verified).length,
 			withFrame: db.entries.filter((e) => e.base_frame).length,
 			withCategory: db.entries.filter((e) => e.category).length

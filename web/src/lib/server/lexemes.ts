@@ -91,3 +91,23 @@ export async function loadLexemes(platform?: AppPlatform): Promise<LexemeBank> {
 	cacheSource = source;
 	return cache;
 }
+
+/**
+ * Cheap lexeme count for headline stats — a D1 `COUNT(*)` (or the bundled
+ * length) so the homepage doesn't pull the whole 10 MB bank just to show a
+ * number. Falls back to the bundled snapshot if the table isn't there yet.
+ */
+export async function countLexemes(platform?: AppPlatform): Promise<number> {
+	const db = platform?.env?.DB;
+	if (db) {
+		try {
+			const r = await db
+				.prepare('SELECT count(*) AS n FROM lexemes')
+				.all<{ n: number }>();
+			return Number(r.results?.[0]?.n ?? 0);
+		} catch {
+			return (bundled as unknown[]).length;
+		}
+	}
+	return (bundled as unknown[]).length;
+}

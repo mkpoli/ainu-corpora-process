@@ -526,12 +526,33 @@
         "operation": "internalize",
         "role": "patient",
         "realization": "internal_indef",
-        "label_jp": "不定目的語",
-        "description": "Indefinite-object prefix: saturates the patient slot."
+        "label_jp": "逆受動",
+        "description": "Antipassive: detransitivises a transitive base by saturating the patient slot with an indefinite object (nukar 'see it' -> inkar 'look')."
       }
     ],
-    "glosses_en": ["INDEF.OBJ"],
-    "glosses_jp": ["不定の目的語"],
+    "glosses_en": ["ANTIP"],
+    "glosses_jp": ["逆受動"],
+    "etymology": {
+      "parts": [
+        {
+          "lemma": "i-",
+          "category": "pfx",
+          "morph_type": "prefix",
+          "gloss_en": "ANTIP",
+          "gloss_jp": "逆受動",
+          "process": "grammaticalization",
+          "derived_from": {
+            "lemma": "i=",
+            "category": "pers",
+            "morph_type": "clitic",
+            "gloss_en": "INDEF.OBJ",
+            "gloss_jp": "不定の目的語"
+          }
+        }
+      ],
+      "note": "The antipassive prefix i- grammaticalised from the indefinite-object agreement clitic i= (INDEF.OBJ): a saturated indefinite object was reanalysed as a valency-reducing derivational prefix.",
+      "source": "佐藤2008アイヌ文法の基礎"
+    },
     "sources": ["佐藤2008アイヌ文法の基礎"],
     "verified": true
   },
@@ -3172,6 +3193,139 @@
     "sources": ["田村1996アイヌ語沙流方言辞典"],
     "verified": true,
     "notes": "Collective: the line of ancestors. Often invoked in icarpa (ancestor offering) rituals."
+  },
+  {
+    "id": "-ha-poss",
+    "lemma": "-ha",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "slot": [],
+    "attaches_to": ["n"],
+    "glosses_en": ["POSS (long possessed form)"],
+    "glosses_jp": ["所属形（長い形）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典", "佐藤2008アイヌ文法の基礎"],
+    "verified": true,
+    "notes": "Long-form possessive suffix that derives the possessed body-part / kinship form: sapa → sapa-ha 'his/her head', kema → kema-ha 'his/her leg', ona → ona-ha 'his/her father'."
+  },
+  {
+    "id": "-ihi-poss",
+    "lemma": "-ihi",
+    "category": "sfx",
+    "bound": true,
+    "morph_type": "suffix",
+    "slot": [],
+    "attaches_to": ["n"],
+    "glosses_en": ["POSS (long possessed form, consonant-final variant)"],
+    "glosses_jp": ["所属形（子音終わり語幹用）"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "notes": "Variant of -ha used after consonant-final stems: tek → tek-ehe 'his/her hand', sik → sik-ihi 'his/her eye', honi → honi-hi 'his/her belly'."
+  },
+  {
+    "id": "sapaha",
+    "lemma": "sapaha",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["sapa", "-ha-poss"],
+    "composition_note": "sapa 'head' + -ha (POSS, long form) → 'his/her head'. Possessed body-part forms are obligatorily marked in Ainu — sapa alone is the concept form, sapaha is the body part of a specific person.",
+    "glosses_en": ["his/her head"],
+    "glosses_jp": ["…の頭", "彼/彼女の頭"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "kemaha",
+    "lemma": "kemaha",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["kema", "-ha-poss"],
+    "composition_note": "kema 'leg' + -ha (POSS) → 'his/her leg'. The homonymous 'root of the ikema plant' is etymologically distinct.",
+    "glosses_en": ["his/her leg", "his/her foot"],
+    "glosses_jp": ["…の足"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "tekehe",
+    "lemma": "tekehe",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["tek", "-ihi-poss"],
+    "composition_note": "tek 'hand' + -ehe (POSS variant) → 'his/her hand'. The -ehe surface form is the consonant-final variant of -ihi.",
+    "glosses_en": ["his/her hand"],
+    "glosses_jp": ["…の手"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true,
+    "allomorphs": ["tek(ehe)"]
+  },
+  {
+    "id": "sikihi",
+    "lemma": "sikihi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["siki", "-ihi-poss"],
+    "composition_note": "siki 'eye' + -hi (POSS contracted) → 'his/her eye'.",
+    "glosses_en": ["his/her eye"],
+    "glosses_jp": ["…の目"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "honihi",
+    "lemma": "honihi",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["honi", "-ihi-poss"],
+    "composition_note": "honi 'belly' + -hi (POSS contracted) → 'his/her belly'.",
+    "glosses_en": ["his/her belly"],
+    "glosses_jp": ["…の腹"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "onaha",
+    "lemma": "onaha",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["ona", "-ha-poss"],
+    "composition_note": "ona 'father' + -ha (POSS) → 'his/her father'. Kinship terms in Ainu also take long-form possessive marking.",
+    "glosses_en": ["his/her father"],
+    "glosses_jp": ["…の父"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "unuhu",
+    "lemma": "unuhu",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["unu", "-ihi-poss"],
+    "composition_note": "unu 'mother' + -uhu (POSS rounded variant before /u/) → 'his/her mother'.",
+    "glosses_en": ["his/her mother"],
+    "glosses_jp": ["…の母"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
+  },
+  {
+    "id": "yuphu",
+    "lemma": "yuphu",
+    "category": "n",
+    "bound": false,
+    "morph_type": "root",
+    "composition": ["yup", "-ihi-poss"],
+    "composition_note": "yup 'older brother' + -uhu (POSS rounded variant before /u/) → 'his/her older brother'.",
+    "glosses_en": ["his/her older brother"],
+    "glosses_jp": ["…の兄"],
+    "sources": ["田村1996アイヌ語沙流方言辞典"],
+    "verified": true
   },
   {
     "id": "sinna",

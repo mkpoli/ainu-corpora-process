@@ -13,8 +13,17 @@
 
 	let {
 		entry,
-		entryById = {}
-	}: { entry: Entry | null; entryById?: Record<string, Entry> } = $props();
+		entryById = {},
+		onSelect,
+		selectedId = null
+	}: {
+		entry: Entry | null;
+		entryById?: Record<string, Entry>;
+		/** Focus a morpheme in the sidebar (mirrors the tree chips). When
+		 *  omitted the part chips are inert. */
+		onSelect?: (entryId: string) => void;
+		selectedId?: string | null;
+	} = $props();
 
 	// Look up the full Entry for a part by its `id` if curated, otherwise
 	// by lemma. We use this so the chip's valency badge stays in sync with
@@ -162,10 +171,15 @@
 </script>
 
 {#snippet partChip(part: EtymologyPart)}
-	<a
-		href={`/?q=${encodeURIComponent(part.lemma)}`}
-		class="group flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
-			{chipCategoryClass(part)}"
+	{@const pe = partEntry(part)}
+	{@const isSel = !!(pe && selectedId && pe.id === selectedId)}
+	<button
+		type="button"
+		onclick={() => pe && onSelect?.(pe.id)}
+		disabled={!pe || !onSelect}
+		class="group relative z-10 flex min-w-[7rem] flex-col items-center gap-1 rounded-2xl border px-4 py-2 shadow-sm transition disabled:cursor-default
+			{chipCategoryClass(part)}
+			{isSel ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper' : 'enabled:hover:-translate-y-0.5 enabled:hover:shadow-md'}"
 	>
 		<span class="font-mono text-base leading-tight">{part.lemma}</span>
 		{#if localisedPartGloss(part)}
@@ -177,7 +191,7 @@
 		{#if formatValency(partValency(part))}
 			<span class="font-mono text-[10px] font-semibold opacity-75">{formatValency(partValency(part))}</span>
 		{/if}
-	</a>
+	</button>
 {/snippet}
 
 {#snippet partColumn(part: EtymologyPart, skipChip = false, depth = NESTED_ETYM_DEPTH)}
@@ -227,9 +241,11 @@
 							{m.kind_etymology()}
 						</span>
 					</div>
-					<div class="flex flex-wrap items-start justify-center gap-3">
+					<div class="etym-children flex flex-nowrap items-start justify-center">
 						{#each nested.parts as subPart}
-							{@render partColumn(subPart, false, depth - 1)}
+							<div class="etym-branch">
+								{@render partColumn(subPart, false, depth - 1)}
+							</div>
 						{/each}
 					</div>
 					{#if nested.note}
@@ -242,16 +258,18 @@
 {/snippet}
 
 {#if entry && etymology}
-	<!-- Connector from the synchronic tree above DOWN INTO the etymology
-	     frame. The line crosses the dashed border, so the etymology reads
-	     as a continuation of the same tree (different "kind" of bracket). -->
-	<div class="-mb-3 flex flex-col items-center">
+	<!-- Inbound connector from the tree above down to the box's top border.
+	     No negative margin — it meets the dashed border cleanly instead of
+	     overlapping the parent chip. -->
+	<div class="flex flex-col items-center">
 		<span class="h-3 w-px bg-rule"></span>
 	</div>
-	<section class="rounded-2xl border-2 border-dashed border-ink/40 bg-white/70 p-4 pt-2">
-		<!-- The "etymology" bracket label sits at the top, immediately under
-		     the inbound connector. -->
+	<section class="rounded-2xl border-2 border-dashed border-ink/40 bg-white/70 p-4 pt-0">
+		<!-- ETYMOLOGY label: a short line starts at the box's top border (pt-0)
+		     so it continues the inbound connector across the dashed edge, then
+		     carries down to the tag and on into the parts. -->
 		<div class="flex flex-col items-center">
+			<span class="h-3 w-px bg-rule"></span>
 			<span
 				class="rounded bg-paper px-1.5 py-[1px] font-mono text-[10px] uppercase tracking-widest text-ink/60 ring-1 ring-rule"
 			>
@@ -261,10 +279,12 @@
 		</div>
 
 		{#if etymology.parts && etymology.parts.length}
-			<div class="flex flex-wrap items-start justify-center gap-4">
+			<div class="etym-children flex flex-nowrap items-start justify-center">
 				{#each etymology.parts as part}
 					{#if chainHasContent(part, entry)}
-						{@render partColumn(part, chipMatchesEntry(part, entry))}
+						<div class="etym-branch">
+							{@render partColumn(part, chipMatchesEntry(part, entry))}
+						</div>
 					{/if}
 				{/each}
 			</div>
@@ -294,3 +314,48 @@
 		{/if}
 	</section>
 {/if}
+
+<style>
+	/* Sibling connector for the etymology parts — same idiom as the
+	   composition tree's .tree-branch, generalised to N parts: each cell draws
+	   a vertical stub into its own centre plus a half/whole share of the
+	   horizontal bar, so the parts read as joined branches of one parent. */
+	.etym-branch {
+		position: relative;
+		padding: 1.25rem 0.5rem 0;
+	}
+	.etym-branch::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 1px;
+		height: 1.25rem;
+		background: var(--color-rule);
+	}
+	.etym-branch::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		height: 1px;
+		background: var(--color-rule);
+	}
+	/* Interior cells span the full width; the ends span half (toward the
+	   centre) so the bar terminates at the outermost children's midlines. */
+	.etym-branch:not(:only-child)::after {
+		left: 0;
+		right: 0;
+	}
+	.etym-branch:first-child:not(:only-child)::after {
+		left: 50%;
+		right: 0;
+	}
+	.etym-branch:last-child:not(:only-child)::after {
+		left: 0;
+		right: 50%;
+	}
+	.etym-branch:only-child::after {
+		content: none;
+	}
+</style>

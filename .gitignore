@@ -10,3 +10,6 @@ __pycache__/
 *$py.class
 
 dictionary/input/tamura_elpr/*.pdf
+
+# lexeme_db generated artifacts (regenerable via `python -m lexeme_db.cli build`; ~41MB)
+lexeme_db/output/
