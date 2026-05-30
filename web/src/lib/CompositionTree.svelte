@@ -312,7 +312,7 @@
 			<span class="h-3 w-px bg-rule"></span>
 		</div>
 
-		<div class="flex flex-wrap items-start justify-center gap-6">
+		<div class="flex flex-nowrap items-start justify-center gap-6">
 			{#if sideIsPrefix}
 				{#if node.affix}
 					<CompositionTree
