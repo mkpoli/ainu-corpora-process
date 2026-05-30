@@ -11,6 +11,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
+		"gen": "node scripts/sync-database.mjs && paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide",
+		"precheck": "bun run gen",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"publish:d1": "node scripts/publish-d1.mjs",
