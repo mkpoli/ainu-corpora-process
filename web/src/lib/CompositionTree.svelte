@@ -312,66 +312,120 @@
 			<span class="h-3 w-px bg-rule"></span>
 		</div>
 
-		<div class="flex flex-nowrap items-start justify-center gap-6">
+		<!-- Children laid out on one row. A branch connector (horizontal bar +
+		     a stub into each child's centre) makes the sibling relationship
+		     explicit even when a deep sub-tree pushes the two far apart. The
+		     bar is drawn from the per-child pseudo-elements so it stays
+		     anchored to each child's centre regardless of width. -->
+		<div class="tree-children flex flex-nowrap items-start justify-center">
 			{#if sideIsPrefix}
 				{#if node.affix}
-					<CompositionTree
-					node={node.affix}
-					{selectedId}
-					depth={depth + 1}
-					{onSelect}
-					{subtrees}
-					{expanded}
-					{onToggleExpand}
-					{entryById}
-					ancestors={childAncestors}
-					{matchedEntryId}
-				/>
+					<div class="tree-branch">
+						<CompositionTree
+							node={node.affix}
+							{selectedId}
+							depth={depth + 1}
+							{onSelect}
+							{subtrees}
+							{expanded}
+							{onToggleExpand}
+							{entryById}
+							ancestors={childAncestors}
+							{matchedEntryId}
+						/>
+					</div>
 				{/if}
 				{#if node.body}
-					<CompositionTree
-					node={node.body}
-					{selectedId}
-					depth={depth + 1}
-					{onSelect}
-					{subtrees}
-					{expanded}
-					{onToggleExpand}
-					{entryById}
-					ancestors={childAncestors}
-					{matchedEntryId}
-				/>
+					<div class="tree-branch">
+						<CompositionTree
+							node={node.body}
+							{selectedId}
+							depth={depth + 1}
+							{onSelect}
+							{subtrees}
+							{expanded}
+							{onToggleExpand}
+							{entryById}
+							ancestors={childAncestors}
+							{matchedEntryId}
+						/>
+					</div>
 				{/if}
 			{:else}
 				{#if node.body}
-					<CompositionTree
-					node={node.body}
-					{selectedId}
-					depth={depth + 1}
-					{onSelect}
-					{subtrees}
-					{expanded}
-					{onToggleExpand}
-					{entryById}
-					ancestors={childAncestors}
-					{matchedEntryId}
-				/>
+					<div class="tree-branch">
+						<CompositionTree
+							node={node.body}
+							{selectedId}
+							depth={depth + 1}
+							{onSelect}
+							{subtrees}
+							{expanded}
+							{onToggleExpand}
+							{entryById}
+							ancestors={childAncestors}
+							{matchedEntryId}
+						/>
+					</div>
 				{/if}
 				{#if node.affix}
-					<CompositionTree
-					node={node.affix}
-					{selectedId}
-					depth={depth + 1}
-					{onSelect}
-					{subtrees}
-					{expanded}
-					{onToggleExpand}
-					{entryById}
-					ancestors={childAncestors}
-					{matchedEntryId}
-				/>
+					<div class="tree-branch">
+						<CompositionTree
+							node={node.affix}
+							{selectedId}
+							depth={depth + 1}
+							{onSelect}
+							{subtrees}
+							{expanded}
+							{onToggleExpand}
+							{entryById}
+							ancestors={childAncestors}
+							{matchedEntryId}
+						/>
+					</div>
 				{/if}
 			{/if}
 		</div>
 	{/if}
 </div>
+
+<style>
+	/* Branch connector for the two-child bracket. Each child cell draws half
+	   of a horizontal bar along its top plus a vertical stub down into its own
+	   centre; the two halves meet at the row centre (where the parent's drop
+	   line lands), so siblings stay visibly joined to one parent even when a
+	   wide sub-tree spreads them far apart. */
+	.tree-branch {
+		position: relative;
+		padding: 1.25rem 0.75rem 0;
+	}
+	.tree-branch::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 1px;
+		height: 1.25rem;
+		background: var(--color-rule);
+	}
+	.tree-branch::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		height: 1px;
+		background: var(--color-rule);
+	}
+	/* Left child: bar runs from its centre to its right edge; right child:
+	   from its left edge to its centre. A lone child gets no bar. */
+	.tree-branch:first-child:not(:last-child)::after {
+		left: 50%;
+		right: 0;
+	}
+	.tree-branch:last-child:not(:first-child)::after {
+		left: 0;
+		right: 50%;
+	}
+	.tree-branch:only-child::after {
+		content: none;
+	}
+</style>
