@@ -28,6 +28,10 @@ jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    # Cloudflare credentials (CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID)
+    # live in the "deploy" GitHub Environment; the job must opt in to it for
+    # those environment-scoped secrets to be injected.
+    environment: deploy
     timeout-minutes: 15
     permissions:
       contents: read
