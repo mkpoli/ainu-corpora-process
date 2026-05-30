@@ -254,6 +254,39 @@ def _normalise_ids(entries: list[Entry]) -> int:
             if new_id:
                 rewrites[entry.id] = new_id
 
+    # Composition references sometimes still carry a ``source:`` prefix even
+    # though the prefixed entry was long since merged into a bare-id one (so it
+    # never appears in the entry-id rewrites above). Left alone they dangle as
+    # "unrecognised segments" in the viewer (e.g. ``ninjal:wen`` in
+    # ``eyayrampokwen``). Resolve each such ref to a real entry id — by bare id,
+    # then by a unique lemma match — and fall back to just dropping the prefix.
+    final_id_of = {entry.id: rewrites.get(entry.id, entry.id) for entry in entries}
+    final_ids = set(final_id_of.values())
+    lemma_to_ids: dict[str, list[str]] = {}
+    for entry in entries:
+        lemma_to_ids.setdefault(entry.lemma, []).append(final_id_of[entry.id])
+
+    def _iter_refs(comp: list[Any]) -> Any:
+        for item in comp:
+            if isinstance(item, str):
+                yield item
+            elif isinstance(item, list):
+                yield from _iter_refs(item)
+
+    for entry in entries:
+        for ref in _iter_refs(entry.composition):
+            if ref in rewrites or not _SOURCE_ID_PREFIX_RE.match(ref):
+                continue
+            bare = _SOURCE_ID_PREFIX_RE.sub("", ref)
+            if not bare:
+                continue
+            if bare in final_ids:
+                rewrites[ref] = bare
+            elif len(lemma_to_ids.get(bare, [])) == 1:
+                rewrites[ref] = lemma_to_ids[bare][0]
+            else:
+                rewrites[ref] = bare
+
     if not rewrites:
         return 0
 
@@ -630,6 +663,18 @@ def build(
     # are identified independently of which dictionary first attested them.
     # Composition references are updated to point at the new ids.
     counters["ids_normalised"] = _normalise_ids(entries)
+
+    # Personal affixes (the person markers written with ``=``) carry morph_type
+    # ``clitic`` but inherit inconsistent categories from the source ingests
+    # (pron / pfx / pers). They sit on a continuum from fused affix (ku=) to
+    # separable word (=an), but we follow the orthographic =-convention and tag
+    # the whole paradigm uniformly as ``pers``.
+    clitic_cats = 0
+    for entry in entries:
+        if entry.morph_type == "clitic" and entry.category != "pers":
+            entry.category = "pers"
+            clitic_cats += 1
+    counters["clitic_category_normalised"] = clitic_cats
 
     save_entries(entries, output_dir / "morpheme_database.json")
     write_tsv(entries, output_dir / "morpheme_database.tsv")
