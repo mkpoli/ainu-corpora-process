@@ -1,4 +1,5 @@
 import { loadLexemes } from '$lib/server/lexemes';
+import { loadDatabase } from '$lib/server/database';
 import type { PageServerLoad } from './$types';
 
 // Slim row shape for the table — we drop the heavy `attestations` array here
@@ -18,9 +19,22 @@ export interface LexemeRow {
 	senses: number;
 }
 
-export const load: PageServerLoad = async ({ platform }) => {
+export const load: PageServerLoad = async ({ url, platform }) => {
 	const bank = await loadLexemes(platform);
-	const rows: LexemeRow[] = bank.lexemes.map((lx) => ({
+
+	// Reverse cross-link from the morpheme explorer: ?morph=<morpheme-id>
+	// narrows the list to lexemes that compose that morpheme. We resolve the
+	// id to its lemma (for the banner) from the morpheme bank.
+	const morphId = url.searchParams.get('morph')?.trim() ?? '';
+	let morphFilter: { id: string; lemma: string } | null = null;
+	let source = bank.lexemes;
+	if (morphId) {
+		source = bank.lexemes.filter((lx) => lx.morphemes.includes(morphId));
+		const db = await loadDatabase(platform);
+		morphFilter = { id: morphId, lemma: db.byId.get(morphId)?.lemma ?? morphId };
+	}
+
+	const rows: LexemeRow[] = source.map((lx) => ({
 		id: lx.id,
 		lemma: lx.lemma,
 		kana: lx.kana,
@@ -44,6 +58,7 @@ export const load: PageServerLoad = async ({ platform }) => {
 	);
 	return {
 		rows,
+		morphFilter,
 		stats: {
 			total: rows.length,
 			multiDialect: rows.filter((r) => r.dialects.length > 1).length,

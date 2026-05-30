@@ -131,7 +131,7 @@
 						href="/lexemes"
 						class="text-ink/70 underline-offset-2 hover:text-accent hover:underline"
 					>
-						Lexemes 語彙素
+						{m.lexemes_link()}
 					</a>
 					<a
 						href="/processes"
