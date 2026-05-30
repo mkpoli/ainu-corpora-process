@@ -35,16 +35,56 @@
 		return result;
 	});
 
-	// Reset to page 1 whenever the filter set changes.
+	// Sortable ordering. 'default' keeps the server order (multi-dialect first,
+	// then most recordings, then alphabetical). Clicking a header sorts by that
+	// column; recordings is the frequency-like axis for lexemes.
+	type SortKey = 'default' | 'lemma' | 'pos' | 'dialects' | 'recordings';
+	let sortKey = $state<SortKey>('default');
+	let sortDir = $state<'asc' | 'desc'>('asc');
+
+	function setSort(key: Exclude<SortKey, 'default'>) {
+		if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+		else {
+			sortKey = key;
+			sortDir = key === 'lemma' || key === 'pos' ? 'asc' : 'desc';
+		}
+	}
+	function sortIndicator(key: SortKey): string {
+		return sortKey === key ? (sortDir === 'asc' ? '↑' : '↓') : '';
+	}
+
+	let sorted = $derived.by(() => {
+		if (sortKey === 'default') return filtered;
+		const dir = sortDir === 'asc' ? 1 : -1;
+		const cmp = (a: LexemeRow, b: LexemeRow): number => {
+			switch (sortKey) {
+				case 'lemma':
+					return a.lemma.localeCompare(b.lemma);
+				case 'pos':
+					return (a.pos || '').localeCompare(b.pos || '');
+				case 'dialects':
+					return a.dialects.length - b.dialects.length;
+				case 'recordings':
+					return a.recordings - b.recordings;
+				default:
+					return 0;
+			}
+		};
+		return [...filtered].sort((a, b) => cmp(a, b) * dir || a.lemma.localeCompare(b.lemma));
+	});
+
+	// Reset to page 1 whenever the filter or sort changes.
 	$effect(() => {
 		void filter;
 		void onlyMultiDialect;
 		void onlySenseSplit;
+		void sortKey;
+		void sortDir;
 		page = 1;
 	});
 
-	let totalPages = $derived(Math.max(1, Math.ceil(filtered.length / PAGE_SIZE)));
-	let paged = $derived(filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE));
+	let totalPages = $derived(Math.max(1, Math.ceil(sorted.length / PAGE_SIZE)));
+	let paged = $derived(sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE));
 </script>
 
 <svelte:head>
@@ -60,9 +100,10 @@
 				<p class="text-sm text-ink/60 max-w-2xl">{m.lexemes_subtitle()}</p>
 			</div>
 			<div class="flex items-center gap-3 text-xs">
-				<a href="/morphemes" class="text-ink/70 underline-offset-2 hover:text-accent hover:underline">
-					{m.morphemes_link()}
-				</a>
+				<nav class="flex items-center gap-1">
+					<a href="/morphemes" class="rounded-full px-3 py-1 text-ink/60 ring-1 ring-rule transition hover:text-accent hover:ring-accent/40">{m.stats_morphemes()}</a>
+					<a href="/lexemes" class="rounded-full bg-accent-soft px-3 py-1 font-medium text-accent ring-1 ring-accent/30">{m.stats_lexemes()}</a>
+				</nav>
 				<a href="/references" class="text-ink/70 underline-offset-2 hover:text-accent hover:underline">
 					{m.references_link()}
 				</a>
@@ -105,14 +146,14 @@
 	<div class="overflow-x-auto rounded-2xl bg-white/70 ring-1 ring-rule">
 		<table class="w-full border-collapse text-sm">
 			<thead class="text-left text-[10px] uppercase tracking-widest text-ink/60">
-				<tr class="border-b border-rule">
-					<th class="px-3 py-2">{m.lexemes_col_lemma()}</th>
+				<tr class="border-b border-rule [&_button]:uppercase">
+					<th class="px-3 py-2"><button class="hover:text-accent" onclick={() => setSort('lemma')}>{m.lexemes_col_lemma()} {sortIndicator('lemma')}</button></th>
 					<th class="px-3 py-2">{m.lexemes_col_kana()}</th>
-					<th class="px-3 py-2">{m.lexemes_col_pos()}</th>
+					<th class="px-3 py-2"><button class="hover:text-accent" onclick={() => setSort('pos')}>{m.lexemes_col_pos()} {sortIndicator('pos')}</button></th>
 					<th class="px-3 py-2">{m.lexemes_col_gloss()}</th>
 					<th class="px-3 py-2">{m.lexemes_col_morphemes()}</th>
-					<th class="px-3 py-2">{m.lexemes_col_dialects()}</th>
-					<th class="px-3 py-2 text-right">{m.lexemes_col_recordings()}</th>
+					<th class="px-3 py-2"><button class="hover:text-accent" onclick={() => setSort('dialects')}>{m.lexemes_col_dialects()} {sortIndicator('dialects')}</button></th>
+					<th class="px-3 py-2 text-right"><button class="hover:text-accent" onclick={() => setSort('recordings')}>{m.lexemes_col_recordings()} {sortIndicator('recordings')}</button></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -127,8 +168,10 @@
 						<td class="px-3 py-2 text-[12px] text-ink/70">{r.kana || '—'}</td>
 						<td class="px-3 py-2 text-[12px] text-ink/70">{r.pos ? categoryLabel(r.pos) : '—'}</td>
 						<td class="px-3 py-2 text-[12px]">{r.gloss_jp || r.gloss_en || '—'}</td>
-						<td class="px-3 py-2 font-mono text-[11px] text-ink/65">
-							{#if r.morphemes.length}{r.morphemes.join(' + ')}{:else}—{/if}
+						<td class="px-3 py-2 font-mono text-[11px]">
+							{#if r.morphemes.length}
+								{#each r.morphemes as mo, i}{#if i > 0}<span class="text-ink/30"> + </span>{/if}<a class="text-accent/80 hover:text-accent hover:underline" href="/?q={encodeURIComponent(mo)}">{mo}</a>{/each}
+							{:else}<span class="text-ink/40">—</span>{/if}
 						</td>
 						<td class="px-3 py-2">
 							{#each r.dialects as d}
