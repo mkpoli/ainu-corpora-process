@@ -173,7 +173,7 @@
 >
 	<div
 		bind:this={content}
-		class="origin-top-left"
+		class="w-max origin-top-left"
 		style:transform="translate({tx}px, {ty}px) scale({scale})"
 		style:will-change="transform"
 	>
