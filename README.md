@@ -9,3 +9,13 @@ This repository uses [aynumosir/ainu-corpora](https://huggingface.co/datasets/ay
 ## Dictionary Tools
 
 Dictionary-specific OCR and other dictionary processing workflows are documented in `dictionary/README.md`.
+
+## Morpheme / Lexeme Database & Web Explorer (moved)
+
+The morpheme database (`morpheme_db`), lexeme bank (`lexeme_db`), and the
+SvelteKit explorer (`web`) have moved to
+[mkpoli/ainu-morpheme-database](https://github.com/mkpoli/ainu-morpheme-database),
+which now builds them standalone (it vendors the derived inputs this repo
+produces under `corpus/output/` and `dictionary/output/`). This repo remains
+the upstream that regenerates those inputs; point `AINU_MDB_DATA` at a checkout
+of this repo to re-snapshot them there.
