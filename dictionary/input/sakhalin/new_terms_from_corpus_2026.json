@@ -1,0 +1,11 @@
+[
+  { "lemma": "ro", "ja": ["～しましょう", "～しよう"], "en": ["let's (hortative)"], "ru": ["давайте"], "poses": ["sfp"], "_src": "Nakagawa Chitose; Shibatani (hortative SFP)" },
+  { "lemma": "ruro", "ja": ["畝"], "en": ["ridge", "furrow"], "ru": ["борозда", "гряда"], "poses": ["n"], "_src": "Tamura Saru; Ota; Kayano (ridge)" },
+  { "lemma": "ukowente", "ja": ["互いに壊す", "互いに滅ぼす"], "en": ["to destroy one another"], "ru": ["разрушать друг друга"], "poses": ["vt"], "_src": "Ota (mutually destroy)" },
+  { "lemma": "ucaskuma", "ja": ["由来語り", "由来譚"], "en": ["oral tradition", "tale of origins"], "ru": ["устное предание"], "poses": ["n", "vi"], "_src": "Ota (oral tradition / to tell origins)" },
+  { "lemma": "ranma", "ja": ["いつも", "ふだん", "相変わらず"], "en": ["always", "as usual"], "ru": ["всегда", "как обычно"], "poses": ["adv"], "_src": "Tamura Saru (always/as usual)" },
+  { "lemma": "hosip", "ja": ["帰る", "戻る"], "en": ["to return", "to go back"], "ru": ["возвращаться"], "poses": ["vi"], "_src": "Sakhalin form of hosipi (return)" },
+  { "lemma": "nohkiri", "ja": ["あご"], "en": ["jaw", "chin"], "ru": ["челюсть", "подбородок"], "poses": ["n"], "_src": "Chiri, Shiraura/Sakhalin (jaw, < notkir)" },
+  { "lemma": "tanne", "ja": ["長い"], "en": ["long", "to be long"], "ru": ["длинный"], "poses": ["vi"], "_src": "combined_glosses (長い); Sakhalin form" },
+  { "lemma": "hoku", "ja": ["夫"], "en": ["husband"], "ru": ["муж"], "poses": ["n"], "_src": "combined_glosses (husband)" }
+]
