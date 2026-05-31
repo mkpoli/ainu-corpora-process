@@ -63,22 +63,31 @@ def _units(s: str) -> list[tuple[str, str, str | None]]:
 
 def _clean_latin(ain: str) -> str:
     s = re.sub(r"\^\d+", "", ain)          # footnote markers
-    s = s.replace("=", "").replace("_", "")  # affix boundaries / Sakhalin marks
-    s = s.replace("*", "").replace("…", " ")
+    # Keep "=" — ainconv reads it as a syllable break (an=unuhcin -> アンウヌㇷチン,
+    # i.e. an closes to アン) without inserting a word space.
+    s = s.replace("_", "").replace("*", "").replace("…", " ")
     return s
 
 
 def restore_small_kana(ain: str, ocr_kana: str) -> str:
-    """Return ocr_kana with (1) small kana restored and (2) word spacing taken
-    from the Latin, both derived from the Latin `ain` via ainconv.latn2kana.
+    """Fix OCR'd ain-kana against the Latin `ain`, conservatively.
 
-    Content (kana, long-vowel ー) comes from the OCR; only the small/large
-    distinction and the word boundaries are imported from the Latin reference."""
+    Principles (kana spacing is NOT the same as Latin spacing, so we don't impose
+    it blindly):
+      - small kana / syllable codas: the Latin is authoritative, so where the
+        reference has a small kana the OCR flattened or misread, use the reference
+        — EXCEPT a geminate ッ, which the source writes for h-before-consonant
+        (unuhcin -> …ウヌッチン) and the romanization does not capture.
+      - long vowels (ー vs アア) and other content: keep the OCR.
+      - spacing: KEEP the OCR's own word spaces (they reflect the printed source);
+        additionally SUBDIVIDE a merged OCR run at Latin word boundaries (so
+        ナハイエヘチ -> ナㇵ イエㇸチ) but never break an existing OCR space.
+    """
     if not ocr_kana or not ain:
         return ocr_kana
     ref = latn2kana(_clean_latin(ain))
 
-    # Reference units without spaces, plus the set of indices that begin a word.
+    # Reference units (no spaces) + indices that begin a Latin word.
     ref_ns: list[tuple[str, str, str | None]] = []
     word_start: set[int] = set()
     prev_space = False
@@ -91,25 +100,45 @@ def restore_small_kana(ain: str, ocr_kana: str) -> str:
         ref_ns.append(u)
         prev_space = False
 
-    # OCR units with existing spaces dropped — we re-derive spacing from the Latin.
-    ocr_ns = [u for u in _units(ocr_kana) if u[0] != " "]
+    # OCR units (no spaces) + indices that begin a chunk after an OCR space.
+    ocr_ns: list[tuple[str, str, str | None]] = []
+    ocr_boundary: set[int] = set()
+    prev_space = False
+    for u in _units(ocr_kana):
+        if u[0] == " ":
+            prev_space = True
+            continue
+        if prev_space and ocr_ns:
+            ocr_boundary.add(len(ocr_ns))
+        ocr_ns.append(u)
+        prev_space = False
 
     sm = SequenceMatcher(a=[u[1] for u in ref_ns], b=[u[1] for u in ocr_ns], autojunk=False)
-    small_at: dict[int, str] = {}   # ocr index -> small kana to use
-    space_before: set[int] = set()  # ocr index that should get a preceding space
+    small_at: dict[int, str] = {}
+    latin_boundary: set[int] = set()  # Latin word boundaries mapped to OCR indices
+
+    def maybe_override(ri: int, oi: int) -> None:
+        small = ref_ns[ri][2]
+        if small is not None and ocr_ns[oi][0] != "ッ":  # keep the source geminate
+            small_at[oi] = small
+
     for tag, i1, i2, j1, j2 in sm.get_opcodes():
         if tag == "equal":
             for k in range(i2 - i1):
-                if ref_ns[i1 + k][2] is not None:        # ref says this kana is small
-                    small_at[j1 + k] = ref_ns[i1 + k][2]
+                maybe_override(i1 + k, j1 + k)
                 if (i1 + k) in word_start:
-                    space_before.add(j1 + k)
+                    latin_boundary.add(j1 + k)
         elif tag == "replace":
             if any((r in word_start) for r in range(i1, i2)):
-                space_before.add(j1)
+                latin_boundary.add(j1)
+            for k in range(min(i2 - i1, j2 - j1)):
+                maybe_override(i1 + k, j1 + k)
         elif tag == "delete":
             if any((r in word_start) for r in range(i1, i2)):
-                space_before.add(j1)  # boundary falls before the next OCR unit
+                latin_boundary.add(j1)  # boundary falls before the next OCR unit
+
+    # Keep OCR's spaces; add Latin boundaries that fall inside a merged OCR run.
+    space_before = ocr_boundary | latin_boundary
 
     out: list[str] = []
     for idx, u in enumerate(ocr_ns):
