@@ -1,0 +1,2061 @@
+[
+  {
+    "lemma": "raanuh",
+    "sakaguchiForm": "*raanup (printed in-raanu[h], in-raanup-an, ikoiraanu[h])",
+    "ja": ["～を愛する"],
+    "en": ["to love (someone)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "in-raanu[h] (source inránu)", "analysis": "in=raanup 1.O-love, 3PL.A subject (piskan kamuy utara in-raanu[h] kusu 「周りの神々が私を愛したので」); final -p > -h before kusu", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14-16 (= Sato 1985: 160 ex 12)", "articleLoc": "diss. l.1879-1882 (ex 3-9)"},
+      {"form": "in-raanup-an (source inránupan)", "analysis": "in=raanup-an 2PL.A>1.O 'you(pl) love me'; Piłsudski (1912: 92) misanalysed as 'instead of inranu' = in 'me' + ranu 'to love'; Sakaguchi corrects to *raanup with subject-person difference", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 16-17 and 36-37; Piłsudski 1912: 92", "articleLoc": "diss. l.2212-2253 (ex 3-22, 3-23)"},
+      {"form": "in-raanup (y)an", "analysis": "prohibitive imperative with plural-addressee particle (y)an: suy hankayki in-raanup (y)an 「再び決して私を愛してはいけない」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 36-37", "articleLoc": "diss. l.2237-2239 (ex 3-23)"},
+      {"form": "ikoiraanu[h] ~ ikoiraanuh (source ikòiránu)", "analysis": "derived nominal i-ko-i-raanu-p 'loving (someone)'; used as object of kii 'do': enciw onne ikoiraanu[h] ham utara kii 「人間へ恋慕することを我らはやめよう」; Sakaguchi gives no morpheme breakdown, gloss 恋すること/恋慕すること", "sourceCited": "Piłsudski 1912 『資料』 Nr.24, 92-94", "articleLoc": "diss. l.3220-3221, 3331, 3580-3581 (ex 4-5, 4-23)"},
+      {"form": "ku-raanupa-hci", "analysis": "reported at diss. l.5179/5193 with Sakaguchi's correction 正しくは*raanup; from whole-file grep only (chunk-4 reader output unavailable) — verify against PDF", "sourceCited": "(verify in diss. ch.5, lines 5179-5266 incl. 表5-4 *raanup 「愛する」)", "articleLoc": "diss. l.5179, 5193, 5258-5266"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3, §4.3; primary: Piłsudski 1912 Nr.6, Nr.24",
+    "ocrConfidence": "clear",
+    "reviewNote": "KEY ITEM. Lemma vowel = long aa (raanu-), never rannu (0 OCR hits anywhere); stem raanup- resurfaces before vowel (record separately per our convention); citation form raanuh."
+  },
+  {
+    "lemma": "etohparusi",
+    "sakaguchiForm": "etohparusi",
+    "ja": ["先駆けする", "（人より）先にやる", "先に嘴をつっこむ"],
+    "en": ["to forestall someone", "to do something before someone else"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "in-etohparusi", "analysis": "2SG.A>1SG.O: hosiki ku-ki kun pe in-etohparusi 「先に私がしようとしたことを先駆けしやがって」", "sourceCited": "浦田編 1998: 118, 118-119, 262", "articleLoc": "diss. l.2064-2079 (ex 3-17)"},
+      {"form": "e-i-(y)etohparusi", "analysis": "2SG.A-4.O (知里 年代不詳: 6: hoski an-ki kunpe e-i-(y)etohparusi!)", "sourceCited": "知里 (年代不詳: 6)", "articleLoc": "diss. fn28 l.2096-2100"},
+      {"form": "イネトㇹパルㇱカラ (in-etohparusi-kara)", "analysis": "variant with +kara 「先に嘴をつっこみやがって」", "sourceCited": "北海道教育庁…文化・スポーツ課編 2007: 123", "articleLoc": "diss. fn30 l.2102-2104"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.2.1; primary: 浦田編 1998, 知里 n.d.",
+    "ocrConfidence": "clear",
+    "reviewNote": "Solid multi-source attestation; accent note hosíki (knr. fn29) belongs to hosiki entry."
+  },
+  {
+    "lemma": "kosisciwka",
+    "sakaguchiForm": "kosisciwka (source inkośisćiuka)",
+    "ja": ["（人に）（風・力を）送る"],
+    "en": ["to send (wind, power) to someone"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "in-kosisciwka", "analysis": "1.O-送る: eci-maw-he pirikano in-kosisciwka yan wa 「お前たちの風（気）をよく私に送ってくださいよ」 (prayer)", "sourceCited": "Piłsudski; Majewicz (ed.) 2004: 410", "articleLoc": "diss. l.1844-1849 (ex 3-7)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.1; primary: Majewicz (ed.) 2004: 410",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Single prayer-text token; ko-sis-ciw-ka segmentation untreated in article — verify spelling against PDF."
+  },
+  {
+    "lemma": "topoci",
+    "sakaguchiForm": "topoci (source toboći)",
+    "ja": ["巫神（巫術を行う神）"],
+    "en": ["shamanic spirit (of tusu)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ku-koh topoci utarak[e]-he", "analysis": "「私の持つ巫神たちよ」", "sourceCited": "Piłsudski; Majewicz (ed.) 2004: 410", "articleLoc": "diss. l.1844-1847 (ex 3-7)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.1; primary: Majewicz (ed.) 2004: 410",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Single token, prayer register."
+  },
+  {
+    "lemma": "utarake",
+    "sakaguchiForm": "utarak[e]-he",
+    "ja": ["～たち（所属形）"],
+    "en": ["group of, the X-folk (possessed)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "topoci utarak[e]-he", "analysis": "～たち-POSS", "sourceCited": "Piłsudski; Majewicz (ed.) 2004: 410", "articleLoc": "diss. l.1844-1847 (ex 3-7)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.1; primary: Majewicz (ed.) 2004: 410",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Compare 2020 article -utarike = -utari + -ke 'place of' (fn45) and existing utari/utarihi entries — possibly same formation; bound."
+  },
+  {
+    "lemma": "wenkara",
+    "sakaguchiForm": "wenkara",
+    "ja": ["～を負かす"],
+    "en": ["to defeat, beat someone"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "inci-wenkara", "analysis": "1.O.PASS-負かす 「負かされる・殺される」: cookay inci-wenkara ciki 「私が（龍神に）殺されたら」; inci- is a unit (not in-ci-)", "sourceCited": "Piłsudski 1912 『資料』 Nr.19, 23-24; Sato 1985: 159 ex 9", "articleLoc": "diss. l.1955-1966 (ex 3-13)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.4; primary: Piłsudski 1912 Nr.19",
+    "ocrConfidence": "clear",
+    "reviewNote": "wen-kara transparent (bad-make); attested only with inci-."
+  },
+  {
+    "lemma": "kemahto",
+    "sakaguchiForm": "kem-ahto",
+    "ja": ["血の雨"],
+    "en": ["rain of blood"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "kem-ahto ran kaane", "analysis": "血-雨 'rain of blood falling'; also poonopoono kemahto cikutakuta", "sourceCited": "Piłsudski 1912 『資料』 Nr.16, 44-47", "articleLoc": "diss. l.1975-1985 (ex 3-14)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.4; primary: Piłsudski 1912 Nr.16",
+    "ocrConfidence": "clear",
+    "reviewNote": "Transparent poetic compound kem+ahto; decide if compound merits entry or goes under ahto."
+  },
+  {
+    "lemma": "cikutakuta",
+    "sakaguchiForm": "cikutakuta",
+    "ja": ["こぼれる", "降り注ぐ"],
+    "en": ["to spill out, pour down"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "kemahto cikutakuta kusuneyke", "analysis": "「血の雨が降り注いだら」; ci- RES + kutakuta reduplication", "sourceCited": "Piłsudski 1912 『資料』 Nr.16, 44-47", "articleLoc": "diss. l.1975-1977 (ex 3-14)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.4; primary: Piłsudski 1912 Nr.16",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dictionary has cikutakutaha (possessed/nominal) — link as base verb of that entry."
+  },
+  {
+    "lemma": "ruype",
+    "sakaguchiForm": "ruype",
+    "ja": ["凍魚"],
+    "en": ["frozen fish"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ruype kuma ohta oman te", "analysis": "「凍魚竿のところへ行って」", "sourceCited": "Piłsudski 1912 『資料』 Nr.17, 18-20", "articleLoc": "diss. l.1915-1917 (ex 3-10)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.2; primary: Piłsudski 1912 Nr.17",
+    "ocrConfidence": "clear",
+    "reviewNote": "ru-ype 'melted/thaw thing'? — no analysis in article."
+  },
+  {
+    "lemma": "kuma",
+    "sakaguchiForm": "kuma",
+    "ja": ["（物干し）竿"],
+    "en": ["drying pole, rack"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ruype kuma ohta", "analysis": "「凍魚竿のところへ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.17, 18-20", "articleLoc": "diss. l.1915-1917 (ex 3-10)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.2; primary: Piłsudski 1912 Nr.17",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pan-Ainu word; straightforward."
+  },
+  {
+    "lemma": "huymampa",
+    "sakaguchiForm": "huymampa",
+    "ja": ["よく見る", "よく調べる"],
+    "en": ["to examine, look over"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "ceh huymampa", "analysis": "「魚をよく見て」", "sourceCited": "Piłsudski 1912 『資料』 Nr.17, 18-20", "articleLoc": "diss. l.1915-1917 (ex 3-10)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.2; primary: Piłsudski 1912 Nr.17",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakaguchi prints mp; cf. Hokkaido huymanpa — orthography mp/np decision applies."
+  },
+  {
+    "lemma": "newana",
+    "sakaguchiForm": "newana (source nevana ~ nevaná)",
+    "ja": ["～のだよ（言い聞かせ）"],
+    "en": ["sentence-final assertive: 'you see'"],
+    "ru": [],
+    "poses": ["sfp"],
+    "attestedForms": [
+      {"form": "tani sahtek-as newana", "analysis": "「もう私は痩せたんだよ」; Piłsudski 1912: 165 nevana ×1, nevaná ×4 (uncles admonishing a boy)", "sourceCited": "『資料２』 (Pilsudskij 2002) 2, 19-20; Piłsudski 1912: 165", "articleLoc": "diss. l.2260-2263 (ex 3-24), fn37"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3.1; primary: Pilsudskij 2002, Piłsudski 1912: 165",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Cyrillic source; likely nee-wa-na fused — decide entry vs collocation."
+  },
+  {
+    "lemma": "hankayki",
+    "sakaguchiForm": "hankayki",
+    "ja": ["決して（～するな）"],
+    "en": ["never (do); prohibitive adverb"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "suy hankayki in-raanup (y)an", "analysis": "PROH 「再び決して私を愛してはいけない」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 36-37", "articleLoc": "diss. l.2237-2239 (ex 3-23)"},
+      {"form": "hankayki in-ko-ociw-rusuy yan", "analysis": "「決して私と性交したいと思うな」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14", "articleLoc": "diss. l.4338-4343 (ex 5-12)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3.1, §5.2; primary: Piłsudski 1912 Nr.6",
+    "ocrConfidence": "clear",
+    "reviewNote": "Glossed PROH by Sakaguchi; han-kayki 'NEG-even'? — segmentation not given."
+  },
+  {
+    "lemma": "hannahkusu",
+    "sakaguchiForm": "hannahkusu (source Hánnax kusu)",
+    "ja": ["決して（～ない）"],
+    "en": ["never, by no means (with negative)"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "hannahkusu pirika kumpe ka han nee nanko", "analysis": "「決して良いことはないだろう」", "sourceCited": "Piłsudski 1912 『資料』 Nr.19, 23-24", "articleLoc": "diss. l.1962-1964 (ex 3-13)"},
+      {"form": "hannahkusu utara ehawkomo kunpe han nee", "analysis": "「決して我々は声を潜めるべきではないのだ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.10, 39-40", "articleLoc": "diss. l.3564-3570 (ex 4-22)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.4, §4.4; primary: Piłsudski 1912 Nr.19, Nr.10",
+    "ocrConfidence": "clear",
+    "reviewNote": "han-nah-kusu 'NEG-so-because'? Two clean tokens."
+  },
+  {
+    "lemma": "niitum",
+    "sakaguchiForm": "niitum",
+    "ja": ["森", "山の方"],
+    "en": ["forest, wooded interior"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "niitum ene tehpoo hum eci-nuu ana", "analysis": "「山の方に鉄砲の音が聞こえたら」", "sourceCited": "『物語』 (山邊・金田一 1913) 10811-12", "articleLoc": "diss. l.2170-2172 (ex 3-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "nii-tum 'tree-among'; long ii per source."
+  },
+  {
+    "lemma": "tehpoo",
+    "sakaguchiForm": "tehpoo ~ tehpo",
+    "ja": ["鉄砲"],
+    "en": ["gun, rifle (Japanese loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "tehpoo hum", "analysis": "「鉄砲の音」", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2170-2172 (ex 3-21)"},
+      {"form": "tehpoo-sin", "analysis": "鉄砲=PL; long oo explicit in 2020 article", "sourceCited": "山邊・金田一 1913: 127", "articleLoc": "2020 ahcin art. l.292-294"},
+      {"form": "tehpo tama / tehpo utara", "analysis": "「鉄砲玉」 / 「鉄砲＋α」(associative plural)", "sourceCited": "『物語』 11308, 13010", "articleLoc": "diss. l.6903-6908 (ex 7-24), 7641-7650 (ex 8-19)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. + Sakaguchi 2020 ahcin art.; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Vowel length wavers tehpoo~tehpo across the dissertation; 2020 article explicitly long — recommend lemma tehpoo."
+  },
+  {
+    "lemma": "enrum",
+    "sakaguchiForm": "enrum",
+    "ja": ["岬"],
+    "en": ["cape, headland"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "cis enrum sempiri-ke [e]ne paye yan te", "analysis": "「舟を出崎の陰へ持って行って」", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2174-2176 (ex 3-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pan-Ainu enrum 'cape'."
+  },
+  {
+    "lemma": "sempiri",
+    "sakaguchiForm": "sempiri(-ke)",
+    "ja": ["陰（風下・物陰）"],
+    "en": ["lee, sheltered side"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "enrum sempiri-ke", "analysis": "陰-LF 'the lee part/place'", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2174-2176 (ex 3-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakaguchi prints mp (sempiri); cf. Hokkaido senpir — orthography mp/np decision applies."
+  },
+  {
+    "lemma": "repaa",
+    "sakaguchiForm": "repaa",
+    "ja": ["沖へ出る"],
+    "en": ["to go offshore"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "atuy kaa ta repaa yan kaane", "analysis": "「海の上に沖へ出ながら」", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2178-2180 (ex 3-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "rep-aa? final long aa per Sakaguchi's normalization."
+  },
+  {
+    "lemma": "yaymomte",
+    "sakaguchiForm": "yay-mon(<mom)-te",
+    "ja": ["自らを流す（漂わせる）"],
+    "en": ["to let oneself drift"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "yay-mon(<mom)-te", "analysis": "自らを-流す-CAUS; m>n assimilation before t noted by Sakaguchi", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2182-2183 (ex 3-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Lemma shape choice: underlying yaymomte vs surface yaymonte — per our morphophonemic preference, yaymomte."
+  },
+  {
+    "lemma": "sekuma",
+    "sakaguchiForm": "sekuma",
+    "ja": ["山"],
+    "en": ["mountain"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "sekuma nosk[i] un kamuy poo-ho", "analysis": "「山の中央の神（クマ神）の子」", "sourceCited": "Piłsudski 1912 『資料』 Nr.25, 82-83", "articleLoc": "diss. l.1643-1645 (ex 3-2)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.2; primary: Piłsudski 1912 Nr.25",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakhalin word for mountain."
+  },
+  {
+    "lemma": "inuu",
+    "sakaguchiForm": "inuu",
+    "ja": ["聞くこと"],
+    "en": ["listening, heeding"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "pirika inuu e-kii nankoro", "analysis": "「良く聞きなさい」(lit. do good listening)", "sourceCited": "Piłsudski 1912 『資料』 Nr.2, 223", "articleLoc": "diss. l.1684-1689 (ex 3-3)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.2; primary: Piłsudski 1912 Nr.2",
+    "ocrConfidence": "clear",
+    "reviewNote": "Deverbal use of i-nuu; dict has ikuu/nuu? — check overlap with nuu entries before adding."
+  },
+  {
+    "lemma": "piskan",
+    "sakaguchiForm": "piskan / piskani",
+    "ja": ["周りの", "その周り（に）"],
+    "en": ["surrounding", "around, all around"],
+    "ru": [],
+    "poses": ["adn", "adv"],
+    "attestedForms": [
+      {"form": "piskan kamuy utara", "analysis": "「周りの神々」(adnominal)", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14-16", "articleLoc": "diss. l.1879-1881 (ex 3-9)"},
+      {"form": "piskani", "analysis": "adverbial/postpositional 'around it'", "sourceCited": "『物語』 (exx 7-20, 7-36, 7-37)", "articleLoc": "diss. l.6850, 7163, 7175"}
+    ],
+    "provenance": "Sakaguchi 2024 diss.; primary: Piłsudski 1912 Nr.6, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has only episkan(ta); add base piskan(i)."
+  },
+  {
+    "lemma": "mahneku",
+    "sakaguchiForm": "mahneku",
+    "ja": ["女性"],
+    "en": ["woman"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "pirika mahneku ci-nee kusu", "analysis": "「私は美しい女性であるから」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14-16", "articleLoc": "diss. l.1875-1877 (ex 3-9)"},
+      {"form": "mahneku tusuku", "analysis": "「女性の巫者」", "sourceCited": "Piłsudski 1912 『資料』 Nr.15, 54-55", "articleLoc": "diss. l.7837-7844 (ex 8-29)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. (passim); primary: Piłsudski 1912, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has mahtekuh; mahneku is the frequent variant in Sakaguchi's East-coast texts (also mahneku~mahtekuh noted in 2020 art.) — add as variant or own entry."
+  },
+  {
+    "lemma": "makanke",
+    "sakaguchiForm": "makan-ke",
+    "ja": ["奥（山手）へ行かせる"],
+    "en": ["to make go inland, upland"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eci-makan-ke-he", "analysis": "1>2 portmanteau + makan-ke", "sourceCited": "Piłsudski 1912 『資料』 Nr.25, 79-80", "articleLoc": "diss. l.2356-2358 (ex 3-27)"},
+      {"form": "an-e-makan-ke", "analysis": "4.A-2SG.O-makan-ke", "sourceCited": "Piłsudski 1912 『資料』 22, 55-56", "articleLoc": "diss. l.2465-2467 (ex 3-33)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.4; primary: Piłsudski 1912 Nr.25, Nr.22",
+    "ocrConfidence": "clear",
+    "reviewNote": "makan 'go inland.SG' + -ke TR; dict has makan/makah — could be a forms-of entry instead; expected PL causative makahte unattested (diss. l.7860-7861)."
+  },
+  {
+    "lemma": "samte",
+    "sakaguchiForm": "sam-te",
+    "ja": ["連れ添わせる", "結婚させる"],
+    "en": ["to marry (someone) off to, make wed"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eci-sam-te", "analysis": "1SG.A>2SG.O 「お前を結婚させる」", "sourceCited": "Piłsudski 1912 『資料』 25, 82-85", "articleLoc": "diss. l.2371-2373 (ex 3-28)"},
+      {"form": "eci-sam-te-yan", "analysis": "4.A>2PL.O: okankino an-mahpoo-ho=sin eci-sam-te-yan rusuy kusu 「わざと娘たちをお前たちと結婚させたくて」", "sourceCited": "『資料２』 (Pilsudskij 2002) T.10, 26-27", "articleLoc": "diss. l.2640-2645 (ex 3-41), 8131-8133 (ex 8-41)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.4-5, §8.3; primary: Piłsudski 1912 Nr.25, Pilsudskij 2002 T.10",
+    "ocrConfidence": "clear",
+    "reviewNote": "sam 'marry/be beside' + -te CAUS; dict has sam — could alternatively be a forms-of entry."
+  },
+  {
+    "lemma": "itahotuye",
+    "sakaguchiForm": "itah-otuye (source kuitax otuje)",
+    "ja": ["言いやめる(?)"],
+    "en": ["to cease speaking(?)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "ku-itah-otuye", "analysis": "itah 'speech' + otuye; gloss marked uncertain by Sakaguchi himself", "sourceCited": "Piłsudski; Majewicz (ed.) 2004: 350 (prayer)", "articleLoc": "diss. l.2568-2570 (ex 3-37)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5; primary: Majewicz (ed.) 2004: 350",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Sakaguchi's own (?) on the gloss; single prayer token — keep flagged."
+  },
+  {
+    "lemma": "koare",
+    "sakaguchiForm": "ko-aa-re",
+    "ja": ["～に座らせる"],
+    "en": ["to seat (someone) upon"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eci-ko-aa-re-yan", "analysis": "2PL.O…: tu onkami ruka re onkami ruka eci-ko-aa-re-yan 「２つの拝礼の道の上…に座らせます」", "sourceCited": "Piłsudski; Majewicz (ed.) 2004: 350", "articleLoc": "diss. l.2572-2578 (ex 3-37)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.1; primary: Majewicz (ed.) 2004: 350",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "ko- APPL + aa 'sit' + -re CAUS; transparent — decide entry vs derivation; citation koaare with long aa?"
+  },
+  {
+    "lemma": "kourenkare",
+    "sakaguchiForm": "ko-urenka-re",
+    "ja": ["～に揃えて持たせる", "整え与える"],
+    "en": ["to provide, arrange (a house) for someone"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eci-ko-urenka-re-yan", "analysis": "2PL.O-に-揃う-CAUS-…: ci-koro-cise-he kamuy cise eci-ko-urenka-re-yan 「私の家、神の家をお前たちに持たせてやる」", "sourceCited": "Piłsudski 1912 『資料』 Nr.25, 96", "articleLoc": "diss. l.2591-2600 (ex 3-38)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.2; primary: Piłsudski 1912 Nr.25",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has urenkare — this is its ko- applicative; decide entry vs derivation."
+  },
+  {
+    "lemma": "sisturaynu",
+    "sakaguchiForm": "sisturaynu",
+    "ja": ["道に迷う"],
+    "en": ["to lose one's way"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "sisturaynu utara", "analysis": "「道に迷った者たちよ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 9", "articleLoc": "diss. l.2604-2606 (ex 3-39)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.2; primary: Piłsudski 1912 Nr.6",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. Hokkaido sitturaynu/situ raynu; Sakhalin shape with sis-."
+  },
+  {
+    "lemma": "ikoro",
+    "sakaguchiForm": "ikoro",
+    "ja": ["宝", "お金"],
+    "en": ["treasure", "money"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ikoro ponno anoka orowa an-e-anpa-re", "analysis": "「お金を少し私からお前へ持たせる」", "sourceCited": "『物語』 17706", "articleLoc": "diss. l.2454-2456 (ex 3-32), 8090-8095 (ex 8-38)"},
+      {"form": "ikoro-sin", "analysis": "宝物=PL", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 34", "articleLoc": "2020 ahcin art. l.290-292"},
+      {"form": "karauto oo ikoro pirika i", "analysis": "「唐櫃に入った宝の良いもの」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 178-179", "articleLoc": "diss. l.7777-7783 (ex 8-26)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. + 2020 ahcin art.; primary: 山邊・金田一 1913, Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Surprisingly absent from dict (only hohcirikorope nearby); high-value addition."
+  },
+  {
+    "lemma": "tanukuran",
+    "sakaguchiForm": "tanukuran",
+    "ja": ["今晩"],
+    "en": ["tonight"],
+    "ru": [],
+    "poses": ["adv", "n"],
+    "attestedForms": [
+      {"form": "tanukuran", "analysis": "tan-ukuran 'this night'", "sourceCited": "『物語』 16306-07; 16213-16301", "articleLoc": "diss. l.2303-2305 (ex 3-25), 2489-2491 (ex 3-34)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3-4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Check dict for ukuran base before adding compound."
+  },
+  {
+    "lemma": "uneyno",
+    "sakaguchiForm": "uneyno",
+    "ja": ["同様に", "同じように"],
+    "en": ["likewise, in the same way"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "uneyno", "analysis": "—", "sourceCited": "『物語』 16307", "articleLoc": "diss. l.2628-2630 (ex 3-40)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. Hokkaido uneno."
+  },
+  {
+    "lemma": "irukae",
+    "sakaguchiForm": "irukae (irukay?)",
+    "ja": ["少しの間", "暫し"],
+    "en": ["for a little while"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "irukae", "analysis": "reader uncertain between irukae/irukay", "sourceCited": "『物語』 16307", "articleLoc": "diss. l.2628-2630 (ex 3-40)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Verify final segment (-e vs -y) against PDF; cf. Hokkaido iruka."
+  },
+  {
+    "lemma": "okankino",
+    "sakaguchiForm": "okankino (source ока́нкино)",
+    "ja": ["わざと"],
+    "en": ["on purpose, deliberately"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "okankino an-mahpoo-ho=sin eci-sam-te-yan rusuy kusu an-kii-hi", "analysis": "「私はわざと娘たちをお前たちと結婚させたくてしたのだ」", "sourceCited": "『資料２』 (Pilsudskij 2002) T.10, 26-27", "articleLoc": "diss. l.2640-2645 (ex 3-41), 8131-8133 (ex 8-41)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.3, §8.3; primary: Pilsudskij 2002 T.10",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cyrillic source but normalized line consistent across two chapters."
+  },
+  {
+    "lemma": "asis",
+    "sakaguchiForm": "asis",
+    "ja": ["外へ出る（複数）"],
+    "en": ["to go out (plural subject)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "eci-asis", "analysis": "glossed 2PL.S-外へ出る.PL; relation to asin/asip unclear (possibly asin=si?)", "sourceCited": "Piłsudski 1912 『資料』 12, l.87-88", "articleLoc": "diss. l.2683-2684 (ex 3-43)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.3; primary: Piłsudski 1912 Nr.12",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Possibly not a lexeme (asin=si reanalysis); also cf. asiste/uasiste built on asis- — review before adding."
+  },
+  {
+    "lemma": "ucaanahtecise",
+    "sakaguchiForm": "ucaanahtecise",
+    "ja": ["牢屋"],
+    "en": ["jail, prison"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "emuyke ucaanahtecise onne eci-ruura-an kusu", "analysis": "「皆お前たちを牢屋に連れて行く」; final element cise 'house', first element unanalysed in article", "sourceCited": "『物語』 09305", "articleLoc": "diss. l.2709-2715 (ex 3-45)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5.4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Opaque first element ucaanahte-; single token."
+  },
+  {
+    "lemma": "wenno",
+    "sakaguchiForm": "wenno",
+    "ja": ["悪く"],
+    "en": ["badly, ill"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "wenno eci-kara[-ha?] nee nankoo", "analysis": "「お前たちを大いに悪く扱っただろう」", "sourceCited": "『物語』 10306; 09305", "articleLoc": "diss. l.2544-2546 (ex 3-36), 2709-2711 (ex 3-45)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.5; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "wen-no transparent adverb; two tokens."
+  },
+  {
+    "lemma": "ueomante",
+    "sakaguchiForm": "ueomante",
+    "ja": ["～を案じる"],
+    "en": ["to worry about, be anxious for"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eciokay eci-ueomante hane an-kii no", "analysis": "「お前達をば案ぜずに」", "sourceCited": "『物語』 16204", "articleLoc": "diss. l.2800-2810 (ex 3-48)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.6; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "u-e-omante? segmentation not given in article."
+  },
+  {
+    "lemma": "urayki",
+    "sakaguchiForm": "urayki ~ urayke",
+    "ja": ["殺しあう", "果し合いをする", "戦う"],
+    "en": ["to fight to the death with each other, duel", "to fight, make war"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "sonno urayki-an kusuneyke, eani e-ray", "analysis": "「本当に果し合いをすれば、お前は死ぬ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.12, 150-151", "articleLoc": "diss. l.2131-2134 (ex 3-20)"},
+      {"form": "Sisam urayke utara", "analysis": "「日本軍」(lit. fighting people); u-rayke reciprocal", "sourceCited": "『物語』 09808, 10310", "articleLoc": "diss. l.7034-7051 (ex 7-31, 7-32)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.2.2, §7.2; primary: Piłsudski 1912 Nr.12, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "u-rayki/u-rayke 'kill each other'; decide single entry with variants or two."
+  },
+  {
+    "lemma": "koramusiine",
+    "sakaguchiForm": "koramusiine",
+    "ja": ["安心した"],
+    "en": ["to be at ease, secure"],
+    "ru": [],
+    "poses": ["v", "adn"],
+    "attestedForms": [
+      {"form": "koramusiine okay utara kii manu", "analysis": "「安心した暮らしをみんなはしているとさ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.10, 102-103", "articleLoc": "diss. l.3085-3090 (ex 4-1)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.1; primary: Piłsudski 1912 Nr.10",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "ko-ramu-siine?; cf. existing eramusinne — verify vowel length -siine vs -sinne against PDF."
+  },
+  {
+    "lemma": "anokayahcin",
+    "sakaguchiForm": "anokay-(y)ahcin ~ anokay’ahsin",
+    "ja": ["私たち（１人称複数の人称代名詞）"],
+    "en": ["we (dedicated 1PL pronoun: 4th-person pronoun + plural ahcin)"],
+    "ru": [],
+    "poses": ["pron"],
+    "attestedForms": [
+      {"form": "anokay-(y)ahcin hene an-oskor[o] anpe kayki han nee", "analysis": "「私たちでも惜しむものでもない」; verb still takes 4th-person affixes", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 202-203", "articleLoc": "diss. l.1715-1727 (ex 3-5)"},
+      {"form": "anokay’ahsin", "analysis": "variant spelling; 『物語』 has anokayʼa(h)sin ×102 vs anokayʼutara ×14", "sourceCited": "『物語』 05602, 03703-04; 服部 1961: 6", "articleLoc": "diss. l.1943-1945, 2507-2509; 2020 art. fn22 l.394-400"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.2 + 2020 ahcin art.; primary: Piłsudski 1912 Nr.23, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict already has eciokayahcin and anokay — add the 1PL member; note Raichishka 60+ males use it as 1SG (服部 1961: 6)."
+  },
+  {
+    "lemma": "ehawkomo",
+    "sakaguchiForm": "ehawkomo (e-haw-komo?)",
+    "ja": ["声を潜める(?)"],
+    "en": ["to lower one's voice(?)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "hannahkusu utara ehawkomo kunpe han nee", "analysis": "「決して我々は声を潜めるべきではないのだ」; Sakaguchi's own (?)", "sourceCited": "Piłsudski 1912 『資料』 Nr.10, 39-40", "articleLoc": "diss. l.3564-3570 (ex 4-22)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: Piłsudski 1912 Nr.10",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Gloss uncertain in source itself (e-haw-komo 'bend one's voice'); keep flagged."
+  },
+  {
+    "lemma": "eimeh",
+    "sakaguchiForm": "eime[h] (source кам э имэ́)",
+    "ja": ["配る"],
+    "en": ["to distribute, hand out (food)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "utara kam eime[h]", "analysis": "「（彼女は）彼らに肉を配った」(ditransitive)", "sourceCited": "『資料２』 (Pilsudskij 2002) 6, 45", "articleLoc": "diss. l.3368-3372 (ex 4-13)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.3; primary: Pilsudskij 2002",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Cyrillic source; bracketed final [h] = underlying -p/-t/-k unknown; cf. Hokkaido eymek 'distribute' → stem likely eimek-."
+  },
+  {
+    "lemma": "inawpe",
+    "sakaguchiForm": "inawpe (source ináube)",
+    "ja": ["木幣（イナウ）"],
+    "en": ["inaw, shaved ritual offering stick"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "Notet[o] ohta utara inawpe kara=hci", "analysis": "「ノテトで人々はイナウを捧げる」", "sourceCited": "Piłsudski 1912 『資料』 Nr.5, 23", "articleLoc": "diss. l.3441-3446 (ex 4-16)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: Piłsudski 1912 Nr.5",
+    "ocrConfidence": "clear",
+    "reviewNote": "inaw-pe; check dict inaw base entry."
+  },
+  {
+    "lemma": "orakata",
+    "sakaguchiForm": "Orakata",
+    "ja": ["ウイルタ（民族）"],
+    "en": ["the Uilta (Orok) people"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "Orakata orowano hoskikanne urayki rusuy kusuneyke", "analysis": "「ウイルタの方から先に戦争したがったら」", "sourceCited": "Piłsudski 1912 『資料』 Nr.4, 57-58", "articleLoc": "diss. l.3453-3463 (ex 4-17)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: Piłsudski 1912 Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "Ethnonym; dict has nuca, sissam parallels."
+  },
+  {
+    "lemma": "ohaciri",
+    "sakaguchiForm": "ohaciri",
+    "ja": ["留守"],
+    "en": ["absence from home"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ohaciri-ke ta", "analysis": "留守-LF に 「その留守中に」", "sourceCited": "Piłsudski 1912 『資料』 Nr.21, 190-192; Nr.21, 9-10", "articleLoc": "diss. l.3546-3552 (ex 4-21), 7942-7944 (ex 8-34)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4, §8.2; primary: Piłsudski 1912 Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "oha-ciri? two clean tokens."
+  },
+  {
+    "lemma": "niwkes",
+    "sakaguchiForm": "niwkes (source níuḱeś)",
+    "ja": ["できない"],
+    "en": ["to be unable to"],
+    "ru": [],
+    "poses": ["v", "auxv"],
+    "attestedForms": [
+      {"form": "utara niwkes kunpe nee nanko", "analysis": "「我々にはできないものだろう」", "sourceCited": "Piłsudski 1912 『資料』 Nr.24, 92-94", "articleLoc": "diss. l.3577-3579 (ex 4-23)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: Piłsudski 1912 Nr.24",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pan-Ainu niwkes; cf. koyaakus (dict has koyaykus)."
+  },
+  {
+    "lemma": "eukoytak",
+    "sakaguchiForm": "eukoytak ~ e-ukoitak",
+    "ja": ["（～について）話し合う"],
+    "en": ["to talk together, discuss (about something)"],
+    "ru": [],
+    "poses": ["vi", "vt"],
+    "attestedForms": [
+      {"form": "nah eukoytak=ahci", "analysis": "「…と話し合った」", "sourceCited": "Piłsudski 1912 『資料』 Nr.24, 92-94", "articleLoc": "diss. l.3583-3585 (ex 4-23)"},
+      {"form": "e-ukoitak=ahci manuy", "analysis": "e- APPL 'discuss about it'", "sourceCited": "Piłsudski 1912 『資料』 Nr.21, 9-10", "articleLoc": "diss. l.7950-7952 (ex 8-34)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4, §8.2; primary: Piłsudski 1912 Nr.24, Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has ukoytah; this is e- applicative — decide entry vs derived form."
+  },
+  {
+    "lemma": "tomi",
+    "sakaguchiForm": "tomi",
+    "ja": ["富", "宝器"],
+    "en": ["wealth, treasures"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ikoro neanpe, tomi neanpe an yahka", "analysis": "「宝物は、宝器はあっても」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 201", "articleLoc": "diss. l.3604-3606 (ex 4-24)"},
+      {"form": "tomi pirika i", "analysis": "「富の良いもの」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 178-179", "articleLoc": "diss. l.7777-7779 (ex 8-26)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4, §8.2; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Often paired with ikoro; two clean tokens."
+  },
+  {
+    "lemma": "yaywente",
+    "sakaguchiForm": "yaywente (source jajvénte)",
+    "ja": ["病身"],
+    "en": ["invalid, sickly person (lit. self-broken)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "anoka neanpe tan yaywente an-kii [i]ke", "analysis": "「私はこの病身で」", "sourceCited": "Piłsudski 1912 『資料』 Nr.21, 127-129", "articleLoc": "diss. l.3680-3683 (ex 4-27)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: Piłsudski 1912 Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "yay-wen-te deverbal noun use."
+  },
+  {
+    "lemma": "renkani",
+    "sakaguchiForm": "renkani",
+    "ja": ["～のせいで"],
+    "en": ["because of, owing to"],
+    "ru": [],
+    "poses": ["postp"],
+    "attestedForms": [
+      {"form": "eci-ramu-hu renkani", "analysis": "「お前たちが思ったことのせいで」", "sourceCited": "『物語』 04801", "articleLoc": "diss. l.3750-3756 (ex 4-29)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. renkayne (exists); renkani postpositional use distinct."
+  },
+  {
+    "lemma": "asisne",
+    "sakaguchiForm": "asisne",
+    "ja": ["５つの", "５（人）の"],
+    "en": ["five (attributive)"],
+    "ru": [],
+    "poses": ["adn", "num"],
+    "attestedForms": [
+      {"form": "asisne conpay", "analysis": "「五升」", "sourceCited": "『物語』 05004", "articleLoc": "diss. l.3852-3862 (ex 4-33)"},
+      {"form": "asisne kunkutu", "analysis": "= 50 (in 850 = tupesan tanku asisne kunkutu)", "sourceCited": "『物語』 01208-09, 03407-08", "articleLoc": "diss. l.7085-7086 (ex 7-34), 7699-7701 (ex 8-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4, §7-8; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has asne/asneh — asisne is the fuller variant; decide merge or separate."
+  },
+  {
+    "lemma": "conpay",
+    "sakaguchiForm": "conpay (source チヨンパイ)",
+    "ja": ["升"],
+    "en": ["shō-measure box (grain measure; Japanese loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "asisne conpay", "analysis": "「五升」", "sourceCited": "『物語』 05004", "articleLoc": "diss. l.3852-3862 (ex 4-33)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan; np/mp orthography question applies (conpay vs compay) — Sakaguchi prints np here."
+  },
+  {
+    "lemma": "ueramuokay",
+    "sakaguchiForm": "u-e-ramuokay",
+    "ja": ["（互いに）について思う"],
+    "en": ["to think about each other"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "ray hemaka nahkaane pate[h] u-e-ramuokay=ahsi-hi neyaa", "analysis": "REC-について.APPL-思う 「死んだなどとばかりみんなが思っていたところ」", "sourceCited": "『物語』 11805-06", "articleLoc": "diss. l.4146-4163 (ex 5-3)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Transparent u-e- derivation of eramuokay — may belong as forms-of rather than own entry."
+  },
+  {
+    "lemma": "ueramusinne",
+    "sakaguchiForm": "u-e-ramusinne",
+    "ja": ["（互いに）安心する"],
+    "en": ["to be relieved (about each other)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "u-e-ramusinne", "analysis": "REC-について.APPL-安心する", "sourceCited": "『物語』 11805-06", "articleLoc": "diss. l.4150-4163 (ex 5-3)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has eramusinne — this is its u-e- reciprocal; decide entry vs derived form."
+  },
+  {
+    "lemma": "sirikuroh",
+    "sakaguchiForm": "siri(~e)kuro[h]",
+    "ja": ["あたりが暗い"],
+    "en": ["it is dark all around"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "an-koyaakus=ahsi pahno siri(~e)kuro[h]", "analysis": "「何處を見ることも出來なかつた程眞暗」", "sourceCited": "『物語』 17203", "articleLoc": "diss. l.4271-4276 (ex 5-8)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.2.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Shape uncertain sirikuroh ~ siriekuroh; verify against PDF before adding."
+  },
+  {
+    "lemma": "ociw",
+    "sakaguchiForm": "ociw",
+    "ja": ["性交する"],
+    "en": ["to copulate with"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "in-ko-ociw-rusuy yan", "analysis": "1.O-に.APPL-性交する-DESID IMP.PL: hankayki in-ko-ociw-rusuy yan 「決して私と性交したいと思うな」", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14", "articleLoc": "diss. l.4338-4343 (ex 5-12)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.2; primary: Piłsudski 1912 Nr.6",
+    "ocrConfidence": "clear",
+    "reviewNote": "Attested in ko- applicative; pan-Ainu ociw."
+  },
+  {
+    "lemma": "sissam",
+    "sakaguchiForm": "Sissam",
+    "ja": ["和人"],
+    "en": ["Japanese (mainland) person"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "Sissam -utara Matsumae orowa cekoyki kusu Karaputo ohta paye=hsi", "analysis": "「日本の人達が松前から魚を取りに樺太へ出かけた」", "sourceCited": "『物語』 00711", "articleLoc": "diss. l.4468-4477 (ex 5-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakhalin geminate form (cf. Hokkaido sisam); also Sisam spelling at ex 7-31."
+  },
+  {
+    "lemma": "cekoyki",
+    "sakaguchiForm": "cekoyki (ceh-koyki)",
+    "ja": ["魚をとる"],
+    "en": ["to catch fish, to fish"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "cekoyki kusu", "analysis": "「魚を取りに」; incorporated ceh+koyki", "sourceCited": "『物語』 00711", "articleLoc": "diss. l.4468-4477 (ex 5-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Incorporation compound; dict has ceh and koyki separately? check."
+  },
+  {
+    "lemma": "usah",
+    "sakaguchiForm": "usap (usap=ahte)",
+    "ja": ["一緒に帰る"],
+    "en": ["to return home together"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "onuman usap=ahte", "analysis": "「夕方に一同連れてだって帰って来ました」; stem usap- before plural clitic =ahte (Shiranushi variant of AHCI)", "sourceCited": "知里 1975/1954: 505 (シラヌシ昔話, 西海岸南部白主)", "articleLoc": "diss. l.4640-4645 (ex 5-25)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.2; primary: 知里 1975/1954: 505",
+    "ocrConfidence": "clear",
+    "reviewNote": "Citation form usah with stem usap-; West-coast-south source — dialect-tag."
+  },
+  {
+    "lemma": "sisnu",
+    "sakaguchiForm": "sisnu (シㇱヌッチ sisnu=hci)",
+    "ja": ["生きる"],
+    "en": ["to live, be alive"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "sisnu=hci", "analysis": "「生きること」(知里の例)", "sourceCited": "知里 1948: 337", "articleLoc": "diss. l.4656-4675"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.3; primary: 知里 1948: 337",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pan-Ainu siknu; Sakhalin sisnu shape."
+  },
+  {
+    "lemma": "tumi",
+    "sakaguchiForm": "tumi (ツﾟミ)",
+    "ja": ["いくさ"],
+    "en": ["war, battle"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "tumi", "analysis": "—", "sourceCited": "知里 1948: 337", "articleLoc": "diss. l.4662"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §5.3; primary: 知里 1948: 337",
+    "ocrConfidence": "clear",
+    "reviewNote": "Single citation in Chiri quote."
+  },
+  {
+    "lemma": "paysere",
+    "sakaguchiForm": "paysere (source pajśere)",
+    "ja": ["（犬ゾリの）後部"],
+    "en": ["rear part (of a dog sled)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "nuso paysere pate[h] utara nukara manu", "analysis": "「ソリの後半分だけを人々は見たとさ」", "sourceCited": "Piłsudski 1912 『資料』 Nr.10, 37", "articleLoc": "diss. l.3358-3362 (ex 4-12)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.3; primary: Piłsudski 1912 Nr.10",
+    "ocrConfidence": "clear",
+    "reviewNote": "pay-sere?; material-culture term."
+  },
+  {
+    "lemma": "isinneno",
+    "sakaguchiForm": "isinneno ~ issinne(no)",
+    "ja": ["一緒に", "一同"],
+    "en": ["together, all together"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "aynu isinneno ahun", "analysis": "「人は一緒に入った」", "sourceCited": "『資料２』 (Pilsudskij 2002) 6, 45", "articleLoc": "diss. l.3368-3370 (ex 4-13)"},
+      {"form": "issinneno / issinne", "analysis": "「全員いっしょに」「一同」", "sourceCited": "Piłsudski 1912 『資料』 Nr.15, 54-55; 『物語』 07003, 08913-09001; 金田一 1913: 32 (ishinne)", "articleLoc": "diss. l.7833-7835 (ex 8-29), 7979-7981 (ex 8-35), 4598-4604"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4-5, §8; primary: Pilsudskij 2002, Piłsudski 1912, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Variant cluster isinneno/issinneno/issinne — pick headword and record variants."
+  },
+  {
+    "lemma": "payke",
+    "sakaguchiForm": "payke",
+    "ja": ["起きる（複数形）"],
+    "en": ["to get up (plural)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "numa / payke", "analysis": "suppletive SG/PL pair listed in §7-8 verb-number inventory", "sourceCited": "(Sakaguchi's pair list)", "articleLoc": "diss. l.6318, 7281"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1; primary: list, cf. 村崎 1979",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has numa — add PL member payke and cross-link."
+  },
+  {
+    "lemma": "sospa",
+    "sakaguchiForm": "sospa (sos-pa)",
+    "ja": ["ビリビリ裂く（複数形）"],
+    "en": ["to tear repeatedly (plural-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "soso / sospa", "analysis": "SG/PL pair sos-o/sos-pa", "sourceCited": "村崎 1979: 42-43", "articleLoc": "diss. l.6343, 7308-7309 (ex 8-1)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.1; primary: 村崎 1979: 42-43",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has soso — add PL member."
+  },
+  {
+    "lemma": "rukumpa",
+    "sakaguchiForm": "rukumpa",
+    "ja": ["ブツブツ切る（複数形）"],
+    "en": ["to cut into pieces (plural-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "an-rukumpa", "analysis": "PL of rukum(u); SG form attested only in 村崎 1979", "sourceCited": "村崎 1979: 42-43; Ohnuki-Tierney 1969: 41", "articleLoc": "diss. l.6344, fn128 l.6376, 7405-7409 (ex 8-5)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.1-2; primary: 村崎 1979, Ohnuki-Tierney 1969",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has rukum — add PL member; note m+pa spelling (rukumpa) is morphophonemic."
+  },
+  {
+    "lemma": "tapu",
+    "sakaguchiForm": "tapu (tap-u)",
+    "ja": ["～をつかむ（単数形）"],
+    "en": ["to grasp (singular-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "tapu / tahpa", "analysis": "SG/PL pair tap-u / tah-pa (root-final p > h preconsonantally)", "sourceCited": "村崎 1979: 42-43", "articleLoc": "diss. l.7313-7314 (ex 8-1)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.1; primary: 村崎 1979: 42-43",
+    "ocrConfidence": "clear",
+    "reviewNote": "From Murasaki's elicited list (West coast); no text token cited."
+  },
+  {
+    "lemma": "tahpa",
+    "sakaguchiForm": "tahpa (tah-pa)",
+    "ja": ["何度もつかむ（複数形）"],
+    "en": ["to grasp repeatedly (plural-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "tapu / tahpa", "analysis": "PL member; root tap- with coda p > h before -pa", "sourceCited": "村崎 1979: 42-43", "articleLoc": "diss. l.7313-7314 (ex 8-1)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.1; primary: 村崎 1979: 42-43",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pair with tapu."
+  },
+  {
+    "lemma": "hopenu",
+    "sakaguchiForm": "hopenu",
+    "ja": ["驚く"],
+    "en": ["to be startled"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "hopenu", "analysis": "West-coast-north (Raichishka) only; hopenpa elsewhere — NOT a synchronic SG/PL pair per Sakaguchi", "sourceCited": "(diss. discussion)", "articleLoc": "diss. l.6364-6368"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1; primary: dialect distribution discussion",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dialect-complementary with hopenpa; tag Raichishka."
+  },
+  {
+    "lemma": "hopenpa",
+    "sakaguchiForm": "hopenpa",
+    "ja": ["驚く"],
+    "en": ["to be startled"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "hopenpa", "analysis": "south/east-coast form; complementary with hopenu", "sourceCited": "(diss. discussion)", "articleLoc": "diss. l.6364-6368"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pair note with hopenu; not number-paired synchronically."
+  },
+  {
+    "lemma": "ocipa",
+    "sakaguchiForm": "ocipa (~ociipa)",
+    "ja": ["～を投げる"],
+    "en": ["to throw"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "ocipa ~ ociipa", "analysis": "regionally complementary with ociwe; not a synchronic SG/PL pair per Sakaguchi", "sourceCited": "(diss. discussion)", "articleLoc": "diss. l.6364-6368, 6388"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has ociwe — add areal counterpart; vowel length ocipa~ociipa unresolved."
+  },
+  {
+    "lemma": "hosispa",
+    "sakaguchiForm": "hosispa",
+    "ja": ["帰る"],
+    "en": ["to return"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "hosispa", "analysis": "1 token only (subject singular) — NOT a plural counterpart of hosipi per Sakaguchi fn129", "sourceCited": "Pilsudskij 2002: 22", "articleLoc": "diss. fn129 l.6377-6379, 6392-6396"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1; primary: Pilsudskij 2002: 22",
+    "ocrConfidence": "clear",
+    "reviewNote": "Hapax; include only with hapax flag."
+  },
+  {
+    "lemma": "ninu",
+    "sakaguchiForm": "ninu",
+    "ja": ["縫う（ごく細かく）"],
+    "en": ["to sew (very finely)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "ninu; reduplicated ninpaninpa", "analysis": "ninpaninpa 「それより少しあらく縫う」", "sourceCited": "服部編 1964: 111", "articleLoc": "diss. fn131 l.6431-6435"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1; primary: 服部編 1964: 111",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pairs with existing ninpa entry (note ninpa also 'drag' — homophony to flag)."
+  },
+  {
+    "lemma": "punpa",
+    "sakaguchiForm": "punpa",
+    "ja": ["～を持ち上げる（複数形）"],
+    "en": ["to lift (plural-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "puni / punpa", "analysis": "SG/PL pair", "sourceCited": "(diss. pair list)", "articleLoc": "diss. l.6396"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has puni — add PL member."
+  },
+  {
+    "lemma": "yupu",
+    "sakaguchiForm": "yupu",
+    "ja": ["～を締める（単数形）"],
+    "en": ["to tighten (singular-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "yupu / yuppa", "analysis": "SG/PL pair", "sourceCited": "(diss. pair list)", "articleLoc": "diss. l.6396"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pair listed without text token; verify."
+  },
+  {
+    "lemma": "yuppa",
+    "sakaguchiForm": "yuppa",
+    "ja": ["～を締める（複数形）"],
+    "en": ["to tighten (plural-object)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "yupu / yuppa", "analysis": "PL member", "sourceCited": "(diss. pair list)", "articleLoc": "diss. l.6396"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.1",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pair with yupu."
+  },
+  {
+    "lemma": "kiroro",
+    "sakaguchiForm": "kiroro (kiroro koro)",
+    "ja": ["力"],
+    "en": ["strength, power"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "kiroro koro", "analysis": "「力を持つ（力持ちの）」", "sourceCited": "村崎 1976: 150", "articleLoc": "diss. l.6446 (ex 7-1), 7347-7348 (ex 8-2)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7-8; primary: 村崎 1976: 150",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has kiroro'an — add base noun kiroro."
+  },
+  {
+    "lemma": "arahne",
+    "sakaguchiForm": "arahne",
+    "ja": ["一度に"],
+    "en": ["at once, in one go"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "arahne", "analysis": "—", "sourceCited": "村崎 1976: 150", "articleLoc": "diss. l.6446, 6460 (ex 7-1), 7347, 7359 (ex 8-2)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7-8; primary: 村崎 1976: 150",
+    "ocrConfidence": "clear",
+    "reviewNote": "Maoka (West coast) source."
+  },
+  {
+    "lemma": "hoskikanne",
+    "sakaguchiForm": "hoskikanne (source hóśki-kane)",
+    "ja": ["先に"],
+    "en": ["first, ahead"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "hoskikanne", "analysis": "—", "sourceCited": "Piłsudski 1912 『資料』 Nr.12, 77-78; Nr.4, 57-58", "articleLoc": "diss. l.6744-6746 (ex 7-13), 3453-3463 (ex 4-17)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §4.4, §7.2; primary: Piłsudski 1912 Nr.12, Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "hoski + kanne; dict has hoski."
+  },
+  {
+    "lemma": "turepkara",
+    "sakaguchiForm": "turepkara",
+    "ja": ["（オオウバユリの）実を採る"],
+    "en": ["to gather turep (lily bulbs)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "mahneku tu aynu turepkara kusu makap=ahsi ohta", "analysis": "「女性が二人ウバユリ採りに山へ行ったところ」", "sourceCited": "『物語』 00911-12", "articleLoc": "diss. l.6823-6828 (ex 7-18)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "turep + kara incorporation; check dict turep base."
+  },
+  {
+    "lemma": "unkame",
+    "sakaguchiForm": "unkame",
+    "ja": ["化物（人食いお化け）"],
+    "en": ["man-eating ogre, monster"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "unkame poroono san, … pon unkame utara naa sap=ahci", "analysis": "「化物がたくさん下りてきた…小さい化物たちも下りてきた」", "sourceCited": "『資料２』 (Pilsudskij 2002) T.9, 65-66", "articleLoc": "diss. l.7128-7138 (ex 7-35)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: Pilsudskij 2002 T.9",
+    "ocrConfidence": "clear",
+    "reviewNote": "Folklore being; Cyrillic source but multiple tokens."
+  },
+  {
+    "lemma": "neete",
+    "sakaguchiForm": "neete",
+    "ja": ["そして"],
+    "en": ["and then"],
+    "ru": [],
+    "poses": ["conj"],
+    "attestedForms": [
+      {"form": "neete pon unkame utara naa sap=ahci", "analysis": "—", "sourceCited": "『資料２』 T.9, 65-66", "articleLoc": "diss. l.7132-7134 (ex 7-35)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: Pilsudskij 2002 T.9",
+    "ocrConfidence": "clear",
+    "reviewNote": "nee-te 'being-and'; check dict neete/neeteh variants."
+  },
+  {
+    "lemma": "hata",
+    "sakaguchiForm": "hata",
+    "ja": ["旗"],
+    "en": ["flag (Japanese loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "hata hotahse(?)", "analysis": "「旗を立てた」", "sourceCited": "『物語』 17806-07", "articleLoc": "diss. l.7162-7166 (ex 7-36)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan; co-occurring verb hotahse is dubious (see report)."
+  },
+  {
+    "lemma": "tenunkoy",
+    "sakaguchiForm": "tenunkoy",
+    "ja": ["手拭"],
+    "en": ["hand towel (Japanese loan: tenugui)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "terara tenunkoy esuyasuya=hsi", "analysis": "「白い手拭を振った」", "sourceCited": "『物語』 17004-06", "articleLoc": "diss. l.7182-7187 (ex 7-37)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan adaptation -koy < -gui."
+  },
+  {
+    "lemma": "esuyasuya",
+    "sakaguchiForm": "esuyasuya (e-suya-suya)",
+    "ja": ["～を振る"],
+    "en": ["to wave (something)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "esuyasuya=hsi", "analysis": "e- APPL + suya reduplication", "sourceCited": "『物語』 17004-06", "articleLoc": "diss. l.7183-7184 (ex 7-37)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Transparent reduplication."
+  },
+  {
+    "lemma": "eramuokay",
+    "sakaguchiForm": "eramuokay",
+    "ja": ["～を思う、知る（複数形）"],
+    "en": ["to think, know (plural)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "an-eramuokay", "analysis": "“aa, inunukare!” nah an-eramuokay 「『ああ可愛そうだ』と私たちは思った」", "sourceCited": "『物語』 09703", "articleLoc": "diss. l.7521-7526 (ex 8-12)"},
+      {"form": "eramuoka yan", "analysis": "plural imperative", "sourceCited": "『物語』 10812-13", "articleLoc": "diss. l.7535-7543 (ex 8-13)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "PL member of eraman (exists) — suppletive pair from an/okay; cross-link."
+  },
+  {
+    "lemma": "pakesaran",
+    "sakaguchiForm": "pakesaran",
+    "ja": ["生意気な"],
+    "en": ["impudent, cheeky"],
+    "ru": [],
+    "poses": ["adn", "vi"],
+    "attestedForms": [
+      {"form": "nah an pakesaran ita[h] e-kii-hi?", "analysis": "「そんな生意氣云ふ？」", "sourceCited": "『物語』 04406-07", "articleLoc": "diss. l.7493-7497 (ex 8-10)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "pake-saran 'head-?'; single token."
+  },
+  {
+    "lemma": "yuuturu",
+    "sakaguchiForm": "yuuturu (source ю́туру)",
+    "ja": ["真ん中の"],
+    "en": ["middle (one of three)"],
+    "ru": [],
+    "poses": ["adn", "n"],
+    "attestedForms": [
+      {"form": "yuuturu moromahpo", "analysis": "「真ん中の娘」", "sourceCited": "『資料２』 T.9, 39-40", "articleLoc": "diss. l.7560-7565 (ex 8-14), 7917-7921 (ex 8-32)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: Pilsudskij 2002 T.9",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. uturu 'between' (also missing — see uturu? no, uturu exists); yuu-turu shape from Cyrillic accent = long uu."
+  },
+  {
+    "lemma": "epausi",
+    "sakaguchiForm": "epausi",
+    "ja": ["かぶっている"],
+    "en": ["to wear on the head"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "epausi anpe uh te", "analysis": "「（アイヌ風の）被り物を脱ぎ去って」(lit. took the worn thing)", "sourceCited": "『物語』 11008", "articleLoc": "diss. l.7568-7574 (ex 8-15)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "e-pa-usi 'on-head-attach'; single token."
+  },
+  {
+    "lemma": "oasi",
+    "sakaguchiForm": "oasi",
+    "ja": ["始める"],
+    "en": ["to begin"],
+    "ru": [],
+    "poses": ["vt", "auxv"],
+    "attestedForms": [
+      {"form": "kaa oasi", "analysis": "「罠（を仕掛け）始めた」context (ex 8-16)", "sourceCited": "Piłsudski 1912 『資料』 Nr.13, 30-31", "articleLoc": "diss. l.7584-7586 (ex 8-16)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.2; primary: Piłsudski 1912 Nr.13",
+    "ocrConfidence": "clear",
+    "reviewNote": "Check dict for oasi/oasin overlap."
+  },
+  {
+    "lemma": "esisi",
+    "sakaguchiForm": "esisi (source eśíśi)",
+    "ja": ["～をよける"],
+    "en": ["to dodge, avoid"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "esisi", "analysis": "—", "sourceCited": "Piłsudski 1912 『資料』 Nr.4, 65-66", "articleLoc": "diss. l.7600-7603 (ex 8-17)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.2; primary: Piłsudski 1912 Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "Single token."
+  },
+  {
+    "lemma": "raapoke",
+    "sakaguchiForm": "raapoke (ta)",
+    "ja": ["その間（に）"],
+    "en": ["meanwhile, during that time"],
+    "ru": [],
+    "poses": ["n", "adv"],
+    "attestedForms": [
+      {"form": "raapoke ta", "analysis": "その間-LF に", "sourceCited": "Piłsudski 1912 『資料』 Nr.4, 65-66", "articleLoc": "diss. l.7601-7603 (ex 8-17)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.2; primary: Piłsudski 1912 Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "raa-pok-e 'under-time'; cf. Hokkaido rapok(ke)."
+  },
+  {
+    "lemma": "yaykota",
+    "sakaguchiForm": "yaykota",
+    "ja": ["自分で"],
+    "en": ["oneself, by oneself"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "yaykota", "analysis": "—", "sourceCited": "『物語』 13013", "articleLoc": "diss. l.7629-7632 (ex 8-18)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Pan-Ainu yaykota."
+  },
+  {
+    "lemma": "pencay",
+    "sakaguchiForm": "pencay (source ベンザイ)",
+    "ja": ["弁財船"],
+    "en": ["junk, cargo ship (Japanese loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "pencay an-oo=si", "analysis": "「弁財船に私たちは乗った」", "sourceCited": "『物語』 17212-13", "articleLoc": "diss. l.7456-7465 (ex 8-8)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan benzai-(sen)."
+  },
+  {
+    "lemma": "kotesu",
+    "sakaguchiForm": "kotesu",
+    "ja": ["～に当てる"],
+    "en": ["to fit, attach against"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "kotesu", "analysis": "in ex 8-8 (ship's bottom + metal context)", "sourceCited": "『物語』 17212-13", "articleLoc": "diss. l.7457-7458 (ex 8-8)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Context partly garbled (osiske(?) nearby); verify against PDF."
+  },
+  {
+    "lemma": "enko",
+    "sakaguchiForm": "enko",
+    "ja": ["半分"],
+    "en": ["half"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "enko", "analysis": "—", "sourceCited": "『物語』 17212-13", "articleLoc": "diss. l.7460-7461 (ex 8-8)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has only derived enkokehe/enkonte — add base."
+  },
+  {
+    "lemma": "kisarapuy",
+    "sakaguchiForm": "kisarapuy",
+    "ja": ["耳（の穴）"],
+    "en": ["ear-hole, ear"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "kisarapuy naa mesu=hsi", "analysis": "「耳の穴を剜り」", "sourceCited": "『物語』 12905", "articleLoc": "diss. l.7425-7434 (ex 8-6)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "kisara + puy; dict has kisaruhu — compound worth its own entry."
+  },
+  {
+    "lemma": "etupuy",
+    "sakaguchiForm": "etupuy",
+    "ja": ["鼻（の穴）"],
+    "en": ["nostril"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "etupuy naa mesu=hsi", "analysis": "「鼻の穴を剜り」", "sourceCited": "『物語』 12905", "articleLoc": "diss. l.7428-7430 (ex 8-6)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "etu + puy; dict has etu."
+  },
+  {
+    "lemma": "uarikire",
+    "sakaguchiForm": "u-ariki-re",
+    "ja": ["一緒に来る"],
+    "en": ["to come along together (plural subject)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "neya tunakay utara yooponi u-ariki-re=hci", "analysis": "REC-来る.PL-CAUS 「そのトナカイたちが後から一緒に来た」", "sourceCited": "Piłsudski 1912 『資料』 Nr.4, 26", "articleLoc": "diss. l.7737-7747 (ex 8-23), 8301-8305"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.4; primary: Piłsudski 1912 Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "u-…-re plural-subject derivation (fossilized PL stem); cf. umakahte, uasiste."
+  },
+  {
+    "lemma": "umakahte",
+    "sakaguchiForm": "umakahte (u-makap-te)",
+    "ja": ["一緒に山手へ行く"],
+    "en": ["to go inland together (plural subject)"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "umakahte", "analysis": "u- + *makap 'go inland.PL' + -te; PL stem fossilized; subject always plural", "sourceCited": "(diss. discussion)", "articleLoc": "diss. l.7860-7863, 8301-8304"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: diss. derivation inventory",
+    "ocrConfidence": "clear",
+    "reviewNote": "Listed without text example in our chunks — verify a token in PDF before merging."
+  },
+  {
+    "lemma": "tunakay",
+    "sakaguchiForm": "tunakay",
+    "ja": ["トナカイ"],
+    "en": ["reindeer (loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "neya tunakay utara", "analysis": "「そのトナカイたち」", "sourceCited": "Piłsudski 1912 『資料』 Nr.4, 26", "articleLoc": "diss. l.7742-7747 (ex 8-23)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.4; primary: Piłsudski 1912 Nr.4",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan (cf. Tungusic/Nivkh); core Sakhalin fauna term."
+  },
+  {
+    "lemma": "ohoorono",
+    "sakaguchiForm": "ohoorono (source オホーロノ)",
+    "ja": ["長く（時間）"],
+    "en": ["for a long time"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "ohoorono", "analysis": "—", "sourceCited": "『物語』 06106", "articleLoc": "diss. l.6718-6722 (ex 7-12)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "ohoro-no; katakana length mark = oo."
+  },
+  {
+    "lemma": "aruwan",
+    "sakaguchiForm": "aruwan",
+    "ja": ["７の"],
+    "en": ["seven (attributive)"],
+    "ru": [],
+    "poses": ["num", "adn"],
+    "attestedForms": [
+      {"form": "tan cuh aruwan too", "analysis": "「この月の七日」", "sourceCited": "『物語』 10310", "articleLoc": "diss. l.7043-7044 (ex 7-32)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Numeral; dict numeral row check."
+  },
+  {
+    "lemma": "tupesan",
+    "sakaguchiForm": "tupesan",
+    "ja": ["８の"],
+    "en": ["eight (attributive)"],
+    "ru": [],
+    "poses": ["num", "adn"],
+    "attestedForms": [
+      {"form": "tupesan tanku asisne kunkutu", "analysis": "= 850 「850人のアイヌの家を建て」", "sourceCited": "『物語』 01208-09, 03407-08", "articleLoc": "diss. l.7085-7086 (ex 7-34), 7699-7705 (ex 8-21)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7-8; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Numeral."
+  },
+  {
+    "lemma": "tanku",
+    "sakaguchiForm": "tanku",
+    "ja": ["100"],
+    "en": ["hundred"],
+    "ru": [],
+    "poses": ["num"],
+    "attestedForms": [
+      {"form": "tupesan tanku", "analysis": "= 800", "sourceCited": "『物語』 01208-09, 03407-08", "articleLoc": "diss. l.7085-7086, 7699-7701"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7-8; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakhalin hundred (loan from Nivkh?); pairs with kunkutu (exists)."
+  },
+  {
+    "lemma": "sipoh",
+    "sakaguchiForm": "sipoh ~ sipo[h] (source シポホ)",
+    "ja": ["箱", "櫃"],
+    "en": ["box, chest"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "Nuca tehpo tama ohta ahun sipoh", "analysis": "「露西亞の鐵砲丸を入れてある箱」", "sourceCited": "『物語』 11308", "articleLoc": "diss. l.6903-6908 (ex 7-24)"},
+      {"form": "sipo[h] oo ikoro", "analysis": "「箱に入った宝」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 17-18", "articleLoc": "diss. l.7792-7797 (ex 8-27)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7-8; primary: 山邊・金田一 1913, Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan (< sippō? 重箱?); stem sipo- + coda h."
+  },
+  {
+    "lemma": "aciwcikah",
+    "sakaguchiForm": "aciwcikah",
+    "ja": ["ハヤブサ(?)"],
+    "en": ["falcon(?)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "onnew naa aciwcikah naa ipe hunara kusu sap=ahsi", "analysis": "「ワシやハヤブサが食物を探しに下りてきた」; -cikah 'bird'; Sakaguchi's own (?)", "sourceCited": "『物語』 06604", "articleLoc": "diss. l.6947-6953 (ex 7-26)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 山邊・金田一 1913",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Gloss uncertain in source itself; aciw-cikah 'diving-bird'?"
+  },
+  {
+    "lemma": "sohkan",
+    "sakaguchiForm": "sohkan[a] (source со́хкан)",
+    "ja": ["カジカ"],
+    "en": ["sculpin"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "pon sohkan[a] ohkayo", "analysis": "「カジカの息子」", "sourceCited": "『資料２』 T.3, 1", "articleLoc": "diss. l.6956-6961 (ex 7-27)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: Pilsudskij 2002 T.3",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Final vowel restored by Sakaguchi (sohkan[a]); decide lemma sohkan vs sohkana."
+  },
+  {
+    "lemma": "usaan",
+    "sakaguchiForm": "usaan",
+    "ja": ["色々な"],
+    "en": ["various"],
+    "ru": [],
+    "poses": ["adn"],
+    "attestedForms": [
+      {"form": "usaan", "analysis": "—", "sourceCited": "村崎 1976: 15 (ライチㇱカ)", "articleLoc": "diss. l.6986-6989 (ex 7-28)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §7.2; primary: 村崎 1976: 15",
+    "ocrConfidence": "clear",
+    "reviewNote": "usa-an; dict has usa — add derived adnominal."
+  },
+  {
+    "lemma": "asiste",
+    "sakaguchiForm": "asis-te (an-asis-te)",
+    "ja": ["出す", "脱ぐ（移動体が複数）"],
+    "en": ["to take out, take off (plural theme)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "an-asis-te", "analysis": "出る.PL-CAUS: karauto oo ikoro pirika i … emuyke an-asis-te 「唐櫃の宝の良いものを全部出して」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 178-179; Nr.17, 85", "articleLoc": "diss. l.7777-7783 (ex 8-26), 7810-7815 (ex 8-28)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: Piłsudski 1912 Nr.23, Nr.17",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Interlinear says asis-te CAUS; body text line 7757 says *asip+-ka — OCR conflict, trust interlinear; pairs with asinke (exists)."
+  },
+  {
+    "lemma": "sapane",
+    "sakaguchiForm": "sapane",
+    "ja": ["頭である", "長である"],
+    "en": ["to be chief, head"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "sapane tono", "analysis": "「長である殿（門馬氏）」context", "sourceCited": "『物語』 02910", "articleLoc": "diss. l.7769-7773 (ex 8-25)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "sapa-ne 'head-COP'."
+  },
+  {
+    "lemma": "karauto",
+    "sakaguchiForm": "karauto",
+    "ja": ["唐櫃"],
+    "en": ["(Chinese-style) chest (loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "karauto oo ikoro", "analysis": "「唐櫃に入った宝」", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 178-179", "articleLoc": "diss. l.7777-7782 (ex 8-26)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan karabitsu/karuuto."
+  },
+  {
+    "lemma": "tusuku",
+    "sakaguchiForm": "tusuku",
+    "ja": ["巫者", "シャーマン"],
+    "en": ["shaman"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "mahneku tusuku an-ahun-ke=ci", "analysis": "「女性の巫者を家に入れて」", "sourceCited": "Piłsudski 1912 『資料』 Nr.15, 54-55", "articleLoc": "diss. l.7837-7844 (ex 8-29)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: Piłsudski 1912 Nr.15",
+    "ocrConfidence": "clear",
+    "reviewNote": "tusu-ku(ru) 'tusu-person'; dict has tusu — add agent noun."
+  },
+  {
+    "lemma": "onneno",
+    "sakaguchiForm": "onneno",
+    "ja": ["～まで"],
+    "en": ["up to, even"],
+    "ru": [],
+    "poses": ["postp"],
+    "attestedForms": [
+      {"form": "hekaci onneno", "analysis": "「子どもまで」", "sourceCited": "Piłsudski 1912 『資料』 Nr.10, 42", "articleLoc": "diss. l.7852-7854 (ex 8-30)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.1; primary: Piłsudski 1912 Nr.10",
+    "ocrConfidence": "clear",
+    "reviewNote": "onne-no 'to-ADV'; check dict onne entry overlap."
+  },
+  {
+    "lemma": "ramat",
+    "sakaguchiForm": "ramat (ramat-[u]hu)",
+    "ja": ["魂"],
+    "en": ["soul"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "mac-ihi ramat-[u]hu", "analysis": "「その奥さんの魂を」", "sourceCited": "Piłsudski 1912 『資料』 Nr.21, 9-10", "articleLoc": "diss. l.7942-7944 (ex 8-34)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.3; primary: Piłsudski 1912 Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "Core religious vocabulary; dict has only kuhramatuhu — add base noun (stem ramat-, citation ramah? decide per coda rule: word-final t → h would give ramah; Sakaguchi prints ramat before vowel suffix)."
+  },
+  {
+    "lemma": "tehpokusuri",
+    "sakaguchiForm": "tehpo-kusuri",
+    "ja": ["火薬"],
+    "en": ["gunpowder (lit. gun-medicine)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "tehpo-kusuri", "analysis": "鉄砲-薬", "sourceCited": "『物語』 08913-09001", "articleLoc": "diss. l.7983-7985 (ex 8-35)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.2.2.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Compound — decide solid vs spaced lemma and tehpo(o) length (cf. tehpoo entry)."
+  },
+  {
+    "lemma": "eurayahte",
+    "sakaguchiForm": "e-u-rayah-te",
+    "ja": ["感嘆する", "（～を）称賛し合う"],
+    "en": ["to marvel at, admire together"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eurayahte", "analysis": "を.APPL-REC-称賛する-CAUS; stem rayah 'praise' with coda h", "sourceCited": "Piłsudski 1912 『資料』 Nr.23, 198-199", "articleLoc": "diss. l.8208-8211 (ex 8-42)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.3; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Also consider base rayah 'praise' as separate (unattested bare — do not add bare form)."
+  },
+  {
+    "lemma": "eicaarare",
+    "sakaguchiForm": "eicaarare",
+    "ja": ["信じない(?)"],
+    "en": ["to not believe(?)"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "eicaarare=si", "analysis": "an-e-ko-weepekere=si, eicaarare=si 「私はそのことを話した。姉たちは信じなかった」; gloss uncertain in source itself", "sourceCited": "『資料２』 T.9, 17-18", "articleLoc": "diss. l.8231-8237 (ex 8-43)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.3; primary: Pilsudskij 2002 T.9",
+    "ocrConfidence": "clear",
+    "reviewNote": "Sakaguchi's own (?) on gloss — keep flag; e-i-caarare?"
+  },
+  {
+    "lemma": "sukuh",
+    "sakaguchiForm": "sukuh",
+    "ja": ["若い"],
+    "en": ["young"],
+    "ru": [],
+    "poses": ["adn"],
+    "attestedForms": [
+      {"form": "sukuh ohkayo utara", "analysis": "「若い男たち」", "sourceCited": "『物語』 12910", "articleLoc": "diss. l.8247-8249 (ex 8-44)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "< sukup 'grow'; stem sukup- presumably resurfaces — record."
+  },
+  {
+    "lemma": "yama",
+    "sakaguchiForm": "yama",
+    "ja": ["山"],
+    "en": ["mountain (Japanese loan)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "yama ohta", "analysis": "「山で」", "sourceCited": "『物語』 12910", "articleLoc": "diss. l.8247-8249 (ex 8-44)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §8.3; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Loan; coexists with native sekuma/kimuy terms."
+  },
+  {
+    "lemma": "iriwah",
+    "sakaguchiForm": "iriwah",
+    "ja": ["兄弟姉妹（性別を問わず）"],
+    "en": ["sibling (any gender combination)"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "iriwah", "analysis": "base of uriwahne (u-iriwah-ne REC-sibling-COP)", "sourceCited": "服部編 1964: 41-42", "articleLoc": "2020 ahcin art. l.704-711"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.3; primary: 服部編 1964",
+    "ocrConfidence": "clear",
+    "reviewNote": "Dict has uriwahne — add base noun; stem iriwak- before vowels."
+  },
+  {
+    "lemma": "cinkew",
+    "sakaguchiForm": "cinkew",
+    "ja": ["先祖"],
+    "en": ["ancestor"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "an-cinkew", "analysis": "1SG.P-先祖 (personal form without possessive suffix)", "sourceCited": "山邊・金田一 1913: 1, 52, 53", "articleLoc": "2020 ahcin art. fn14 l.210-215"},
+      {"form": "an-cinkew-he utara", "analysis": "possessed + -utara plural", "sourceCited": "知里 1973[1942]: 518, 533", "articleLoc": "2020 ahcin art. fn24 l.404-405"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art.; primary: 山邊・金田一 1913, 知里 1942",
+    "ocrConfidence": "clear",
+    "reviewNote": "Also in u-cinkew-koro 'parent and child' (服部編 1964: 41)."
+  },
+  {
+    "lemma": "kiyane",
+    "sakaguchiForm": "kiyane",
+    "ja": ["年上の"],
+    "en": ["elder, older (of siblings)"],
+    "ru": [],
+    "poses": ["adn", "vi"],
+    "attestedForms": [
+      {"form": "an-kiyane-k(uh)-utara", "analysis": "「私の年上の者たち」(kuru~kuh '者')", "sourceCited": "Piłsudski 1912 Nr.27: 17", "articleLoc": "2020 ahcin art. l.196-203, ex 22 l.846-849"},
+      {"form": "i-kiyane-kuru", "analysis": "1SG.P-年上の-者", "sourceCited": "Piłsudski 1912 Nr.27: 27", "articleLoc": "2020 ahcin art. l.196-203"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §2; primary: Piłsudski 1912 Nr.27",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. Hokkaido kiyanne."
+  },
+  {
+    "lemma": "sopake",
+    "sakaguchiForm": "sopake(-he)",
+    "ja": ["上座"],
+    "en": ["the head, upper seat (of the house)"],
+    "ru": [],
+    "poses": ["n", "nl"],
+    "attestedForms": [
+      {"form": "sopake-he-sin", "analysis": "上座-POSS=PL (referring to treasures placed there)", "sourceCited": "Piłsudski 1912 Nr.23: 175", "articleLoc": "2020 ahcin art. l.500-509"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.1; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "so-pa-ke locational; long-form locational noun."
+  },
+  {
+    "lemma": "tukareke",
+    "sakaguchiForm": "tukareke(-he)",
+    "ja": ["（目の）先、すぐ前"],
+    "en": ["the place just in front of"],
+    "ru": [],
+    "poses": ["n", "nl"],
+    "attestedForms": [
+      {"form": "tukareke-he-cin", "analysis": "先-POSS=PL (the place before the shaman's eyes)", "sourceCited": "Piłsudski 1912 Nr.15: 49", "articleLoc": "2020 ahcin art. l.500-509"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.1; primary: Piłsudski 1912 Nr.15",
+    "ocrConfidence": "clear",
+    "reviewNote": "tu-kar-e-ke? locational long form."
+  },
+  {
+    "lemma": "haworokehe",
+    "sakaguchiForm": "hawʼoroke(he) ~ haworoke-sin",
+    "ja": ["～する声（名詞化辞）"],
+    "en": ["voice of (doing); nominalizer of utterance perception"],
+    "ru": [],
+    "poses": ["nmlz"],
+    "attestedForms": [
+      {"form": "seta-utara naa oha cise kari me[h] hawʼoroke-sin an", "analysis": "「犬たちも無人の家から鳴いている声がする」", "sourceCited": "山邊・金田一 1913: 140", "articleLoc": "2020 ahcin art. l.621-638 (ex 13, 14)"},
+      {"form": "(h)aworoke=sin", "analysis": "声=PL (sapa voròḱeśín — heavily garbled source line)", "sourceCited": "Piłsudski 1912 Nr.21: 87-88", "articleLoc": "diss. l.3104-3106 (ex 4-2)"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2 + 2024 diss.; primary: 山邊・金田一 1913, Piłsudski 1912 Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "haw-oroke-he; 金田一 1913: 39 lists as verb 'to clamor' but verbal use unattested."
+  },
+  {
+    "lemma": "humorokehe",
+    "sakaguchiForm": "humoroke(he)",
+    "ja": ["～する気配・音（名詞化辞）"],
+    "en": ["sound, sense of (doing); nominalizer parallel to hum"],
+    "ru": [],
+    "poses": ["nmlz"],
+    "attestedForms": [
+      {"form": "humoroke(he)", "analysis": "used like hum(ihi); no -ahcin tokens found", "sourceCited": "村崎 1976: 44, 98, 99, 109", "articleLoc": "2020 ahcin art. l.514-515, fn29"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: 村崎 1976",
+    "ocrConfidence": "clear",
+    "reviewNote": "hum-oroke-he; dict has hum/humihi — add long form."
+  },
+  {
+    "lemma": "ruuorokehe",
+    "sakaguchiForm": "ruuoroke(he)",
+    "ja": ["～した跡（名詞化辞）"],
+    "en": ["trace of (doing); nominalizer parallel to ruu"],
+    "ru": [],
+    "poses": ["nmlz"],
+    "attestedForms": [
+      {"form": "ruuoroke(he)", "analysis": "used like ruu(he); no -ahcin tokens found", "sourceCited": "村崎 1976: 19, 35", "articleLoc": "2020 ahcin art. l.515, fn30"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: 村崎 1976",
+    "ocrConfidence": "clear",
+    "reviewNote": "ruu-oroke-he; dict has ruu/ruuhe — add long form."
+  },
+  {
+    "lemma": "utohseka",
+    "sakaguchiForm": "u-tóxśe-ka",
+    "ja": ["みんなで眠る（互いに眠らせる）"],
+    "en": ["to sleep all together"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "u-tohse-ka ruhe-sin an", "analysis": "REC-寝る-CAUS 「（二羽が）寝ていたのだった」; u-…-ka/-re = plural action in Sakhalin (知里 1942: 510)", "sourceCited": "Piłsudski 1912 Nr.21: 52-53; Nr.23: 32-33; Nr.1: 314-316", "articleLoc": "2020 ahcin art. exx 8, 9, 15; fn40"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: Piłsudski 1912",
+    "ocrConfidence": "clear",
+    "reviewNote": "Check dict tohse base; u-...-ka plural-subject formation."
+  },
+  {
+    "lemma": "pinaponne",
+    "sakaguchiForm": "pinapónne",
+    "ja": ["ひそかに"],
+    "en": ["secretly, quietly"],
+    "ru": [],
+    "poses": ["adv"],
+    "attestedForms": [
+      {"form": "níśpa-utara pinapónne u-mojmoje hàuhe-śín an manu", "analysis": "「長者たちがひそかに揺り起こしあう声がしたとさ」", "sourceCited": "Piłsudski 1912 Nr.21: 57", "articleLoc": "2020 ahcin art. ex 10 l.588-591"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: Piłsudski 1912 Nr.21",
+    "ocrConfidence": "clear",
+    "reviewNote": "pina-pon-ne?; single token."
+  },
+  {
+    "lemma": "eucarare",
+    "sakaguchiForm": "e-u-ćára-re",
+    "ja": ["言い合う"],
+    "en": ["to talk with one another"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "e-u-cara-re", "analysis": "を.APPL-REC-言う-CAUS", "sourceCited": "Piłsudski 1912 Nr.23: 160", "articleLoc": "2020 ahcin art. ex 11 l.605-609"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Diacritics garbled; cara 'mouth' base — verify."
+  },
+  {
+    "lemma": "horokeu",
+    "sakaguchiForm": "horoḱéu",
+    "ja": ["狼"],
+    "en": ["wolf"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "tám múre horoḱéu", "analysis": "「この夫婦（の）狼」", "sourceCited": "Piłsudski 1912 Nr.23: 85-86", "articleLoc": "2020 ahcin art. ex 3 l.180-185"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art.; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Dict has unglossed 'horoke' (freq 3) — possibly same word truncated; reconcile."
+  },
+  {
+    "lemma": "sirimah",
+    "sakaguchiForm": "śirímax / sirìmak-i-śín",
+    "ja": ["憑神"],
+    "en": ["guardian, familiar spirit"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "sirimak-i-sin", "analysis": "憑神-POSS=PL; e-ko-jup-útar-hi śirímax orovano an-kamèsu-xśí 「お前の兄たちは憑神によって守られている」", "sourceCited": "Piłsudski 1912 Nr.23: 85-88", "articleLoc": "2020 ahcin art. exx 3, 4 l.180-189"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art.; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Citation sirimah, prevocalic stem sirimak-; religious term."
+  },
+  {
+    "lemma": "kamesu",
+    "sakaguchiForm": "kamesu (an-kamèsu-xśí)",
+    "ja": ["救う"],
+    "en": ["to save, protect"],
+    "ru": [],
+    "poses": ["vt"],
+    "attestedForms": [
+      {"form": "an-kamesu=hci", "analysis": "IND-救う-PL 「守られている」(indefinite subject = passive-like)", "sourceCited": "Piłsudski 1912 Nr.23: 87-88", "articleLoc": "2020 ahcin art. ex 4 l.186-189"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art.; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "clear",
+    "reviewNote": "Cf. Hokkaido kamesu? single text token."
+  },
+  {
+    "lemma": "sekuhpe",
+    "sakaguchiForm": "śekuxpe",
+    "ja": ["青年"],
+    "en": ["young man"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ivam pój śekuxpe (= iwan pon sekuhpe)", "analysis": "「六人の小さい青年」", "sourceCited": "Piłsudski 1912 Nr.26: 17-18", "articleLoc": "2020 ahcin art. ex 7 l.522-525"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art.; primary: Piłsudski 1912 Nr.26",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "sukup-pe? cf. sukuh; verify vowel."
+  },
+  {
+    "lemma": "hopihsanne",
+    "sakaguchiForm": "hopihsanne",
+    "ja": ["浜から（離れて来る）"],
+    "en": ["(coming) away from the beach"],
+    "ru": [],
+    "poses": ["vi", "adv"],
+    "attestedForms": [
+      {"form": "Eekichi -utara hopihsanne makap-ahsi", "analysis": "「英吉たちが浜からやってきた」", "sourceCited": "山邊・金田一 1913: 75", "articleLoc": "2020 ahcin art. ex 20 l.815-820"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "ho-pis-san-ne?; single token."
+  },
+  {
+    "lemma": "yaykoreske",
+    "sakaguchiForm": "jajkorésḱe",
+    "ja": ["自らを育てる", "自ら成長する"],
+    "en": ["to raise oneself, grow up on one's own"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "yaykoreske", "analysis": "yay-ko-reske REFL-APPL-育てる", "sourceCited": "Piłsudski 1912 Nr.25: 1-2 (p.222)", "articleLoc": "2020 ahcin art. ex 21 l.829-835"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §4; primary: Piłsudski 1912 Nr.25",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "Transparent derivation of reske (exists); decide entry vs derived form."
+  },
+  {
+    "lemma": "sirankore",
+    "sakaguchiForm": "sirankore (ay-sirankore -utara)",
+    "ja": ["親戚"],
+    "en": ["relative, kin"],
+    "ru": [],
+    "poses": ["n"],
+    "attestedForms": [
+      {"form": "ay-sirankore-utara i-reske keraykusu", "analysis": "「親戚たちが私を育ててくれたお蔭で」(ay < an before s)", "sourceCited": "山邊・金田一 1913: 2", "articleLoc": "2020 ahcin art. ex 19 l.790-794, fn44"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §4; primary: 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "siran-kore?; kinship term."
+  },
+  {
+    "lemma": "uetorekoyki",
+    "sakaguchiForm": "v-etor-ekojki-xći (= u-etor-e-koyki-hci)",
+    "ja": ["いびきをかきあう"],
+    "en": ["to snore at each other"],
+    "ru": [],
+    "poses": ["vi"],
+    "attestedForms": [
+      {"form": "u-etor-e-koyki=hci", "analysis": "REC-いびき-APPL-叩く=PL", "sourceCited": "Piłsudski 1912 Nr.23: 32-33", "articleLoc": "2020 ahcin art. ex 9 l.576-581"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.2; primary: Piłsudski 1912 Nr.23",
+    "ocrConfidence": "partly-garbled",
+    "reviewNote": "OCR u→v; etor 'snore' base — check dict etoro."
+  },
+  {
+    "lemma": "upookoro",
+    "sakaguchiForm": "u-poo-koro (-utah)",
+    "ja": ["親子"],
+    "en": ["parent(s) and child(ren)"],
+    "ru": [],
+    "poses": ["colloc"],
+    "attestedForms": [
+      {"form": "u-poo-koro -utah", "analysis": "REC-子-持つ + PL; -ahcin not allowed (not additive-homogeneous)", "sourceCited": "服部編 1964: 41", "articleLoc": "2020 ahcin art. l.708-710"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.3; primary: 服部編 1964: 41",
+    "ocrConfidence": "clear",
+    "reviewNote": "Lexicalized reciprocal phrase; decide colloc entry vs grammar note."
+  },
+  {
+    "lemma": "ucinkewkoro",
+    "sakaguchiForm": "u-cinkew-koro (-utah)",
+    "ja": ["親子（先祖と子孫）"],
+    "en": ["parent and child (lit. having ancestors mutually)"],
+    "ru": [],
+    "poses": ["colloc"],
+    "attestedForms": [
+      {"form": "u-cinkew-koro -utah", "analysis": "REC-先祖-持つ + PL", "sourceCited": "服部編 1964: 41", "articleLoc": "2020 ahcin art. l.708-710"}
+    ],
+    "provenance": "Sakaguchi 2020 ahcin art. §3.2.3; primary: 服部編 1964: 41",
+    "ocrConfidence": "clear",
+    "reviewNote": "As upookoro."
+  },
+  {
+    "lemma": "inci=",
+    "sakaguchiForm": "inci-",
+    "ja": ["私（たち）を…（受身）", "１人称目的格受動接頭辞"],
+    "en": ["1st-person passive object prefix (no sg/pl distinction)"],
+    "ru": [],
+    "poses": ["pers", "pfx"],
+    "attestedForms": [
+      {"form": "inci-wenkara", "analysis": "「負かされる・殺される」with cookay; agent definite, so not indefinite-person; not segmentable as in-ci-", "sourceCited": "Piłsudski 1912 『資料』 Nr.19, 23-24; Sato 1985: 159 ex 9", "articleLoc": "diss. l.1955-1966 (ex 3-13)"},
+      {"form": "inci-tuye", "analysis": "in KU (1SG) context", "sourceCited": "Piłsudski 1912 『資料』 Nr.16, 44-47", "articleLoc": "diss. l.1975-1985 (ex 3-14)"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.1.4; primary: Piłsudski 1912 Nr.19, Nr.16; cf. Sato 1985",
+    "ocrConfidence": "clear",
+    "reviewNote": "East Sakhalin; corresponds to NE-Hokkaido enci-(sg)/unci-(pl); only 2 Sakhalin tokens — paradigm row, see sakaguchi_paradigm.json."
+  },
+  {
+    "lemma": "yan",
+    "sakaguchiForm": "yan",
+    "ja": ["（複数の相手への命令）…しなさい"],
+    "en": ["imperative final particle for plural addressees (possibly polite)"],
+    "ru": [],
+    "poses": ["parti"],
+    "attestedForms": [
+      {"form": "paye yan te / repaa yan kaane", "analysis": "follows plural stem; can be followed by conjunctions te, kaane", "sourceCited": "『物語』 10811-12", "articleLoc": "diss. l.2170-2189 (ex 3-21)"},
+      {"form": "in-ko-ociw-rusuy yan", "analysis": "occupies same slot as AHCI", "sourceCited": "Piłsudski 1912 『資料』 Nr.6, 14", "articleLoc": "diss. l.4338-4343 (ex 5-12), fn75"}
+    ],
+    "provenance": "Sakaguchi 2024 diss. §3.3.3, §5.2; primary: Piłsudski 1912, 山邊・金田一 1913",
+    "ocrConfidence": "clear",
+    "reviewNote": "Homonymous with existing yan 'to land' (vi) — add as separate particle entry; historically related to 2PL suffix -(y)an (田村 1988: 61)."
+  }
+]
