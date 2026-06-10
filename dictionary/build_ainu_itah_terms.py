@@ -52,10 +52,21 @@ AFFIXES = REPO_ROOT.parent / "ainu-morpheme-database" / "sakhalin" / "affixes.js
 # "reject" blocks a demotion the analyzer proposed.
 OVERRIDES = REPO_ROOT / "dictionary" / "input" / "sakhalin" / "analysis_overrides.json"
 
+# Sakhalin↔Hokkaido same-etymon correspondences (auto layer + curated layer),
+# built by ainu-morpheme-database/sakhalin/build_correspondences.py. Optional.
+CORR_AUTO = (
+    REPO_ROOT.parent
+    / "ainu-morpheme-database" / "sakhalin" / "output" / "correspondences.json"
+)
+CORR_CURATED = (
+    REPO_ROOT.parent / "ainu-morpheme-database" / "sakhalin" / "correspondences_curated.json"
+)
+
 KEY_ORDER = [
     "lemma", "ja", "en", "ru", "poses",
     "frequency", "frequencyRolled", "freqSource",
     "structure", "forms",
+    "hokkaido", "hokkaidoNot",
     "cognates", "noncognates",
 ]
 
@@ -153,6 +164,8 @@ def flatten_forms(terms: list[dict]) -> list[dict]:
         forms = t.pop("forms", None) or []
         t.pop("frequencyRolled", None)
         t.pop("structure", None)
+        t.pop("hokkaido", None)
+        t.pop("hokkaidoNot", None)
         out.append(t)
         for f in forms:
             row = {
@@ -302,6 +315,60 @@ def apply_analysis(terms: list[dict]) -> tuple[list[dict], str]:
     )
 
 
+def apply_correspondences(terms: list[dict]) -> str:
+    """Attach typed Hokkaido same-etymon correspondences to entries. A pair
+    matched on a nested form attaches to the base row with the form noted."""
+    pairs: list[tuple[dict, bool]] = []  # (pair, curated)
+    if CORR_AUTO.exists():
+        pairs += [(p, False) for p in json.loads(CORR_AUTO.read_text(encoding="utf-8"))]
+    negatives: list[dict] = []
+    if CORR_CURATED.exists():
+        cur = json.loads(CORR_CURATED.read_text(encoding="utf-8"))
+        pairs += [(p, True) for p in cur.get("pairs", [])]
+        negatives = cur.get("negativePairs", [])
+    if not pairs:
+        return "correspondences: not present"
+
+    rows_by_lemma: dict[str, dict] = {}
+    for t in terms:
+        rows_by_lemma.setdefault(t["lemma"], t)
+
+    attached = 0
+    seen: set[tuple[str, str, str]] = set()
+    for p, curated in pairs:
+        s = p.get("sakhalin") or {}
+        target = s.get("baseLemma") if s.get("isForm") else s.get("lemma")
+        row = rows_by_lemma.get(target or "")
+        if row is None:
+            continue
+        h_lemma = (p.get("hokkaido") or {}).get("lemma", "")
+        key = (target, h_lemma, p.get("type", ""))
+        if not h_lemma or key in seen:
+            continue
+        seen.add(key)
+        item: dict = {"lemma": h_lemma, "type": p.get("type", "")}
+        if p.get("ruleIds"):
+            item["rules"] = p["ruleIds"]
+        if curated:
+            item["curated"] = True
+        elif p.get("confidence") is not None:
+            item["conf"] = p["confidence"]
+        if s.get("isForm"):
+            item["form"] = s.get("lemma")
+        row.setdefault("hokkaido", []).append(item)
+        attached += 1
+    for n in negatives:
+        row = rows_by_lemma.get(n.get("sakhalin", ""))
+        if row is not None and n.get("hokkaido"):
+            row.setdefault("hokkaidoNot", []).append(n["hokkaido"])
+    for t in terms:
+        if t.get("hokkaido"):
+            t["hokkaido"].sort(
+                key=lambda i: (not i.get("curated"), -(i.get("conf") or 0), i["lemma"])
+            )
+    return f"correspondences: attached {attached} pairs, {len(negatives)} negatives"
+
+
 def main() -> int:
     terms = json.loads(EXTENDED.read_text(encoding="utf-8"))
     terms = flatten_forms(terms)
@@ -388,6 +455,9 @@ def main() -> int:
     # 2b. morphological analysis join (nest word-forms, attach structures)
     terms, analysis_stats = apply_analysis(terms)
 
+    # 2c. Hokkaido correspondence join
+    corr_stats = apply_correspondences(terms)
+
     # 3a. canonical extended file (compact, all keys)
     EXTENDED.write_text(
         json.dumps(terms, ensure_ascii=False), encoding="utf-8"
@@ -415,6 +485,7 @@ def main() -> int:
         f"frequencies changed: {changed} (raised {raised}); "
         f"kept prior value (0 in corpus): {kept}\n"
         f"{analysis_stats}\n"
+        f"{corr_stats}\n"
         f"wrote: {EXTENDED}\n       {SITE_DATA}"
     )
     return 0
