@@ -31,7 +31,11 @@ from utils.lemmatize import normalize
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXTENDED = REPO_ROOT / "dictionary" / "output" / "ainu-itah" / "sakhalin-terms-extended.json"
+# ``lemma_frequency.tsv`` has attachment markers stripped (``=an``/``an=``/``an``
+# all collapse to ``an``); ``token_frequency.tsv`` preserves them, which is the
+# only way to disaggregate homographic clitics. See ``sakhalin_count``.
 FREQ = REPO_ROOT / "corpus" / "output" / "ainu_corpora" / "lemma_frequency.tsv"
+TOKEN_FREQ = REPO_ROOT / "corpus" / "output" / "ainu_corpora" / "token_frequency.tsv"
 NEW_TERMS = REPO_ROOT / "dictionary" / "input" / "sakhalin" / "new_terms_from_corpus_2026.json"
 SITE_DATA = REPO_ROOT.parent / "aynu-itah" / "src" / "lib" / "data.json"
 
@@ -49,11 +53,13 @@ def mp_to_np(word: str) -> str:
     return word.replace("mp", "np")
 
 
-def load_sakhalin_freq() -> dict[str, int]:
+def load_sakhalin_table(path: Path) -> dict[str, int]:
     """form → Sakhalin count, with an ``mp``→``np`` alias so np-spelled
-    dictionary lemmas match the corpus's mp-spelled forms."""
+    dictionary lemmas match the corpus's mp-spelled forms. Works for either the
+    marker-stripped ``lemma_frequency.tsv`` or the marker-preserving
+    ``token_frequency.tsv`` (the ``form`` column differs; the parse is the same)."""
     freq: dict[str, int] = {}
-    with FREQ.open(encoding="utf-8") as f:
+    with path.open(encoding="utf-8") as f:
         for row in csv.DictReader(f, delimiter="\t"):
             sakh = 0
             for part in row["dialect_breakdown"].split("|"):
@@ -70,20 +76,50 @@ def load_sakhalin_freq() -> dict[str, int]:
     return freq
 
 
-def sakhalin_count(lemma: str, freq: dict[str, int]) -> int:
+def sakhalin_count(
+    lemma: str,
+    lemma_freq: dict[str, int],
+    token_freq: dict[str, int],
+    clitic_bares: frozenset[str],
+) -> int:
+    # A lemma whose surface is itself a clitic (marked ``=an`` / ``an=`` / ``ku=``)
+    # or collides with one (the bare verb ``an`` vs the proclitic ``an=`` and the
+    # enclitic ``=an``) must take its OWN exact surface count from the marker-
+    # PRESERVING token table. The bare ``lemma_frequency.tsv`` strips markers and
+    # so collapses all of them onto a single ``an`` total (1528) — the homograph
+    # bug. Ordinary lemmas — including content verbs that merely *host* an enclitic
+    # (``okay=`` is still the verb ``okay``) — keep the bare aggregate so they are
+    # not under-counted.
+    norm = normalize(lemma)
     b = bare(lemma)
     nb = normalize(b)
+    if not nb:
+        # a bare-marker lemma like ``=`` would otherwise match tokenization
+        # artifacts in the token table
+        return 0
+    if norm.strip("-=") != norm or nb in clitic_bares:
+        return token_freq.get(norm, 0) or token_freq.get(mp_to_np(norm), 0)
     return (
-        freq.get(nb, 0)
-        or freq.get(b, 0)
-        or freq.get(mp_to_np(nb), 0)
-        or freq.get(mp_to_np(b), 0)
+        lemma_freq.get(nb, 0)
+        or lemma_freq.get(b, 0)
+        or lemma_freq.get(mp_to_np(nb), 0)
+        or lemma_freq.get(mp_to_np(b), 0)
     )
 
 
 def main() -> int:
     terms = json.loads(EXTENDED.read_text(encoding="utf-8"))
-    freq = load_sakhalin_freq()
+
+    lemma_freq = load_sakhalin_table(FREQ)
+    token_freq = load_sakhalin_table(TOKEN_FREQ)
+    # Bare forms that are *also* attested as a clitic lemma (so a same-spelled
+    # content word, e.g. verb ``an``, must be disaggregated from ``=an`` / ``an=``
+    # rather than inherit their collapsed total).
+    clitic_bares = frozenset(
+        normalize(bare(t["lemma"]))
+        for t in terms
+        if normalize(t["lemma"]).strip("-=") != normalize(t["lemma"])
+    )
     # np-aware index of existing lemmas (so we never add an mp-spelled duplicate
     # of an np-spelled headword, and vice versa)
     index = {t["lemma"] for t in terms}
@@ -95,7 +131,7 @@ def main() -> int:
     changed = raised = kept = 0
     for t in terms:
         old = t.get("frequency", 0)
-        corpus = sakhalin_count(t["lemma"], freq)
+        corpus = sakhalin_count(t["lemma"], lemma_freq, token_freq, clitic_bares)
         new = corpus if corpus else old
         if new != old:
             changed += 1
@@ -117,7 +153,7 @@ def main() -> int:
             "en": nt.get("en", []),
             "ru": nt.get("ru", []),
             "poses": nt.get("poses", []),
-            "frequency": sakhalin_count(lemma, freq),
+            "frequency": sakhalin_count(lemma, lemma_freq, token_freq, clitic_bares),
             "cognates": nt.get("cognates", []),
             "noncognates": nt.get("noncognates", []),
         })
