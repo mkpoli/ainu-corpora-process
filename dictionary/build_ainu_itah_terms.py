@@ -110,6 +110,26 @@ def sakhalin_count(
 def main() -> int:
     terms = json.loads(EXTENDED.read_text(encoding="utf-8"))
 
+    # 0. drop byte-identical duplicate rows (the curated store accumulated a few
+    #    exact repeats, e.g. ``taa``(vt) twice with identical glosses). Rows that
+    #    differ in ANY curated field — ``taa`` vt vs adn, ``sah`` vt vs vi — are
+    #    distinct senses/homographs, NOT duplicates, and are kept.
+    seen_rows: set[str] = set()
+    deduped: list[dict] = []
+    dropped = 0
+    for t in terms:
+        key = json.dumps(
+            {k: t.get(k) or [] for k in KEY_ORDER if k != "frequency"},
+            ensure_ascii=False,
+            sort_keys=True,
+        )
+        if key in seen_rows:
+            dropped += 1
+            continue
+        seen_rows.add(key)
+        deduped.append(t)
+    terms = deduped
+
     lemma_freq = load_sakhalin_table(FREQ)
     token_freq = load_sakhalin_table(TOKEN_FREQ)
     # Bare forms that are *also* attested as a clitic lemma (so a same-spelled
@@ -184,7 +204,7 @@ def main() -> int:
     )
 
     print(
-        f"terms: {len(terms)} (+{added} new)\n"
+        f"terms: {len(terms)} (+{added} new, -{dropped} duplicate rows)\n"
         f"frequencies changed: {changed} (raised {raised}); "
         f"kept prior value (0 in corpus): {kept}\n"
         f"wrote: {EXTENDED}\n       {SITE_DATA}"
