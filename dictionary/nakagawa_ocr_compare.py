@@ -21,6 +21,7 @@ from dictionary.nakagawa_ocr_common import (
     log_progress,
     parse_models,
     read_config_section,
+    resolve_endpoint,
     resolve_output_root,
     resolve_pages,
     sanitize_model_id,
@@ -63,6 +64,8 @@ class CompareConfig:
     judge_min_confidence: float
     judge_max_tokens: int
     skip_judge: bool
+    api_base: str | None = None
+    api_key: str | None = None
 
 
 @dataclass
@@ -101,6 +104,7 @@ def build_compare_config(args: argparse.Namespace) -> CompareConfig:
         str(file_config.get("output_dir")) if file_config.get("output_dir") is not None else None,
         DEFAULT_OUTPUT_ROOT,
     )
+    api_base, api_key = resolve_endpoint(file_config)
     return CompareConfig(
         pages=pages,
         input_root=input_root,
@@ -117,6 +121,8 @@ def build_compare_config(args: argparse.Namespace) -> CompareConfig:
             config_value(args.judge_max_tokens, file_config.get("judge_max_tokens"), DEFAULT_JUDGE_MAX_TOKENS)
         ),
         skip_judge=bool(args.skip_judge),
+        api_base=api_base,
+        api_key=api_key,
     )
 
 
@@ -269,11 +275,15 @@ def run_judge(
     model_b: str,
     text_b: str,
     max_tokens: int,
+    api_base: str | None = None,
+    api_key: str | None = None,
 ) -> JudgeDecision:
     prompt = judge_prompt(model_a, text_a, model_b, text_b)
     image_data = image_data_url(image_path)
     response = completion(
         model=model_id,
+        api_base=api_base,
+        api_key=api_key,
         messages=[
             {
                 "role": "user",
@@ -291,12 +301,17 @@ def run_judge(
     usage = getattr(response, "usage", None) or {}
     response_cost = getattr(response, "_hidden_params", {}).get("response_cost")
     if not usage or response_cost is None:
-        usage, estimated_cost = estimate_usage_and_cost(
-            model_id=model_id,
-            prompt=prompt,
-            image_data=image_data,
-            output_text=response_text,
-        )
+        try:
+            usage, estimated_cost = estimate_usage_and_cost(
+                model_id=model_id,
+                prompt=prompt,
+                image_data=image_data,
+                output_text=response_text,
+            )
+        except Exception:
+            # An endpoint outside the price map still returns a verdict; it
+            # just has no per-token price.
+            estimated_cost = None
         if response_cost is None:
             response_cost = estimated_cost
     winner, confidence, reason_code, notes = parse_judge_response(response_text)
@@ -408,6 +423,8 @@ def compare_pages(config: CompareConfig) -> None:
                     model_b=model_b,
                     text_b=text_b,
                     max_tokens=config.judge_max_tokens,
+                    api_base=config.api_base,
+                    api_key=config.api_key,
                 )
                 judge_pages += 1
                 if judge.response_cost is not None:

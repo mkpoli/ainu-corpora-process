@@ -1,0 +1,76 @@
+[prod]
+pages = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  448, 449, 450, 451, 452, 453, 454, 455,
+]
+dpi = 300
+models = [
+  "openai/gpt-5.4",
+  "openai/gemini-3-flash",
+]
+api_base = "http://127.0.0.1:8317/v1"
+api_key_env = "PROXY_TOKEN"
+output_dir = "dictionary/output/nakagawa-ocr-prod"
+keep_full_page_image = false
+prompt = """
+You are performing OCR on a scanned page of 中川裕『アイヌ語千歳方言辞典』. This page belongs to the front or back matter: running Japanese prose about the language, tables, or publication data, not dictionary entries. Ainu words appear inside the prose in katakana with adjacent Latin transliteration.
+
+Return only the recognized text in reading order.
+Preserve the line breaks and the indentation of the page.
+Transcribe the running head and the printed page number on the line where they stand.
+Transcribe a table row by row, cells separated by " | ", one row per line.
+Transcribe headings, section markers such as ①②, and list markers as printed.
+Do not add explanations, notes, or Markdown.
+Do not normalize away unusual characters.
+If the page carries no printed text, return nothing.
+
+Important Ainu rule:
+Small kana in Ainu orthography are semantically important. Pay close attention to the adjacent Latin transliteration and use it to restore the intended small kana when the scan is ambiguous.
+
+In this dictionary, the relevant small kana are:
+- k -> ㇰ
+- s -> ㇱ
+- t -> ッ
+- p -> ㇷ゚
+- m -> ㇺ
+- tu -> トゥ
+
+Especially important rule for r:
+When Latin transcription shows syllable-final r after a vowel, the katakana should use the corresponding small r kana, not a full-sized リ or ル.
+- ar -> ㇻ
+- ir -> ㇼ
+- ur -> ㇽ
+- er -> ㇾ
+- or -> ㇿ
+
+This reflects repeated-vowel writing in Ainu orthography, e.g. uirkur is written ウイㇼクㇽ, understood as uir(i)kur(u).
+So if the Latin is uirkur, do not output ウイリクル, ウイリクㇽ, or ウイルクㇽ. Output ウイㇼクㇽ.
+
+These pages also discuss the orthography itself and quote kana and Latin letters as bare symbols. Reproduce such quoted symbols exactly as printed, including full-sized kana where the text is naming the full-sized letter.
+
+Don't put = in Kana, only in Latn.
+"""
+
+[prod.crop_padding]
+left = 3
+top = 3
+right = 3
+bottom = 3
+
+[compare]
+input_dir = "dictionary/output/nakagawa-ocr-prod"
+output_dir = "dictionary/output/nakagawa-ocr-compare"
+pages = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  448, 449, 450, 451, 452, 453, 454, 455,
+]
+candidate_models = [
+  "openai/gpt-5.4",
+  "openai/gemini-3-flash",
+]
+preferred_tie_winner = "openai/gpt-5.4"
+judge_model = "openai/gpt-5.4-mini"
+judge_min_confidence = 0.75
+judge_max_tokens = 400
+api_base = "http://127.0.0.1:8317/v1"
+api_key_env = "PROXY_TOKEN"
