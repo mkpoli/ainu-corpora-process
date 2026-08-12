@@ -149,3 +149,10 @@ This writes final per-page texts under `dictionary/output/nakagawa-ocr-final/`.
 
 Finalize automatically prefers `dictionary/output/nakagawa-ocr-review/page-XXX/final.txt` when it exists, so you can review by editing files directly instead of creating many separate custom override files.
 
+## Archive Text
+
+```bash
+uv run python -m dictionary.nakagawa_export_archive_text
+```
+
+This writes every page of the PDF as one `--- page N ---` file for the scan archive, by default to `../ainu-dictionaries/1995_Nakagawa_Ainu-Chitose-Dialect-Dictionary/source.gpt5-gemini.txt` — beside the scan itself, which is where `archive:ingest-ocr` reads it. Pages with no finalized text keep their marker with an empty body.
