@@ -121,6 +121,8 @@ class OCRConfig:
     output_root: Path
     keep_full_page_image: bool
     estimated_total_pages: int
+    api_base: str | None = None
+    api_key: str | None = None
 
 
 def run_command(
@@ -197,17 +199,33 @@ def provider_env_var_names(model_id: str) -> list[str]:
     return []
 
 
-def model_statuses(models: list[ModelSpec]) -> list[ModelStatus]:
+def model_statuses(models: list[ModelSpec], *, api_key: str | None = None) -> list[ModelStatus]:
     statuses: list[ModelStatus] = []
     for model in models:
         env_vars = provider_env_var_names(model.id)
         available = True
         detail = "ready"
-        if env_vars and not any(os.getenv(name) for name in env_vars):
+        if api_key:
+            detail = "ready via configured endpoint"
+        elif env_vars and not any(os.getenv(name) for name in env_vars):
             available = False
             detail = f"set one of: {', '.join(env_vars)}"
         statuses.append(ModelStatus(id=model.id, available=available, detail=detail))
     return statuses
+
+
+def resolve_endpoint(section: dict[str, Any]) -> tuple[str | None, str | None]:
+    """Endpoint override for model calls: an OpenAI-compatible base and its key.
+
+    `api_base` is the base URL; `api_key_env` names the environment variable
+    holding the key, so no credential is written into a config file.
+    """
+    api_base = section.get("api_base")
+    api_key_env = section.get("api_key_env")
+    api_key = os.getenv(str(api_key_env)) if api_key_env else None
+    if api_key_env and not api_key:
+        raise RuntimeError(f"{api_key_env} is not set; it holds the key for {api_base}")
+    return (str(api_base) if api_base else None, api_key)
 
 
 def read_status_file(path: Path, crop_padding: CropPadding) -> OCRStatusFile | None:
@@ -565,10 +583,19 @@ def completion_text(response: Any) -> str:
     return ""
 
 
-def run_llm_ocr(image_path: Path, model: ModelSpec, prompt: str) -> OCRRunResult:
+def run_llm_ocr(
+    image_path: Path,
+    model: ModelSpec,
+    prompt: str,
+    *,
+    api_base: str | None = None,
+    api_key: str | None = None,
+) -> OCRRunResult:
     image_data = image_data_url(image_path)
     response = completion(
         model=model.id,
+        api_base=api_base,
+        api_key=api_key,
         messages=[
             {
                 "role": "user",
@@ -590,12 +617,17 @@ def run_llm_ocr(image_path: Path, model: ModelSpec, prompt: str) -> OCRRunResult
     response_ms = getattr(response, "response_ms", None)
     response_cost = getattr(response, "_hidden_params", {}).get("response_cost")
     if not usage or response_cost is None:
-        usage, estimated_cost = estimate_usage_and_cost(
-            model_id=model.id,
-            prompt=prompt,
-            image_data=image_data,
-            output_text=text,
-        )
+        try:
+            usage, estimated_cost = estimate_usage_and_cost(
+                model_id=model.id,
+                prompt=prompt,
+                image_data=image_data,
+                output_text=text,
+            )
+        except Exception:
+            # An endpoint outside the price map (a local proxy, a subscription
+            # route) still returns text; it just has no per-token price.
+            estimated_cost = None
         if response_cost is None:
             response_cost = estimated_cost
     return OCRRunResult(
@@ -612,7 +644,7 @@ def run_llm_ocr(image_path: Path, model: ModelSpec, prompt: str) -> OCRRunResult
 
 def run_ocr_pages(config: OCRConfig, *, skip_ocr: bool) -> None:
     ensure_dir(config.output_root)
-    statuses = model_statuses(config.models)
+    statuses = model_statuses(config.models, api_key=config.api_key)
     write_text(
         config.output_root / "backend_status.json",
         json.dumps([asdict(status) for status in statuses], ensure_ascii=False, indent=2),
@@ -718,7 +750,13 @@ def run_ocr_pages(config: OCRConfig, *, skip_ocr: bool) -> None:
 
             try:
                 log_progress(f"[page {page}] running {model.id}")
-                result = run_llm_ocr(cropped_page_image, model, config.prompt)
+                result = run_llm_ocr(
+                    cropped_page_image,
+                    model,
+                    config.prompt,
+                    api_base=config.api_base,
+                    api_key=config.api_key,
+                )
                 write_text(output_path, result.text)
                 record_run_status(
                     current_status,

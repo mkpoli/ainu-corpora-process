@@ -58,6 +58,25 @@ uv run python -m dictionary.nakagawa_ocr_prod
 
 The default production config lives at `dictionary/nakagawa_ocr_prod.toml`. It targets pages `17-447`, writes to `dictionary/output/nakagawa-ocr-prod/`, keeps only `images/cropped_page.png`, and writes `cost_report.md` / `cost_report.json` for that run.
 
+## Front And Back Matter
+
+Pages `1-16` (この辞典の利用法 and 凡例) and `448-455` (あとがきにかえて, the acknowledgements, and the colophon) hold prose and tables rather than entries, so they run from their own config:
+
+```bash
+uv run python -m dictionary.nakagawa_ocr_prod --config dictionary/nakagawa_ocr_matter.toml
+uv run python -m dictionary.nakagawa_ocr_compare --config dictionary/nakagawa_ocr_matter.toml
+```
+
+`dictionary/nakagawa_ocr_matter.toml` carries both the `[prod]` and the `[compare]` section for those pages. It writes into the same `nakagawa-ocr-prod/` and `nakagawa-ocr-compare/` trees, so finalize covers the whole PDF in one pass. Its prompt asks for the running head, the printed page number, and table rows as ` | `-separated cells, and its crop keeps 3% margins instead of the entry pages' 11% top crop, which would cut the heading off page 1.
+
+### Model endpoint
+
+`api_base` and `api_key_env` in a config section send the model calls to an OpenAI-compatible endpoint instead of the provider named in the model id; `api_key_env` names the environment variable holding the key, so nothing secret enters the config file. The matter config uses the local CLIProxyAPI (`http://127.0.0.1:8317/v1`, key in `PROXY_TOKEN`), which serves `gpt-5.4` and `gemini-3-flash` on a subscription and therefore reports no per-token cost:
+
+```bash
+PROXY_TOKEN=<token> uv run python -m dictionary.nakagawa_ocr_prod --config dictionary/nakagawa_ocr_matter.toml
+```
+
 ## Compare And Adjudicate
 
 After production OCR finishes, compare the two completed model outputs and auto-pick a winner per page with:
@@ -129,3 +148,4 @@ Finalize precedence is:
 This writes final per-page texts under `dictionary/output/nakagawa-ocr-final/`.
 
 Finalize automatically prefers `dictionary/output/nakagawa-ocr-review/page-XXX/final.txt` when it exists, so you can review by editing files directly instead of creating many separate custom override files.
+

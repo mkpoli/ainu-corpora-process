@@ -16,6 +16,7 @@ from dictionary.nakagawa_ocr_common import (
     load_env_files,
     parse_models,
     read_config_section,
+    resolve_endpoint,
     resolve_output_root,
     resolve_pages,
     run_ocr_pages,
@@ -48,6 +49,7 @@ def build_prod_config(args: argparse.Namespace) -> OCRConfig:
         DEFAULT_OUTPUT_ROOT,
     )
     keep_full_page_image = bool(file_config.get("keep_full_page_image", False))
+    api_base, api_key = resolve_endpoint(file_config)
     return OCRConfig(
         pages=pages,
         dpi=int(config_value(args.dpi, file_config.get("dpi"), 300)),
@@ -62,6 +64,8 @@ def build_prod_config(args: argparse.Namespace) -> OCRConfig:
         output_root=output_root,
         keep_full_page_image=keep_full_page_image,
         estimated_total_pages=len(pages),
+        api_base=api_base,
+        api_key=api_key,
     )
 
 

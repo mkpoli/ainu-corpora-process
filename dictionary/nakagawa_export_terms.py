@@ -12,6 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 FINAL_ROOT = ROOT / "dictionary" / "output" / "nakagawa-ocr-final"
 OUTPUT_PATH = ROOT / "dictionary" / "output" / "nakagawa_terms.jsonl"
 TSV_OUTPUT_PATH = ROOT / "dictionary" / "output" / "nakagawa_terms.tsv"
+# The alphabetical entries occupy pages 17-447. 利用法・凡例 before them and
+# あとがき・奥付 after them print 【動1】-style labels in prose and in the
+# abbreviation table, which the entry pattern would otherwise read as headwords.
+ENTRY_PAGE_FIRST = 17
+ENTRY_PAGE_LAST = 447
 
 ENTRY_START_RE = re.compile(
     r"(?P<left>[^\n【】]+?)\s*【(?P<pos>[^】]+)】"
@@ -113,6 +118,8 @@ def load_corpus_text() -> tuple[str, list[tuple[int, int]]]:
         if not final_path.exists():
             continue
         page = int(page_value)
+        if not ENTRY_PAGE_FIRST <= page <= ENTRY_PAGE_LAST:
+            continue
         text = final_path.read_text(encoding="utf-8")
         offsets.append((offset, page))
         pieces.append(text)
