@@ -26,6 +26,8 @@ columns:
 
 from __future__ import annotations
 
+from dictionary.headwords import nakagawa_lemma
+
 import csv
 import re
 import sys
@@ -148,9 +150,13 @@ class Source:
         self.base_conf = base_conf
 
     def add(self, lemma_latn: str, lemma_kana: str, definition: str, **extra) -> None:
+        printed = lemma_latn
+        if self.name == "nakagawa":
+            lemma_latn = nakagawa_lemma(lemma_latn, extra.get("pos", ""))
         rec = {
             "source": self.name,
             "lemma": lemma_latn or lemma_kana,
+            "printed_lemma": printed or lemma_kana,
             "lemma_kana": lemma_kana,
             "definition": definition,
             **extra,

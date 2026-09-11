@@ -11,6 +11,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from dictionary.headwords import nakagawa_lemma
+
 import csv
 import re
 import sys
@@ -65,7 +67,7 @@ def load_all():
                         lem = (row.get("ainu") or row.get("Ainu") or "").strip()
                         defn = (row.get("japanese") or row.get("Japanese") or "").strip()
                         if lem:
-                            rows.append(("tane_an", lem, defn))
+                            rows.append(("tane_an", lem, defn, lem))
             continue
         name, rel, lem_col, def_col = entry
         p = DICT_ROOT / rel
@@ -76,7 +78,8 @@ def load_all():
                 lem = (row.get(lem_col) or "").strip()
                 defn = (row.get(def_col) or "").strip()
                 if lem or defn:
-                    rows.append((name, lem, defn))
+                    head = nakagawa_lemma(lem, row.get("pos", "")) if name == "nakagawa" else lem
+                    rows.append((name, lem, defn, head))
     return rows
 
 
@@ -92,13 +95,13 @@ def search(query: str, limit: int = 12, contains: bool = True) -> list[tuple[str
     q = query.strip()
     out = []
     seen = set()
-    for src, lem, defn in rows():
+    for src, lem, defn, head in rows():
         if not q:
             continue
         if contains:
             hit = (q in lem) or (q in defn)
         else:
-            hit = (lem == q)
+            hit = q in (lem, head)
         if hit:
             key = (src, lem)
             if key in seen:
