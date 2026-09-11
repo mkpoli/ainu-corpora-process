@@ -21,6 +21,8 @@ agreement), and lower for fallback / variant matches.
 
 from __future__ import annotations
 
+from dictionary.headwords import nakagawa_lemma
+
 import csv
 import re
 import sys
@@ -102,13 +104,15 @@ def load_nakagawa() -> dict[str, list[dict]]:
     idx: dict[str, list[dict]] = defaultdict(list)
     with path.open(encoding="utf-8") as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
-            lem = row.get("latn", "").strip()
+            printed = row.get("latn", "").strip()
+            lem = nakagawa_lemma(printed, row.get("pos", ""))
             if not lem:
                 continue
             idx[_norm_key(lem)].append(
                 {
                     "source": "nakagawa",
                     "lemma": lem,
+                    "printed_lemma": printed,
                     "kana": row.get("kana", ""),
                     "pos": row.get("pos", ""),
                     "definition": row.get("definition", ""),
