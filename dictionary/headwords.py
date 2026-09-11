@@ -13,4 +13,3 @@ def nakagawa_lemma(heading: str, pos: str = "") -> str:
     if all(re.fullmatch(r"(?:-[^\s,，、]+|[aeiou]|ke)\??", p) for p in parts[1:]):
         return parts[0].strip()
     return heading.strip()
-
